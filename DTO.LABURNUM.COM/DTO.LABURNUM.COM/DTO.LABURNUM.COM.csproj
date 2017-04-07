@@ -58,6 +58,9 @@
     <Compile Include="AttendanceClassPreNurseryModel.cs" />
     <Compile Include="AttendanceClassUKGModel.cs" />
     <Compile Include="BusRouteModel.cs" />
+    <Compile Include="CircularModel.cs" />
+    <Compile Include="CircularNotificationTableModel.cs" />
+    <Compile Include="CircularNotificationTrackerModel.cs" />
     <Compile Include="ClassModel.cs" />
     <Compile Include="ClientModel.cs" />
     <Compile Include="CommonAttendanceModel.cs" />
