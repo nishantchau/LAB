@@ -1,0 +1,282 @@
+﻿@model LABURNUM.COM.Component.SessionManagement
+
+@{
+    Layout = null;
+}
+
+<!-- START X-NAVIGATION -->
+<ul class="x-navigation">
+    <li class="xn-logo">
+        <a href="index.html">ATLANT</a>
+        <a href="#" class="x-navigation-control"></a>
+    </li>
+    <li class="xn-profile">
+        <a href="#" class="profile-mini">
+            @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+            {
+                if (File.Exists(Server.MapPath("~/Uploads/ProfileImages/" + new LABURNUM.COM.Component.SessionManagement().GetStudentPhoto())))
+                {
+                    if (Model.GetStudentPhoto() != null && Model.GetStudentPhoto() != "")
+                    {
+                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/ProfileImages/@Model.GetStudentPhoto()" alt="Profile Image" height="70" width="70" />
+                    }
+                }
+                else
+                {
+                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/dummy.jpg" alt="Profile Image"height="70" width="70" />
+                }
+            }
+            @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                if (File.Exists(Server.MapPath("~/Uploads/ProfileImages/" + new LABURNUM.COM.Component.SessionManagement().GetFacultyPhoto())))
+                {
+                    if (Model.GetFacultyPhoto() != null && Model.GetFacultyPhoto() != "")
+                    {
+                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/ProfileImages/@Model.GetFacultyPhoto()" alt="Profile Image" height="70" width="70" />
+                    }
+                }
+                else
+                {
+                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/dummy.jpg" alt="Profile Image"height="70" width="70" />
+                }
+            }
+
+        </a>
+        <div class="profile">
+            <div class="sidebar-widget author-widget">
+                <div class="media">
+                    <a href="#" class="media-left">
+                        @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+                        {
+                            if (File.Exists(Server.MapPath("~/Uploads/ProfileImages/" + new LABURNUM.COM.Component.SessionManagement().GetStudentPhoto())))
+                            {
+                                if (Model.GetStudentPhoto() != null && Model.GetStudentPhoto() != "")
+                                {
+                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/ProfileImages/@Model.GetStudentPhoto()" alt="Profile Image" height="70" width="70" />
+                                }
+                            }
+                            else
+                            {
+                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/dummy.jpg" alt="Profile Image" height="70" width="70" />
+                            }
+                        }
+                        @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+                        {
+                            if (File.Exists(Server.MapPath("~/Uploads/ProfileImages/" + new LABURNUM.COM.Component.SessionManagement().GetFacultyPhoto())))
+                            {
+                                if (Model.GetFacultyPhoto() != null && Model.GetFacultyPhoto() != "")
+                                {
+                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/ProfileImages/@Model.GetFacultyPhoto()" alt="Profile Image" height="70" width="70" />
+                                }
+                            }
+                            else
+                            {
+                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/dummy.jpg" alt="Profile Image" height="70" width="70" />
+                            }
+                        }
+                    </a>
+                    <div class="media-body">
+                        <div>Welcome</div>
+                        <div class="media-author">
+                            @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
+                            {@Model.GetSudentFirstName()}
+                            @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+                            {@Model.GetFatherName()}
+                            @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
+                            {@Model.GetFacultyName()}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="ac_userProfile">
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+                {
+                    <li>User : @Model.GetUserTypeText()</li>
+                    if (Model.GetIsClassTeacher())
+                    {
+                    <li>Position : Class Teacher (Faculty)</li>
+                    <li>Class : @Model.GetFacultyClassName()</li>
+                    <li>Section : @Model.GetFacultySectionName()</li>
+                    }
+                    if (Model.GetIsSubjectTeacher())
+                    {
+                    <li>Position : Subject Teacher (Faculty)</li>
+                    <li>Subject Name : @Model.GetSubjectName()</li>
+                    }
+                }
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
+                {
+                    <li>Class : @Model.GetStudentClassName()</li>
+                    <li>Section : @Model.GetStudentSectionName()</li>
+                    <li>Adhar No. : @Model.GetSudentAadharNo()</li>
+                    <li>Father Name: @Model.GetFatherName()</li>
+                }
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+                {
+                    <li>Aadhar No. : @Model.GetFatherAadhar()</li>
+                    <li>Mobile : @Model.GetFatherMobile()</li>
+                    <li>PAN : @Model.GetPAN()</li>
+                }
+            </ul>
+        </div>
+    </li>
+
+    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><span class="fa fa-dashboard"></span><span class="xn-text">Dashboard</span></a></li>
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+    {
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-ticket"></span>
+                <span class="xn-text">CLASS</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/AddClass/Index">Add</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SeeAllClass/Index">See All Classes</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-ticket"></span>
+                <span class="xn-text">SECTION</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SeeAllSections/Index">See All Sections</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-book"></span>
+                <span class="xn-text">SUBJECT</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Subject/SeeAllSubjectsIndex">See All Subjects</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-money"></span>
+                <span class="xn-text">FEE</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Fee/AddIndex">Add</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Fee/SeeAllFee">See All Fee</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-ticket"></span>
+                <span class="xn-text">LATE FEE PANELTY</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/LateFeePanelty/SeeAllLateFeePaneltyIndex">See All Late Fee Panelty</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-sitemap"></span>
+                <span class="xn-text">FACULTY</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Faculty/AddIndex">Add</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Faculty/SeeAllFaculties">See All Faculties</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-rocket"></span>
+                <span class="xn-text">TRANSPORT</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/BusRoute/SeeAllBusRoutesIndex">See All Bus Route</a></li>
+            </ul>
+        </li>
+    }
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+    {
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-book"></span>
+                <span class="xn-text">SUBJECT</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Subject/SeeAllSubjectsIndex">See All Subjects</a></li>
+            </ul>
+        </li>
+    }
+
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+    {
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-users"></span>
+                <span class="xn-text">ADMISSION</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/AddStudent/Index">New Admission</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SearchStudentByAdvanceSearch/Index">Re-Admission</a></li>
+                @*<li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SearchStudentByAdvanceSearch/Index">Search Students</a></li>*@
+            </ul>
+        </li>
+    }
+
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+    {
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-inr"></span>
+                <span class="xn-text">PAY STUDENT FEE</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SearchStudentByAdvanceSearch/Index">Pay Admission Fee</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SearchStudentByAdvanceSearch/Index">Pay Monthly Fee</a></li>
+            </ul>
+        </li>
+    }
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+    {
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-folder"></span>
+                <span class="xn-text">REPORTING</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Reporting/TodayCollectionReport">Today Collection Report</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SearchStudentFeeByAdvanceSearch/Index">Advance Search</a></li>
+            </ul>
+        </li>
+    }
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+    {
+        <li><a href="./"><span class="fa fa-book"></span><span class="xn-text">Result </span></a></li>
+    }
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+    {
+        <li><a href="./"><span class="fa fa-book"></span><span class="xn-text">Attendance</span></a></li>
+    }
+
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+    {
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-folder"></span>
+                <span class="xn-text">HOMEWORK</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/HomeWork/AddHomeWorkIndex">Assign HomeWork</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/HomeWork/SearchHomeWorkIndex">See Assigned HomeWork</a></li>
+            </ul>
+        </li>
+    }
+
+</ul>
+<!-- END X-NAVIGATION -->
+<script type="text/javascript">
+
+    $('.arrow_toggle a').click(function () {
+        $('html, body').animate({
+            scrollTop: $(document).height()
+        },
+        1500);
+        return false;
+    });
+</script>

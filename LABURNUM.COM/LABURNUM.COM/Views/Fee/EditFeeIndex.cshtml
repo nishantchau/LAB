@@ -1,0 +1,162 @@
+﻿@model DTO.LABURNUM.COM.FeeModel
+
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+{
+    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnEditFeeBegin", OnSuccess = "OnEditFeeSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Fee/EditFee" }))
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li>Fee</li>
+                <li class="active">Edit Fee</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    
+    @Html.HiddenFor(x => x.FeeId, new { @id = "hdnFeeId" })
+    <section class="panel">
+        <header class="panel-heading">
+            Edit Fee
+            @*<span class="tools pull-right">
+                <a class="fa fa-chevron-down" href="javascript:;"></a>
+            </span>*@
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">For Class : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.ClassName)
+                                @Html.HiddenFor(x => x.ClassId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">For Admission Type : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.AdmissionType)
+                                @Html.HiddenFor(x => x.AdmissionTypeId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Admission Fee : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.AdmissionFee, new { @id = "txtAdmissionFee", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Developement Charges : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.DevelopementCharges, new { @id = "txtDevelopementCharges", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Annual Charges : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.AnnualCharges, new { @id = "txtAnnualCharges", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Exam Fee : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.ExamFee, new { @id = "txtExamFee", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Sports Fee : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.SportsFee, new { @id = "txtSportsFee", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Security Fee : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.SecurityFee, new { @id = "txtSecurityFee", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Monthly Fee : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.MonthlyFee, new { @id = "txtMonthlyFee", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="col-md-12 text-center">
+        <button id="btnEdit" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">Update</button>
+        <button id="btnReset" type="button" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues()">Reset</button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+    }
+}
+else
+{
+    <section>
+        <header class="panel-heading">
+            @(LABURNUM.COM.Component.Constants.ERRORMESSAGES.ACCESS_DENIED)
+        </header>
+    </section>
+}
+

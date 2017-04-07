@@ -1,0 +1,18 @@
+﻿@{
+    string cLayout = "";
+ if ( HttpContext.Current.Session[LABURNUM.COM.Component.Constants.SessionName] != null) {
+     cLayout = "~/Views/Shared/_Layout.cshtml";
+ }
+ else {
+     cLayout = "~/Views/Shared/_WithoutLogin.cshtml";
+ }
+ Layout = cLayout;
+}
+
+
+
+
+
+@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@

@@ -1,0 +1,152 @@
+﻿@model DTO.LABURNUM.COM.StudentModel
+
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+{
+    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnSearchStudentByAdvanceSearchBegin", OnSuccess = "OnSearchStudentByAdvanceSearchSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "SearchStudentByAdvanceSearch/SearchStudentByAdvanceSearch" }))
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li>Student</li>
+                <li class="active">Search Student</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            Search Student@*<span class="tools pull-right">
+                <a class="fa fa-chevron-down" href="javascript:;"></a>
+            </span>*@
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Class : </span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.DropDownList("ClassId", new SelectList(Model.Classes, "ClassId", "ClassName"), "Please Select A class", new { @id = "ddlClass", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Section : </span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.DropDownList("SectionId", new SelectList(Model.Sections, "SectionId", "SectionName"), "Please Select A Section", new { @id = "ddlSection", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">StudentId : </span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.StudentId, new { @id = "txtStudentId", @autocomplete = "Off", @onkeypress = "return isNumber(event);" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">First Name :</span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.FirstName, new { @id = "txtFirstName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Middle Name :</span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.MiddleName, new { @id = "txtMiddleName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Last Name :</span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.LastName, new { @id = "txtLastName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Father's Name :</span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.FatherName, new { @id = "txtFatherName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Mother's Name :</span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.MotherName, new { @id = "txtMotherName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div class="text-center">
+        <button id="btnSearch" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">SEARCH</button>
+        <button id="btnReset" type="button" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetEntries();">RESET</button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+    }
+    <div id="divResult" class="panel margin_small"></div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            OnStudentAdvanceSeachIndexReady();
+        });
+    </script>
+}
+else
+{
+    <section>
+        <header class="panel-heading">
+            @(LABURNUM.COM.Component.Constants.ERRORMESSAGES.ACCESS_DENIED)
+        </header>
+    </section>
+}

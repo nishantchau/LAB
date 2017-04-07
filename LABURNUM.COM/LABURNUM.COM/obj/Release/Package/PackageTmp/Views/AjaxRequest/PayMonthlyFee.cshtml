@@ -1,0 +1,149 @@
+﻿@model DTO.LABURNUM.COM.StudentFeeDetailModel
+
+@{int counter = 1;}
+
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+{
+    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnPayMonthlyFeeBegin", OnSuccess = "OnPayMonthlyFeeSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "StudentFee/PayMonthlyFee" }))
+    {
+    <div class="modal-dialog modal-dialogadept modal-dialogadept-mini" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/button-close.png" /></span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Pay Student Monthly Fee</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span class="score_adept">Pay For The Month <i>:</i></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.DropDownList("PayForTheMonth", new SelectList(Model.Months, "MonthId", "MonthName"), "Please Select A Month", new { @id = "ddlMonth", @autocomplete = "Off", @class = "ToReset", @onChange = "ShowHideAnnualFee();" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span class="score_adept">Monthly Fee <i>:</i></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.MonthlyFee, new { @id = "txtMonthlyFee", @readonly = "yes" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span class="score_adept">Transport Fee <i>:</i></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.TransportFee, new { @id = "txtTransportFee", @readonly = "yes" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span class="score_adept">Late Fee Panelty <i>:</i></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.LateFee, new { @id = "txtLateFee", @readonly = "yes" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 display_none" id="divAnnualFunctionFee">
+                        <div class="col-md-4">
+                            <span class="score_adept">Annual Function Fee<i>:</i></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.AnnualFunctionFee, new { @id = "txtAnnualFunctionFee", @readonly = "yes" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span class="score_adept">Pending Fee <i>:</i></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.PendingFee, new { @id = "txtPendingFee", @readonly = "yes" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span class="score_adept">Discount Amount <i>:</i></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <div class="display_none" id="hdnTotalFees">@(Model.MonthlyFee + Model.TransportFee + Model.LateFee + Model.AnnualFunctionFee + Model.PendingFee)</div>
+                                @Html.TextBoxFor(x => x.DiscountAmount, new { @id = "txtDiscountAmount", @autocomplete = "Off", @class = "ToReset", onkeypress = "return isNumber(event)", onkeyup = "CalculatePayableAmount()", @maxlength = "12" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span class="score_adept">Discount Remarks <i>:</i></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.TextAreaFor(x => x.DiscountRemarks, new { @id = "txtDiscountRemarks", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span class="score_adept">Total Payable Amount <i>:</i></span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.TotalPayableAmount, new { @id = "txtTotalPayableAmount", @readonly = "yes" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center" id="btndiv">
+                        <button id="btnSubmit" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">PAY</button>
+                        <button type="button" id="btnClose" class="btn btn-default btn-adeptsubmit btn-danger" data-dismiss="modal" aria-label="Close">CLOSE</button>
+                    </div>
+                    <div id="divPopupLoader" class="col-md-12 display_none text-center margin_small">
+                        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+                    </div>
+                    <div id="divPopupMessage" class="display_none text-center margin_small col-md-12"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(x => x.ClassId)
+    @Html.HiddenFor(x => x.SectionId)
+    @Html.HiddenFor(x => x.StudentId)
+    @Html.HiddenFor(x => x.IsNewAdmission)
+    @Html.HiddenFor(x => x.AnnualFunctionFeePayableMonth, new { @id = "hdbAFFPM" })
+    <div id="hdnAnnualFunctionFee">@(LABURNUM.COM.Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEE)</div>
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            OnPayMonthlyFeeIndexReady();
+        });
+    </script>
+}
+else
+{
+    <div class="modal-dialog modal-dialogadept modal-dialogadept-mini" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/button-close.png" /></span>
+                </button>
+                <h4 class="modal-title">@(LABURNUM.COM.Component.Constants.ERRORMESSAGES.ACCESS_DENIED)</h4>
+            </div>
+        </div>
+    </div>
+}

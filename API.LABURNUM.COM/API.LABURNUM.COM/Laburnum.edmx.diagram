@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87e503062e7f4e91aec09e04a531fea8" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="LaburnumModel.AdmissionType" Width="1.5" PointX="2.7402741139476534" PointY="22.398895646631203" />
+        <EntityTypeShape EntityType="LaburnumModel.ApiClient" Width="1.5" PointX="11.396794331910458" PointY="0.13588726526866074" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass1" Width="1.5" PointX="0.99920051405169086" PointY="27.0457189507064" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass10" Width="1.5" PointX="8.8390782647016835" PointY="0.94511053010128" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass11" Width="1.5" PointX="4.8117833308930429" PointY="0.66431196064889053" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass12" Width="1.5" PointX="2.1069293516254657" PointY="30.868421375224564" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass2" Width="1.5" PointX="6.9972613467822136" PointY="27.637938095088089" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass3" Width="1.5" PointX="9.72475451683847" PointY="25.241485935282654" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass4" Width="1.5" PointX="8.9993747700934179" PointY="2.942126931130014" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass5" Width="1.5" PointX="10.617253476109939" PointY="6.2991796463258467" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass6" Width="1.5" PointX="11.298283589677086" PointY="11.841912424118217" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass7" Width="1.5" PointX="2.2311033244389593" PointY="7.3947231654984522" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass8" Width="1.5" PointX="8.4346120136019831" PointY="18.023105450916617" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass9" Width="1.5" PointX="3.9958370365183047" PointY="24.894565817385246" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClassLKG" Width="1.5" PointX="3.5815547441977795" PointY="30.568465053368577" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClassPreNursery" Width="1.5" PointX="0.48993674129710385" PointY="9.7590008423472767" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClassUKG" Width="1.5" PointX="8.8245606463516886" PointY="5.666701706902451" />
+        <EntityTypeShape EntityType="LaburnumModel.BusRoute" Width="1.5" PointX="2.7674958588404097" PointY="19.912201756570582" />
+        <EntityTypeShape EntityType="LaburnumModel.Class" Width="1.5" PointX="2.645248460883856" PointY="16.711648412380203" />
+        <EntityTypeShape EntityType="LaburnumModel.Faculty" Width="1.5" PointX="7.1818255517547138" PointY="22.039937029611291" />
+        <EntityTypeShape EntityType="LaburnumModel.Fee" Width="1.5" PointX="2.705389169373265" PointY="18.188612961298141" />
+        <EntityTypeShape EntityType="LaburnumModel.HomeWork" Width="1.5" PointX="10.890657042567925" PointY="29.913833244663586" />
+        <EntityTypeShape EntityType="LaburnumModel.LateFeePaneltyMaster" Width="1.5" PointX="0.7197806968911461" PointY="6.3479730367418252" />
+        <EntityTypeShape EntityType="LaburnumModel.LoginActivity" Width="1.5" PointX="3.83789630971751" PointY="11.667227914401902" />
+        <EntityTypeShape EntityType="LaburnumModel.Month" Width="1.5" PointX="0.14873010485839569" PointY="1.6459198005711286" />
+        <EntityTypeShape EntityType="LaburnumModel.Salutation" Width="1.5" PointX="3.3839943536482728" PointY="27.338828263496435" />
+        <EntityTypeShape EntityType="LaburnumModel.Section" Width="1.5" PointX="10.216220692832126" PointY="7.8891620374699878" />
+        <EntityTypeShape EntityType="LaburnumModel.Student" Width="1.5" PointX="7.4909129363908029" PointY="27.465485213075524" />
+        <EntityTypeShape EntityType="LaburnumModel.StudentFee" Width="1.5" PointX="6.1684825430477428" PointY="22.99672838626277" />
+        <EntityTypeShape EntityType="LaburnumModel.StudentFeeDetail" Width="1.5" PointX="3.6163457108737651" PointY="16.641429253221222" />
+        <EntityTypeShape EntityType="LaburnumModel.Subject" Width="1.5" PointX="6.1463075699965968" PointY="30.676309555152574" />
+        <EntityTypeShape EntityType="LaburnumModel.UserType" Width="1.5" PointX="8.7728617045902" PointY="14.262957162346206" />
+        <AssociationConnector Association="LaburnumModel.FK_Fee_AdmissionType" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFee_AdmissionType" />
+        <AssociationConnector Association="LaburnumModel.FK_LoginActivity_ApiClient" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass1_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass1_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass1_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass1_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass10_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass10_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass10_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass10_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass11_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass11_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass11_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass11_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass12_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass12_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass12_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass12_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass2_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass2_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass2_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass2_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass3_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass3_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass3_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass3_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass4_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass4_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass4_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass4_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass5_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass5_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass5_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass5_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass6_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass6_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass6_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass6_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass7_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass7_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass7_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass7_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass8_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass8_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass8_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass8_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass9_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass9_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass9_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClass9_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassLKG_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassLKG_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassLKG_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassLKG_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassPreNursery_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassPreNursery_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassPreNursery_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassPreNursery_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassUKG_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassUKG_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassUKG_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_AttendanceClassUKG_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_Student_BusRoute" />
+        <AssociationConnector Association="LaburnumModel.FK_Faculty_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_Fee_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_HomeWork_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_Section_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_Student_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_Student_Class1" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFee_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFeeDetail_Class" />
+        <AssociationConnector Association="LaburnumModel.FK_Faculty_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_Faculty_Subject" />
+        <AssociationConnector Association="LaburnumModel.FK_Faculty_UserType" />
+        <AssociationConnector Association="LaburnumModel.FK_HomeWork_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFee_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFeeDetail_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_HomeWork_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_HomeWork_Subject" />
+        <AssociationConnector Association="LaburnumModel.FK_LoginActivity_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_LoginActivity_UserType" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFeeDetail_Month" />
+        <AssociationConnector Association="LaburnumModel.FK_Student_Salutation" />
+        <AssociationConnector Association="LaburnumModel.FK_Student_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFee_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFeeDetail_Section" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFee_Student" />
+        <AssociationConnector Association="LaburnumModel.FK_StudentFeeDetail_Student" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

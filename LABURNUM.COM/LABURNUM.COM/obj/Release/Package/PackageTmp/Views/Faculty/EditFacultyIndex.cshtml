@@ -1,0 +1,234 @@
+﻿@model DTO.LABURNUM.COM.FacultyModel
+
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+{
+    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnEditFacultyBegin", OnSuccess = "OnEditFacultySuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Faculty/EditFaculty" }))
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li>Faculty</li>
+                <li class="active">Edit Faculty</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            Edit Faculty
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                @Html.HiddenFor(x => x.FacultyId)
+                <div id="hdnUid" class="display_none">@Model.UserTypeId</div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="form-group text-center">
+
+                            @if (File.Exists(Server.MapPath("~/Uploads/ProfileImages/" + Model.Photo)))
+                            {
+                                if (Model.Photo != null && Model.Photo != "")
+                                {
+                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/ProfileImages/@Model.Photo" class="upload-profilepic" alt="Profile Image" />
+                                }
+                            }
+                            else
+                            {
+                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/dummy.jpg" class="upload-profilepic" alt="Profile Image" />
+                            }
+                            <input type="file" id="fileUpload" class="text-center" onclick="UploadImage();" />
+                            @Html.HiddenFor(x => x.Photo, new { @id = "hdnStudentPhoto", @autocomplete = "Off", @class = "ToReset" })
+                            <div id="file_name" style="display: none;"></div>
+                            <div id="divImageUploadStatus" style="display: none;"></div>
+                            <div id="divPhotoName" style="display: none;">@Model.FacultyName</div>
+                        </div>
+                    </div>
+                </div>
+                @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+                {
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="score_adept">User Type : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.DropDownList("UserTypeId", new SelectList(Model.UserTypes, "UserTypeId", "Text"), "Please Select User Type", new { @id = "ddlUserType", @autocomplete = "Off", @class = "ToReset" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+                {
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="score_adept">User Type : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Model.UserTypeText
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Faculty Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.FacultyName, new { @id = "txtFacultyName", @autocomplete = "Off", @class = "ToReset", @onkeyup = "setImageName('true');" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-12 display_none" id="divClassTeacher">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <span class="score_adept">Is Class Teacher : </span>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                @Html.HiddenFor(x => x.IsClassTeacher, new { @id = "hdnIsClassTeacher" })
+                                <input type="checkbox" id="chkboxIsClassTeacher" onclick="ShowHideClassSection()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <span class="score_adept">Is Subject Teacher : </span>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                @Html.HiddenFor(x => x.IsSubjectTeacher, new { @id = "hdnIsSubjectTeacher", @class = "ToReset" })
+                                <input type="checkbox" id="chkboxIsSubjectTeacher" onclick="ShowHideSubjects()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divSubjectDetails" class="display_none">
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="score_adept">For Subject : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.DropDownList("SubjectId", new SelectList(Model.Subjects, "SubjectId", "SubjectName"), "Please Select Subject", new { @id = "ddlSubject", @autocomplete = "Off", @class = "ToReset" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divClassDetails" class="display_none">
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="score_adept">For Class : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.DropDownList("ClassId", new SelectList(Model.Classes, "ClassId", "ClassName"), "Please Select Class", new { @id = "ddlClass", @autocomplete = "Off", @class = "ToReset" })
+                                    @Html.HiddenFor(x => x.ClassId, new { @id = "hdnClassId" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="score_adept">For Section : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.DropDownList("SectionId", new SelectList(Model.Sections, "SectionId", "SectionName"), "Please Select A Section", new { @id = "ddlSection", @autocomplete = "Off", @class = "ToReset" })
+                                    @Html.HiddenFor(x => x.SectionId, new { @id = "hdnSectionId" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Email-Id : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.Email, new { @id = "txtEmail", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Contact No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.ContactNumber, new { @id = "txtContactNumber", @autocomplete = "Off", @class = "ToReset", @onkeypress = "return isNumber(event);" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12"></div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">User Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.UserName, new { @id = "txtUserName", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12"></div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Password : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.Password, new { @id = "txtPassword", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="text-center">
+        <button id="btnUpdate" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">Update</button>
+        <button type="button" id="btnReset" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">Reset</button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            OnEditFacultyIndexReady();
+        });
+    </script>
+}
+else
+{
+    <section>
+        <header class="panel-heading">
+            @(LABURNUM.COM.Component.Constants.ERRORMESSAGES.ACCESS_DENIED)
+        </header>
+    </section>
+}

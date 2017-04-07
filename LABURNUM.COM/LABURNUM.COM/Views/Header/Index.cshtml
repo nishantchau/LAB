@@ -1,0 +1,94 @@
+﻿@model LABURNUM.COM.Component.SessionManagement
+
+@{
+    Layout = null;
+}
+
+
+<!--logo start-->
+<div class="brand">
+
+    <a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Login/Index" class="logo" style="color: #FFF;">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" class="header_logo_size" />
+    </a>
+    <div class="sidebar-toggle-box" id="divtoggle">
+        <ul class=" x-navigation-horizontal x-navigation-panel">
+            <!-- TOGGLE NAVIGATION -->
+            <li class="xn-icon-button">
+                <a href="javascript:;" class="x-navigation-minimize">
+                    <div class="fa fa-dedent"></div>
+                </a>
+            </li>
+            <!-- END TOGGLE NAVIGATION -->
+        </ul>
+    </div>
+</div>
+<!--logo end-->
+
+<div class="top-nav clearfix">
+    <!--search & user info start-->
+    <ul class="nav pull-right top-menu">
+        @* <li>
+            <input type="text" class="form-control search" placeholder=" Search">
+        </li>*@
+        <!-- user login dropdown start-->
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)">
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+                {
+                    if (Model.GetStudentPhoto() != null && Model.GetStudentPhoto() != "")
+                    {
+                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/ProfileImages/@Model.GetStudentPhoto()" alt="Profile Image" />
+                    }
+                    else
+                    {
+                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/dummy.jpg" alt="Profile Image" />
+                    }
+                }
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+                {
+                    if (Model.GetFacultyPhoto() != null && Model.GetFacultyPhoto() != "")
+                    {
+                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/ProfileImages/@Model.GetFacultyPhoto()" alt="Profile Image" style="height:40px;"/>
+                    }
+                    else
+                    {
+                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/dummy.jpg" alt="Profile Image" />
+                    }
+                }
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
+                {
+                    
+                    <span class="username">@(new LABURNUM.COM.Component.SessionManagement().GetSudentFirstName())</span>
+                }
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+                {
+                    <span class="username">@(new LABURNUM.COM.Component.SessionManagement().GetFatherName())</span>
+                }
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+                {
+                    
+                    <span class="username">@(new LABURNUM.COM.Component.SessionManagement().GetFacultyName())</span>
+                }
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu extended logout">
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
+                {
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ViewProfile/Index?id=@(new LABURNUM.COM.Component.Crypto().EncryptStringAES(Convert.ToString(Model.GetSudentId()), LABURNUM.COM.Component.Constants.KEYS.SHAREDKEY))"><i class=" fa fa-suitcase"></i>View Profile</a></li>
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UpdateProfile/Index?id=@(new LABURNUM.COM.Component.Crypto().EncryptStringAES(Convert.ToString(Model.GetSudentId()), LABURNUM.COM.Component.Constants.KEYS.SHAREDKEY))"><i class="fa fa-cog"></i>Update Password</a></li>
+                }
+                else
+                {
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ViewProfile/Index?id=@(new LABURNUM.COM.Component.Crypto().EncryptStringAES(Convert.ToString(Model.GetFacultyId()), LABURNUM.COM.Component.Constants.KEYS.SHAREDKEY))"><i class=" fa fa-suitcase"></i>View Profile</a></li>
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UpdateProfile/Index?id=@(new LABURNUM.COM.Component.Crypto().EncryptStringAES(Convert.ToString(Model.GetFacultyId()), LABURNUM.COM.Component.Constants.KEYS.SHAREDKEY))"><i class="fa fa-cog"></i>Update Password</a></li>
+                }
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Logout/Index"><i class="fa fa-key"></i>Log Out</a></li>
+            </ul>
+        </li>
+        <!-- user login dropdown end -->
+    </ul>
+    <!--search & user info end-->
+</div>
+
+

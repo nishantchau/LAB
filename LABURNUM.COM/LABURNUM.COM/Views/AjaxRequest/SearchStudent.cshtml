@@ -1,0 +1,153 @@
+﻿@model DTO.LABURNUM.COM.StudentModel
+
+<div class="modal-dialog modal-dialogadept modal-dialogadept">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/button-close.png" />
+                </span>
+            </button>
+            <h3 class="modal-title text_center">Student Details</h3>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">Class : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.ClassName
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">Section : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.SectionName
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">Name : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.StudentFullName
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">Admission No. : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.AdmissionNumber
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">D.O.B : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.DOB.ToShortDateString()
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">Father Name : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.FatherName
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">Mother Name : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.MotherName
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">Aadhar No. : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.StudentAadharNumber
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">Address : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.Address
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">Contact No. : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.Mobile
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="score_adept">E-mail : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="score_adept">
+                            @Model.EmailId
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-xs-12">
+                <div class="row text-center">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close<i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>

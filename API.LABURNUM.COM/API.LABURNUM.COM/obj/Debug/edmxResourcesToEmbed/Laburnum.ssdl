@@ -1,0 +1,1942 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LaburnumModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="LaburnumModelStoreContainer">
+    <EntitySet Name="AdmissionType" EntityType="LaburnumModel.Store.AdmissionType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ApiClient" EntityType="LaburnumModel.Store.ApiClient" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass1" EntityType="LaburnumModel.Store.AttendanceClass1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass10" EntityType="LaburnumModel.Store.AttendanceClass10" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass11" EntityType="LaburnumModel.Store.AttendanceClass11" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass12" EntityType="LaburnumModel.Store.AttendanceClass12" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass2" EntityType="LaburnumModel.Store.AttendanceClass2" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass3" EntityType="LaburnumModel.Store.AttendanceClass3" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass4" EntityType="LaburnumModel.Store.AttendanceClass4" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass5" EntityType="LaburnumModel.Store.AttendanceClass5" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass6" EntityType="LaburnumModel.Store.AttendanceClass6" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass7" EntityType="LaburnumModel.Store.AttendanceClass7" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass8" EntityType="LaburnumModel.Store.AttendanceClass8" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClass9" EntityType="LaburnumModel.Store.AttendanceClass9" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClassLKG" EntityType="LaburnumModel.Store.AttendanceClassLKG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClassPreNursery" EntityType="LaburnumModel.Store.AttendanceClassPreNursery" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AttendanceClassUKG" EntityType="LaburnumModel.Store.AttendanceClassUKG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BusRoute" EntityType="LaburnumModel.Store.BusRoute" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Class" EntityType="LaburnumModel.Store.Class" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Faculty" EntityType="LaburnumModel.Store.Faculty" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Fee" EntityType="LaburnumModel.Store.Fee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HomeWork" EntityType="LaburnumModel.Store.HomeWork" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LateFeePaneltyMaster" EntityType="LaburnumModel.Store.LateFeePaneltyMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoginActivity" EntityType="LaburnumModel.Store.LoginActivity" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Month" EntityType="LaburnumModel.Store.Month" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Salutation" EntityType="LaburnumModel.Store.Salutation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Section" EntityType="LaburnumModel.Store.Section" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Student" EntityType="LaburnumModel.Store.Student" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StudentFee" EntityType="LaburnumModel.Store.StudentFee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StudentFeeDetail" EntityType="LaburnumModel.Store.StudentFeeDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subject" EntityType="LaburnumModel.Store.Subject" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserType" EntityType="LaburnumModel.Store.UserType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_AttendanceClass1_Class" Association="LaburnumModel.Store.FK_AttendanceClass1_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass1" EntitySet="AttendanceClass1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass1_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass1_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass1" EntitySet="AttendanceClass1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass1_Section" Association="LaburnumModel.Store.FK_AttendanceClass1_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass1" EntitySet="AttendanceClass1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass1_Student" Association="LaburnumModel.Store.FK_AttendanceClass1_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass1" EntitySet="AttendanceClass1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass10_Class" Association="LaburnumModel.Store.FK_AttendanceClass10_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass10" EntitySet="AttendanceClass10" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass10_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass10_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass10" EntitySet="AttendanceClass10" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass10_Section" Association="LaburnumModel.Store.FK_AttendanceClass10_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass10" EntitySet="AttendanceClass10" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass10_Student" Association="LaburnumModel.Store.FK_AttendanceClass10_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass10" EntitySet="AttendanceClass10" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass11_Class" Association="LaburnumModel.Store.FK_AttendanceClass11_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass11" EntitySet="AttendanceClass11" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass11_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass11_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass11" EntitySet="AttendanceClass11" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass11_Section" Association="LaburnumModel.Store.FK_AttendanceClass11_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass11" EntitySet="AttendanceClass11" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass11_Student" Association="LaburnumModel.Store.FK_AttendanceClass11_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass11" EntitySet="AttendanceClass11" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass12_Class" Association="LaburnumModel.Store.FK_AttendanceClass12_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass12" EntitySet="AttendanceClass12" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass12_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass12_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass12" EntitySet="AttendanceClass12" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass12_Section" Association="LaburnumModel.Store.FK_AttendanceClass12_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass12" EntitySet="AttendanceClass12" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass12_Student" Association="LaburnumModel.Store.FK_AttendanceClass12_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass12" EntitySet="AttendanceClass12" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass2_Class" Association="LaburnumModel.Store.FK_AttendanceClass2_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass2" EntitySet="AttendanceClass2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass2_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass2_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass2" EntitySet="AttendanceClass2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass2_Section" Association="LaburnumModel.Store.FK_AttendanceClass2_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass2" EntitySet="AttendanceClass2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass2_Student" Association="LaburnumModel.Store.FK_AttendanceClass2_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass2" EntitySet="AttendanceClass2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass3_Class" Association="LaburnumModel.Store.FK_AttendanceClass3_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass3" EntitySet="AttendanceClass3" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass3_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass3_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass3" EntitySet="AttendanceClass3" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass3_Section" Association="LaburnumModel.Store.FK_AttendanceClass3_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass3" EntitySet="AttendanceClass3" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass3_Student" Association="LaburnumModel.Store.FK_AttendanceClass3_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass3" EntitySet="AttendanceClass3" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass4_Class" Association="LaburnumModel.Store.FK_AttendanceClass4_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass4" EntitySet="AttendanceClass4" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass4_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass4_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass4" EntitySet="AttendanceClass4" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass4_Section" Association="LaburnumModel.Store.FK_AttendanceClass4_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass4" EntitySet="AttendanceClass4" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass4_Student" Association="LaburnumModel.Store.FK_AttendanceClass4_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass4" EntitySet="AttendanceClass4" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass5_Class" Association="LaburnumModel.Store.FK_AttendanceClass5_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass5" EntitySet="AttendanceClass5" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass5_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass5_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass5" EntitySet="AttendanceClass5" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass5_Section" Association="LaburnumModel.Store.FK_AttendanceClass5_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass5" EntitySet="AttendanceClass5" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass5_Student" Association="LaburnumModel.Store.FK_AttendanceClass5_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass5" EntitySet="AttendanceClass5" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass6_Class" Association="LaburnumModel.Store.FK_AttendanceClass6_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass6" EntitySet="AttendanceClass6" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass6_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass6_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass6" EntitySet="AttendanceClass6" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass6_Section" Association="LaburnumModel.Store.FK_AttendanceClass6_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass6" EntitySet="AttendanceClass6" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass6_Student" Association="LaburnumModel.Store.FK_AttendanceClass6_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass6" EntitySet="AttendanceClass6" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass7_Class" Association="LaburnumModel.Store.FK_AttendanceClass7_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass7" EntitySet="AttendanceClass7" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass7_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass7_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass7" EntitySet="AttendanceClass7" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass7_Section" Association="LaburnumModel.Store.FK_AttendanceClass7_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass7" EntitySet="AttendanceClass7" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass7_Student" Association="LaburnumModel.Store.FK_AttendanceClass7_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass7" EntitySet="AttendanceClass7" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass8_Class" Association="LaburnumModel.Store.FK_AttendanceClass8_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass8" EntitySet="AttendanceClass8" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass8_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass8_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass8" EntitySet="AttendanceClass8" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass8_Section" Association="LaburnumModel.Store.FK_AttendanceClass8_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass8" EntitySet="AttendanceClass8" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass8_Student" Association="LaburnumModel.Store.FK_AttendanceClass8_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass8" EntitySet="AttendanceClass8" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass9_Class" Association="LaburnumModel.Store.FK_AttendanceClass9_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClass9" EntitySet="AttendanceClass9" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass9_Faculty" Association="LaburnumModel.Store.FK_AttendanceClass9_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClass9" EntitySet="AttendanceClass9" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass9_Section" Association="LaburnumModel.Store.FK_AttendanceClass9_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClass9" EntitySet="AttendanceClass9" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClass9_Student" Association="LaburnumModel.Store.FK_AttendanceClass9_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClass9" EntitySet="AttendanceClass9" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassLKG_Class" Association="LaburnumModel.Store.FK_AttendanceClassLKG_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClassLKG" EntitySet="AttendanceClassLKG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassLKG_Faculty" Association="LaburnumModel.Store.FK_AttendanceClassLKG_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClassLKG" EntitySet="AttendanceClassLKG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassLKG_Section" Association="LaburnumModel.Store.FK_AttendanceClassLKG_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClassLKG" EntitySet="AttendanceClassLKG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassLKG_Student" Association="LaburnumModel.Store.FK_AttendanceClassLKG_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClassLKG" EntitySet="AttendanceClassLKG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassPreNursery_Class" Association="LaburnumModel.Store.FK_AttendanceClassPreNursery_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClassPreNursery" EntitySet="AttendanceClassPreNursery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassPreNursery_Faculty" Association="LaburnumModel.Store.FK_AttendanceClassPreNursery_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClassPreNursery" EntitySet="AttendanceClassPreNursery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassPreNursery_Section" Association="LaburnumModel.Store.FK_AttendanceClassPreNursery_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClassPreNursery" EntitySet="AttendanceClassPreNursery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassPreNursery_Student" Association="LaburnumModel.Store.FK_AttendanceClassPreNursery_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClassPreNursery" EntitySet="AttendanceClassPreNursery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassUKG_Class" Association="LaburnumModel.Store.FK_AttendanceClassUKG_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="AttendanceClassUKG" EntitySet="AttendanceClassUKG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassUKG_Faculty" Association="LaburnumModel.Store.FK_AttendanceClassUKG_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="AttendanceClassUKG" EntitySet="AttendanceClassUKG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassUKG_Section" Association="LaburnumModel.Store.FK_AttendanceClassUKG_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="AttendanceClassUKG" EntitySet="AttendanceClassUKG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendanceClassUKG_Student" Association="LaburnumModel.Store.FK_AttendanceClassUKG_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="AttendanceClassUKG" EntitySet="AttendanceClassUKG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Faculty_Class" Association="LaburnumModel.Store.FK_Faculty_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Faculty" EntitySet="Faculty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Faculty_Section" Association="LaburnumModel.Store.FK_Faculty_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Faculty" EntitySet="Faculty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Faculty_Subject" Association="LaburnumModel.Store.FK_Faculty_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Faculty" EntitySet="Faculty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Faculty_UserType" Association="LaburnumModel.Store.FK_Faculty_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="Faculty" EntitySet="Faculty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fee_AdmissionType" Association="LaburnumModel.Store.FK_Fee_AdmissionType">
+      <End Role="AdmissionType" EntitySet="AdmissionType" />
+      <End Role="Fee" EntitySet="Fee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fee_Class" Association="LaburnumModel.Store.FK_Fee_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Fee" EntitySet="Fee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HomeWork_Class" Association="LaburnumModel.Store.FK_HomeWork_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="HomeWork" EntitySet="HomeWork" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HomeWork_Faculty" Association="LaburnumModel.Store.FK_HomeWork_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="HomeWork" EntitySet="HomeWork" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HomeWork_Section" Association="LaburnumModel.Store.FK_HomeWork_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="HomeWork" EntitySet="HomeWork" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HomeWork_Subject" Association="LaburnumModel.Store.FK_HomeWork_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="HomeWork" EntitySet="HomeWork" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginActivity_ApiClient" Association="LaburnumModel.Store.FK_LoginActivity_ApiClient">
+      <End Role="ApiClient" EntitySet="ApiClient" />
+      <End Role="LoginActivity" EntitySet="LoginActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginActivity_Student" Association="LaburnumModel.Store.FK_LoginActivity_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="LoginActivity" EntitySet="LoginActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginActivity_UserType" Association="LaburnumModel.Store.FK_LoginActivity_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="LoginActivity" EntitySet="LoginActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Section_Class" Association="LaburnumModel.Store.FK_Section_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Section" EntitySet="Section" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_BusRoute" Association="LaburnumModel.Store.FK_Student_BusRoute">
+      <End Role="BusRoute" EntitySet="BusRoute" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Class" Association="LaburnumModel.Store.FK_Student_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Class1" Association="LaburnumModel.Store.FK_Student_Class1">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Salutation" Association="LaburnumModel.Store.FK_Student_Salutation">
+      <End Role="Salutation" EntitySet="Salutation" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Section" Association="LaburnumModel.Store.FK_Student_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFee_AdmissionType" Association="LaburnumModel.Store.FK_StudentFee_AdmissionType">
+      <End Role="AdmissionType" EntitySet="AdmissionType" />
+      <End Role="StudentFee" EntitySet="StudentFee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFee_Class" Association="LaburnumModel.Store.FK_StudentFee_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="StudentFee" EntitySet="StudentFee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFee_Faculty" Association="LaburnumModel.Store.FK_StudentFee_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="StudentFee" EntitySet="StudentFee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFee_Section" Association="LaburnumModel.Store.FK_StudentFee_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="StudentFee" EntitySet="StudentFee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFee_Student" Association="LaburnumModel.Store.FK_StudentFee_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentFee" EntitySet="StudentFee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFeeDetail_Class" Association="LaburnumModel.Store.FK_StudentFeeDetail_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFeeDetail_Faculty" Association="LaburnumModel.Store.FK_StudentFeeDetail_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFeeDetail_Month" Association="LaburnumModel.Store.FK_StudentFeeDetail_Month">
+      <End Role="Month" EntitySet="Month" />
+      <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFeeDetail_Section" Association="LaburnumModel.Store.FK_StudentFeeDetail_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFeeDetail_Student" Association="LaburnumModel.Store.FK_StudentFeeDetail_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AdmissionType">
+    <Key>
+      <PropertyRef Name="AdmissionTypeId" />
+    </Key>
+    <Property Name="AdmissionTypeId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ApiClient">
+    <Key>
+      <PropertyRef Name="ApiClientId" />
+    </Key>
+    <Property Name="ApiClientId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClientName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="AttendanceClass1">
+    <Key>
+      <PropertyRef Name="AttendanceClass1Id" />
+    </Key>
+    <Property Name="AttendanceClass1Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass10">
+    <Key>
+      <PropertyRef Name="AttendanceClass10Id" />
+    </Key>
+    <Property Name="AttendanceClass10Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass11">
+    <Key>
+      <PropertyRef Name="AttendanceClass11Id" />
+    </Key>
+    <Property Name="AttendanceClass11Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass12">
+    <Key>
+      <PropertyRef Name="AttendanceClass12Id" />
+    </Key>
+    <Property Name="AttendanceClass12Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass2">
+    <Key>
+      <PropertyRef Name="AttendanceClass2Id" />
+    </Key>
+    <Property Name="AttendanceClass2Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass3">
+    <Key>
+      <PropertyRef Name="AttendanceClass3Id" />
+    </Key>
+    <Property Name="AttendanceClass3Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass4">
+    <Key>
+      <PropertyRef Name="AttendanceClass4Id" />
+    </Key>
+    <Property Name="AttendanceClass4Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass5">
+    <Key>
+      <PropertyRef Name="AttendanceClass5Id" />
+    </Key>
+    <Property Name="AttendanceClass5Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass6">
+    <Key>
+      <PropertyRef Name="AttendanceClass6Id" />
+    </Key>
+    <Property Name="AttendanceClass6Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass7">
+    <Key>
+      <PropertyRef Name="AttendanceClass7Id" />
+    </Key>
+    <Property Name="AttendanceClass7Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass8">
+    <Key>
+      <PropertyRef Name="AttendanceClass8Id" />
+    </Key>
+    <Property Name="AttendanceClass8Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClass9">
+    <Key>
+      <PropertyRef Name="AttendanceClass9Id" />
+    </Key>
+    <Property Name="AttendanceClass9Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClassLKG">
+    <Key>
+      <PropertyRef Name="AttendanceClassLKGId" />
+    </Key>
+    <Property Name="AttendanceClassLKGId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClassPreNursery">
+    <Key>
+      <PropertyRef Name="AttendanceClassPreNurseryId" />
+    </Key>
+    <Property Name="AttendanceClassPreNurseryId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AttendanceClassUKG">
+    <Key>
+      <PropertyRef Name="AttendanceClassUKGId" />
+    </Key>
+    <Property Name="AttendanceClassUKGId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BusRoute">
+    <Key>
+      <PropertyRef Name="BusRouteId" />
+    </Key>
+    <Property Name="BusRouteId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="BusRouteNumber" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BusStartFrom" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="BusEndAt" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="TranportCharges" Type="float" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="ClassId" />
+    </Key>
+    <Property Name="ClassId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClassName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="FacultyId" />
+    </Key>
+    <Property Name="FacultyId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Photo" Type="nvarchar" MaxLength="50" />
+    <Property Name="FacultyName" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsClassTeacher" Type="bit" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="IsSubjectTeacher" Type="bit" Nullable="false" />
+    <Property Name="SubjectId" Type="bigint" Nullable="false" />
+    <Property Name="UserTypeId" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Fee">
+    <Key>
+      <PropertyRef Name="FeeId" />
+    </Key>
+    <Property Name="FeeId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="AdmissionTypeId" Type="bigint" Nullable="false" />
+    <Property Name="AdmissionFee" Type="float" Nullable="false" />
+    <Property Name="DevelopementCharges" Type="float" />
+    <Property Name="AnnualCharges" Type="float" />
+    <Property Name="ExamFee" Type="float" />
+    <Property Name="SportsFee" Type="float" />
+    <Property Name="SecurityFee" Type="float" />
+    <Property Name="MonthlyFee" Type="float" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HomeWork">
+    <Key>
+      <PropertyRef Name="HomeWorkId" />
+    </Key>
+    <Property Name="HomeWorkId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="SubjectId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="HomeWorkText" Type="nvarchar" Nullable="false" MaxLength="400" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LateFeePaneltyMaster">
+    <Key>
+      <PropertyRef Name="LateFeePaneltyMasterId" />
+    </Key>
+    <Property Name="LateFeePaneltyMasterId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DaysAfter" Type="int" Nullable="false" />
+    <Property Name="Fine" Type="float" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LoginActivity">
+    <Key>
+      <PropertyRef Name="LoginActivityId" />
+    </Key>
+    <Property Name="LoginActivityId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="UserTypeId" Type="bigint" Nullable="false" />
+    <Property Name="LoginAt" Type="datetime" Nullable="false" />
+    <Property Name="LogoutAt" Type="datetime" />
+    <Property Name="ClientId" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Month">
+    <Key>
+      <PropertyRef Name="MonthId" />
+    </Key>
+    <Property Name="MonthId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MonthName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Salutation">
+    <Key>
+      <PropertyRef Name="SalutationId" />
+    </Key>
+    <Property Name="SalutationId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Section">
+    <Key>
+      <PropertyRef Name="SectionId" />
+    </Key>
+    <Property Name="SectionId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SectionName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AdmissionNumber" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="StudentPhoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="ClassStartWithId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="SalutationId" Type="bigint" Nullable="false" />
+    <Property Name="EmailId" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" Nullable="false" />
+    <Property Name="DOB" Type="datetime" Nullable="false" />
+    <Property Name="Landline" Type="nvarchar" MaxLength="50" />
+    <Property Name="StudentAadharNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="FatherName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="FatherMobile" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="FatherProfession" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="PAN" Type="nvarchar" MaxLength="50" />
+    <Property Name="FatherAadharNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="MotherName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="MotherMobile" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="MotherProfession" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="MotherAadharNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsTransportRqd" Type="bit" Nullable="false" />
+    <Property Name="BusRouteId" Type="bigint" Nullable="false" />
+    <Property Name="StudentUserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="StudentPassword" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ParentUserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ParentPassword" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StudentFee">
+    <Key>
+      <PropertyRef Name="StudentFeeId" />
+    </Key>
+    <Property Name="StudentFeeId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="AdmissionTypeId" Type="bigint" Nullable="false" />
+    <Property Name="AdmissionFee" Type="float" Nullable="false" />
+    <Property Name="DevelopementFee" Type="float" Nullable="false" />
+    <Property Name="AnnualCharges" Type="float" Nullable="false" />
+    <Property Name="ExamFee" Type="float" Nullable="false" />
+    <Property Name="SportsFee" Type="float" Nullable="false" />
+    <Property Name="SecurityFee" Type="float" Nullable="false" />
+    <Property Name="DiscountAmount" Type="float" Nullable="false" />
+    <Property Name="DiscountRemarks" Type="nvarchar" />
+    <Property Name="CollectedById" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StudentFeeDetail">
+    <Key>
+      <PropertyRef Name="StudentFeeDetailId" />
+    </Key>
+    <Property Name="StudentFeeDetailId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="MonthlyFee" Type="float" Nullable="false" />
+    <Property Name="LateFee" Type="float" Nullable="false" />
+    <Property Name="TransportFee" Type="float" />
+    <Property Name="AnnualFunctionFee" Type="float" />
+    <Property Name="PendingFee" Type="float" />
+    <Property Name="PayForTheMonth" Type="bigint" Nullable="false" />
+    <Property Name="DiscountAmount" Type="float" Nullable="false" />
+    <Property Name="DiscountRemarks" Type="nvarchar" />
+    <Property Name="CollectedById" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeId" />
+    </Key>
+    <Property Name="UserTypeId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AttendanceClass1_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass1" Type="LaburnumModel.Store.AttendanceClass1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass1">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass1_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass1" Type="LaburnumModel.Store.AttendanceClass1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass1">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass1_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass1" Type="LaburnumModel.Store.AttendanceClass1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass1">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass1_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass1" Type="LaburnumModel.Store.AttendanceClass1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass1">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass10_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass10" Type="LaburnumModel.Store.AttendanceClass10" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass10">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass10_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass10" Type="LaburnumModel.Store.AttendanceClass10" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass10">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass10_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass10" Type="LaburnumModel.Store.AttendanceClass10" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass10">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass10_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass10" Type="LaburnumModel.Store.AttendanceClass10" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass10">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass11_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass11" Type="LaburnumModel.Store.AttendanceClass11" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass11">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass11_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass11" Type="LaburnumModel.Store.AttendanceClass11" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass11">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass11_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass11" Type="LaburnumModel.Store.AttendanceClass11" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass11">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass11_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass11" Type="LaburnumModel.Store.AttendanceClass11" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass11">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass12_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass12" Type="LaburnumModel.Store.AttendanceClass12" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass12">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass12_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass12" Type="LaburnumModel.Store.AttendanceClass12" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass12">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass12_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass12" Type="LaburnumModel.Store.AttendanceClass12" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass12">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass12_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass12" Type="LaburnumModel.Store.AttendanceClass12" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass12">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass2_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass2" Type="LaburnumModel.Store.AttendanceClass2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass2">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass2_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass2" Type="LaburnumModel.Store.AttendanceClass2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass2">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass2_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass2" Type="LaburnumModel.Store.AttendanceClass2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass2">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass2_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass2" Type="LaburnumModel.Store.AttendanceClass2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass2">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass3_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass3" Type="LaburnumModel.Store.AttendanceClass3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass3">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass3_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass3" Type="LaburnumModel.Store.AttendanceClass3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass3">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass3_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass3" Type="LaburnumModel.Store.AttendanceClass3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass3">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass3_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass3" Type="LaburnumModel.Store.AttendanceClass3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass3">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass4_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass4" Type="LaburnumModel.Store.AttendanceClass4" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass4">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass4_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass4" Type="LaburnumModel.Store.AttendanceClass4" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass4">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass4_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass4" Type="LaburnumModel.Store.AttendanceClass4" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass4">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass4_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass4" Type="LaburnumModel.Store.AttendanceClass4" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass4">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass5_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass5" Type="LaburnumModel.Store.AttendanceClass5" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass5">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass5_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass5" Type="LaburnumModel.Store.AttendanceClass5" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass5">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass5_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass5" Type="LaburnumModel.Store.AttendanceClass5" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass5">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass5_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass5" Type="LaburnumModel.Store.AttendanceClass5" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass5">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass6_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass6" Type="LaburnumModel.Store.AttendanceClass6" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass6">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass6_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass6" Type="LaburnumModel.Store.AttendanceClass6" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass6">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass6_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass6" Type="LaburnumModel.Store.AttendanceClass6" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass6">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass6_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass6" Type="LaburnumModel.Store.AttendanceClass6" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass6">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass7_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass7" Type="LaburnumModel.Store.AttendanceClass7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass7">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass7_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass7" Type="LaburnumModel.Store.AttendanceClass7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass7">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass7_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass7" Type="LaburnumModel.Store.AttendanceClass7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass7">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass7_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass7" Type="LaburnumModel.Store.AttendanceClass7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass7">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass8_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass8" Type="LaburnumModel.Store.AttendanceClass8" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass8">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass8_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass8" Type="LaburnumModel.Store.AttendanceClass8" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass8">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass8_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass8" Type="LaburnumModel.Store.AttendanceClass8" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass8">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass8_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass8" Type="LaburnumModel.Store.AttendanceClass8" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass8">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass9_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClass9" Type="LaburnumModel.Store.AttendanceClass9" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClass9">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass9_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClass9" Type="LaburnumModel.Store.AttendanceClass9" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClass9">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass9_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClass9" Type="LaburnumModel.Store.AttendanceClass9" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClass9">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClass9_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClass9" Type="LaburnumModel.Store.AttendanceClass9" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClass9">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassLKG_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClassLKG" Type="LaburnumModel.Store.AttendanceClassLKG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClassLKG">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassLKG_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClassLKG" Type="LaburnumModel.Store.AttendanceClassLKG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClassLKG">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassLKG_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClassLKG" Type="LaburnumModel.Store.AttendanceClassLKG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClassLKG">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassLKG_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClassLKG" Type="LaburnumModel.Store.AttendanceClassLKG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClassLKG">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassPreNursery_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClassPreNursery" Type="LaburnumModel.Store.AttendanceClassPreNursery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClassPreNursery">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassPreNursery_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClassPreNursery" Type="LaburnumModel.Store.AttendanceClassPreNursery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClassPreNursery">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassPreNursery_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClassPreNursery" Type="LaburnumModel.Store.AttendanceClassPreNursery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClassPreNursery">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassPreNursery_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClassPreNursery" Type="LaburnumModel.Store.AttendanceClassPreNursery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClassPreNursery">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassUKG_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="AttendanceClassUKG" Type="LaburnumModel.Store.AttendanceClassUKG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="AttendanceClassUKG">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassUKG_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="AttendanceClassUKG" Type="LaburnumModel.Store.AttendanceClassUKG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="AttendanceClassUKG">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassUKG_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="AttendanceClassUKG" Type="LaburnumModel.Store.AttendanceClassUKG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="AttendanceClassUKG">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendanceClassUKG_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="AttendanceClassUKG" Type="LaburnumModel.Store.AttendanceClassUKG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="AttendanceClassUKG">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Faculty_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Faculty_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Faculty_Subject">
+    <End Role="Subject" Type="LaburnumModel.Store.Subject" Multiplicity="1" />
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Faculty_UserType">
+    <End Role="UserType" Type="LaburnumModel.Store.UserType" Multiplicity="1" />
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeId" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fee_AdmissionType">
+    <End Role="AdmissionType" Type="LaburnumModel.Store.AdmissionType" Multiplicity="1" />
+    <End Role="Fee" Type="LaburnumModel.Store.Fee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdmissionType">
+        <PropertyRef Name="AdmissionTypeId" />
+      </Principal>
+      <Dependent Role="Fee">
+        <PropertyRef Name="AdmissionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fee_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="Fee" Type="LaburnumModel.Store.Fee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="Fee">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HomeWork_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="HomeWork" Type="LaburnumModel.Store.HomeWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="HomeWork">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HomeWork_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="HomeWork" Type="LaburnumModel.Store.HomeWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="HomeWork">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HomeWork_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="HomeWork" Type="LaburnumModel.Store.HomeWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="HomeWork">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HomeWork_Subject">
+    <End Role="Subject" Type="LaburnumModel.Store.Subject" Multiplicity="1" />
+    <End Role="HomeWork" Type="LaburnumModel.Store.HomeWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="HomeWork">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginActivity_ApiClient">
+    <End Role="ApiClient" Type="LaburnumModel.Store.ApiClient" Multiplicity="1" />
+    <End Role="LoginActivity" Type="LaburnumModel.Store.LoginActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApiClient">
+        <PropertyRef Name="ApiClientId" />
+      </Principal>
+      <Dependent Role="LoginActivity">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginActivity_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="LoginActivity" Type="LaburnumModel.Store.LoginActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="LoginActivity">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginActivity_UserType">
+    <End Role="UserType" Type="LaburnumModel.Store.UserType" Multiplicity="1" />
+    <End Role="LoginActivity" Type="LaburnumModel.Store.LoginActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeId" />
+      </Principal>
+      <Dependent Role="LoginActivity">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Section_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="Section">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_BusRoute">
+    <End Role="BusRoute" Type="LaburnumModel.Store.BusRoute" Multiplicity="1" />
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusRoute">
+        <PropertyRef Name="BusRouteId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="BusRouteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Class1">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="ClassStartWithId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Salutation">
+    <End Role="Salutation" Type="LaburnumModel.Store.Salutation" Multiplicity="1" />
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salutation">
+        <PropertyRef Name="SalutationId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="SalutationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFee_AdmissionType">
+    <End Role="AdmissionType" Type="LaburnumModel.Store.AdmissionType" Multiplicity="1" />
+    <End Role="StudentFee" Type="LaburnumModel.Store.StudentFee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdmissionType">
+        <PropertyRef Name="AdmissionTypeId" />
+      </Principal>
+      <Dependent Role="StudentFee">
+        <PropertyRef Name="AdmissionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFee_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="StudentFee" Type="LaburnumModel.Store.StudentFee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="StudentFee">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFee_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="StudentFee" Type="LaburnumModel.Store.StudentFee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="StudentFee">
+        <PropertyRef Name="CollectedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFee_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="StudentFee" Type="LaburnumModel.Store.StudentFee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="StudentFee">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFee_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="StudentFee" Type="LaburnumModel.Store.StudentFee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentFee">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFeeDetail_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="StudentFeeDetail">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFeeDetail_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="StudentFeeDetail">
+        <PropertyRef Name="CollectedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFeeDetail_Month">
+    <End Role="Month" Type="LaburnumModel.Store.Month" Multiplicity="1" />
+    <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Month">
+        <PropertyRef Name="MonthId" />
+      </Principal>
+      <Dependent Role="StudentFeeDetail">
+        <PropertyRef Name="PayForTheMonth" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFeeDetail_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="StudentFeeDetail">
+        <PropertyRef Name="SectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFeeDetail_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentFeeDetail">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

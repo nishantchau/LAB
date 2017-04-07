@@ -1,0 +1,60 @@
+﻿@model DTO.LABURNUM.COM.AdmissionTypeModel
+
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+{
+
+    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnAddAdmissionTypeBegin", OnSuccess = "OnAddAdmissionTypeSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "AdmissionType/AddAdmissionType" }))
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li>Admission Type</li>
+                <li class="active">Add Admission Type</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            Add Admission Type<span class="tools pull-right">
+                <a class="fa fa-chevron-down" href="javascript:;"></a>
+            </span>
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Admission Type Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.Name, new { @id = "txtAdmissionTypeName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div>
+        <button id="btnAdd" type="submit" class="btn btn-default">Add</button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+    }
+}
+else
+{
+
+    <section>
+        <header class="panel-heading">
+            @(LABURNUM.COM.Component.Constants.ERRORMESSAGES.ACCESS_DENIED)
+        </header>
+    </section>
+}

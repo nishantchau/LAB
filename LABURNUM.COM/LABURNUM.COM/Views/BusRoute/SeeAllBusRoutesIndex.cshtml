@@ -1,0 +1,102 @@
+﻿@model List<DTO.LABURNUM.COM.BusRouteModel>
+
+@{int counter = 1;}
+
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li>Bus Route</li>
+                <li class="active">All Bus Route</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    if (Model.Count == 0)
+    {
+    <section>
+        <header class="panel-heading">
+            See All Bus Route
+        </header>
+        <div class="col-md-12 margin_top">
+            <span class="tools pull-right">
+                <button type="button" onclick="AddNewBusRoutes();" class="btn btn-warning adept-view" data-toggle="modal" data-target="#myModal">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+            </span>
+        </div>
+        <div class="text-center">
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+        </div>
+    </section>
+    }
+    else
+    {
+    <section>
+        <header class="panel-heading">
+            See All Bus Routes
+            <span class="tools pull-right">
+                <button type="button" onclick="DownloadRecord('BusRoutes');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            </span>
+        </header>
+        <div class="col-md-12 margin_top">
+            <span class="tools pull-right">
+                <button type="button" onclick="AddNewBusRoutes();" class="btn btn-warning adept-view" data-toggle="modal" data-target="#myModal">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+            </span>
+        </div>
+        <div class="row" id="divTable">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Bus Route No.</th>
+                                <th>Bus Start From</th>
+                                <th>Bus End At</th>
+                                <th>Transport Charge</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.BusRouteModel item in @Model)
+                            {
+                                <tr>
+                                    <td style="width: 17%;">@counter</td>
+                                    <td style="width: 20%;">@item.BusRouteNumber</td>
+                                    <td style="width: 20%;">@item.BusStartFrom</td>
+                                    <td style="width: 20%;">@item.BusEndAt</td>
+                                    <td style="width: 20%;">@item.TranportCharges</td>
+                                    @if (item.BusRouteId == 0)
+                                    {
+                                        <td style="width: 12%;">
+                                            <button type="button" class="btn btn-success adept-view" disabled>EDIT</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td style="width: 12%;">
+                                            <button type="button" onclick="EditBusRoutePopup('@item.BusRouteId')" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">EDIT</button></td>
+                                    }
+                                </tr>
+                                    counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    }
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+}
+else
+{
+
+    <section>
+        <header class="panel-heading">
+            Access Denied.
+        </header>
+    </section>
+}

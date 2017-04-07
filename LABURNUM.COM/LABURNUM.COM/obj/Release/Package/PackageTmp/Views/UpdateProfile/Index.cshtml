@@ -1,0 +1,116 @@
+﻿@model DTO.LABURNUM.COM.SessionModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!--breadcrumbs start -->
+        <ul class="breadcrumb">
+            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+            <li>Profile</li>
+            <li class="active">Update Password</li>
+        </ul>
+        <!--breadcrumbs end -->
+    </div>
+</div>
+
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnUpdateProfileBegin", OnSuccess = "OnUpdateProfileSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "UpdateProfile/UpdateProfile" }))
+{
+    <section class="panel">
+        <header class="panel-heading">
+            Update Password
+        </header>
+        <div class="panel-body">
+            @if (Model.FacultyModel != null)
+            {
+                <div class="row">
+                    @Html.HiddenFor(x => x.FacultyModel.FacultyId)
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span class="score_adept">Current Password : </span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Html.PasswordFor(x => x.FacultyModel.CurrentPassword, new { @id = "txtCurrentPassword", @class = "ToReset",@autocomplete="off" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span class="score_adept">New Password : </span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Html.PasswordFor(x => x.FacultyModel.NewPassword, new { @id = "txtNewPassword", @class = "ToReset",@autocomplete="off" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span class="score_adept">Re-enter New Password : </span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Html.PasswordFor(x => x.FacultyModel.ReNewPassword, new { @id = "txtReNewPassword", @class = "ToReset",@autocomplete="off" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    @Html.HiddenFor(x => x.StudentModel.StudentId)
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span class="score_adept">Current Password : </span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Html.PasswordFor(x => x.StudentModel.CurrentPassword, new { @id = "txtCurrentPassword", @class = "ToReset",@autocomplete="off" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span class="score_adept">New Password : </span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Html.PasswordFor(x => x.StudentModel.NewPassword, new { @id = "txtNewPassword", @class = "ToReset",@autocomplete="off" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span class="score_adept">Re-enter New Password : </span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Html.PasswordFor(x => x.StudentModel.ReNewPassword, new { @id = "txtReNewPassword", @class = "ToReset",@autocomplete="off" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-md-12 text-center">
+                <button type="submit" id="btnSubmit" class="btn btn-default btn-adeptsubmit">Update</button>
+                <button type="button" id="btnReset" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">RESET</button>
+            </div>
+            <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+            </div>
+            <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+        </div>
+    </section>
+}

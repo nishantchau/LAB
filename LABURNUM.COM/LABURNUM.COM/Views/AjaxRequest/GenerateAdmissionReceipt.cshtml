@@ -1,0 +1,118 @@
+﻿@model DTO.LABURNUM.COM.StudentFeeModel
+
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet" type="text/css">
+
+<div class="modal-dialog modal-dialogadept modal-dialogadept" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/button-close.png" /></span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Admission Fee Receipt</h4>
+        </div>
+        <div class="modal-body">
+            <div id="divPrint" style="min-height: 400px; border: 2px solid green; margin: 2px 10px" class="row">
+                <div style="padding-right: 15px; padding-left: 15px;">
+                    <div style="background: ; -webkit-background: url(@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png) no-repeat; -webkit-print-color-adjust: exact; text-align: center !important; padding:10px 20px 30px 10px;">
+                        <div style="float: left;">
+                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" alt="" style="margin:auto auto;" height="70" width="120"/>
+                        </div>
+                        <div style="font-family: 'Roboto', sans-serif; width: 30%; font-size: 1.3em; color: #fff; padding: 10px; text-transform: uppercase; letter-spacing: 0.5em; background: #259d63; margin: auto auto; margin-top: 20px;">
+                            Fee Receipt
+                        </div>
+                        <div style="float: right; width: 30%; margin-top: -60px;">
+                            <span style="text-align: right;">Dated : @Model.CreatedOn</span>
+                            <span style="text-align: right;">Receipt No. : @Model.StudentFeeId</span>
+                        </div>
+                        <div style="padding: 40px 10px 20px 10px; margin: auto auto; width: 90%; height: 220px;">
+                            <div style="line-height: 2.1em;">
+                                <div style="font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B; vertical-align: bottom; line-height: 2.1em;">
+                                    <a style="font-family: 'Yellowtail', cursive; color: #2B2B2B; font-size: 2.2em;" href="#">T</a>hanks For Receiving Admission Fee From <strong>@Model.StudentName S/o @Model.ParentName.</strong>
+                                    Total Paid Amount <strong>@Model.TotalPayableAmount </strong>on Dated : <strong>@Model.CreatedOn.ToShortDateString() </strong>For Class <strong>@Model.ClassName</strong> & Section <strong>@Model.SectionName</strong>
+                                    <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; margin: 10px; border: 2px dotted black;">
+                                        <thead style="border: 1px dotted green;">
+                                            <tr>
+                                                <th style="text-align: center;">S.No.</th>
+                                                <th style="text-align: center;">Desc.</th>
+                                                <th style="text-align: center;">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="border: 1px dotted green;">
+                                                <td style="text-align: center;">1.</td>
+                                                <td style="text-align: center;">Admission Fee</td>
+                                                <td style="text-align: center;">@Model.AdmissionFee</td>
+                                            </tr>
+                                            <tr style="border: 1px dotted green;">
+                                                <td style="text-align: center;">2.</td>
+                                                <td style="text-align: center;">Developement Fee</td>
+                                                <td style="text-align: center;">@Model.DevelopementFee</td>
+                                            </tr>
+                                            <tr style="border: 1px dotted green;">
+                                                <td style="text-align: center;">3.</td>
+                                                <td style="text-align: center;">Annual Charges</td>
+                                                <td style="text-align: center;">@Model.AnnualCharges</td>
+                                            </tr>
+                                            <tr style="border: 1px dotted green;">
+                                                <td style="text-align: center;">4.</td>
+                                                <td style="text-align: center;">Exam Fee</td>
+                                                <td style="text-align: center;">@Model.ExamFee</td>
+                                            </tr>
+                                            <tr style="border: 1px dotted green;">
+                                                <td style="text-align: center;">5.</td>
+                                                <td style="text-align: center;">Sports Fee</td>
+                                                <td style="text-align: center;">@Model.SportsFee</td>
+                                            </tr>
+                                            <tr style="border: 1px dotted green;">
+                                                <td style="text-align: center;">6.</td>
+                                                <td style="text-align: center;">Security Fee</td>
+                                                <td style="text-align: center;">@Model.SecurityFee</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="padding: 20px 5px; margin: auto auto; width: 90%; font-size: 0.9em; text-align: left !important;">
+                                        <div style="width: 70%; float: left;">
+                                            <p>For the More Information, please visit:</p>
+                                            <span style="color: #256546;">www.laburnumpublicschool.com</span>
+                                        </div>
+
+                                        <div style="width: 30%; float: left; text-align: right; margin-bottom: 5px;">
+                                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/lps-signature.png" alt="LPS Signature" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button type="button" class="btn btn-default" value="Print" onclick="PrintElem('#divPrint')" style="width: 20%; margin: 15px 0;">PRINT <i class="fa fa-print" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function PrintElem(elem) {
+            Popup($(elem).html());
+        }
+        function Popup(data) {
+            var mywindow = window.open('', 'my div', 'height=1002,width=680');
+            mywindow.document.write('<html><head><title>my div</title>');
+        @*  /*optional stylesheet*/ mywindow.document.write('<link rel="stylesheet" href="@IGUNHS.COM.Components.Constants.Url.WebSiteUrlWithoutSlash/css/style.css" type="text/css" />');
+        mywindow.document.write('<link rel="stylesheet" href="@IGUNHS.COM.Components.Constants.Url.WebSiteUrlWithoutSlash/css/bootstrap.css" type="text/css" />');*@
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(data);
+            mywindow.document.write('</body></html>');
+            mywindow.print();
+            mywindow.close();
+            return true;
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //OnNHSCertificateReady();
+        });
+    </script>

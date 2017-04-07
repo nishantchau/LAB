@@ -1,0 +1,95 @@
+﻿@model List<DTO.LABURNUM.COM.FeeModel>
+
+@{int counter = 1;}
+
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+{
+    if (Model.Count == 0)
+    {
+    <div class="text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+    </div>
+    }
+    else
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li>Fee</li>
+                <li class="active">All Fee</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            See All Fee
+            <span class="tools pull-right">
+                <button type="button" onclick="DownloadRecord('Fee Structure');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            </span>
+        </header>
+        <div class="col-md-12 margin_top">
+            <span class="tools pull-right">
+                <button type="button" onclick="AddNewFee();" class="btn btn-warning adept-view">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+            </span>
+        </div>
+
+        <div class="row" id="divTable">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Class</th>
+                                <th>Admission Type</th>
+                                <th>Admission Fee</th>
+                                <th>Annual Charges</th>
+                                <th>Development Charges</th>
+                                <th>Exam Fee</th>
+                                <th>Monthly Fee</th>
+                                <th>Sports Fee</th>
+                                <th>Security Fee</th>
+                                <th>Total Fee</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.FeeModel item in @Model)
+                            {
+                                <tr>
+                                    <td style="width: 17%;">@counter</td>
+                                    <td style="width: 20%;">@item.ClassName</td>
+                                    <td style="width: 20%;">@item.AdmissionType</td>
+                                    <td style="width: 23%;">@item.AdmissionFee</td>
+                                    <td style="width: 19%;">@item.AnnualCharges</td>
+                                    <td style="width: 19%;">@item.DevelopementCharges</td>
+                                    <td style="width: 19%;">@item.ExamFee</td>
+                                    <td style="width: 19%;">@item.MonthlyFee</td>
+                                    <td style="width: 19%;">@item.SportsFee</td>
+                                    <td style="width: 19%;">@item.SecurityFee</td>
+                                    <td style="width: 19%;">@(item.AdmissionFee + item.AnnualCharges + item.DevelopementCharges + item.ExamFee + item.SportsFee)</td>
+                                    <td style="width: 12%;">
+                                        <button type="button" onclick="EditFee(@item.FeeId)" class="btn btn-success adept-view" id="btnEdit@(counter)">EDIT</button></td>
+                                </tr>
+                                counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    }
+}
+else
+{
+    <section>
+        <header class="panel-heading">
+            @(LABURNUM.COM.Component.Constants.ERRORMESSAGES.ACCESS_DENIED)
+        </header>
+    </section>
+}

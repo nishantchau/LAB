@@ -1,0 +1,387 @@
+﻿@model DTO.LABURNUM.COM.SessionModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!--breadcrumbs start -->
+        <ul class="breadcrumb">
+            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+            <li>Profile</li>
+            <li class="active">View Profile</li>
+        </ul>
+        <!--breadcrumbs end -->
+    </div>
+</div>
+<section class="panel">
+    <header class="panel-heading">
+        Your Profile
+    </header>
+    <div class="panel-body">
+        @if (Model.LoginBy == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.LoginBy == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || Model.LoginBy == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.LoginBy == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+        {
+            <div class="row">
+                @Html.HiddenFor(x => x.FacultyModel.FacultyId)
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="form-group text-center">
+                            @if (File.Exists(Server.MapPath("~/Uploads/ProfileImages/" + Model.FacultyModel.Photo)))
+                            {
+                                if (Model.FacultyModel.Photo != null && Model.FacultyModel.Photo != "")
+                                {
+                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/ProfileImages/@Model.FacultyModel.Photo" class="upload-profilepic" alt="Profile Image" />
+                                }
+                            }
+                            else
+                            {
+                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/dummy.jpg" class="upload-profilepic" alt="Profile Image" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.FacultyModel.FacultyName
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Postion : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.FacultyModel.UserTypeText
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.FacultyModel.IsClassTeacher)
+                {
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="score_adept">Class Teacher For : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Model.FacultyModel.ClassName
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="score_adept">For Section : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Model.FacultyModel.SectionName
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+                }
+
+                @if (Model.FacultyModel.IsSubjectTeacher)
+                {
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <span class="score_adept">Subject Teacher For : </span>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Model.FacultyModel.SubjectName
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Email-Id : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.FacultyModel.Email
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Contact No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.FacultyModel.ContactNumber
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12"></div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">User Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.FacultyModel.UserName
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12"></div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Password : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.FacultyModel.Password
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                @Html.HiddenFor(x => x.StudentModel.StudentId)
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="form-group text-center">
+                            @if (File.Exists(Server.MapPath("~/Uploads/ProfileImages/" + Model.StudentModel.StudentPhoto)))
+                            {
+                                if (Model.StudentModel.StudentPhoto != null && Model.StudentModel.StudentPhoto != "")
+                                {
+                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/ProfileImages/@Model.StudentModel.StudentPhoto" class="upload-profilepic" alt="Profile Image" />
+                                }
+                            }
+                            else
+                            {
+                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/dummy.jpg" class="upload-profilepic" alt="Profile Image" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Admission No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.AdmissionNumber
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Admission Type : </span>
+                        </div>
+                        <div class="col-md-7">
+                            @if (@Model.StudentModel.IsNewAdmission)
+                            {
+                                <div class="form-group">
+                                    Yes
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    NO
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Student Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.StudentFullName
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Join From Class : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.ClassStartWithName
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Current Class : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.ClassName
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Section : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.SectionName
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Adhar No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.StudentAadharNumber
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Father Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.FatherName
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Father Adahr No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.FatherAadharNumber
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Contact No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.FatherMobile
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Father Profession : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.FatherProfession
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Email : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.EmailId
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12"></div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Mother Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.MotherName
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Mother Adahr No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.MotherAadharNumber
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Contact No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.MotherMobile
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Mother Profession : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Model.StudentModel.MotherProfession
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        }
+    </div>
+</section>
+

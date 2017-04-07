@@ -1,0 +1,46 @@
+﻿@model List<DTO.LABURNUM.COM.ClassModel>
+@{int counter = 1;}
+@if (Model.Count == 0)
+{
+    <div class="text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover general-table responsive">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Class Id</th>
+                            <th>Class Name</th>
+                            <th>Created On</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DTO.LABURNUM.COM.ClassModel item in @Model)
+                        {
+                            <tr>
+                                <td style="width: 17%;">@counter</td>
+                                <td style="width: 20%;">@item.ClassId</td>
+                                <td style="width: 23%;">@item.ClassName</td>
+                                <td style="width: 19%;">@item.CreatedOn</td>
+                                <td style="width: 12%;">
+                                    <button type="button" onclick="EditClassPopup(@item.ClassId)" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">EDIT</button></td>
+                                <td>
+                                    <button type="button" class="btn btn-danger adept-view" onclick="UpdateStatusPoup(@item.ClassId,@counter)" data-toggle="modal" data-target="#myModal">Delete</button></td>
+                                <td style="display: none;" id="tdIsActive@(counter)">@item.IsActive</td>
+                            </tr>
+                            counter++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

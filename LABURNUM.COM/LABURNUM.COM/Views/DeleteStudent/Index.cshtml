@@ -1,0 +1,366 @@
+﻿@model DTO.LABURNUM.COM.StudentModel
+
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+{
+    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnDeleteStudentBegin", OnSuccess = "OnDeleteStudentSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "DeleteStudent/Delete" }))
+    {
+    <section class="panel">
+        <header class="panel-heading">
+            Add Student<span class="tools pull-right">
+                <a class="fa fa-chevron-down" href="javascript:;"></a>
+            </span>
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Class : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.ClassId, new { @id = "txtFirstName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Section : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.SectionId, new { @id = "txtFirstName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Class Started With : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.ClassStartWithId, new { @id = "txtFirstName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Salutation : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.SalutationId, new { @id = "txtSalutation", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">First Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.FirstName, new { @id = "txtFirstName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Middle Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.MiddleName, new { @id = "txtMiddleName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Last Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.LastName, new { @id = "txtLastName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Date Of Birth : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.DOB, new { @autocomplete = "off", @id = "datepicker" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Mobile : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.Mobile, new { @id = "txtMobile", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Landline No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.Landline, new { @id = "txtLandline", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Address : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.Address, new { @id = "txtAddress", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Father's Name : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.FatherName, new { @id = "txtFatherName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Father's Profession : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.FatherProfession, new { @id = "txtFatherProfession", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Father's Mobile : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.FatherMobile, new { @id = "txtFatherMobile", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Mother's Name: </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.MotherName, new { @id = "txtMotherName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Mother's Profession : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.MotherProfession, new { @id = "txtMotherProfession", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Mother's Mobile : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.MotherMobile, new { @id = "txtMotherMobile", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Email Id : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.EmailId, new { @id = "txtEmail", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Father's Adhar No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.FatherAadharNumber, new { @id = "txtFatherAdharNo", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Mother's Adhar No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.MotherAadharNumber, new { @id = "txtMotherAdharNo", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Father's PAN No.: </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.PAN, new { @id = "txtPAN", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Student's Adhar No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.StudentAadharNumber, new { @id = "txtStudentAdharNo", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Bus Route : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.BusRouteNumber, new { @id = "txtBusRoute", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Student UserName : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.StudentUserName, new { @id = "txtStudentUserName", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Student Password : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.StudentPassword, new { @id = "txtStudentPassword", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Parents UserName : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.ParentUserName, new { @id = "txtParentUsername", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Parents Password: </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DisplayFor(x => x.ParentPassword, new { @id = "txtParentPassword", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div>
+        <button type="submit" id="btnDeleteStudent" class="btn btn-default btn-adeptsubmit">DELETE STUDENT</button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            OnDeleteStudentReady();
+        });
+    </script>
+
+}
+else
+{
+
+    <section>
+        <header class="panel-heading">
+            @(LABURNUM.COM.Component.Constants.ERRORMESSAGES.ACCESS_DENIED)
+        </header>
+    </section>
+}

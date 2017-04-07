@@ -1,0 +1,91 @@
+﻿@model List<DTO.LABURNUM.COM.StudentModel>
+@{int counter = 1;}
+@if (Model.Count == 0)
+{
+    <div class="text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+    </div>
+}
+else
+{
+    <section class="panel">
+        <header class="panel-heading">
+            <strong>Number of Record Found : @Model.Count</strong>
+            <span class="tools pull-right">
+                <button type="button" onclick="DownloadRecord('Student Details');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            </span>
+        </header>
+
+        <div class="panel-body" id="divTable">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Admission Type</th>
+                                <th>Class</th>
+                                <th>Section</th>
+                                <th>Gender</th>
+                                <th>Student Name</th>
+                                <th>D.O.B.</th>
+                                <th>Father's Name</th>
+                                <th>Mother's Name</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.StudentModel item in @Model)
+                            {
+                                <tr>
+                                    <td style="width: 17%;">@counter</td>
+                                    <td id="tdAdmissionType@(counter)" class="display_none">@item.IsNewAdmission</td>
+                                    @if (item.IsNewAdmission)
+                                    { <td>New Admission</td>}
+                                    else
+                                    {<td>Re-Admission</td> }
+                                    <td style="width: 20%;" class="display_none">@item.StudentId</td>
+                                    <td style="width: 19%;">@item.ClassName</td>
+                                    <td style="width: 19%;">@item.SectionName</td>
+                                    <td style="width: 20%;">@item.SalutationText</td>
+                                    <td style="width: 23%;">@item.StudentFullName</td>
+                                    <td style="width: 19%;">@item.DOB.ToShortDateString()</td>
+                                    <td style="width: 19%;">@item.FatherName</td>
+                                    <td style="width: 19%;">@item.MotherName</td>
+                                    <td>
+                                        <button type="button" onclick="ViewStudent(@item.StudentId)" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">VIEW</button></td>
+                                    <td style="width: 12%;">
+                                        <button type="button" onclick="EditStudent(@item.StudentId)" class="btn btn-success adept-view">EDIT</button></td>
+                                    @if (item.StudentFeeId > 0)
+                                    {
+                                        <td>
+                                            <button type="button" class="btn btn-success adept-view" disabled>Pay Admission Fee</button></td> 
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <button type="button" onclick="UpdateFee('@item.StudentId','@item.ClassId','@item.SectionId',@counter)" class="btn btn-success adept-view">Pay Admission Fee</button></td>
+                                    }
+                                    @if (item.StudentFeeId < 0)
+                                    {<td>
+                                        <button type="button" class="btn btn-success adept-view" disabled>Pay Monthly Fee</button></td> }
+                                    else
+                                    {
+                                        <td>
+                                            <button type="button" onclick="PayMonthlyFee('@item.StudentId','@item.ClassId','@item.SectionId','@item.StudentFeeId','@item.BusRouteId',@counter)" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">Pay Monthly Fee</button></td>
+                                    }
+                                    @*<td>
+                                        <button type="button" class="btn btn-danger adept-view" onclick="DeleteStudent(@item.StudentId)">Delete</button></td>*@
+                                </tr>
+                                    counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>

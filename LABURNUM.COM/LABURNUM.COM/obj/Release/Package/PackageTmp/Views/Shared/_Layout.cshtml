@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Welcome To Laburnum Public School</title>
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- CSS File --->
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap-reset.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Font_Awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
+    @*<link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap-switch.css" rel="stylesheet" />*@
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/style.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/style-responsive.css" rel="stylesheet" />
+
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/jquerysctipttop.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/scrollert.min.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/font.css" rel="stylesheet" />
+
+    
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap-datepicker.css" rel="stylesheet" />
+    @*<link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/datepicker.css" rel="stylesheet" />*@
+
+
+    <!-- Java Script File --->
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/jquery-3.1.1.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/config.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/common.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/Laburnum.js"></script>
+
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
+
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/bootstrap.min.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/actions.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/jquery.easing.1.3.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/jquery.nicescroll.min.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/jquery.nicescroll.plus.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/jquery.table2excel.js"></script>
+
+
+    @*<script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/bootstrap-switch.js"></script>*@
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/bootstrap-multiselect.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/jquery.tagsinput.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/toggle-init.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/bootstrap-datepicker.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/scripts.js"></script>
+</head>
+<body>
+    <div id="divDomain" style="display: none">@LABURNUM.COM.Component.Constants.URL.WEBSITEURL</div>
+    <div id="divUserType" style="display: none">@(new LABURNUM.COM.Component.SessionManagement().GetLoginBy())</div>
+    <section id="container">
+        <header class="header fixed-top clearfix">
+            @{
+                Html.RenderAction("Index", "Header");
+            }
+        </header>
+        <div class="page-sidebar" id="ac_FixHeight">
+            @{
+                Html.RenderAction("Index", "SideBar");
+            }
+        </div>
+
+        <section id="main-content">
+            <section class="wrapper">
+                @RenderBody()
+                @{
+                    Html.RenderAction("Index", "Footer");
+                }
+            </section>
+        </section>
+    </section>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var heightNoScrollBars = $(window).height();
+        var heightNoScrollBarsFinal = heightNoScrollBars - 80;
+        $("#ac_FixHeight").css("height", heightNoScrollBarsFinal);
+
+        $("html").niceScroll({ styler: "fb", cursorcolor: "#000" });
+        $("#ac_FixHeight").niceScroll();
+    });
+</script>

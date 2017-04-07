@@ -1,0 +1,92 @@
+﻿@{
+    Layout = null; 
+}
+
+<footer>
+    <div class="row margin ng-scope">
+        <div class="foot4">
+            <div class="arrow_toggle">
+                <a>
+                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/arrow-up.png"></a>
+            </div>
+            <div class="footer_upper" style="display: none;">
+                <div class="col-md-2 col-sm-3 col-xs-12">
+                    <img class="logo_footer" src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" style="width: 150px;height: 150px; margin-left: 5%;">
+                </div>
+
+                <div class="f-cont f-update col-md-4 col-sm-2 col-xs-12">
+                    <h6>Other Links</h6>
+                    <ul class="ac_foot_links">
+                        <li><a href="#">Features &amp; Benefits</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/AboutUs/Index">About Us</a></li>
+                        <li><a href="#">Detail</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms &amp; Conditions</a></li>
+                    </ul>
+                    <ul class="ac_foot_links">
+                        <li><a href="javascript: void(0);">Terms of Services</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Shipping &amp; Refund</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="f-cont col-md-3 col-sm-3 col-xs-12">
+                    <h6>Where You can found Us</h6>
+                    <span class="address">Bhondsi, Sohna Road<br />
+                        Gurugram-122102, Haryana, India.</span>
+                    <span class="phone">Office  : <b>+91 124-2265111</b></span>
+                    <span class="email">Email : <a href="mailto:laburnumpublicschool@gmail.com">laburnumpublicschool@gmail.com</a></span>
+                    @*<span class="fax">Fax : <b>N/A</b></span>*@
+                </div>
+                <div class="f-cont col-md-3 col-sm-4 col-xs-12">
+                    <h6>Call Our experts</h6>
+                    <div class="adept-expert">
+                        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/phone-image.png">
+                        <span>Vipin Kaushik<b>+91 8377000147</b></span>
+                        <span>Priya Chauhan<b>+91 7777022229</b></span>
+                    </div>
+
+                    <div class="download-app">
+                        <span>Download Our App</span><br>
+                        <a href="#">
+                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/ios.png"></a> <a href="#">
+                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/android.png"></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="col-md-12 col-sm-12 col-xs-12 f-cont valign-wrapper f-foot">
+                    <div class="left-align valign col-md-9 col-sm-9 col-xs-12">
+                        <p class="copy">&copy;Copyright 2017 Laburnum School - All Rights Reserved</p>
+                    </div>
+                    <div class="social-icons valign right-align col-md-3 col-sm-3 col-xs-12">
+                        <a href=""><i class="fa fa-twitter"></i></a>
+                        <a href=""><i class="fa fa-dribbble"></i></a>
+                        <a href=""><i class="fa fa-vimeo-square"></i></a>
+                        <a href=""><i class="fa fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/laburnumpublicschool" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href=""><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+    $('.arrow_toggle a').click(function () {
+        $('.footer_upper').slideToggle();
+        $('.arrow_toggle img').toggleClass("atul");
+    });
+
+    $('.arrow_toggle a').click(function () {
+        $('html, body').animate({
+            scrollTop: $(document).height()
+        },
+        1500);
+        return false;
+    });
+</script>

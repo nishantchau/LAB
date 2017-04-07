@@ -1,0 +1,129 @@
+﻿@model DTO.LABURNUM.COM.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Welcome To Login LABURNUM SCHOOL</title>
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- CSS File --->
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap-reset.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Font_Awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/jquerysctipttop.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/scrollert.min.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/style.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/style-responsive.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/font.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap-datepicker.css" rel="stylesheet" />
+
+    <!-- Java Script File --->
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/jquery-3.1.1.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/config.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/common.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/Laburnum.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/scripts.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/bootstrap.min.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/actions.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/jquery.easing.1.3.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/jquery.nicescroll.min.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/jquery.nicescroll.plus.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/jquery.table2excel.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/bootstrap-multiselect.js"></script>
+    <script src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Scripts/js/bootstrap-datepicker.js"></script>
+</head>
+<body>
+    <div id="divDomain" style="display: none">@LABURNUM.COM.Component.Constants.URL.WEBSITEURL</div>
+    @using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnLoginBegin", OnSuccess = "OnLoginSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Login/DoLogin" }))
+    {
+      
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/login-body.jpg" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: -5000;" alt="">
+        <div class="col-md-12 main_cover">
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="col-md-4"></div>
+                    <div class="text-center col-md-4">
+                        <a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Home/Index">
+                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" class="Normal_header_logo_size" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-4"></div>
+                    <div class="margin_large text-center col-md-4 login-green">
+                        <ul class="breadcrumb1">
+                            <li id="spanTeacherLogin" onclick="SelectLoginType(@DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY));">
+                                <input type="radio" id="TeacherLogin" />Staff</li>
+                            <li id="spanParentLogin" onclick="SelectLoginType(@DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT));">
+                                <input type="radio" id="ParentLogin" />Parents</li>
+                            <li id="spanStudentLogin" onclick="SelectLoginType(@DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT));">
+                                <input type="radio" id="StudentLogin" />Students</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-4"></div>
+                    <div class="text-center col-md-4 login-green">
+                        @Html.HiddenFor(x => x.LoginBy, new { @id = "hdnLoginBy" })
+                        @Html.TextBoxFor(x => x.UserName, new { @id = "txtUserName", @autocomplete = "off", @class = "login-user", @placeholder = "User Name" })
+                        @Html.PasswordFor(x => x.Password, new { @id = "txtPassword", @autocomplete = "off", @class = "login-user", @placeholder = "Password" })
+                        <div class="col-md-12">
+                            <span class="pull-right"><a data-toggle="modal" data-target="#myModal" style="color: #fff; cursor: pointer;">Forgot Credentials ?</a></span>
+                        </div>
+                        <button class="btn btn-primary margin_small" type="submit" id="btnSubmit" style="font-weight: 600;">LOGIN <i class="fa fa-lock"></i></button>
+
+                        <div id="divLoader" class="text-center display_none margin_top">
+                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+                        </div>
+                        <div id="divMessage" class="text-center display_none" style="margin-top: 10px; color: #fff;"></div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    }
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel2">Forgot Credentials</h3>
+                </div>
+                <div class="modal-body popupbody-clubadmin">
+                    <div class="col-md-12">Please contact Administrator.</div>
+                    @*<div class="col-md-12">
+                    <div class="popup_form small-margin">
+                        <article>Password</article>
+                        <section>
+                            <input type="password" id="txtpassword" placeholder="Password" />
+                        </section>
+                    </div>
+                    <div class="popup_form">
+                        <article>Repeat Password</article>
+                        <section>
+                            <input type="password" id="txtConfirmpassword" placeholder="Repeat Password" />
+                        </section>
+                    </div>
+                </div>*@
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close<i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+                <div id="divPasswordMessage" style="display: none; text-align: center"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

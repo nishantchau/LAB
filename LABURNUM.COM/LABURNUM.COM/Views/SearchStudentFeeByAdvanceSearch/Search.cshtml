@@ -1,0 +1,67 @@
+﻿@model List<DTO.LABURNUM.COM.StudentFeeModel>
+@{int counter = 1;}
+@if (Model.Count == 0)
+{
+    <div class="text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+    </div>
+}
+else
+{
+    <section class="panel">
+        <header class="panel-heading">
+            <strong>Number of Record Found : @Model.Count</strong>
+            <span class="tools pull-right">
+                <button type="button" onclick="DownloadRecord('Student Fee Record');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            </span>
+        </header>
+
+        <div class="panel-body" id="divTable">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Admission Type</th>
+                                <th>Class Name</th>
+                                <th>Section Name</th>
+                                <th>Student Name</th>
+                                <th>Paid Admission Fee</th>
+                                <th>Submission Date</th>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.StudentFeeModel item in @Model)
+                            {
+                                <tr>
+                                    <td style="width: 1%;">@counter</td>
+                                    @if (item.AdmissionTypeId == DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION))
+                                    {<td>New Admission</td> }
+                                    else
+                                    {<td>Re-Admission</td> }
+                                    <td style="width: 20%;">@item.ClassName</td>
+                                    <td style="width: 23%;">@item.SectionName</td>
+                                    <td style="width: 19%;">@item.StudentName</td>
+                                    <td style="width: 19%;">@(item.AdmissionFee + item.AnnualCharges + item.DevelopementFee + item.ExamFee + item.SportsFee + item.SecurityFee)</td>
+                                    <td>@item.CreatedOn.ToShortDateString()</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success">View Paid Fee</button>
+                                    </td>
+                                </tr>
+                                    counter++;
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="text-center"><b>Total Amount Received</b></td>
+                                <td>@Model[0].TotalEarning</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+}
