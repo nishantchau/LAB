@@ -43,6 +43,9 @@ namespace API.LABURNUM.COM
         public DbSet<AttendanceClassPreNursery> AttendanceClassPreNurseries { get; set; }
         public DbSet<AttendanceClassUKG> AttendanceClassUKGs { get; set; }
         public DbSet<BusRoute> BusRoutes { get; set; }
+        public DbSet<Circular> Circulars { get; set; }
+        public DbSet<CircularNotificationTable> CircularNotificationTables { get; set; }
+        public DbSet<CircularNotificationTracker> CircularNotificationTrackers { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<Fee> Fees { get; set; }

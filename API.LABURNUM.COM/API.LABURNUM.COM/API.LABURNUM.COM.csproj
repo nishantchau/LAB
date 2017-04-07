@@ -181,6 +181,15 @@
     <Compile Include="BusRoute.cs">
       <DependentUpon>Laburnum.tt</DependentUpon>
     </Compile>
+    <Compile Include="Circular.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CircularNotificationTable.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CircularNotificationTracker.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class.cs">
       <DependentUpon>Laburnum.tt</DependentUpon>
     </Compile>
@@ -201,6 +210,9 @@
     <Compile Include="Component\AttendanceClassPreNurseryHelper.cs" />
     <Compile Include="Component\AttendanceClassUKGHelper.cs" />
     <Compile Include="Component\BusRouteHelper.cs" />
+    <Compile Include="Component\CircularHelper.cs" />
+    <Compile Include="Component\CircularNotificationTableHelper.cs" />
+    <Compile Include="Component\CircularNotificationTrackerHelper.cs" />
     <Compile Include="Component\ClassHelper.cs" />
     <Compile Include="Component\Constants.cs" />
     <Compile Include="Component\Crypto.cs" />
@@ -238,6 +250,9 @@
     <Compile Include="Controllers\AttendanceClassPreNurseryController.cs" />
     <Compile Include="Controllers\AttendanceClassUKGController.cs" />
     <Compile Include="Controllers\BusRouteController.cs" />
+    <Compile Include="Controllers\CircularController.cs" />
+    <Compile Include="Controllers\CircularNotificationTableController.cs" />
+    <Compile Include="Controllers\CircularNotificationTrackerController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\CommonAttendanceController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
@@ -282,6 +297,9 @@
     <Compile Include="FrontEndApi\AttendanceClassPreNurseryApi.cs" />
     <Compile Include="FrontEndApi\AttendanceClassUKGApi.cs" />
     <Compile Include="FrontEndApi\BusRouteApi.cs" />
+    <Compile Include="FrontEndApi\CircularApi.cs" />
+    <Compile Include="FrontEndApi\CircularNotificationTableApi.cs" />
+    <Compile Include="FrontEndApi\CircularNotificationTrackerApi.cs" />
     <Compile Include="FrontEndApi\ClassApi.cs" />
     <Compile Include="FrontEndApi\FacultyApi.cs" />
     <Compile Include="FrontEndApi\FeeApi.cs" />

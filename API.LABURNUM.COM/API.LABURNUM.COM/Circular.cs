@@ -12,23 +12,30 @@ namespace API.LABURNUM.COM
     using System;
     using System.Collections.Generic;
     
-    public partial class UserType
+    public partial class Circular
     {
-        public UserType()
+        public Circular()
         {
+            this.CircularNotificationTables = new HashSet<CircularNotificationTable>();
             this.CircularNotificationTrackers = new HashSet<CircularNotificationTracker>();
-            this.Faculties = new HashSet<Faculty>();
-            this.LoginActivities = new HashSet<LoginActivity>();
         }
     
-        public long UserTypeId { get; set; }
-        public string Text { get; set; }
+        public long CircularId { get; set; }
+        public string Details { get; set; }
+        public string Subject { get; set; }
+        public string Attachment { get; set; }
+        public System.DateTime PublishedOn { get; set; }
+        public Nullable<System.DateTime> ExpiryOn { get; set; }
+        public string ClassIds { get; set; }
+        public bool IsForFaculty { get; set; }
+        public bool IsForParents { get; set; }
+        public bool IsForStudent { get; set; }
+        public bool IsForAdmin { get; set; }
         public bool IsActive { get; set; }
-        public Nullable<System.DateTime> LastUpdated { get; set; }
         public System.DateTime CreatedOn { get; set; }
+        public Nullable<System.DateTime> LastUpdated { get; set; }
     
+        public virtual ICollection<CircularNotificationTable> CircularNotificationTables { get; set; }
         public virtual ICollection<CircularNotificationTracker> CircularNotificationTrackers { get; set; }
-        public virtual ICollection<Faculty> Faculties { get; set; }
-        public virtual ICollection<LoginActivity> LoginActivities { get; set; }
     }
 }
