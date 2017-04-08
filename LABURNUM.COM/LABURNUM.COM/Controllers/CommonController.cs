@@ -60,6 +60,45 @@ namespace LABURNUM.COM.Controllers
             }
         }
 
+        [HttpPost]
+        public ContentResult UploadCircularFiles()
+        {
+            try
+            {
+                string name = Guid.NewGuid().ToString();
+                var r = new List<DTO.LABURNUM.COM.UploadFilesModel>();
+                foreach (string file in Request.Files)
+                {
+                    HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+                    if (hpf.ContentLength == 0)
+                        continue;
+                    string path = "~/Uploads/Circulars/";
+                    bool folderExists = Directory.Exists(Server.MapPath(path));
+                    if (!folderExists)
+                        Directory.CreateDirectory(Server.MapPath(path));
+                    string extension = Path.GetExtension(hpf.FileName);
+                    string savedFileName = Path.Combine(Server.MapPath(path), Path.GetFileName(name + extension));
+                    if (savedFileName.EndsWith(".pdf") || savedFileName.EndsWith(".doc") || savedFileName.EndsWith(".docx") || savedFileName.EndsWith(".jpg") || savedFileName.EndsWith(".bmp") || savedFileName.EndsWith(".png"))
+                    {
+                        hpf.SaveAs(savedFileName);
+                        r.Add(new DTO.LABURNUM.COM.UploadFilesModel()
+                        {
+                            Name = name + extension
+                        });
+                    }
+                    else
+                    {
+                        return Content("{\"error\":\"" + "Please Choose A File Of Type .pdf, .doc, .docx, .jpg, .bmp, .png" + "\" }", "application/json");
+                    }
+                }
+                return Content("{\"name\":\"" + r[0].Name + "\" }", "application/json");
+            }
+            catch (Exception ex)
+            {
+                return Content("{\"name\":\"" + "Something Goes Wrong.Please Try Again" + "\" }", "application/json");
+            }
+        }
+
         public ActionResult EncrptId(string id)
         {
             try

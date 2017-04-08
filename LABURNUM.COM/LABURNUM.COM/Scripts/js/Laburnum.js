@@ -365,6 +365,37 @@ function UploadFile(nameDivId, statusDivId, hiddenDivId, filenameDivId, inputid)
     }
 }
 
+function UploadCircular(statusDivId, hiddenDivId, filenameDivId, inputid) {
+    try {
+        //var name = $("#" + nameDivId).html();
+        $("#" + statusDivId).hide();
+        SetHtmlBlank(statusDivId);
+        $("#" + inputid).fileupload({
+            dataType: 'json',
+            url: GetDomain(_DOMAINDIVID) + '/Common/UploadCircularFiles',
+            autoUpload: true,
+            done: function (e, data) {
+                var o = $("#" + filenameDivId);
+                o.html(data.result.name);
+                var h = $("#" + filenameDivId).html();
+                $("#" + hiddenDivId).val(h);
+                $("#" + statusDivId).show();
+                SetHtml(statusDivId, MESSAGES.ImageUploadSucessfully);
+                $("#" + inputid).val(data.result.name);
+            }
+        });
+        $('#' + inputid).on('fileuploadstart', function (event) {
+            $("#" + statusDivId).show();
+            SetHtml(statusDivId, MESSAGES.ImageUploadStart);
+        });
+        return true;
+    }
+    catch (e) {
+        MyAlert("UploadCircular" + e);
+        return false;
+    }
+}
+
 function GetEncryptedId(id, redirectto) {
     try {
         var url = GetDomain(_DOMAINDIVID) + "Common/EncrptId?id=" + id;
@@ -2136,3 +2167,129 @@ function OnSearchAssignedHomeworkSuccess(data) {
         MyAlert("OnSearchAssignedHomeworkSuccess : " + e);
     }
 }
+
+function OnAddCircularIndex() {
+    CreateDatePicker("txtPublishedOn");
+    $("#chkIsForAdmin").prop("checked", true);
+}
+
+function OnAddCircularBegin() {
+    SetHtmlBlank(_MESSAGEDIVID);
+    if (Validate.StringValueValidate("txtSubject", _MESSAGEDIVID, "Subject Cannot be Null or Blank.")) { }
+    else { return false; }
+    if (Validate.StringValueValidate("txtDetails", _MESSAGEDIVID, "Details Cannot be Null or Blank.")) { }
+    else { return false; }
+    HideLoader(_LOADERDIVID);
+    Disablebutton("btnSubmit");
+    Disablebutton("btnReset");
+    DisplayLoader(_LOADERDIVID);
+}
+
+function OnAddCircularSuccess(data) {
+    HideLoader(_LOADERDIVID);
+    FillSuccessResultMSG(data, _MESSAGEDIVID, "Circular Successfully Published.", "Failed To Publish Circular Please Try Again Later.");
+    if (data.code != 0) {
+        Enablebutton("btnSubmit");
+        Enablebutton("btnReset");
+        Enablebutton("btnSave");
+        Enablebutton("btnSavePublish");
+    }
+}
+
+function UploadCircularAttachment() {
+    UploadCircular('divCircularUploadStatus', 'hdnAttachment', 'file_name', 'fileUpload');
+}
+
+function SaveCircular() {
+    try {
+        Disablebutton("btnSave");
+        Disablebutton("btnSavePublish");
+        $("#btnSubmit").click();
+
+    } catch (e) {
+        MyAlert("SaveCircular :" + e);
+    }
+}
+
+function SavePublishCircular() {
+    try {
+        $("#hdnIsPublishNow").val('true');
+        Disablebutton("btnSave");
+        Disablebutton("btnSavePublish");
+        $("#btnSubmit").click();
+    } catch (e) {
+        MyAlert("SavePublishCircular :" + e);
+    }
+}
+
+function OnCircularSeachIndexReady() {
+    try {
+        CreateDatePicker("txtStartDate");
+        CreateDatePicker("txtEndDate");
+
+    } catch (e) {
+        MyAlert("OnCircularSeachIndexReady : " + e);
+    }
+}
+
+function OnSearchCircularBegin() {
+    DisplayLoader(_LOADERDIVID);
+}
+
+function OnSearchCircularSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchCircularSuccess :" + e);
+    }
+}
+
+function EditCircular(id) {
+    try {
+        var redirectto = GetDomain(_DOMAINDIVID) + "Circular/EditCircularIndex?id=";
+        GetEncryptedId(id, redirectto);
+    } catch (e) {
+        MyAlert("EditCircular : " + e);
+    }
+}
+
+function OnEditCircularIndex() {
+    try {
+        CreateDatePicker("txtPublishedOn");
+    } catch (e) {
+        MyAlert("OnEditCircularIndex : " + e);
+    }
+}
+
+function OnEditCircularBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.StringValueValidate("txtSubject", _MESSAGEDIVID, "Subject Cannot be Null or Blank.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtDetails", _MESSAGEDIVID, "Details Cannot be Null or Blank.")) { }
+        else { return false; }
+        HideLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+        Disablebutton("btnReset");
+        DisplayLoader(_LOADERDIVID);
+    } catch (e) {
+        MyAlert("OnEditCircularBegin : " + e);
+    }
+}
+
+function OnEditCircularSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        FillSuccessResultMSG(data, _MESSAGEDIVID, "Circular Successfully Published.", "Failed To Publish Circular Please Try Again Later.");
+        if (data.code != 0) {
+            Enablebutton("btnSubmit");
+            Enablebutton("btnReset");
+            Enablebutton("btnSave");
+            Enablebutton("btnSavePublish");
+        }
+    } catch (e) {
+        MyAlert("OnEditCircularSuccess : " + e);
+    }
+}
+

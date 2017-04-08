@@ -1,0 +1,154 @@
+﻿@model DTO.LABURNUM.COM.CircularModel
+
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnEditCircularBegin", OnSuccess = "OnEditCircularSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Circular/AddCircular" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li>Circular</li>
+                <li class="active">Publish Circular</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            Publish Circular
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Applicable For : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Published on : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.PublishedOn, new { @id = "txtPublishedOn" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Is For Admin : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(x => x.IsForAdmin, new { @id = "chkIsForAdmin" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Is For Faculty : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(x => x.IsForFaculty, new { @id = "chkIsForFaculty" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Is For Parents : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(x => x.IsForParents, new { @id = "chkIsForParents" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Is For Student : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(x => x.IsForStudent, new { @id = "chkIsForStudent" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span class="score_adept">Subject : </span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.Subject, new { @id = "txtSubject", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span class="score_adept">Circular Details : </span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                @Html.TextAreaFor(x => x.Details, new { @id = "txtDetails", @autocomplete = "Off", @class = "ToReset", @style = "width:100%" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span class="score_adept">Attachment : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <input type="file" id="fileUpload" style="width: 200px" onclick="UploadCircularAttachment();" />
+                                @Html.HiddenFor(x => x.Attachment, new { @id = "hdnAttachment", @autocomplete = "Off", @class = "ToReset" })
+                                <div id="file_name" style="display: none;"></div>
+                                <div id="divCircularUploadStatus" style="display: none;"></div>
+                                <div id="divFileName" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.HiddenFor(x => x.IsPublishNow, new { @id = "hdnIsPublishNow" })
+    </section>
+    <div class="text-center col-md-12 margin_top">
+        <button type="button" id="btnSave" class="btn btn-success btn-adeptsubmit" onclick="SaveCircular();">Save</button>
+        <button type="button" id="btnSavePublish" class="btn btn-default btn-adeptsubmit btn-default" onclick="SavePublishCircular();">Save & Publish Now</button>
+        <button type="submit" id="btnSubmit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst display_none">Publish</button>
+        <button type="button" id="btnReset" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">Reset</button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="text-center"></div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        OnEditCircularIndex();
+    });
+</script>
