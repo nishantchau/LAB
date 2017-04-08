@@ -38,7 +38,7 @@ namespace API.LABURNUM.COM.Controllers
             }
         }
 
-        public List<DTO.LABURNUM.COM.CircularNotificationTrackerModel> SearchActiveClasses(DTO.LABURNUM.COM.CircularNotificationTrackerModel model)
+        public List<DTO.LABURNUM.COM.CircularNotificationTrackerModel> SearchActiveCircularNotificationTrackers(DTO.LABURNUM.COM.CircularNotificationTrackerModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
@@ -47,7 +47,7 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.CircularNotificationTrackerModel> SearchInActiveClasses(DTO.LABURNUM.COM.CircularNotificationTrackerModel model)
+        public List<DTO.LABURNUM.COM.CircularNotificationTrackerModel> SearchInActiveCircularNotificationTrackers(DTO.LABURNUM.COM.CircularNotificationTrackerModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
@@ -56,7 +56,7 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.CircularNotificationTrackerModel> SearchAllClasses(DTO.LABURNUM.COM.CircularNotificationTrackerModel model)
+        public List<DTO.LABURNUM.COM.CircularNotificationTrackerModel> SearchAllCircularNotificationTrackers(DTO.LABURNUM.COM.CircularNotificationTrackerModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
@@ -65,7 +65,7 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.CircularNotificationTrackerModel> SearchClassByAdvanceSearch(DTO.LABURNUM.COM.CircularNotificationTrackerModel model)
+        public List<DTO.LABURNUM.COM.CircularNotificationTrackerModel> SearchCircularNotificationTrackerByAdvanceSearch(DTO.LABURNUM.COM.CircularNotificationTrackerModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {

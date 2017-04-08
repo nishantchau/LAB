@@ -279,6 +279,56 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Circulars">
+      <EntityTypeMapping TypeName="LaburnumModel.Circular">
+        <MappingFragment StoreEntitySet="Circular">
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsForAdmin" ColumnName="IsForAdmin" />
+          <ScalarProperty Name="IsForStudent" ColumnName="IsForStudent" />
+          <ScalarProperty Name="IsForParents" ColumnName="IsForParents" />
+          <ScalarProperty Name="IsForFaculty" ColumnName="IsForFaculty" />
+          <ScalarProperty Name="ClassIds" ColumnName="ClassIds" />
+          <ScalarProperty Name="ExpiryOn" ColumnName="ExpiryOn" />
+          <ScalarProperty Name="PublishedOn" ColumnName="PublishedOn" />
+          <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="CircularId" ColumnName="CircularId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CircularNotificationTables">
+      <EntityTypeMapping TypeName="LaburnumModel.CircularNotificationTable">
+        <MappingFragment StoreEntitySet="CircularNotificationTable">
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ClassIds" ColumnName="ClassIds" />
+          <ScalarProperty Name="IsForAdmin" ColumnName="IsForAdmin" />
+          <ScalarProperty Name="IsForStudent" ColumnName="IsForStudent" />
+          <ScalarProperty Name="IsForParents" ColumnName="IsForParents" />
+          <ScalarProperty Name="IsForFaculty" ColumnName="IsForFaculty" />
+          <ScalarProperty Name="CircularId" ColumnName="CircularId" />
+          <ScalarProperty Name="CircularNotificationTableId" ColumnName="CircularNotificationTableId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CircularNotificationTrackers">
+      <EntityTypeMapping TypeName="LaburnumModel.CircularNotificationTracker">
+        <MappingFragment StoreEntitySet="CircularNotificationTracker">
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ReadOn" ColumnName="ReadOn" />
+          <ScalarProperty Name="CircularId" ColumnName="CircularId" />
+          <ScalarProperty Name="CircularNotificationTrackerId" ColumnName="CircularNotificationTrackerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Classes">
       <EntityTypeMapping TypeName="LaburnumModel.Class">
         <MappingFragment StoreEntitySet="Class">

@@ -66,3 +66,37 @@ E:\school\API.LABURNUM.COM\API.LABURNUM.COM\obj\Release\API.LABURNUM.COM.csprojR
 E:\school\API.LABURNUM.COM\API.LABURNUM.COM\obj\Release\API.LABURNUM.COM.dll
 E:\school\API.LABURNUM.COM\API.LABURNUM.COM\obj\Release\API.LABURNUM.COM.pdb
 E:\Projects\Working Projects\Laburnum\API.LABURNUM.COM\API.LABURNUM.COM\obj\Release\API.LABURNUM.COM.csprojResolveAssemblyReference.cache
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\API.LABURNUM.COM.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\API.LABURNUM.COM.pdb
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\Antlr3.Runtime.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\DTO.LABURNUM.COM.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\EntityFramework.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\Microsoft.Web.Infrastructure.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\Newtonsoft.Json.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Net.Http.Formatting.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Helpers.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Http.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Http.WebHost.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Mvc.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Optimization.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Providers.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Razor.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.WebPages.Deployment.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.WebPages.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.WebPages.Razor.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\WebGrease.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\DTO.LABURNUM.COM.pdb
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\EntityFramework.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\Newtonsoft.Json.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Net.Http.Formatting.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Helpers.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Http.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Http.WebHost.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Mvc.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.Razor.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.WebPages.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.WebPages.Deployment.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.WebPages.Razor.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\obj\Release\API.LABURNUM.COM.csprojResolveAssemblyReference.cache
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\obj\Release\API.LABURNUM.COM.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\obj\Release\API.LABURNUM.COM.pdb

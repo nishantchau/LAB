@@ -38,7 +38,7 @@ namespace API.LABURNUM.COM.Controllers
             }
         }
 
-        public List<DTO.LABURNUM.COM.CircularModel> SearchActiveClasses(DTO.LABURNUM.COM.CircularModel model)
+        public List<DTO.LABURNUM.COM.CircularModel> SearchActiveCirculars(DTO.LABURNUM.COM.CircularModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
@@ -47,7 +47,7 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.CircularModel> SearchInActiveClasses(DTO.LABURNUM.COM.CircularModel model)
+        public List<DTO.LABURNUM.COM.CircularModel> SearchInActiveCirculars(DTO.LABURNUM.COM.CircularModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
@@ -56,7 +56,7 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.CircularModel> SearchAllClasses(DTO.LABURNUM.COM.CircularModel model)
+        public List<DTO.LABURNUM.COM.CircularModel> SearchAllCirculars(DTO.LABURNUM.COM.CircularModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
@@ -65,7 +65,7 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.CircularModel> SearchClassByAdvanceSearch(DTO.LABURNUM.COM.CircularModel model)
+        public List<DTO.LABURNUM.COM.CircularModel> SearchCircularByAdvanceSearch(DTO.LABURNUM.COM.CircularModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {

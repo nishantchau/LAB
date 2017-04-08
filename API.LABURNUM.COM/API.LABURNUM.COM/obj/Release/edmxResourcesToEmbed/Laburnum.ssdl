@@ -19,6 +19,9 @@
     <EntitySet Name="AttendanceClassPreNursery" EntityType="LaburnumModel.Store.AttendanceClassPreNursery" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AttendanceClassUKG" EntityType="LaburnumModel.Store.AttendanceClassUKG" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BusRoute" EntityType="LaburnumModel.Store.BusRoute" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Circular" EntityType="LaburnumModel.Store.Circular" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CircularNotificationTable" EntityType="LaburnumModel.Store.CircularNotificationTable" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CircularNotificationTracker" EntityType="LaburnumModel.Store.CircularNotificationTracker" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Class" EntityType="LaburnumModel.Store.Class" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Faculty" EntityType="LaburnumModel.Store.Faculty" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Fee" EntityType="LaburnumModel.Store.Fee" store:Type="Tables" Schema="dbo" />
@@ -272,6 +275,22 @@
     <AssociationSet Name="FK_AttendanceClassUKG_Student" Association="LaburnumModel.Store.FK_AttendanceClassUKG_Student">
       <End Role="Student" EntitySet="Student" />
       <End Role="AttendanceClassUKG" EntitySet="AttendanceClassUKG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CircularNotificationTable_Circular" Association="LaburnumModel.Store.FK_CircularNotificationTable_Circular">
+      <End Role="Circular" EntitySet="Circular" />
+      <End Role="CircularNotificationTable" EntitySet="CircularNotificationTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CircularNotificationTracker_Circular" Association="LaburnumModel.Store.FK_CircularNotificationTracker_Circular">
+      <End Role="Circular" EntitySet="Circular" />
+      <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTracker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CircularNotificationTracker_Student" Association="LaburnumModel.Store.FK_CircularNotificationTracker_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTracker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CircularNotificationTracker_UserType" Association="LaburnumModel.Store.FK_CircularNotificationTracker_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTracker" />
     </AssociationSet>
     <AssociationSet Name="FK_Faculty_Class" Association="LaburnumModel.Store.FK_Faculty_Class">
       <End Role="Class" EntitySet="Class" />
@@ -649,6 +668,53 @@
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
     <Property Name="LastUpdate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Circular">
+    <Key>
+      <PropertyRef Name="CircularId" />
+    </Key>
+    <Property Name="CircularId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Details" Type="nvarchar" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="Attachment" Type="nvarchar" MaxLength="500" />
+    <Property Name="PublishedOn" Type="datetime" Nullable="false" />
+    <Property Name="ExpiryOn" Type="datetime" />
+    <Property Name="ClassIds" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsForFaculty" Type="bit" Nullable="false" />
+    <Property Name="IsForParents" Type="bit" Nullable="false" />
+    <Property Name="IsForStudent" Type="bit" Nullable="false" />
+    <Property Name="IsForAdmin" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CircularNotificationTable">
+    <Key>
+      <PropertyRef Name="CircularNotificationTableId" />
+    </Key>
+    <Property Name="CircularNotificationTableId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CircularId" Type="bigint" Nullable="false" />
+    <Property Name="IsForFaculty" Type="bit" Nullable="false" />
+    <Property Name="IsForParents" Type="bit" Nullable="false" />
+    <Property Name="IsForStudent" Type="bit" Nullable="false" />
+    <Property Name="IsForAdmin" Type="bit" Nullable="false" />
+    <Property Name="ClassIds" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CircularNotificationTracker">
+    <Key>
+      <PropertyRef Name="CircularNotificationTrackerId" />
+    </Key>
+    <Property Name="CircularNotificationTrackerId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CircularId" Type="bigint" Nullable="false" />
+    <Property Name="ReadOn" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="UserTypeId" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
   </EntityType>
   <EntityType Name="Class">
     <Key>
@@ -1588,6 +1654,54 @@
       </Principal>
       <Dependent Role="AttendanceClassUKG">
         <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CircularNotificationTable_Circular">
+    <End Role="Circular" Type="LaburnumModel.Store.Circular" Multiplicity="1" />
+    <End Role="CircularNotificationTable" Type="LaburnumModel.Store.CircularNotificationTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Circular">
+        <PropertyRef Name="CircularId" />
+      </Principal>
+      <Dependent Role="CircularNotificationTable">
+        <PropertyRef Name="CircularId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CircularNotificationTracker_Circular">
+    <End Role="Circular" Type="LaburnumModel.Store.Circular" Multiplicity="1" />
+    <End Role="CircularNotificationTracker" Type="LaburnumModel.Store.CircularNotificationTracker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Circular">
+        <PropertyRef Name="CircularId" />
+      </Principal>
+      <Dependent Role="CircularNotificationTracker">
+        <PropertyRef Name="CircularId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CircularNotificationTracker_Student">
+    <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
+    <End Role="CircularNotificationTracker" Type="LaburnumModel.Store.CircularNotificationTracker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="CircularNotificationTracker">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CircularNotificationTracker_UserType">
+    <End Role="UserType" Type="LaburnumModel.Store.UserType" Multiplicity="1" />
+    <End Role="CircularNotificationTracker" Type="LaburnumModel.Store.CircularNotificationTracker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeId" />
+      </Principal>
+      <Dependent Role="CircularNotificationTracker">
+        <PropertyRef Name="UserTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
