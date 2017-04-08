@@ -31,5 +31,7 @@ namespace DTO.LABURNUM.COM
         public DateTime EndDate { get; set; }
 
         public ApiClientModel ApiClientModel { get; set; }
+        public bool IsPublishNow { get; set; }
+        public bool IsEditable { get; set; }
     }
 }
