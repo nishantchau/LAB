@@ -236,7 +236,7 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 List<DTO.LABURNUM.COM.LateFeePaneltyMasterModel> dbLateFeePanelties = new LateFeePaneltyMasterHelper(new FrontEndApi.LateFeePaneltyMasterApi().GetActiveLateFeePaneltyMaster()).Map();
-                return GetApiResponseModel("Api Access User Name or Password Invalid.", false, dbLateFeePanelties);
+                return GetApiResponseModel("Successfully Performed.", false, dbLateFeePanelties);
             }
             else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
         }
