@@ -64,9 +64,22 @@ namespace API.LABURNUM.COM.Component
                 Subject = apicircular.Subject,
                 CreatedOn = apicircular.CreatedOn,
                 IsActive = apicircular.IsActive,
-                LastUpdated = apicircular.LastUpdated
+                LastUpdated = apicircular.LastUpdated,
+                IsEditable = IsCircularEditable(apicircular.PublishedOn)
             };
             return dtoClass;
+        }
+
+        private bool IsCircularEditable(DateTime publishedon)
+        {
+            if (System.DateTime.Now.Date >= publishedon.Date)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

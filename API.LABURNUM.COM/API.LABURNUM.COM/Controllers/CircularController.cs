@@ -14,7 +14,9 @@ namespace API.LABURNUM.COM.Controllers
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                return new FrontEndApi.CircularApi().Add(model);
+                long circularid = new FrontEndApi.CircularApi().Add(model);
+                if (model.IsPublishNow) { new FrontEndApi.CircularNotificationTableApi().Add(new DTO.LABURNUM.COM.CircularNotificationTableModel() { CircularId = circularid, IsForAdmin = model.IsForAdmin, IsForFaculty = model.IsForFaculty, IsForParents = model.IsForParents, IsForStudent = model.IsForStudent }); }
+                return circularid;
             }
             else
             {
