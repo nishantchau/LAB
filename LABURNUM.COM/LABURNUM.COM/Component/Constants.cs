@@ -40,5 +40,15 @@ namespace LABURNUM.COM.Component
             public static int ANNUALFUNCTIONFEEPAYABLEMONTH = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["ANNUALFUNCTIONFEEPAYMONTH"]);
             public static double ANNUALFUNCTIONFEE = Convert.ToDouble(System.Configuration.ConfigurationManager.AppSettings["ANNUALFUNCTIONFEE"]);
         }
+
+        public static class Cookies
+        {
+            public static class UserCookie
+            {
+                public static string NAME = System.Configuration.ConfigurationManager.AppSettings["LABURNUMCOOKIENAME"];
+                public static int EXPIRINGINDAYS = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["COOKIEEXPIREINDAYS"]);
+                public static string LOGINACTIVITYID = "LoginActivityId";
+            }
+        }
     }
 }

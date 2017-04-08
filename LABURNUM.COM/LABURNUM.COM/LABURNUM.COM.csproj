@@ -166,10 +166,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Component\AdmissionType.cs" />
     <Compile Include="Component\BusRoute.cs" />
+    <Compile Include="Component\Circular.cs" />
+    <Compile Include="Component\CircularNotificationTable.cs" />
+    <Compile Include="Component\CircularNotificationTracker.cs" />
     <Compile Include="Component\Client.cs" />
     <Compile Include="Component\Common.cs" />
     <Compile Include="Component\Class.cs" />
     <Compile Include="Component\Constants.cs" />
+    <Compile Include="Component\CookieManager.cs" />
     <Compile Include="Component\Crypto.cs" />
     <Compile Include="Component\Faculty.cs" />
     <Compile Include="Component\Fee.cs" />

@@ -12,9 +12,14 @@ namespace LABURNUM.COM.Controllers
         {
             try
             {
-                new Component.LoginActivity().UpdateLoginActivity(new Component.SessionManagement().GetLoginActivityId());
+                long id = Convert.ToInt64(new LABURNUM.COM.Component.CookieManager(LABURNUM.COM.Component.Constants.Cookies.UserCookie.NAME).GetLoginActivityId(LABURNUM.COM.Component.Constants.Cookies.UserCookie.NAME));
+
+                //new Component.LoginActivity().UpdateLoginActivity(new Component.SessionManagement().GetLoginActivityId());
+                new Component.LoginActivity().UpdateLoginActivity(id);
                 Session.RemoveAll();
                 Session.Abandon();
+                Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddDays(-30);
+                Response.Cookies[LABURNUM.COM.Component.Constants.Cookies.UserCookie.NAME].Expires = DateTime.Now.AddDays(-30);
                 return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Login/Index");
             }
             catch (Exception ex)

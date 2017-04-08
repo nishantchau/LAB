@@ -37,6 +37,9 @@ namespace LABURNUM.COM.Controllers
                     //Set User Session
                     HttpContext.Session.Add(LABURNUM.COM.Component.Constants.SessionName, dbuser);
 
+                    //Set User Cookie.
+                    new LABURNUM.COM.Component.CookieManager(LABURNUM.COM.Component.Constants.Cookies.UserCookie.NAME, dbuser.LoginActivityId.ToString(), LABURNUM.COM.Component.Constants.Cookies.UserCookie.EXPIRINGINDAYS).SetCookie();
+
                     return Json(new { code = 0, message = "success" });
                 }
                 else
