@@ -106,5 +106,17 @@ namespace LABURNUM.COM.Component
             }
         }
 
+        public List<DTO.LABURNUM.COM.FacultyModel> GetFacultyBySubjectId(long subjectId)
+        {
+            try
+            {
+                return GetFacultyByAdvanceSearch(new DTO.LABURNUM.COM.FacultyModel() { SubjectId = subjectId });
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
     }
 }

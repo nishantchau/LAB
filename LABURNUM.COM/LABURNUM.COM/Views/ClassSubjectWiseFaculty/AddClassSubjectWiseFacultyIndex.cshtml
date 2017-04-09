@@ -1,0 +1,90 @@
+﻿@model DTO.LABURNUM.COM.ClassSubjectFacultyTableModel
+
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnAddClassSubjectFacultyBegin", OnSuccess = "OnAddClassSubjectFacultySuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "ClassSubjectWiseFaculty/Add" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li>Class & Subject Wise Faculties</li>
+                <li class="active">Assign Class & Subject Wise Faculties</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            Assign Class To Faculties
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">For Class : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DropDownList("ClassId", new SelectList(Model.Classes, "ClassId", "ClassName"), "Please Select A Class", new { @id = "ddlClass", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">For Section : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DropDownList("SectionId", new SelectList(Model.Sections, "SectionId", "SectionName"), "Please Select A Section", new { @id = "ddlSection", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="score_adept">For Subject : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.DropDownList("SubjectId", new SelectList(Model.Subjects, "SubjectId", "SubjectName"), "Please Select A Subject", new { @id = "ddlSubject", @autocomplete = "Off", @class = "ToReset" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span class="score_adept">Faculty : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.DropDownList("FacultyId", new SelectList(Model.Faculties, "FacultyId", "FacultyName"), "Please Select A Faculty", new { @id = "ddlFaculty", @autocomplete = "Off", @class = "ToReset" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="text-center col-md-12 margin_top">
+        <button type="submit" id="btnSubmit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">Assign</button>
+        <button type="button" id="btnReset" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">Reset</button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="text-center"></div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        OnAddClassSubjectFacultyIndex();
+    });
+</script>

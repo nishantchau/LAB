@@ -122,5 +122,18 @@ namespace LABURNUM.COM.Controllers
                 return Json(new { TransportCharge = 0, message = "n" });
             }
         }
+
+        public ActionResult FacultyBySubjectId(long subjectId)
+        {
+            try
+            {
+                return Json(new { code = 0, faculties = new LABURNUM.COM.Component.Faculty().GetFacultyBySubjectId(subjectId) });
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -1, sections = string.Empty });
+
+            }
+        }
     }
 }

@@ -2293,3 +2293,92 @@ function OnEditCircularSuccess(data) {
     }
 }
 
+function OnAddClassSubjectFacultyIndex() {
+    try {
+        BindSectionsDropdownByClass();
+
+    } catch (e) {
+
+    }
+}
+
+function OnAddClassSubjectFacultyBegin() {
+    SetHtmlBlank(_MESSAGEDIVID);
+    if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class")) { }
+    else { return false; }
+    if (Validate.IntValueValidate("ddlSection", _MESSAGEDIVID, "Please Select A Section")) { }
+    else { return false; }
+    if (Validate.IntValueValidate("ddlSubject", _MESSAGEDIVID, "Please Select A Subject")) { }
+    else { return false; }
+    if (Validate.IntValueValidate("ddlFaculty", _MESSAGEDIVID, "Please Select A Faculty")) { }
+    else { return false; }
+    Disablebutton("btnSubmit");
+    Disablebutton("btnReset");
+    DisplayLoader(_LOADERDIVID);
+}
+
+function OnAddClassSubjectFacultySuccess(data) {
+    HideLoader(_LOADERDIVID);
+    FillSuccessResultMSG(data, _MESSAGEDIVID, "Successfully Assigned.", "Failed To Assign Please Try Again Later");
+    if (data.code != 0) { }
+}
+
+function BindFacultyDropdownBySubject() {
+    $("#ddlSubject").on("change", function () {
+        BindCoreFacultiesDropDownBySubject();
+    });
+}
+
+function BindCoreFacultiesDropDownBySubject(IsTriggeredByCode) {
+    try {
+        $("#ddlFaculty").prop('disabled', false);
+        $("#ddlFaculty").empty();
+
+        var value = $("#ddlSubject option:selected").val();
+        if (value == "") {
+            $('#ddlFaculty').append(new Option("Please Select A Faculty", 0));
+            $("#ddlFaculty").prop('disabled', true);
+            return;
+        }
+
+        var url = GetDomain(_DOMAINDIVID) + "Common/FacultyBySubjectId?subjectId=" + value;
+
+        $.ajax({
+            method: "POST",
+            url: url,
+            success: function (data) {
+
+                data = eval(data);
+
+                if (data.code == -1) {
+                    $('#ddlFaculty').append(new Option("Please Select A Faculty", 0));
+                    $("#ddlFaculty").prop('disabled', true);
+                    return;
+                }
+
+                if (data.code == 0) {
+                    $('#ddlFaculty').append(new Option("Please Select A Faculty", 0));
+                    $.each(data.sections, function (i, item) {
+                        $('#ddlFaculty').append(new Option(data.faculties[i].FacultyName, data.faculties[i].FacultyId));
+                    });
+
+                    //set selected index- ONLY_FOR_EDIT
+                    if (IsTriggeredByCode != null) {
+                        if (IsTriggeredByCode) {
+                            var v = $("#hdnSectionId").val();
+                            if (v != null && v != "") { $('#ddlFaculty').val(v); }
+                            $("#hdnSectionId").val(v);
+                        }
+                    }
+                }
+            },
+            error: function () {
+                $('#divInfo').html('<p>An Error Has Occurred</p>');
+            }
+        });
+    }
+    catch (e) {
+        MyAlert("BindCoreFacultiesDropDownBySubject :" + e);
+        return false;
+    }
+}

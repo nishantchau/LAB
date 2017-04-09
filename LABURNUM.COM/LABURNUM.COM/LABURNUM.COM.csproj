@@ -202,6 +202,7 @@
     <Compile Include="Controllers\BusRouteController.cs" />
     <Compile Include="Controllers\ChairmanController.cs" />
     <Compile Include="Controllers\CircularController.cs" />
+    <Compile Include="Controllers\ClassSubjectWiseFacultyController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DeleteStudentController.cs" />
@@ -494,6 +495,7 @@
     <Content Include="Views\Circular\SearchCircularIndex.cshtml" />
     <Content Include="Views\Circular\SearchResultTable.cshtml" />
     <Content Include="Views\Circular\EditCircularIndex.cshtml" />
+    <Content Include="Views\ClassSubjectWiseFaculty\AddClassSubjectWiseFacultyIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
