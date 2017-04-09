@@ -69,6 +69,8 @@ namespace API.LABURNUM.COM.Component
                 ClassName = studentFeeDetail.Class.ClassName,
                 SectionName = studentFeeDetail.Section.SectionName,
                 TotalPayableAmount = (studentFeeDetail.MonthlyFee + studentFeeDetail.LateFee + studentFeeDetail.AnnualFunctionFee.GetValueOrDefault() + studentFeeDetail.PendingFee.GetValueOrDefault() + studentFeeDetail.TransportFee.GetValueOrDefault()) - studentFeeDetail.DiscountAmount,
+                AcademicYearId = studentFeeDetail.AcademicYearId,
+                AcademicYear = studentFeeDetail.AcademicYearTable.StartYear + "-" + studentFeeDetail.AcademicYearTable.EndYear
             };
             return dtoStudentFeeDetail;
         }

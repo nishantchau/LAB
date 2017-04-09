@@ -65,7 +65,7 @@ namespace API.LABURNUM.COM.Component
                 CreatedOn = studentFee.CreatedOn,
                 IsActive = studentFee.IsActive,
                 LastUpdated = studentFee.LastUpdated,
-               // StudentFeeDetails = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByStudentFeeId(studentFee.StudentFeeId)).Map(),
+                AcademicYearId = studentFee.AcademicYearId,
                 ClassName = studentFee.Class.ClassName,
                 StudentName = studentFee.Student.FirstName + " " + studentFee.Student.MiddleName + " " + studentFee.Student.LastName,
                 SectionName = studentFee.Section.SectionName,
@@ -73,7 +73,8 @@ namespace API.LABURNUM.COM.Component
                 DiscountRemarks = studentFee.DiscountRemarks,
                 TotalPayableAmount = (studentFee.AdmissionFee + studentFee.DevelopementFee + studentFee.AnnualCharges + studentFee.ExamFee + studentFee.SportsFee + studentFee.SecurityFee) - studentFee.DiscountAmount,
                 CollectedByName = studentFee.Faculty.FacultyName,
-                ParentName = studentFee.Student.FatherName
+                ParentName = studentFee.Student.FatherName,
+                AcademicYear = studentFee.AcademicYearTable.StartYear + "-" + studentFee.AcademicYearTable.EndYear
             };
             return dtoStudentFee;
         }

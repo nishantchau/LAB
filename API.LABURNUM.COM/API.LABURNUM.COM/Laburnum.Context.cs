@@ -25,6 +25,7 @@ namespace API.LABURNUM.COM
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<AcademicYearTable> AcademicYearTables { get; set; }
         public DbSet<AdmissionType> AdmissionTypes { get; set; }
         public DbSet<ApiClient> ApiClients { get; set; }
         public DbSet<AttendanceClass1> AttendanceClass1 { get; set; }
@@ -47,6 +48,7 @@ namespace API.LABURNUM.COM
         public DbSet<CircularNotificationTable> CircularNotificationTables { get; set; }
         public DbSet<CircularNotificationTracker> CircularNotificationTrackers { get; set; }
         public DbSet<Class> Classes { get; set; }
+        public DbSet<ClassSubjectFacultyTable> ClassSubjectFacultyTables { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<Fee> Fees { get; set; }
         public DbSet<HomeWork> HomeWork { get; set; }

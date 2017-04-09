@@ -31,6 +31,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 DiscountRemarks = model.DiscountRemarks,
                 PayForTheMonth = model.PayForTheMonth,
                 CollectedById = model.CollectedById,
+                AcademicYearId = model.AcademicYearId,
                 CreatedOn = System.DateTime.Now,
                 IsActive = true
             };
@@ -92,6 +93,9 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 iQuery = this._laburnum.StudentFeeDetails.Where(x => x.StudentFeeDetailId == model.StudentFeeDetailId && x.IsActive == true);
             }
+            //Search By Academic Year Id.
+            if (iQuery != null) { if (model.AcademicYearId > 0) { iQuery = iQuery.Where(x => x.AcademicYearId == model.AcademicYearId && x.IsActive == true); } }
+            else { if (model.AcademicYearId > 0) { iQuery = this._laburnum.StudentFeeDetails.Where(x => x.AcademicYearId == model.AcademicYearId && x.IsActive == true); } }
             //Search By StudentId.
             if (iQuery != null) { if (model.StudentId > 0) { iQuery = iQuery.Where(x => x.StudentId == model.StudentId && x.IsActive == true); } }
             else { if (model.StudentId > 0) { iQuery = this._laburnum.StudentFeeDetails.Where(x => x.StudentId == model.StudentId && x.IsActive == true); } }

@@ -123,6 +123,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcademicYearTable.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
     <Compile Include="AdmissionType.cs">
       <DependentUpon>Laburnum.tt</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
     <Compile Include="Class.cs">
       <DependentUpon>Laburnum.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClassSubjectFacultyTable.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Component\AcademicYearTableHelper.cs" />
     <Compile Include="Component\AdmissionTypeHelper.cs" />
     <Compile Include="Component\AttendanceClass10Helper.cs" />
     <Compile Include="Component\AttendanceClass11Helper.cs" />
@@ -214,6 +221,7 @@
     <Compile Include="Component\CircularNotificationTableHelper.cs" />
     <Compile Include="Component\CircularNotificationTrackerHelper.cs" />
     <Compile Include="Component\ClassHelper.cs" />
+    <Compile Include="Component\ClassSubjectFacultyTableHelper.cs" />
     <Compile Include="Component\Constants.cs" />
     <Compile Include="Component\Crypto.cs" />
     <Compile Include="Component\FacultyHelper.cs" />
@@ -233,6 +241,7 @@
     <Compile Include="Component\SubjectHelper.cs" />
     <Compile Include="Component\UserTypeHelper.cs" />
     <Compile Include="Component\Validation.cs" />
+    <Compile Include="Controllers\AcademicYearController.cs" />
     <Compile Include="Controllers\AdmissionTypeController.cs" />
     <Compile Include="Controllers\AttendanceClass10Controller.cs" />
     <Compile Include="Controllers\AttendanceClass11Controller.cs" />
@@ -279,6 +288,7 @@
     <Compile Include="Fee.cs">
       <DependentUpon>Laburnum.tt</DependentUpon>
     </Compile>
+    <Compile Include="FrontEndApi\AcademicYearTableApi.cs" />
     <Compile Include="FrontEndApi\AdmissionTypeApi.cs" />
     <Compile Include="FrontEndApi\ApiClientApi.cs" />
     <Compile Include="FrontEndApi\AttendanceClass10Api.cs" />
@@ -301,6 +311,7 @@
     <Compile Include="FrontEndApi\CircularNotificationTableApi.cs" />
     <Compile Include="FrontEndApi\CircularNotificationTrackerApi.cs" />
     <Compile Include="FrontEndApi\ClassApi.cs" />
+    <Compile Include="FrontEndApi\ClassSubjectFacultyTableApi.cs" />
     <Compile Include="FrontEndApi\FacultyApi.cs" />
     <Compile Include="FrontEndApi\FeeApi.cs" />
     <Compile Include="FrontEndApi\HomeWorkApi.cs" />

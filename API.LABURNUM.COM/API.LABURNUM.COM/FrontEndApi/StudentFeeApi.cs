@@ -34,6 +34,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 DiscountRemarks = model.DiscountRemarks,
                 CollectedById = model.CollectedById,
                 CreatedOn = System.DateTime.Now,
+                AcademicYearId = model.AcademicYearId,
                 IsActive = true,
             };
             this._laburnum.StudentFees.Add(apiStudentFee);
@@ -91,6 +92,9 @@ namespace API.LABURNUM.COM.FrontEndApi
         public List<API.LABURNUM.COM.StudentFee> GetStudentFeeByAdvanceSearch(DTO.LABURNUM.COM.StudentFeeModel model)
         {
             IQueryable<API.LABURNUM.COM.StudentFee> iQuery = null;
+            //Search By Academic Year Id.
+            if (iQuery != null) { if (model.AcademicYearId > 0) { iQuery = iQuery.Where(x => x.AcademicYearId == model.AcademicYearId && x.IsActive == true); } }
+            else { if (model.AcademicYearId > 0) { iQuery = this._laburnum.StudentFees.Where(x => x.AcademicYearId == model.AcademicYearId && x.IsActive == true); } }
             //Search By Student Fee Id.
             if (iQuery != null) { if (model.StudentFeeId > 0) { iQuery = iQuery.Where(x => x.StudentFeeId == model.StudentFeeId && x.IsActive == true); } }
             else { if (model.StudentFeeId > 0) { iQuery = this._laburnum.StudentFees.Where(x => x.StudentFeeId == model.StudentFeeId && x.IsActive == true); } }

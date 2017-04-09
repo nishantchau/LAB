@@ -28,10 +28,12 @@ namespace API.LABURNUM.COM
         public double DiscountAmount { get; set; }
         public string DiscountRemarks { get; set; }
         public long CollectedById { get; set; }
+        public long AcademicYearId { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
     
+        public virtual AcademicYearTable AcademicYearTable { get; set; }
         public virtual AdmissionType AdmissionType { get; set; }
         public virtual Class Class { get; set; }
         public virtual Faculty Faculty { get; set; }

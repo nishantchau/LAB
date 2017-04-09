@@ -12,23 +12,18 @@ namespace API.LABURNUM.COM
     using System;
     using System.Collections.Generic;
     
-    public partial class Subject
+    public partial class ClassSubjectFacultyTable
     {
-        public Subject()
-        {
-            this.ClassSubjectFacultyTables = new HashSet<ClassSubjectFacultyTable>();
-            this.Faculties = new HashSet<Faculty>();
-            this.HomeWork = new HashSet<HomeWork>();
-        }
-    
+        public long ClassSubjectFacultyTableId { get; set; }
+        public long ClassId { get; set; }
         public long SubjectId { get; set; }
-        public string SubjectName { get; set; }
+        public long FacultyId { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
     
-        public virtual ICollection<ClassSubjectFacultyTable> ClassSubjectFacultyTables { get; set; }
-        public virtual ICollection<Faculty> Faculties { get; set; }
-        public virtual ICollection<HomeWork> HomeWork { get; set; }
+        public virtual Class Class { get; set; }
+        public virtual Faculty Faculty { get; set; }
+        public virtual Subject Subject { get; set; }
     }
 }
