@@ -57,8 +57,8 @@ namespace API.LABURNUM.COM.Component
                 FacultyId = apiBusRoute.FacultyId,
                 SectionId = apiBusRoute.SectionId,
                 CreatedOn = apiBusRoute.CreatedOn,
-                IsActive = apiBusRoute.IsActive,
                 LastUpdated = apiBusRoute.LastUpdated,
+                IsActive = apiBusRoute.IsActive,
             };
             return dtoClass;
         }
