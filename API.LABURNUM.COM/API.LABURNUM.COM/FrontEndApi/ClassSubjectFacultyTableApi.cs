@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using API.LABURNUM.COM.Component;
 
 namespace API.LABURNUM.COM.FrontEndApi
 {
@@ -30,33 +31,34 @@ namespace API.LABURNUM.COM.FrontEndApi
             return apiClassSubjectFacultyTable.ClassSubjectFacultyTableId;
         }
 
-        //private long AddValidation(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
-        //{
-        //    model.BusStartFrom.TryValidate();
-        //    model.ClassSubjectFacultyTableNumber.TryValidate();
-        //    model.BusEndAt.TryValidate();
-        //    return AddClassSubjectFacultyTable(model);
-        //}
+        private long AddValidation(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
+        {
+            model.ClassId.TryValidate();
+            model.SubjectId.TryValidate();
+            model.FacultyId.TryValidate();
+            model.SectionId.TryValidate();
+            return AddClassSubjectFacultyTable(model);
+        }
 
-        //public long Add(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
-        //{
-        //    return AddValidation(model);
-        //}
+        public long Add(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
+        {
+            return AddValidation(model);
+        }
 
-        //public void Update(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
-        //{
-        //    model.ClassSubjectFacultyTableId.TryValidate();
-        //    IQueryable<API.LABURNUM.COM.ClassSubjectFacultyTable> iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.ClassSubjectFacultyTableId == model.ClassSubjectFacultyTableId && x.IsActive == true);
-        //    List<API.LABURNUM.COM.ClassSubjectFacultyTable> dbRoutes = iQuery.ToList();
-        //    if (dbRoutes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
-        //    if (dbRoutes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
-        //    dbRoutes[0].BusStartFrom = model.BusStartFrom;
-        //    dbRoutes[0].BusEndAt = model.BusEndAt;
-        //    dbRoutes[0].ClassSubjectFacultyTableNumber = model.ClassSubjectFacultyTableNumber;
-        //    dbRoutes[0].TranportCharges = model.TranportCharges;
-        //    dbRoutes[0].LastUpdate = System.DateTime.Now;
-        //    this._laburnum.SaveChanges();
-        //}
+        public void Update(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
+        {
+            model.ClassSubjectFacultyTableId.TryValidate();
+            IQueryable<API.LABURNUM.COM.ClassSubjectFacultyTable> iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.ClassSubjectFacultyTableId == model.ClassSubjectFacultyTableId && x.IsActive == true);
+            List<API.LABURNUM.COM.ClassSubjectFacultyTable> dbRoutes = iQuery.ToList();
+            if (dbRoutes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
+            if (dbRoutes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            dbRoutes[0].ClassId = model.ClassId;
+            dbRoutes[0].SubjectId = model.SubjectId;
+            dbRoutes[0].FacultyId = model.FacultyId;
+            dbRoutes[0].SectionId = model.SectionId;
+            dbRoutes[0].LastUpdated = System.DateTime.Now;
+            this._laburnum.SaveChanges();
+        }
 
         //public void UpdateIsActive(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
         //{
