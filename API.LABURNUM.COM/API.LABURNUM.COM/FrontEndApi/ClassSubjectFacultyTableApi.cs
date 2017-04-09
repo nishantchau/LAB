@@ -21,6 +21,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 ClassId = model.ClassId,
                 SubjectId = model.SubjectId,
                 FacultyId = model.FacultyId,
+                SectionId = model.SectionId,
                 CreatedOn = System.DateTime.Now,
                 IsActive = true
             };
