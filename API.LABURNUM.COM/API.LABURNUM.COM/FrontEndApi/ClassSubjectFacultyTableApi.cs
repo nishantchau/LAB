@@ -60,93 +60,93 @@ namespace API.LABURNUM.COM.FrontEndApi
             this._laburnum.SaveChanges();
         }
 
-        //public void UpdateIsActive(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
-        //{
-        //    model.ClassSubjectFacultyTableId.TryValidate();
-        //    IQueryable<API.LABURNUM.COM.ClassSubjectFacultyTable> iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.ClassSubjectFacultyTableId == model.ClassSubjectFacultyTableId && x.IsActive == true);
-        //    List<API.LABURNUM.COM.ClassSubjectFacultyTable> dbRoutes = iQuery.ToList();
-        //    if (dbRoutes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
-        //    if (dbRoutes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
-        //    dbRoutes[0].IsActive = model.IsActive;
-        //    dbRoutes[0].LastUpdate = System.DateTime.Now;
-        //    this._laburnum.SaveChanges();
-        //}
+        public void UpdateIsActive(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
+        {
+            model.ClassSubjectFacultyTableId.TryValidate();
+            IQueryable<API.LABURNUM.COM.ClassSubjectFacultyTable> iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.ClassSubjectFacultyTableId == model.ClassSubjectFacultyTableId && x.IsActive == true);
+            List<API.LABURNUM.COM.ClassSubjectFacultyTable> dbRoutes = iQuery.ToList();
+            if (dbRoutes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
+            if (dbRoutes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            dbRoutes[0].IsActive = model.IsActive;
+            dbRoutes[0].LastUpdated = System.DateTime.Now;
+            this._laburnum.SaveChanges();
+        }
 
-        //public List<API.LABURNUM.COM.ClassSubjectFacultyTable> GetActiveClassSubjectFacultyTables()
-        //{
-        //    return this._laburnum.ClassSubjectFacultyTables.Where(x => x.IsActive == true).ToList();
-        //}
+        public List<API.LABURNUM.COM.ClassSubjectFacultyTable> GetActiveClassSubjectFacultyTables()
+        {
+            return this._laburnum.ClassSubjectFacultyTables.Where(x => x.IsActive == true).ToList();
+        }
 
-        //public List<API.LABURNUM.COM.ClassSubjectFacultyTable> GetInActiveClassSubjectFacultyTables()
-        //{
-        //    return this._laburnum.ClassSubjectFacultyTables.Where(x => x.IsActive == false).ToList();
-        //}
+        public List<API.LABURNUM.COM.ClassSubjectFacultyTable> GetInActiveClassSubjectFacultyTables()
+        {
+            return this._laburnum.ClassSubjectFacultyTables.Where(x => x.IsActive == false).ToList();
+        }
 
-        //public List<API.LABURNUM.COM.ClassSubjectFacultyTable> GetAllClassSubjectFacultyTables()
-        //{
-        //    return this._laburnum.ClassSubjectFacultyTables.ToList();
-        //}
+        public List<API.LABURNUM.COM.ClassSubjectFacultyTable> GetAllClassSubjectFacultyTables()
+        {
+            return this._laburnum.ClassSubjectFacultyTables.ToList();
+        }
 
-        //public List<API.LABURNUM.COM.ClassSubjectFacultyTable> GetClassSubjectFacultyTableByAdvanceSearch(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
-        //{
-        //    IQueryable<API.LABURNUM.COM.ClassSubjectFacultyTable> iQuery = null;
+        public List<API.LABURNUM.COM.ClassSubjectFacultyTable> GetClassSubjectFacultyTableByAdvanceSearch(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
+        {
+            IQueryable<API.LABURNUM.COM.ClassSubjectFacultyTable> iQuery = null;
 
-        //    //Search Bus Route Id.
-        //    if (model.ClassSubjectFacultyTableId > 0)
-        //    {
-        //        iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.ClassSubjectFacultyTableId == model.ClassSubjectFacultyTableId && x.IsActive == true);
-        //    }
+            //Search Bus Route Id.
+            if (model.ClassSubjectFacultyTableId > 0)
+            {
+                iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.ClassSubjectFacultyTableId == model.ClassSubjectFacultyTableId && x.IsActive == true);
+            }
 
-        //    //Search Bus Number.
-        //    if (iQuery != null)
-        //    {
-        //        if (model.ClassSubjectFacultyTableNumber != null)
-        //        {
-        //            iQuery = iQuery.Where(x => x.ClassSubjectFacultyTableNumber.Trim().ToLower().Equals(model.ClassSubjectFacultyTableNumber.Trim().ToLower()) && x.IsActive == true);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (model.ClassSubjectFacultyTableNumber != null)
-        //        {
-        //            iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.ClassSubjectFacultyTableNumber.Trim().ToLower().Equals(model.ClassSubjectFacultyTableNumber.Trim().ToLower()) && x.IsActive == true);
-        //        }
-        //    }
+            //Search By ClassId
+            if (iQuery != null)
+            {
+                if (model.ClassId > 0)
+                {
+                    iQuery = iQuery.Where(x => x.ClassId == model.ClassId && x.IsActive == true);
+                }
+            }
+            else
+            {
+                if (model.ClassId > 0)
+                {
+                    iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.ClassId == model.ClassId && x.IsActive == true);
+                }
+            }
 
-        //    //Search Bus Start From.
-        //    if (iQuery != null)
-        //    {
-        //        if (model.BusStartFrom != null)
-        //        {
-        //            iQuery = iQuery.Where(x => x.BusStartFrom.Trim().ToLower().Contains(model.BusStartFrom.Trim().ToLower()) && x.IsActive == true);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (model.BusStartFrom != null)
-        //        {
-        //            iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.BusStartFrom.Trim().ToLower().Contains(model.BusStartFrom.Trim().ToLower()) && x.IsActive == true);
-        //        }
-        //    }
+            //Search By SectionId
+            if (iQuery != null)
+            {
+                if (model.SectionId > 0)
+                {
+                    iQuery = iQuery.Where(x => x.SectionId == model.SectionId && x.IsActive == true);
+                }
+            }
+            else
+            {
+                if (model.SectionId > 0)
+                {
+                    iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.SectionId == model.SectionId && x.IsActive == true);
+                }
+            }
 
-        //    //Search Bus End At.
-        //    if (iQuery != null)
-        //    {
-        //        if (model.BusEndAt != null)
-        //        {
-        //            iQuery = iQuery.Where(x => x.BusEndAt.Trim().ToLower().Contains(model.BusEndAt.Trim().ToLower()) && x.IsActive == true);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (model.BusEndAt != null)
-        //        {
-        //            iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.BusEndAt.Trim().ToLower().Contains(model.BusEndAt.Trim().ToLower()) && x.IsActive == true);
-        //        }
-        //    }
+            //Search ByFacultyId
+            if (iQuery != null)
+            {
+                if (model.FacultyId > 0)
+                {
+                    iQuery = iQuery.Where(x => x.FacultyId == model.FacultyId && x.IsActive == true);
+                }
+            }
+            else
+            {
+                if (model.FacultyId > 0)
+                {
+                    iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.FacultyId == model.FacultyId && x.IsActive == true);
+                }
+            }
 
-        //    List<API.LABURNUM.COM.ClassSubjectFacultyTable> dbClassSubjectFacultyTable = iQuery.ToList();
-        //    return dbClassSubjectFacultyTable;
-        //}
+            List<API.LABURNUM.COM.ClassSubjectFacultyTable> dbClassSubjectFacultyTable = iQuery.ToList();
+            return dbClassSubjectFacultyTable;
+        }
     }
 }

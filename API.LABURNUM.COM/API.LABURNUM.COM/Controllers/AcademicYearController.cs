@@ -47,7 +47,7 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchInActiveAdmissionTypes(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchInActiveAcademicYears(DTO.LABURNUM.COM.AcademicYearTableModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
@@ -56,7 +56,7 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchAllAdmissionTypes(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchAllAcademicYears(DTO.LABURNUM.COM.AcademicYearTableModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
@@ -65,7 +65,7 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchAdmissionTypeByAdvanceSearch(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchAcademicYearByAdvanceSearch(DTO.LABURNUM.COM.AcademicYearTableModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {

@@ -263,6 +263,7 @@
     <Compile Include="Controllers\CircularNotificationTableController.cs" />
     <Compile Include="Controllers\CircularNotificationTrackerController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
+    <Compile Include="Controllers\ClassSubjectFacultyTableController.cs" />
     <Compile Include="Controllers\CommonAttendanceController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\FeeController.cs" />
