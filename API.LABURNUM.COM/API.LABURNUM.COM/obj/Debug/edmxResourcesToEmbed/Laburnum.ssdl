@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LaburnumModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="LaburnumModelStoreContainer">
+    <EntitySet Name="AcademicYearTable" EntityType="LaburnumModel.Store.AcademicYearTable" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AdmissionType" EntityType="LaburnumModel.Store.AdmissionType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ApiClient" EntityType="LaburnumModel.Store.ApiClient" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AttendanceClass1" EntityType="LaburnumModel.Store.AttendanceClass1" store:Type="Tables" Schema="dbo" />
@@ -23,6 +24,7 @@
     <EntitySet Name="CircularNotificationTable" EntityType="LaburnumModel.Store.CircularNotificationTable" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CircularNotificationTracker" EntityType="LaburnumModel.Store.CircularNotificationTracker" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Class" EntityType="LaburnumModel.Store.Class" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClassSubjectFacultyTable" EntityType="LaburnumModel.Store.ClassSubjectFacultyTable" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Faculty" EntityType="LaburnumModel.Store.Faculty" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Fee" EntityType="LaburnumModel.Store.Fee" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HomeWork" EntityType="LaburnumModel.Store.HomeWork" store:Type="Tables" Schema="dbo" />
@@ -292,6 +294,18 @@
       <End Role="UserType" EntitySet="UserType" />
       <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTracker" />
     </AssociationSet>
+    <AssociationSet Name="FK_ClassSubjectFacultyTable_Class" Association="LaburnumModel.Store.FK_ClassSubjectFacultyTable_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassSubjectFacultyTable_Faculty" Association="LaburnumModel.Store.FK_ClassSubjectFacultyTable_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassSubjectFacultyTable_Subject" Association="LaburnumModel.Store.FK_ClassSubjectFacultyTable_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
+    </AssociationSet>
     <AssociationSet Name="FK_Faculty_Class" Association="LaburnumModel.Store.FK_Faculty_Class">
       <End Role="Class" EntitySet="Class" />
       <End Role="Faculty" EntitySet="Faculty" />
@@ -368,6 +382,10 @@
       <End Role="Section" EntitySet="Section" />
       <End Role="Student" EntitySet="Student" />
     </AssociationSet>
+    <AssociationSet Name="FK_StudentFee_AcademicYearTable" Association="LaburnumModel.Store.FK_StudentFee_AcademicYearTable">
+      <End Role="AcademicYearTable" EntitySet="AcademicYearTable" />
+      <End Role="StudentFee" EntitySet="StudentFee" />
+    </AssociationSet>
     <AssociationSet Name="FK_StudentFee_AdmissionType" Association="LaburnumModel.Store.FK_StudentFee_AdmissionType">
       <End Role="AdmissionType" EntitySet="AdmissionType" />
       <End Role="StudentFee" EntitySet="StudentFee" />
@@ -387,6 +405,10 @@
     <AssociationSet Name="FK_StudentFee_Student" Association="LaburnumModel.Store.FK_StudentFee_Student">
       <End Role="Student" EntitySet="Student" />
       <End Role="StudentFee" EntitySet="StudentFee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFeeDetail_AcademicYearTable" Association="LaburnumModel.Store.FK_StudentFeeDetail_AcademicYearTable">
+      <End Role="AcademicYearTable" EntitySet="AcademicYearTable" />
+      <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
     </AssociationSet>
     <AssociationSet Name="FK_StudentFeeDetail_Class" Association="LaburnumModel.Store.FK_StudentFeeDetail_Class">
       <End Role="Class" EntitySet="Class" />
@@ -409,6 +431,17 @@
       <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="AcademicYearTable">
+    <Key>
+      <PropertyRef Name="AcademicYearTableId" />
+    </Key>
+    <Property Name="AcademicYearTableId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StartYear" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="EndYear" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
   <EntityType Name="AdmissionType">
     <Key>
       <PropertyRef Name="AdmissionTypeId" />
@@ -726,6 +759,19 @@
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
     <Property Name="LastUpdated" Type="datetime" />
   </EntityType>
+  <EntityType Name="ClassSubjectFacultyTable">
+    <Key>
+      <PropertyRef Name="ClassSubjectFacultyTableId" />
+    </Key>
+    <Property Name="ClassSubjectFacultyTableId" Type="bigint" Nullable="false" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="SubjectId" Type="bigint" Nullable="false" />
+    <Property Name="FacultyId" Type="bigint" Nullable="false" />
+    <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
   <EntityType Name="Faculty">
     <Key>
       <PropertyRef Name="FacultyId" />
@@ -892,6 +938,7 @@
     <Property Name="DiscountAmount" Type="float" Nullable="false" />
     <Property Name="DiscountRemarks" Type="nvarchar" />
     <Property Name="CollectedById" Type="bigint" Nullable="false" />
+    <Property Name="AcademicYearId" Type="bigint" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
     <Property Name="LastUpdated" Type="datetime" />
@@ -913,6 +960,7 @@
     <Property Name="DiscountAmount" Type="float" Nullable="false" />
     <Property Name="DiscountRemarks" Type="nvarchar" />
     <Property Name="CollectedById" Type="bigint" Nullable="false" />
+    <Property Name="AcademicYearId" Type="bigint" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
     <Property Name="LastUpdated" Type="datetime" />
@@ -1705,6 +1753,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ClassSubjectFacultyTable_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="ClassSubjectFacultyTable" Type="LaburnumModel.Store.ClassSubjectFacultyTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="ClassSubjectFacultyTable">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassSubjectFacultyTable_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="ClassSubjectFacultyTable" Type="LaburnumModel.Store.ClassSubjectFacultyTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="ClassSubjectFacultyTable">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassSubjectFacultyTable_Subject">
+    <End Role="Subject" Type="LaburnumModel.Store.Subject" Multiplicity="1" />
+    <End Role="ClassSubjectFacultyTable" Type="LaburnumModel.Store.ClassSubjectFacultyTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="ClassSubjectFacultyTable">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Faculty_Class">
     <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
     <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="*" />
@@ -1933,6 +2017,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_StudentFee_AcademicYearTable">
+    <End Role="AcademicYearTable" Type="LaburnumModel.Store.AcademicYearTable" Multiplicity="1" />
+    <End Role="StudentFee" Type="LaburnumModel.Store.StudentFee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AcademicYearTable">
+        <PropertyRef Name="AcademicYearTableId" />
+      </Principal>
+      <Dependent Role="StudentFee">
+        <PropertyRef Name="AcademicYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_StudentFee_AdmissionType">
     <End Role="AdmissionType" Type="LaburnumModel.Store.AdmissionType" Multiplicity="1" />
     <End Role="StudentFee" Type="LaburnumModel.Store.StudentFee" Multiplicity="*" />
@@ -1990,6 +2086,18 @@
       </Principal>
       <Dependent Role="StudentFee">
         <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFeeDetail_AcademicYearTable">
+    <End Role="AcademicYearTable" Type="LaburnumModel.Store.AcademicYearTable" Multiplicity="1" />
+    <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AcademicYearTable">
+        <PropertyRef Name="AcademicYearTableId" />
+      </Principal>
+      <Dependent Role="StudentFeeDetail">
+        <PropertyRef Name="AcademicYearId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -55,6 +55,7 @@ namespace API.LABURNUM.COM.Component
                 ClassId = apiBusRoute.ClassId,
                 SubjectId = apiBusRoute.SubjectId,
                 FacultyId = apiBusRoute.FacultyId,
+                SectionId = apiBusRoute.SectionId,
                 CreatedOn = apiBusRoute.CreatedOn,
                 IsActive = apiBusRoute.IsActive,
                 LastUpdated = apiBusRoute.LastUpdated,
