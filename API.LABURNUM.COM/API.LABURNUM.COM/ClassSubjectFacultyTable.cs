@@ -18,6 +18,7 @@ namespace API.LABURNUM.COM
         public long ClassId { get; set; }
         public long SubjectId { get; set; }
         public long FacultyId { get; set; }
+        public long SectionId { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }

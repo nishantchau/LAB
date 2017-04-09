@@ -33,6 +33,7 @@ namespace DTO.LABURNUM.COM
         public double DiscountAmount { get; set; }
         public string DiscountRemarks { get; set; }
         public long CollectedById { get; set; }
+        public long AcademicYearId { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
@@ -41,7 +42,7 @@ namespace DTO.LABURNUM.COM
 
         public string MonthName { get; set; }
         public int AnnualFunctionFeePayableMonth { get; set; }
-       
+        public string AcademicYear { get; set; }
         public bool IsNewAdmission { get; set; }
         public double TotalPayableAmount { get; set; }
         public string CollectedByName { get; set; }

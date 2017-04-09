@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcademicYearTableModel.cs" />
     <Compile Include="AdmissionTypeModel.cs" />
     <Compile Include="ApiClientModel.cs" />
     <Compile Include="ApiResponseModel.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="CircularNotificationTableModel.cs" />
     <Compile Include="CircularNotificationTrackerModel.cs" />
     <Compile Include="ClassModel.cs" />
+    <Compile Include="ClassSubjectFacultyTableModel.cs" />
     <Compile Include="ClientModel.cs" />
     <Compile Include="CommonAttendanceModel.cs" />
     <Compile Include="FacultyModel.cs" />

@@ -772,6 +772,7 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SubjectId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
+          <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -3032,6 +3033,7 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SubjectId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
+          <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -4888,6 +4890,7 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
