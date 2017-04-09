@@ -164,11 +164,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Component\AcademicYear.cs" />
     <Compile Include="Component\AdmissionType.cs" />
     <Compile Include="Component\BusRoute.cs" />
     <Compile Include="Component\Circular.cs" />
     <Compile Include="Component\CircularNotificationTable.cs" />
     <Compile Include="Component\CircularNotificationTracker.cs" />
+    <Compile Include="Component\ClassSubjectFacultyTable.cs" />
     <Compile Include="Component\Client.cs" />
     <Compile Include="Component\Common.cs" />
     <Compile Include="Component\Class.cs" />
