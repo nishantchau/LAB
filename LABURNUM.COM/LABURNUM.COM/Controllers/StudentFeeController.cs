@@ -47,6 +47,7 @@ namespace LABURNUM.COM.Controllers
         {
             try
             {
+                model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
                 model.CollectedById = sessionManagement.GetFacultyId();
                 model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
                 HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("StudentFee", "Add", model);
@@ -79,6 +80,7 @@ namespace LABURNUM.COM.Controllers
                 else
                 {
                     model.CollectedById = sessionManagement.GetFacultyId();
+                    model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
                     model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
                     HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("StudentFeeDetail", "Add", model);
                     if (response.IsSuccessStatusCode)

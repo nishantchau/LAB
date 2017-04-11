@@ -110,5 +110,8 @@ namespace LABURNUM.COM.Component
 
 
         public long GetLoginActivityId() { return this._sessionModel.LoginActivityId; }
+
+        public long GetAcademicYearTableId() { return this._sessionModel.AcademicYearId; }
+        public string GetAcademicYear() { return this._sessionModel.AcademicYear; }
     }
 }

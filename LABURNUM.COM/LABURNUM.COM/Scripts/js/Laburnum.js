@@ -812,7 +812,7 @@ function OnAddStudentSuccess(data) {
             case 0:
                 SetHtml("divMessage", "Added Successfully");
                 if (!data.studentModel.IsRedirecting) {
-                    window.location = GetDomain(_DOMAINDIVID) + "StudentFee/Index?studentId=" + data.studentModel.StudentId + "&classId=" + data.studentModel.ClassId + "&isNewAdmission=" + data.studentModel.IsNewAdmission;
+                    window.location = GetDomain(_DOMAINDIVID) + "StudentFee/Index?studentId=" + data.studentModel.StudentId + "&classId=" + data.studentModel.ClassId + "&sectionId=" + data.studentModel.SectionId + "&isNewAdmission=" + data.studentModel.IsNewAdmission;
                 }
                 break;
             case -1:
