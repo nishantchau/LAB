@@ -226,6 +226,7 @@
     <Compile Include="Component\Crypto.cs" />
     <Compile Include="Component\FacultyHelper.cs" />
     <Compile Include="Component\FeeHelper.cs" />
+    <Compile Include="Component\FeeReportingResultModelHelper.cs" />
     <Compile Include="Component\HomeWorkHelper.cs" />
     <Compile Include="Component\HtmlHelper.cs" />
     <Compile Include="Component\LateFeePaneltyMasterHelper.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="Controllers\CommonAttendanceController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\FeeController.cs" />
+    <Compile Include="Controllers\FeeReportingController.cs" />
     <Compile Include="Controllers\HomeWorkController.cs" />
     <Compile Include="Controllers\LateFeePaneltyMasterController.cs" />
     <Compile Include="Controllers\LoginActivityController.cs" />
