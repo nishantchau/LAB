@@ -69,6 +69,7 @@
     <Compile Include="FacultyModel.cs" />
     <Compile Include="FeeModel.cs" />
     <Compile Include="FeeReportingModel.cs" />
+    <Compile Include="FeeReportingResultModel.cs" />
     <Compile Include="HomeWorkModel.cs" />
     <Compile Include="LateFeePaneltyMasterModel.cs" />
     <Compile Include="LoginActivityModel.cs" />
