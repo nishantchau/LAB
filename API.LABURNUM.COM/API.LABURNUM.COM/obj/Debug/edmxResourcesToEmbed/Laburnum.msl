@@ -9,6 +9,7 @@
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="EndYear" ColumnName="EndYear" />
           <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+          <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
           <ScalarProperty Name="AcademicYearTableId" ColumnName="AcademicYearTableId" />
         </MappingFragment>
       </EntityTypeMapping>
