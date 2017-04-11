@@ -441,8 +441,9 @@
             <PropertyRef Name="AcademicYearTableId" />
           </Key>
           <Property Name="AcademicYearTableId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="StartYear" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="EndYear" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="AcademicYear" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="StartYear" Type="int" Nullable="false" />
+          <Property Name="EndYear" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -2606,8 +2607,9 @@
             <PropertyRef Name="AcademicYearTableId" />
           </Key>
           <Property Type="Int64" Name="AcademicYearTableId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="StartYear" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="EndYear" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AcademicYear" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StartYear" Nullable="false" />
+          <Property Type="Int32" Name="EndYear" Nullable="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -4541,6 +4543,7 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EndYear" ColumnName="EndYear" />
                 <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+                <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
                 <ScalarProperty Name="AcademicYearTableId" ColumnName="AcademicYearTableId" />
               </MappingFragment>
             </EntityTypeMapping>

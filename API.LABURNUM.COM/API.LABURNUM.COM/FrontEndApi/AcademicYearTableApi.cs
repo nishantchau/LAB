@@ -19,6 +19,7 @@ namespace API.LABURNUM.COM.FrontEndApi
         {
             API.LABURNUM.COM.AcademicYearTable AcademicYearType = new AcademicYearTable()
             {
+                AcademicYear = model.AcademicYear,
                 StartYear = model.StartYear,
                 EndYear = model.EndYear,
                 CreatedOn = System.DateTime.Now,
@@ -50,6 +51,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbAcademicYearTypes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAcademicYearTypes[0].StartYear = model.StartYear;
             dbAcademicYearTypes[0].EndYear = model.EndYear;
+            dbAcademicYearTypes[0].AcademicYear = model.AcademicYear;
             dbAcademicYearTypes[0].LastUpdated = System.DateTime.Now;
             this._laburnum.SaveChanges();
         }
@@ -93,14 +95,14 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 if (model.StartYear != null)
                 {
-                    iQuery = iQuery.Where(x => x.StartYear.Trim().ToLower().Equals(model.StartYear.Trim().ToLower()) && x.IsActive == true);
+                    iQuery = iQuery.Where(x => x.StartYear == model.StartYear && x.IsActive == true);
                 }
             }
             else
             {
                 if (model.StartYear != null)
                 {
-                    iQuery = this._laburnum.AcademicYearTables.Where(x => x.StartYear.Trim().ToLower().Equals(model.StartYear.Trim().ToLower()) && x.IsActive == true);
+                    iQuery = this._laburnum.AcademicYearTables.Where(x => x.StartYear == model.StartYear && x.IsActive == true);
                 }
             }
             //Search By End Year.
@@ -108,19 +110,28 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 if (model.EndYear != null)
                 {
-                    iQuery = iQuery.Where(x => x.EndYear.Trim().ToLower().Equals(model.EndYear.Trim().ToLower()) && x.IsActive == true);
+                    iQuery = iQuery.Where(x => x.EndYear == model.EndYear && x.IsActive == true);
                 }
             }
             else
             {
                 if (model.StartYear != null)
                 {
-                    iQuery = this._laburnum.AcademicYearTables.Where(x => x.EndYear.Trim().ToLower().Equals(model.EndYear.Trim().ToLower()) && x.IsActive == true);
+                    iQuery = this._laburnum.AcademicYearTables.Where(x => x.EndYear == model.EndYear && x.IsActive == true);
                 }
             }
 
             List<API.LABURNUM.COM.AcademicYearTable> dbAcademicYears = iQuery.ToList();
             return dbAcademicYears;
+        }
+
+        public API.LABURNUM.COM.AcademicYearTable GetAcademicYearByYear(int year)
+        {
+            IQueryable<API.LABURNUM.COM.AcademicYearTable> iQuery = this._laburnum.AcademicYearTables.Where(x => (x.StartYear == year && x.EndYear >= year) && x.IsActive == true);
+            List<API.LABURNUM.COM.AcademicYearTable> dbAcademicYears = iQuery.ToList();
+            if (dbAcademicYears.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
+            if (dbAcademicYears.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            return dbAcademicYears[0];
         }
     }
 }
