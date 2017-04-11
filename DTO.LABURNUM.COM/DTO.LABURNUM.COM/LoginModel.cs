@@ -15,7 +15,7 @@ namespace DTO.LABURNUM.COM
         public string UserName { get; set; }
         public string Password { get; set; }
         public int LoginBy { get; set; }
-
+       
         public DTO.LABURNUM.COM.ApiClientModel ApiClientModel { get; set; }
     }
 }

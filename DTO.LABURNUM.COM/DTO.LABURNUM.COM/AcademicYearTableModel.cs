@@ -14,14 +14,13 @@ namespace DTO.LABURNUM.COM
         }
 
         public long AcademicYearTableId { get; set; }
-        public string StartYear { get; set; }
-        public string EndYear { get; set; }
+        public string AcademicYear { get; set; }
+        public int StartYear { get; set; }
+        public int EndYear { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
 
         public ApiClientModel ApiClientModel { get; set; }
-
-        public string AcademicYear { get; set; }
     }
 }
