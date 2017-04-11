@@ -9529,9 +9529,17 @@ section.banner-main {
 }
 
 .text-right {
-text-align:right;
+    text-align: right;
 }
 
 .text-left {
-text-align:left;
+    text-align: left;
+}
+
+.header_academic_year {
+    margin: 14px;
+    background: #1fb5ad;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
 }

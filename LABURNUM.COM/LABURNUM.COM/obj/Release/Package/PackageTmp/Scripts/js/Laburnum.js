@@ -365,6 +365,37 @@ function UploadFile(nameDivId, statusDivId, hiddenDivId, filenameDivId, inputid)
     }
 }
 
+function UploadCircular(statusDivId, hiddenDivId, filenameDivId, inputid) {
+    try {
+        //var name = $("#" + nameDivId).html();
+        $("#" + statusDivId).hide();
+        SetHtmlBlank(statusDivId);
+        $("#" + inputid).fileupload({
+            dataType: 'json',
+            url: GetDomain(_DOMAINDIVID) + '/Common/UploadCircularFiles',
+            autoUpload: true,
+            done: function (e, data) {
+                var o = $("#" + filenameDivId);
+                o.html(data.result.name);
+                var h = $("#" + filenameDivId).html();
+                $("#" + hiddenDivId).val(h);
+                $("#" + statusDivId).show();
+                SetHtml(statusDivId, MESSAGES.ImageUploadSucessfully);
+                $("#" + inputid).val(data.result.name);
+            }
+        });
+        $('#' + inputid).on('fileuploadstart', function (event) {
+            $("#" + statusDivId).show();
+            SetHtml(statusDivId, MESSAGES.ImageUploadStart);
+        });
+        return true;
+    }
+    catch (e) {
+        MyAlert("UploadCircular" + e);
+        return false;
+    }
+}
+
 function GetEncryptedId(id, redirectto) {
     try {
         var url = GetDomain(_DOMAINDIVID) + "Common/EncrptId?id=" + id;
@@ -781,7 +812,7 @@ function OnAddStudentSuccess(data) {
             case 0:
                 SetHtml("divMessage", "Added Successfully");
                 if (!data.studentModel.IsRedirecting) {
-                    window.location = GetDomain(_DOMAINDIVID) + "StudentFee/Index?studentId=" + data.studentModel.StudentId + "&classId=" + data.studentModel.ClassId + "&isNewAdmission=" + data.studentModel.IsNewAdmission;
+                    window.location = GetDomain(_DOMAINDIVID) + "StudentFee/Index?studentId=" + data.studentModel.StudentId + "&classId=" + data.studentModel.ClassId + "&sectionId=" + data.studentModel.SectionId + "&isNewAdmission=" + data.studentModel.IsNewAdmission;
                 }
                 break;
             case -1:
@@ -2134,5 +2165,220 @@ function OnSearchAssignedHomeworkSuccess(data) {
     }
     catch (e) {
         MyAlert("OnSearchAssignedHomeworkSuccess : " + e);
+    }
+}
+
+function OnAddCircularIndex() {
+    CreateDatePicker("txtPublishedOn");
+    $("#chkIsForAdmin").prop("checked", true);
+}
+
+function OnAddCircularBegin() {
+    SetHtmlBlank(_MESSAGEDIVID);
+    if (Validate.StringValueValidate("txtSubject", _MESSAGEDIVID, "Subject Cannot be Null or Blank.")) { }
+    else { return false; }
+    if (Validate.StringValueValidate("txtDetails", _MESSAGEDIVID, "Details Cannot be Null or Blank.")) { }
+    else { return false; }
+    HideLoader(_LOADERDIVID);
+    Disablebutton("btnSubmit");
+    Disablebutton("btnReset");
+    DisplayLoader(_LOADERDIVID);
+}
+
+function OnAddCircularSuccess(data) {
+    HideLoader(_LOADERDIVID);
+    FillSuccessResultMSG(data, _MESSAGEDIVID, "Circular Successfully Published.", "Failed To Publish Circular Please Try Again Later.");
+    if (data.code != 0) {
+        Enablebutton("btnSubmit");
+        Enablebutton("btnReset");
+        Enablebutton("btnSave");
+        Enablebutton("btnSavePublish");
+    }
+}
+
+function UploadCircularAttachment() {
+    UploadCircular('divCircularUploadStatus', 'hdnAttachment', 'file_name', 'fileUpload');
+}
+
+function SaveCircular() {
+    try {
+        Disablebutton("btnSave");
+        Disablebutton("btnSavePublish");
+        $("#btnSubmit").click();
+
+    } catch (e) {
+        MyAlert("SaveCircular :" + e);
+    }
+}
+
+function SavePublishCircular() {
+    try {
+        $("#hdnIsPublishNow").val('true');
+        Disablebutton("btnSave");
+        Disablebutton("btnSavePublish");
+        $("#btnSubmit").click();
+    } catch (e) {
+        MyAlert("SavePublishCircular :" + e);
+    }
+}
+
+function OnCircularSeachIndexReady() {
+    try {
+        CreateDatePicker("txtStartDate");
+        CreateDatePicker("txtEndDate");
+
+    } catch (e) {
+        MyAlert("OnCircularSeachIndexReady : " + e);
+    }
+}
+
+function OnSearchCircularBegin() {
+    DisplayLoader(_LOADERDIVID);
+}
+
+function OnSearchCircularSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchCircularSuccess :" + e);
+    }
+}
+
+function EditCircular(id) {
+    try {
+        var redirectto = GetDomain(_DOMAINDIVID) + "Circular/EditCircularIndex?id=";
+        GetEncryptedId(id, redirectto);
+    } catch (e) {
+        MyAlert("EditCircular : " + e);
+    }
+}
+
+function OnEditCircularIndex() {
+    try {
+        CreateDatePicker("txtPublishedOn");
+    } catch (e) {
+        MyAlert("OnEditCircularIndex : " + e);
+    }
+}
+
+function OnEditCircularBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.StringValueValidate("txtSubject", _MESSAGEDIVID, "Subject Cannot be Null or Blank.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtDetails", _MESSAGEDIVID, "Details Cannot be Null or Blank.")) { }
+        else { return false; }
+        HideLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+        Disablebutton("btnReset");
+        DisplayLoader(_LOADERDIVID);
+    } catch (e) {
+        MyAlert("OnEditCircularBegin : " + e);
+    }
+}
+
+function OnEditCircularSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        FillSuccessResultMSG(data, _MESSAGEDIVID, "Circular Successfully Published.", "Failed To Publish Circular Please Try Again Later.");
+        if (data.code != 0) {
+            Enablebutton("btnSubmit");
+            Enablebutton("btnReset");
+            Enablebutton("btnSave");
+            Enablebutton("btnSavePublish");
+        }
+    } catch (e) {
+        MyAlert("OnEditCircularSuccess : " + e);
+    }
+}
+
+function OnAddClassSubjectFacultyIndex() {
+    try {
+        BindSectionsDropdownByClass();
+
+    } catch (e) {
+
+    }
+}
+
+function OnAddClassSubjectFacultyBegin() {
+    SetHtmlBlank(_MESSAGEDIVID);
+    if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class")) { }
+    else { return false; }
+    if (Validate.IntValueValidate("ddlSection", _MESSAGEDIVID, "Please Select A Section")) { }
+    else { return false; }
+    if (Validate.IntValueValidate("ddlSubject", _MESSAGEDIVID, "Please Select A Subject")) { }
+    else { return false; }
+    if (Validate.IntValueValidate("ddlFaculty", _MESSAGEDIVID, "Please Select A Faculty")) { }
+    else { return false; }
+    Disablebutton("btnSubmit");
+    Disablebutton("btnReset");
+    DisplayLoader(_LOADERDIVID);
+}
+
+function OnAddClassSubjectFacultySuccess(data) {
+    HideLoader(_LOADERDIVID);
+    FillSuccessResultMSG(data, _MESSAGEDIVID, "Successfully Assigned.", "Failed To Assign Please Try Again Later");
+    if (data.code != 0) { }
+}
+
+function BindFacultyDropdownBySubject() {
+    $("#ddlSubject").on("change", function () {
+        BindCoreFacultiesDropDownBySubject();
+    });
+}
+
+function BindCoreFacultiesDropDownBySubject(IsTriggeredByCode) {
+    try {
+        $("#ddlFaculty").prop('disabled', false);
+        $("#ddlFaculty").empty();
+
+        var value = $("#ddlSubject option:selected").val();
+        if (value == "") {
+            $('#ddlFaculty').append(new Option("Please Select A Faculty", 0));
+            $("#ddlFaculty").prop('disabled', true);
+            return;
+        }
+
+        var url = GetDomain(_DOMAINDIVID) + "Common/FacultyBySubjectId?subjectId=" + value;
+
+        $.ajax({
+            method: "POST",
+            url: url,
+            success: function (data) {
+
+                data = eval(data);
+
+                if (data.code == -1) {
+                    $('#ddlFaculty').append(new Option("Please Select A Faculty", 0));
+                    $("#ddlFaculty").prop('disabled', true);
+                    return;
+                }
+
+                if (data.code == 0) {
+                    $('#ddlFaculty').append(new Option("Please Select A Faculty", 0));
+                    $.each(data.sections, function (i, item) {
+                        $('#ddlFaculty').append(new Option(data.faculties[i].FacultyName, data.faculties[i].FacultyId));
+                    });
+
+                    //set selected index- ONLY_FOR_EDIT
+                    if (IsTriggeredByCode != null) {
+                        if (IsTriggeredByCode) {
+                            var v = $("#hdnSectionId").val();
+                            if (v != null && v != "") { $('#ddlFaculty').val(v); }
+                            $("#hdnSectionId").val(v);
+                        }
+                    }
+                }
+            },
+            error: function () {
+                $('#divInfo').html('<p>An Error Has Occurred</p>');
+            }
+        });
+    }
+    catch (e) {
+        MyAlert("BindCoreFacultiesDropDownBySubject :" + e);
+        return false;
     }
 }
