@@ -1,6 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="LaburnumModelStoreContainer" CdmEntityContainer="LaburnumEntities">
+    <EntitySetMapping Name="AcademicYearTables">
+      <EntityTypeMapping TypeName="LaburnumModel.AcademicYearTable">
+        <MappingFragment StoreEntitySet="AcademicYearTable">
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EndYear" ColumnName="EndYear" />
+          <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+          <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
+          <ScalarProperty Name="AcademicYearTableId" ColumnName="AcademicYearTableId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="AdmissionTypes">
       <EntityTypeMapping TypeName="LaburnumModel.AdmissionType">
         <MappingFragment StoreEntitySet="AdmissionType">
@@ -340,6 +353,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ClassSubjectFacultyTables">
+      <EntityTypeMapping TypeName="LaburnumModel.ClassSubjectFacultyTable">
+        <MappingFragment StoreEntitySet="ClassSubjectFacultyTable">
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+          <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="ClassSubjectFacultyTableId" ColumnName="ClassSubjectFacultyTableId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Faculties">
       <EntityTypeMapping TypeName="LaburnumModel.Faculty">
         <MappingFragment StoreEntitySet="Faculty">
@@ -503,6 +530,7 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
           <ScalarProperty Name="CollectedById" ColumnName="CollectedById" />
           <ScalarProperty Name="DiscountRemarks" ColumnName="DiscountRemarks" />
           <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
@@ -526,6 +554,7 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
           <ScalarProperty Name="CollectedById" ColumnName="CollectedById" />
           <ScalarProperty Name="DiscountRemarks" ColumnName="DiscountRemarks" />
           <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
