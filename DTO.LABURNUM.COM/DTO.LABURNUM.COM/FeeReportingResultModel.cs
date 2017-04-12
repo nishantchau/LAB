@@ -31,6 +31,8 @@ namespace DTO.LABURNUM.COM
         public double DiscountAmount { get; set; }
 
         public double TotalPaidAmount { get; set; }
+        public double TotalPaidOnAdmission { get; set; }
+        public double TotalPaidOnMonthly { get; set; }
         public List<DTO.LABURNUM.COM.StudentFeeDetailModel> MonthlyFeeDetails { get; set; }
     }
 }

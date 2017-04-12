@@ -11,6 +11,10 @@ namespace DTO.LABURNUM.COM
         public ClassSubjectFacultyTableModel()
         {
             this.ApiClientModel = new ApiClientModel();
+            this.Classes = new List<ClassModel>();
+            this.Sections = new List<SectionModel>();
+            this.Subjects = new List<SubjectModel>();
+            this.Faculties = new List<FacultyModel>();
         }
         public long ClassSubjectFacultyTableId { get; set; }
         public long ClassId { get; set; }
