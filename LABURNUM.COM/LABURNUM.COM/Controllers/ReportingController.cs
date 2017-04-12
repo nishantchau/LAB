@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -53,8 +55,46 @@ namespace LABURNUM.COM.Controllers
             }
             catch (Exception)
             {
-
                 throw;
+            }
+        }
+
+        public ActionResult StudentReportingIndex()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                DTO.LABURNUM.COM.FeeReportingModel model = new DTO.LABURNUM.COM.FeeReportingModel();
+                model.Classes = new Component.Class().GetActiveClasses();
+                model.AcademicYears = new Component.AcademicYear().GetActiveAcademicYears();
+                return View(model);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult SearchStudentReporting(DTO.LABURNUM.COM.FeeReportingModel model)
+        {
+            try
+            {
+                model.ApiClientModel = new Component.Common().GetApiClientModel();
+                HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("FeeReporting", "SearchStudentReporting", model);
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    DTO.LABURNUM.COM.FeeReportingResultModel dbFeeReportingResult = JsonConvert.DeserializeObject<DTO.LABURNUM.COM.FeeReportingResultModel>(data);
+                    string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Reporting/StudentFeeReporting.cshtml", dbFeeReportingResult);
+                    return Json(new { code = 0, message = "success", result = html });
+                }
+                else
+                {
+                    return Json(new { code = -1, message = "failed" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = -2, message = "failed" });
             }
         }
 

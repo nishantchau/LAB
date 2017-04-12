@@ -105,5 +105,19 @@ namespace LABURNUM.COM.Component
                 return null;
             }
         }
+
+        public bool IsSubjectTeacherAssigned(long classId, long SectionId, long subjectId)
+        {
+            try
+            {
+                if (GetClassSubjectFacultyByAdvanceSearch(new DTO.LABURNUM.COM.ClassSubjectFacultyTableModel() { ClassId = classId, SectionId = SectionId, SubjectId = subjectId }).Count > 0) { return true; }
+                else { return false; }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
     }
 }

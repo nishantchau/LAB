@@ -496,6 +496,10 @@
     <Content Include="Views\Circular\SearchResultTable.cshtml" />
     <Content Include="Views\Circular\EditCircularIndex.cshtml" />
     <Content Include="Views\ClassSubjectWiseFaculty\AddClassSubjectWiseFacultyIndex.cshtml" />
+    <Content Include="Views\Reporting\StudentFeeReporting.cshtml" />
+    <Content Include="Views\Reporting\StudentReportingIndex.cshtml" />
+    <Content Include="Views\ClassSubjectWiseFaculty\SearchClassSubjectWiseFacultyIndex.cshtml" />
+    <Content Include="Views\ClassSubjectWiseFaculty\SearchedResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

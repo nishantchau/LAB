@@ -202,6 +202,16 @@
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Subject/SeeAllSubjectsIndex">See All Subjects</a></li>
             </ul>
         </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-book"></span>
+                <span class="xn-text">Assign Subject</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassSubjectWiseFaculty/AddClassSubjectWiseFacultyIndex">Assign Classes</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassSubjectWiseFaculty/SearchClassSubjectWiseFacultyIndex">Search</a></li>
+            </ul>
+        </li>
     }
 
     @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
@@ -249,7 +259,7 @@
                         <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Reporting/TodayCollectionReport">Today Collection Report</a></li>
                         <li><a href="#">Monthly Report</a></li>
                         <li><a href="#">Annual Report</a></li>
-                        <li><a href="#">Student Report</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Reporting/StudentReportingIndex">Student Report</a></li>
                         <li><a href="#">Class Report</a></li>
                         <li><a href="#">Section Report</a></li>
                     </ul>

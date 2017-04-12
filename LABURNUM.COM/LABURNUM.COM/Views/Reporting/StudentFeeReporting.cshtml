@@ -1,0 +1,51 @@
+﻿@model DTO.LABURNUM.COM.FeeReportingResultModel
+@{int counter = 1;}
+<section class="panel">
+    <header class="panel-heading text-center">
+        <strong>Student Report</strong>
+    </header>
+
+    <header class="panel-heading">
+        @*<strong>Number of Record Found : @Model.Count</strong>*@
+        <span class="tools pull-right">
+            <button type="button" onclick="DownloadRecord('Student Fee Collection');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+        </span>
+    </header>
+
+    <div class="panel-body" id="divTable">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover general-table responsive">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Academic Year</th>
+                            <th>Class Name</th>
+                            <th>Section Name</th>
+                            <th>Student Name</th>
+                            <th>Paid Admission</th>
+                            <th>Paid Monthly</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="width: 1%;">@counter</td>
+                            <td style="width: 20%;">@Model.AcademicYear</td>
+                            <td style="width: 20%;">@Model.ClassName</td>
+                            <td style="width: 23%;">@Model.SectionName</td>
+                            <td style="width: 19%;">@Model.StudentName</td>
+                            <td style="width: 19%;">@Model.TotalPaidOnAdmission</td>
+                            <td style="width: 19%;">@Model.TotalPaidOnMonthly</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-right"><b>Grand Total</b></td>
+                            <td><b>@(Model.TotalPaidOnAdmission + Model.TotalPaidOnMonthly)</b></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

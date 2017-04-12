@@ -727,7 +727,6 @@ function setImageName(isforfaculty) {
 
     if (isforfaculty) { $("#divPhotoName").html($("#txtFacultyName").val()); }
     else {
-        // alert($("#txtAdmissionNumber").val());
         $("#divPhotoName").html($("#txtAdmissionNumber").val());
     }
 }
@@ -1575,25 +1574,9 @@ function OnEditFacultyIndexReady() {
             $("#divSubjectDetails").hide();
         }
 
-
-        //$(":checkbox").on("click", function () {
-        //    if ($(this).is(":checked")) {
-        //        $("#hdnIsClassTeacher").val("true");
-        //        $("#divClassDetails").show();
-        //    }
-        //    else {
-        //        $("#hdnIsClassTeacher").val("false");
-        //        $("#divClassDetails").hide();
-        //        $("#ddlClass").val("");
-        //        $("#ddlSection").val("0");
-        //        $("#ddlSection").prop("disabled", true);
-        //    }
-        //});
-
         $("#ddlUserType").on("change", function () {
             var uid = $("#ddlUserType").val();
             if (uid == LoginType.Faculty) {
-                alert("ee");
                 $("#divClassTeacher").show();
             }
             else {
@@ -2296,9 +2279,9 @@ function OnEditCircularSuccess(data) {
 function OnAddClassSubjectFacultyIndex() {
     try {
         BindSectionsDropdownByClass();
-
+        BindFacultyDropdownBySubject();
     } catch (e) {
-
+        MyAlert("OnAddClassSubjectFacultyIndex : " + e);
     }
 }
 
@@ -2319,6 +2302,10 @@ function OnAddClassSubjectFacultyBegin() {
 
 function OnAddClassSubjectFacultySuccess(data) {
     HideLoader(_LOADERDIVID);
+    if (data.code == -3) {
+        SetHtml(_MESSAGEDIVID, "For This Class and Subject Faculty Already Assigned Please Re-Assigned it Before New Faculty Assign.");
+        return false;
+    }
     FillSuccessResultMSG(data, _MESSAGEDIVID, "Successfully Assigned.", "Failed To Assign Please Try Again Later");
     if (data.code != 0) { }
 }
@@ -2355,19 +2342,19 @@ function BindCoreFacultiesDropDownBySubject(IsTriggeredByCode) {
                     $("#ddlFaculty").prop('disabled', true);
                     return;
                 }
-
+                
                 if (data.code == 0) {
                     $('#ddlFaculty').append(new Option("Please Select A Faculty", 0));
-                    $.each(data.sections, function (i, item) {
+                    $.each(data.faculties, function (i, item) {
                         $('#ddlFaculty').append(new Option(data.faculties[i].FacultyName, data.faculties[i].FacultyId));
                     });
 
                     //set selected index- ONLY_FOR_EDIT
                     if (IsTriggeredByCode != null) {
                         if (IsTriggeredByCode) {
-                            var v = $("#hdnSectionId").val();
+                            var v = $("#hdnFacultyId").val();
                             if (v != null && v != "") { $('#ddlFaculty').val(v); }
-                            $("#hdnSectionId").val(v);
+                            $("#hdnFacultyId").val(v);
                         }
                     }
                 }
@@ -2382,3 +2369,63 @@ function BindCoreFacultiesDropDownBySubject(IsTriggeredByCode) {
         return false;
     }
 }
+
+function OnStudentFeeReportingIndexReady() {
+    try {
+        $("ddlAcademicYear").val(GetHtml("divAcademicYear"));
+        BindSectionsDropdownByClass();
+    } catch (e) {
+        MyAlert("OnStudentFeeReportingIndexReady : " + e);
+    }
+}
+
+function OnStudentFeeReportingBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnStudentFeeReportingBegin : " + e);
+    }
+}
+
+function OnStudentFeeReportingSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        FillSuccessResultView(data, _RESULTDIVID);
+        if (data.code != 0) {
+            Enablebutton("btnSearch");
+            Enablebutton("btnReset");
+        }
+    } catch (e) {
+        MyAlert("OnStudentFeeReportingSuccess : " + e);
+    }
+}
+
+function OnSearchClassSubjectWiseFacultyIndexReady() {
+    try {
+        BindSectionsDropdownByClass();
+        BindFacultyDropdownBySubject();
+    } catch (e) {
+        MyAlert("OnSearchClassSubjectWiseFacultyIndexReady : " + e);
+    }
+}
+
+function OnClassSubjectFacultySearchBegin() {
+    try {
+
+    } catch (e) {
+        MyAlert("OnClassSubjectFacultySearchBegin : " + e);
+    }
+}
+
+function OnClassSubjectFacultySearchSuccess(data) {
+    try {
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnClassSubjectFacultySearchSuccess : " + e);
+    }
+}
+

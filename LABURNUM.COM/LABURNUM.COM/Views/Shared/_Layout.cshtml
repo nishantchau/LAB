@@ -55,6 +55,7 @@
 <body>
     <div id="divDomain" style="display: none">@LABURNUM.COM.Component.Constants.URL.WEBSITEURL</div>
     <div id="divUserType" style="display: none">@(new LABURNUM.COM.Component.SessionManagement().GetLoginBy())</div>
+    <div id="divAcademicYear" style="display: none">@(new LABURNUM.COM.Component.SessionManagement().GetAcademicYearTableId())</div>
     <section id="container">
         <header class="header fixed-top clearfix">
             @{
