@@ -353,3 +353,4 @@ E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\Do
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Debug\LABURNUM.COM.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Debug\LABURNUM.COM.pdb
+E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Debug\LABURNUM.COM.csprojResolveAssemblyReference.cache
