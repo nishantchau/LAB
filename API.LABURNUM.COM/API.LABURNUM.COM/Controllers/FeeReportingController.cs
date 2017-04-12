@@ -19,8 +19,15 @@ namespace API.LABURNUM.COM.Controllers
                 if (dbStudentFee.Count > 0)
                 {
                     report = new Component.FeeReportingResultModelHelper().GetFeeReportingResultModel(dbStudentFee[0]);
+
                 }
                 report.MonthlyFeeDetails = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { AcademicYearId = model.AcademicYearId, StudentId = model.StudentId })).Map();
+                double y = 0;
+                foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item in report.MonthlyFeeDetails)
+                {
+                    y = y + item.TotalPayableAmount;
+                }
+                report.TotalPaidOnMonthly = y;
                 return report;
             }
             else

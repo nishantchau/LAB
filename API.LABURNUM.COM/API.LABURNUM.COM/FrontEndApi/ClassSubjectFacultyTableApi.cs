@@ -145,6 +145,22 @@ namespace API.LABURNUM.COM.FrontEndApi
                 }
             }
 
+            //Search By SubjectId.
+            if (iQuery != null)
+            {
+                if (model.SubjectId > 0)
+                {
+                    iQuery = iQuery.Where(x => x.SubjectId == model.SubjectId && x.IsActive == true);
+                }
+            }
+            else
+            {
+                if (model.SubjectId > 0)
+                {
+                    iQuery = this._laburnum.ClassSubjectFacultyTables.Where(x => x.SubjectId == model.SubjectId && x.IsActive == true);
+                }
+            }
+
             List<API.LABURNUM.COM.ClassSubjectFacultyTable> dbClassSubjectFacultyTable = iQuery.ToList();
             return dbClassSubjectFacultyTable;
         }

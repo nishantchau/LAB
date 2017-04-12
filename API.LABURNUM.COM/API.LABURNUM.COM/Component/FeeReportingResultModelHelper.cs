@@ -25,7 +25,10 @@ namespace API.LABURNUM.COM.Component
                 StudentId = dbStudentFee.StudentId,
                 StudentName = dbStudentFee.Student.FirstName + " " + dbStudentFee.Student.MiddleName + " " + dbStudentFee.Student.LastName,
                 SectionId = dbStudentFee.SectionId,
-                SectionName = dbStudentFee.Section.SectionName
+                SectionName = dbStudentFee.Section.SectionName,
+
+                TotalPaidOnAdmission = (dbStudentFee.AdmissionFee + dbStudentFee.AnnualCharges + dbStudentFee.ExamFee + dbStudentFee.SportsFee + dbStudentFee.SecurityFee) - dbStudentFee.DiscountAmount,
+
             };
             return model;
         }
