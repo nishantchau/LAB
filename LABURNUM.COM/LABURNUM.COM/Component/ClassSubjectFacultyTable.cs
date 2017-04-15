@@ -51,7 +51,7 @@ namespace LABURNUM.COM.Component
             }
         }
 
-        public void UpdateClassSubjectFacultyStatus(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
+        public bool UpdateClassSubjectFacultyStatus(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
         {
             try
             {
@@ -60,12 +60,13 @@ namespace LABURNUM.COM.Component
                 HttpResponseMessage response = client.PostAsJsonAsync("ClassSubjectFacultyTable/UpdateStatus", model).Result;
                 if (response.IsSuccessStatusCode)
                 {
-
+                    return true;
                 }
-                else { }
+                else { return false; }
             }
             catch (Exception)
             {
+                return false;
                 throw new Exception("Error While Updating Class Subject Faculty Table Status");
             }
         }

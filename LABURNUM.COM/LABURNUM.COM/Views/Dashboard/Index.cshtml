@@ -1,4 +1,6 @@
-﻿<div class="row">
+﻿@model DTO.LABURNUM.COM.DashBoardModel
+
+<div class="row">
     <div class="col-md-12">
         <!--breadcrumbs start -->
         <ul class="breadcrumb">
@@ -8,3 +10,50 @@
         <!--breadcrumbs end -->
     </div>
 </div>
+<section class="panel panel-body">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="button_home button_green dashboard_clock">
+                <i class="fa fa-envelope fa-3x" style="float: left;margin: 0px -8px 5px 8px"></i>
+                <span>Balance SMS :</span>
+                <span>
+                    @Model.SMSBalance
+                </span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="button_home button_green dashboard_clock">
+
+                <div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="button_home button_green dashboard_clock">
+
+                <div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="button_home button_voilet dashboard_clock">
+               
+                <i class="fa fa-clock-o fa-3x" style="float: left;margin: 0px -8px 5px 8px"></i>
+                <div id="Date"></div>
+                <div>
+                    <b id="hours"></b>
+                    <b id="point">:</b>
+                    <b id="min"></b>
+                    <b id="point">:</b>
+                    <b id="sec"></b>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        OnDashBoardReady();
+    });
+</script>

@@ -458,6 +458,44 @@ function CreateDatePicker(boxId) {
     }
 }
 
+function CreateDigitalWatch() {
+    try {
+        // Create two variable with the names of the months and days in an array
+        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+        // Create a newDate() object
+        var newDate = new Date();
+        // Extract the current date from Date object
+        newDate.setDate(newDate.getDate());
+        // Output the day, date, month and year    
+        $('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
+
+        setInterval(function () {
+            // Create a newDate() object and extract the seconds of the current time on the visitor's
+            var seconds = new Date().getSeconds();
+            // Add a leading zero to seconds value
+            $("#sec").html((seconds < 10 ? "0" : "") + seconds);
+        }, 1000);
+
+        setInterval(function () {
+            // Create a newDate() object and extract the minutes of the current time on the visitor's
+            var minutes = new Date().getMinutes();
+            // Add a leading zero to the minutes value
+            $("#min").html((minutes < 10 ? "0" : "") + minutes);
+        }, 1000);
+
+        setInterval(function () {
+            // Create a newDate() object and extract the hours of the current time on the visitor's
+            var hours = new Date().getHours();
+            // Add a leading zero to the hours value
+            $("#hours").html((hours < 10 ? "0" : "") + hours);
+        }, 1000);
+    } catch (e) {
+        MyAlert("CreateDigitalWatch : " + e);
+    }
+}
+
 // End Common Function;
 
 //==============================================================================================================
@@ -2107,9 +2145,7 @@ function OnAddHomeWorkIndex() {
     try {
         BindSectionsDropdownByClass();
         var isst = GetHtml("hdnIsSubjectTeacher");
-        MyAlert(isst);
-        if (isst == 'true') {
-            MyAlert("1");
+        if (isst) {
             $("#ddlSubject").prop("disabled", true);
         }
     }
@@ -2122,6 +2158,9 @@ function OnSearchHomeWorkIndexReady() {
     try {
         CreateDatePicker("txtStartDate");
         CreateDatePicker("txtEndDate");
+        GetHtml("hdnIsSubjectTeacher");
+        GetHtml("hdnIsClassTeacher");
+        if (GetHtml("hdnIsSubjectTeacher")) { $("#ddlSubject").prop('disabled', true); }
     } catch (e) {
         MyAlert("OnSearchHomeWorkIndexReady : " + e);
     }
@@ -2342,7 +2381,7 @@ function BindCoreFacultiesDropDownBySubject(IsTriggeredByCode) {
                     $("#ddlFaculty").prop('disabled', true);
                     return;
                 }
-                
+
                 if (data.code == 0) {
                     $('#ddlFaculty').append(new Option("Please Select A Faculty", 0));
                     $.each(data.faculties, function (i, item) {
@@ -2415,7 +2454,11 @@ function OnSearchClassSubjectWiseFacultyIndexReady() {
 
 function OnClassSubjectFacultySearchBegin() {
     try {
-
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
     } catch (e) {
         MyAlert("OnClassSubjectFacultySearchBegin : " + e);
     }
@@ -2423,9 +2466,91 @@ function OnClassSubjectFacultySearchBegin() {
 
 function OnClassSubjectFacultySearchSuccess(data) {
     try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
         FillSuccessResultView(data, _RESULTDIVID);
     } catch (e) {
         MyAlert("OnClassSubjectFacultySearchSuccess : " + e);
     }
 }
 
+function DeleteClassSubjectFacultyPopup(id) {
+    try {
+        var url = GetDomain(_DOMAINDIVID) + "Common/EncrptId?id=" + id;
+        $.ajax({
+            method: "Post",
+            url: url,
+            success: function (data) {
+                data = eval(data);
+                if (data.message == "y") {
+                    var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/DeleteClassSubjectFacultyPopup?id=" + data.id;
+                    FillViewInModelDiv(url, "myModal");
+                }
+                if (data.message == "n") {
+                }
+            }
+        });
+
+    } catch (e) {
+        MyAlert("DeleteClassSubjectFacultyPopup : " + e);
+    }
+}
+
+function OnDeleteClassSubjectFacultyBegin() {
+    try {
+        DisplayLoader(_POPUPLOADERDIVID);
+        Disablebutton("btnSubmit");
+    } catch (e) {
+        MyAlert("OnDeleteClassSubjectFacultyBegin : " + e);
+    }
+}
+
+function OnDeleteClassSubjectFacultySuccess(data) {
+    try {
+        HideLoader(_POPUPLOADERDIVID);
+        FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, "Successfull Remove.", "Failed To Proceed Please Try Again Lator.");
+        if (data.code != 0) { Enablebutton("btnSubmit"); }
+    } catch (e) {
+        MyAlert("OnDeleteClassSubjectFacultySuccess : " + e);
+    }
+}
+
+function OnSearchStudentHomeWorkIndexReady() {
+    try {
+        CreateDatePicker("txtStartDate");
+        CreateDatePicker("txtEndDate");
+    } catch (e) {
+        MyAlert("OnSearchStudentHomeWorkIndexReady : " + e);
+    }
+}
+
+function OnSearchStudentAssignedHomeworkBegin() {
+    try {
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+        Disablebutton("btnReset");
+
+    } catch (e) {
+        MyAlert("OnSearchStudentAssignedHomeworkBegin : " + e);
+    }
+}
+
+function OnSearchStudentAssignedHomeworkSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSubmit");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchStudentAssignedHomeworkSuccess : " + e);
+    }
+}
+
+function OnDashBoardReady() {
+    try {
+        CreateDigitalWatch();
+    } catch (e) {
+        MyAlert("OnDashBoardReady : " + e);
+    }
+}

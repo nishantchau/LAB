@@ -1,0 +1,51 @@
+﻿@model List<DTO.LABURNUM.COM.HomeWorkModel>
+
+@{int counter = 1;}
+@if (Model.Count == 0)
+{
+    <section class="panel text-center" style="margin-top: 10px;">
+        <div class="row">
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+        </div>
+    </section>
+}
+else
+{
+    <section class="panel" style="margin-top: 10px;">
+        <header class="panel-heading">
+            <strong>Number of Record Found : @Model.Count</strong>
+            <span class="tools pull-right">
+                <button type="button" onclick="DownloadRecord('Home Work Details');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            </span>
+        </header>
+        <div class="panel-body" id="divTable">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Subject</th>
+                                <th>Assigned By</th>
+                                <th>HomeWork</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.HomeWorkModel item in @Model)
+                            {
+                                <tr>
+                                    <td style="width: 17%;">@counter</td>
+                                    <td style="width: 19%;">@item.SubjectName</td>
+                                    <td style="width: 19%;">@item.FacultyName</td>
+                                    <td style="width: 19%;">@item.HomeWorkText</td>
+                                </tr>
+                                counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+

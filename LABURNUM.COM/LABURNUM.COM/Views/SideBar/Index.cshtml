@@ -98,7 +98,7 @@
                     <li>Class : @Model.GetFacultyClassName()</li>
                     <li>Section : @Model.GetFacultySectionName()</li>
                     }
-                    if (Model.GetIsSubjectTeacher())
+                    if (Model.GetIsSubjectTeacher() && (!Model.GetIsClassTeacher()))
                     {
                     <li>Position : Subject Teacher (Faculty)</li>
                     <li>Subject Name : @Model.GetSubjectName()</li>
@@ -126,23 +126,29 @@
     {
         <li class="xn-openable">
             <a href="javascript:;">
-                <span class="fa fa-ticket"></span>
-                <span class="xn-text">CLASS</span>
+                <span class="fa fa-folder"></span>
+                <span class="xn-text">MASTERS</span>
             </a>
             <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/AddClass/Index">Add</a></li>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SeeAllClass/Index">See All Classes</a></li>
-            </ul>
-        </li>
-        <li class="xn-openable">
-            <a href="javascript:;">
-                <span class="fa fa-ticket"></span>
-                <span class="xn-text">SECTION</span>
-            </a>
-            <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SeeAllSections/Index">See All Sections</a></li>
-            </ul>
-        </li>
+                <li class="xn-openable">
+                    <a href="javascript:;">
+                        <span class="fa fa-ticket"></span>
+                        <span class="xn-text">CLASS</span>
+                    </a>
+                    <ul>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/AddClass/Index">Add</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SeeAllClass/Index">See All Classes</a></li>
+                    </ul>
+                </li>
+                <li class="xn-openable">
+                    <a href="javascript:;">
+                        <span class="fa fa-ticket"></span>
+                        <span class="xn-text">SECTION</span>
+                    </a>
+                    <ul>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SeeAllSections/Index">See All Sections</a></li>
+                    </ul>
+                </li>@*
         <li class="xn-openable">
             <a href="javascript:;">
                 <span class="fa fa-book"></span>
@@ -151,26 +157,41 @@
             <ul>
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Subject/SeeAllSubjectsIndex">See All Subjects</a></li>
             </ul>
-        </li>
-        <li class="xn-openable">
-            <a href="javascript:;">
-                <span class="fa fa-money"></span>
-                <span class="xn-text">FEE</span>
-            </a>
-            <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Fee/AddIndex">Add</a></li>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Fee/SeeAllFee">See All Fee</a></li>
+        </li>*@
+                <li class="xn-openable">
+                    <a href="javascript:;">
+                        <span class="fa fa-money"></span>
+                        <span class="xn-text">FEE</span>
+                    </a>
+                    <ul>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Fee/AddIndex">Add</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Fee/SeeAllFee">See All Fee</a></li>
+                    </ul>
+                </li>
+                <li class="xn-openable">
+                    <a href="javascript:;">
+                        <span class="fa fa-ticket"></span>
+                        <span class="xn-text">LATE FEE PANELTY</span>
+                    </a>
+                    <ul>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/LateFeePanelty/SeeAllLateFeePaneltyIndex">See All Late Fee Panelty</a></li>
+                    </ul>
+                </li>
+
+                <li class="xn-openable">
+                    <a href="javascript:;">
+                        <span class="fa fa-rocket"></span>
+                        <span class="xn-text">TRANSPORT</span>
+                    </a>
+                    <ul>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/BusRoute/SeeAllBusRoutesIndex">See All Bus Route</a></li>
+                    </ul>
+                </li>
             </ul>
         </li>
-        <li class="xn-openable">
-            <a href="javascript:;">
-                <span class="fa fa-ticket"></span>
-                <span class="xn-text">LATE FEE PANELTY</span>
-            </a>
-            <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/LateFeePanelty/SeeAllLateFeePaneltyIndex">See All Late Fee Panelty</a></li>
-            </ul>
-        </li>
+    }
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+    {
         <li class="xn-openable">
             <a href="javascript:;">
                 <span class="fa fa-sitemap"></span>
@@ -179,15 +200,6 @@
             <ul>
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Faculty/AddIndex">Add</a></li>
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Faculty/SeeAllFaculties">See All Faculties</a></li>
-            </ul>
-        </li>
-        <li class="xn-openable">
-            <a href="javascript:;">
-                <span class="fa fa-rocket"></span>
-                <span class="xn-text">TRANSPORT</span>
-            </a>
-            <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/BusRoute/SeeAllBusRoutesIndex">See All Bus Route</a></li>
             </ul>
         </li>
     }
@@ -205,11 +217,11 @@
         <li class="xn-openable">
             <a href="javascript:;">
                 <span class="fa fa-book"></span>
-                <span class="xn-text">Assign Subject</span>
+                <span class="xn-text">ASSIGN CLASS TO TEACHER</span>
             </a>
             <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassSubjectWiseFaculty/AddClassSubjectWiseFacultyIndex">Assign Classes</a></li>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassSubjectWiseFaculty/SearchClassSubjectWiseFacultyIndex">Search</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassSubjectWiseFaculty/AddClassSubjectWiseFacultyIndex">Assign Class</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassSubjectWiseFaculty/SearchClassSubjectWiseFacultyIndex">Search Assigned</a></li>
             </ul>
         </li>
     }
@@ -242,6 +254,56 @@
             </ul>
         </li>
     }
+
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+    {
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-book"></span>
+                <span class="xn-text">Home Work</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/StudentHomeWork/TodayHomeWorkIndex">Today(s) Home Work</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/StudentHomeWork/SearchHomeWorkIndex">Search Home Work</a></li>
+            </ul>
+        </li>
+        <li><a href="./"><span class="fa fa-book"></span><span class="xn-text">Attendance</span></a></li>
+        <li><a href="./"><span class="fa fa-book"></span><span class="xn-text">Result </span></a></li>
+        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassWiseFaculties/Index?sid=@(new LABURNUM.COM.Component.Common().GetEncryptedId(Convert.ToString(Model.GetLoginBy())))"><span class="fa fa-users"></span><span class="xn-text">Faculties Details </span></a></li>
+        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/ListOfAllCirculars"><span class="fa fa-users"></span><span class="xn-text">List Of All Circular(s)</span></a></li>
+    }
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+    {
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-folder"></span>
+                <span class="xn-text">CIRCULAR / EVENT</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/AddCircularIndex">Publish New Circular</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/SearchCircularIndex">See Published Circular</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/ListOfAllCirculars">List Of All Circular(s)</a></li>
+            </ul>
+        </li>
+    }
+
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+    {
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-folder"></span>
+                <span class="xn-text">HOMEWORK</span>
+            </a>
+            <ul>
+                @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
+                {
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/HomeWork/AddHomeWorkIndex">Assign HomeWork</a></li>
+                }
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/HomeWork/SearchHomeWorkIndex">See Assigned HomeWork</a></li>
+            </ul>
+        </li>
+    }
+
     @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
     {
         <li class="xn-openable">
@@ -267,37 +329,10 @@
             </ul>
         </li>
     }
-    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
-    {
-        <li><a href="./"><span class="fa fa-book"></span><span class="xn-text">Attendance</span></a></li>
-        <li><a href="./"><span class="fa fa-book"></span><span class="xn-text">Result </span></a></li>
-    }
-    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
-    {
-        <li class="xn-openable">
-            <a href="javascript:;">
-                <span class="fa fa-folder"></span>
-                <span class="xn-text">CIRCULAR/EVENT</span>
-            </a>
-            <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/AddCircularIndex">Publish New Circular</a></li>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/SearchCircularIndex">See Published Circular</a></li>
-            </ul>
-        </li>
-    }
 
-    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
-    {
-        <li class="xn-openable">
-            <a href="javascript:;">
-                <span class="fa fa-folder"></span>
-                <span class="xn-text">HOMEWORK</span>
-            </a>
-            <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/HomeWork/AddHomeWorkIndex">Assign HomeWork</a></li>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/HomeWork/SearchHomeWorkIndex">See Assigned HomeWork</a></li>
-            </ul>
-        </li>
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
+    { 
+        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassWiseFaculties/Index?sid=@(new LABURNUM.COM.Component.Common().GetEncryptedId(Convert.ToString(Model.GetLoginBy())))"><span class="fa fa-users"></span><span class="xn-text">Assigned Details </span></a></li>
     }
 
 </ul>

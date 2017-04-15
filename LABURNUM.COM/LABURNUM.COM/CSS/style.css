@@ -9543,3 +9543,10 @@ section.banner-main {
     border-radius: 8px;
     font-weight: 600;
 }
+
+.dashboard_clock {
+font-size:18px;
+text-align:center;
+font-weight:600;
+color:white;
+}

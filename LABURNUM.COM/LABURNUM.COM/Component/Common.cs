@@ -61,5 +61,28 @@ namespace LABURNUM.COM.Component
             }
         }
 
+        public string GetEncryptedId(string id)
+        {
+            try
+            {
+                return new Crypto().EncryptStringAES(id, LABURNUM.COM.Component.Constants.KEYS.SHAREDKEY);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public string GetDecryptedId(string id)
+        {
+            try
+            {
+                return new Crypto().DecryptStringAES(id, LABURNUM.COM.Component.Constants.KEYS.SHAREDKEY);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

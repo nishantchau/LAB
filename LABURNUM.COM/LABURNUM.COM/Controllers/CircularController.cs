@@ -95,5 +95,11 @@ namespace LABURNUM.COM.Controllers
             }
         }
 
+        public ActionResult ListOfAllCirculars()
+        {
+            List<DTO.LABURNUM.COM.CircularModel> dbCirculars = new Component.Circular().GetActiveCirculars();
+            return View(dbCirculars);
+        }
+
     }
 }

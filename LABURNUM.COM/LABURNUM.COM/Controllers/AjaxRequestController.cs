@@ -281,7 +281,7 @@ namespace LABURNUM.COM.Controllers
             {
                 if (sessionManagement.isSessionAlive())
                 {
-                    DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel() { ClassId = cid, SectionId = sectionId, StudentId = sid, IsNewAdmission = isNewAdmission};
+                    DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel() { ClassId = cid, SectionId = sectionId, StudentId = sid, IsNewAdmission = isNewAdmission };
                     model.MonthlyFee = new Component.Fee().GetFeeByClassIdandAdmissionType(cid, isNewAdmission).MonthlyFee.GetValueOrDefault();
                     model.Months = new Component.Month().GetActiveMonths();
                     model.TransportFee = new Component.BusRoute().GetTransportChargeByRouteId(routeId);
@@ -457,6 +457,31 @@ namespace LABURNUM.COM.Controllers
             else
             {
                 return Json(new { code = 99, message = "SessionTimedOut" });
+            }
+        }
+
+        public ActionResult DeleteClassSubjectFacultyPopup(string id)
+        {
+            if (sessionManagement.isSessionAlive())
+            {
+                try
+                {
+                    LABURNUM.COM.Component.Crypto crypto = new Component.Crypto();
+                    string text = crypto.DecryptStringAES(id, LABURNUM.COM.Component.Constants.KEYS.SHAREDKEY);
+                    long cId = Convert.ToInt64(text);
+                    DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model = new DTO.LABURNUM.COM.ClassSubjectFacultyTableModel();
+                    model = new LABURNUM.COM.Component.ClassSubjectFacultyTable().GetClassSubjectFacultyById(cId);
+                    string html = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/AjaxRequest/DeleteClassSubjectFacultyPopup.cshtml", model);
+                    return Json(new { code = 0, message = "success", result = html });
+                }
+                catch (Exception)
+                {
+                    return Json(new { code = -1, message = "failed", result = new LABURNUM.COM.Component.Common().GetErrorView() });
+                }
+            }
+            else
+            {
+                return Json(new { code = 99, result = "SessionTimedOut" });
             }
         }
     }

@@ -13,7 +13,9 @@ namespace LABURNUM.COM.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            DTO.LABURNUM.COM.DashBoardModel model = new DTO.LABURNUM.COM.DashBoardModel();
+            model.SMSBalance = new Component.SMSAPI().GetSMSBalance();
+            return View(model);
         }
 
     }

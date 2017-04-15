@@ -1,0 +1,114 @@
+﻿@model List<DTO.LABURNUM.COM.ClassSubjectFacultyTableModel>
+
+@if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT)))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li class="active">Subject Wise Faculties</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+@if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY)))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li class="active">Assigned Class</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+}
+
+@{int counter = 1;}
+@if (Model.Count == 0)
+{
+    <section class="panel text-center" style="margin-top: 10px;">
+        <div class="row">
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+        </div>
+    </section>
+}
+else
+{
+    <section class="panel" style="margin-top: 10px;">
+        <header class="panel-heading">
+            @if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT)))
+            {
+                <strong>Subject Wise Faculties Details</strong>
+            }
+            @if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY)))
+            {
+                <strong>Assigned Class Details</strong>}
+            <span class="tools pull-right">
+                <button type="button" onclick="DownloadRecord('Subject Wise Faculties');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            </span>
+        </header>
+        <div id="divTable">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    @if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT)))
+                    {
+                        <table class="table table-hover general-table responsive">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Subject</th>
+                                    <th>Faculty Name</th>
+                                    <th>Contact No.</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DTO.LABURNUM.COM.ClassSubjectFacultyTableModel item in @Model)
+                                {
+                                    <tr>
+                                        <td style="width: 12%;">@counter</td>
+                                        <td style="width: 14%;">@item.SubjectName</td>
+                                        <td style="width: 12%;">@item.FacultyName</td>
+                                        <td style="width: 13%;">@item.FacultyContact</td>
+                                        <td style="width: 15%;"><a href="mailto:@(item.FacultyEmail)" >@item.FacultyEmail</a></td>
+                                    </tr>
+                                    counter++;
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    @if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY)))
+                    {
+                        <table class="table table-hover general-table responsive">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Class</th>
+                                    <th>Section</th>
+                                    <th>Subject</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DTO.LABURNUM.COM.ClassSubjectFacultyTableModel item in @Model)
+                                {
+                                    <tr>
+                                        <td style="width: 12%;">@counter</td>
+                                        <td style="width: 14%;">@item.ClassName</td>
+                                        <td style="width: 12%;">@item.SectionName</td>
+                                        <td style="width: 13%;">@item.SubjectName</td>
+                                    </tr>
+                                    counter++;
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}
+

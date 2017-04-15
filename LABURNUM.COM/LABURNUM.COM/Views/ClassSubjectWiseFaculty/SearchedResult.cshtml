@@ -18,7 +18,7 @@ else
                 <button type="button" onclick="DownloadRecord('Class Subject Wise Faculties');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
             </span>
         </header>
-        <div class="panel-body" id="divTable">
+        <div id="divTable">
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table table-hover general-table responsive">
@@ -29,19 +29,24 @@ else
                                 <th>Section</th>
                                 <th>Subject</th>
                                 <th>Faculty Name</th>
+                                <th>Contact No.</th>
                                 <th>Assigned Date</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (DTO.LABURNUM.COM.ClassSubjectFacultyTableModel item in @Model)
                             {
                                 <tr>
-                                    <td style="width: 17%;">@counter</td>
-                                    <td style="width: 19%;">@item.ClassId</td>
-                                    <td style="width: 19%;">@item.SectionId</td>
-                                    <td style="width: 20%;">@item.SubjectId</td>
-                                    <td style="width: 23%;">@item.FacultyId</td>
-                                    <td style="width: 19%;">@item.CreatedOn.ToShortDateString()</td>
+                                    <td style="width: 12%;">@counter</td>
+                                    <td style="width: 14%;">@item.ClassName</td>
+                                    <td style="width: 12%;">@item.SectionName</td>
+                                    <td style="width: 13%;">@item.SubjectName</td>
+                                    <td style="width: 15%;">@item.FacultyName</td>
+                                    <td style="width: 15%;">@item.FacultyContact</td>
+                                    <td style="width: 12%;">@item.CreatedOn.ToShortDateString()</td>
+                                    <td style="width: 12%;">
+                                        <button type="button" onclick="DeleteClassSubjectFacultyPopup(@item.ClassSubjectFacultyTableId)" class="btn btn-danger adept-view" id="btnDelete@(counter)" data-toggle="modal" data-target="#myModal">Remove</button></td>
                                 </tr>
                                 counter++;
                             }

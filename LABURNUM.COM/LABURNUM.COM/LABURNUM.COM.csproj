@@ -189,6 +189,7 @@
     <Compile Include="Component\Salutation.cs" />
     <Compile Include="Component\Section.cs" />
     <Compile Include="Component\SessionManagement.cs" />
+    <Compile Include="Component\SMSAPI.cs" />
     <Compile Include="Component\Student.cs" />
     <Compile Include="Component\StudentFee.cs" />
     <Compile Include="Component\StudentFeeDetails.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Controllers\ChairmanController.cs" />
     <Compile Include="Controllers\CircularController.cs" />
     <Compile Include="Controllers\ClassSubjectWiseFacultyController.cs" />
+    <Compile Include="Controllers\ClassWiseFacultiesController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DeleteStudentController.cs" />
@@ -231,6 +233,7 @@
     <Compile Include="Controllers\SiteHeaderController.cs" />
     <Compile Include="Controllers\SliderController.cs" />
     <Compile Include="Controllers\StudentFeeController.cs" />
+    <Compile Include="Controllers\StudentHomeWorkController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UnderConstructionController.cs" />
     <Compile Include="Controllers\UpdateProfileController.cs" />
@@ -353,7 +356,9 @@
     <Content Include="Images\avatar1_small.jpg" />
     <Content Include="Images\banner-main.png" />
     <Content Include="Images\button-close.png" />
+    <Content Include="Images\clockface.jpg" />
     <Content Include="Images\dummy.jpg" />
+    <Content Include="Images\hourhand.png" />
     <Content Include="Images\icon-address.png" />
     <Content Include="Images\icon-email.png" />
     <Content Include="Images\icon-fax.png" />
@@ -366,10 +371,12 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\feereceipt-bg.jpg" />
     <Content Include="Images\lps-signature.png" />
+    <Content Include="Images\minhand.png" />
     <Content Include="Images\no-record-found.png" />
     <Content Include="Images\phone-image.png" />
     <Content Include="Images\profile_avatar.jpg" />
     <Content Include="Images\search-icon.png" />
+    <Content Include="Images\sechand.png" />
     <Content Include="Images\underconstruction.png" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -500,6 +507,12 @@
     <Content Include="Views\Reporting\StudentReportingIndex.cshtml" />
     <Content Include="Views\ClassSubjectWiseFaculty\SearchClassSubjectWiseFacultyIndex.cshtml" />
     <Content Include="Views\ClassSubjectWiseFaculty\SearchedResult.cshtml" />
+    <Content Include="Views\AjaxRequest\DeleteClassSubjectFacultyPopup.cshtml" />
+    <Content Include="Views\ClassWiseFaculties\Index.cshtml" />
+    <Content Include="Views\StudentHomeWork\TodayHomeWorkIndex.cshtml" />
+    <Content Include="Views\StudentHomeWork\SearchHomeWorkIndex.cshtml" />
+    <Content Include="Views\StudentHomeWork\StudentSearchHomeWorkResult.cshtml" />
+    <Content Include="Views\Circular\ListOfAllCirculars.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

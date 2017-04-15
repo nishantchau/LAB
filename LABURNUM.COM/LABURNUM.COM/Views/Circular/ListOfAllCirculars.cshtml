@@ -1,0 +1,72 @@
+﻿@model List<DTO.LABURNUM.COM.CircularModel>
+
+<div class="row">
+    <div class="col-md-12">
+        <!--breadcrumbs start -->
+        <ul class="breadcrumb">
+            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+            <li>Circular</li>
+            <li class="active">List Of All Circular(s)</li>
+        </ul>
+        <!--breadcrumbs end -->
+    </div>
+</div>
+
+@{int counter = 1;}
+
+@if (Model.Count == 0)
+{
+    <div class="text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+    </div>
+}
+else
+{
+    <section class="panel">
+        <header class="panel-heading">
+            <strong>Number of Record Found : @Model.Count</strong>
+            <span class="tools pull-right">
+                <button type="button" onclick="DownloadRecord('Circular(s) List Record');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            </span>
+        </header>
+
+        <div class="panel-body" id="divTable">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Published On</th>
+                                <th>Published By</th>
+                                <th>Subject</th>
+                                <th>Attachement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.CircularModel item in @Model)
+                            {
+                                <tr>
+                                    <td style="width: 17%;">@counter</td>
+                                    <td>@item.PublishedOn.ToShortDateString()</td>
+                                    <td>H.O.D</td>
+                                    <td style="width: 19%;">@item.Subject</td>
+                                    @if (item.Attachment != null && item.Attachment != "")
+                                    {
+                                        <td style="width: 23%;"><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/Circulars/@item.Attachment" target="_blank">Click Here To See</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td style="width: 23%;">-</td>
+                                    }
+                                </tr>
+                                    counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>

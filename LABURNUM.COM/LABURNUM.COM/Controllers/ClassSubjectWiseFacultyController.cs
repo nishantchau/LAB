@@ -83,5 +83,18 @@ namespace LABURNUM.COM.Controllers
                 return Json(new { code = -2, message = "failed" });
             }
         }
+
+        public ActionResult UpdateClassSubjectWiseFacultyStatus(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
+        {
+            try
+            {
+                if (new Component.ClassSubjectFacultyTable().UpdateClassSubjectFacultyStatus(model)) { return Json(new { code = 0, message = "success" }); }
+                else { return Json(new { code = -1, message = "failed" }); }
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -2, message = "failed" });
+            }
+        }
     }
 }
