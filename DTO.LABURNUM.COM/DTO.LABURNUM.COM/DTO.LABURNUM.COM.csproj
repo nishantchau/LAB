@@ -66,6 +66,7 @@
     <Compile Include="ClassSubjectFacultyTableModel.cs" />
     <Compile Include="ClientModel.cs" />
     <Compile Include="CommonAttendanceModel.cs" />
+    <Compile Include="DashBoardModel.cs" />
     <Compile Include="FacultyModel.cs" />
     <Compile Include="FeeModel.cs" />
     <Compile Include="FeeReportingModel.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="SalutationModel.cs" />
     <Compile Include="SectionModel.cs" />
     <Compile Include="SessionModel.cs" />
+    <Compile Include="SMSAPIModel.cs" />
     <Compile Include="StudentModel.cs" />
     <Compile Include="StudentFeeModel.cs" />
     <Compile Include="StudentFeeDetailModel.cs" />

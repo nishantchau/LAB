@@ -30,5 +30,12 @@ namespace DTO.LABURNUM.COM
         public List<DTO.LABURNUM.COM.SectionModel> Sections { get; set; }
         public List<DTO.LABURNUM.COM.SubjectModel> Subjects { get; set; }
         public List<DTO.LABURNUM.COM.FacultyModel> Faculties { get; set; }
+
+        public string ClassName { get; set; }
+        public string SubjectName { get; set; }
+        public string FacultyName { get; set; }
+        public string SectionName { get; set; }
+        public string FacultyContact { get; set; }
+        public string FacultyEmail { get; set; }
     }
 }
