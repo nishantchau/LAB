@@ -302,6 +302,10 @@
       <End Role="Faculty" EntitySet="Faculty" />
       <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
     </AssociationSet>
+    <AssociationSet Name="FK_ClassSubjectFacultyTable_Section" Association="LaburnumModel.Store.FK_ClassSubjectFacultyTable_Section">
+      <End Role="Section" EntitySet="Section" />
+      <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
+    </AssociationSet>
     <AssociationSet Name="FK_ClassSubjectFacultyTable_Subject" Association="LaburnumModel.Store.FK_ClassSubjectFacultyTable_Subject">
       <End Role="Subject" EntitySet="Subject" />
       <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
@@ -764,7 +768,7 @@
     <Key>
       <PropertyRef Name="ClassSubjectFacultyTableId" />
     </Key>
-    <Property Name="ClassSubjectFacultyTableId" Type="bigint" Nullable="false" />
+    <Property Name="ClassSubjectFacultyTableId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ClassId" Type="bigint" Nullable="false" />
     <Property Name="SubjectId" Type="bigint" Nullable="false" />
     <Property Name="FacultyId" Type="bigint" Nullable="false" />
@@ -1775,6 +1779,18 @@
       </Principal>
       <Dependent Role="ClassSubjectFacultyTable">
         <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassSubjectFacultyTable_Section">
+    <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+    <End Role="ClassSubjectFacultyTable" Type="LaburnumModel.Store.ClassSubjectFacultyTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Section">
+        <PropertyRef Name="SectionId" />
+      </Principal>
+      <Dependent Role="ClassSubjectFacultyTable">
+        <PropertyRef Name="SectionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
