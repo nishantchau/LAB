@@ -307,6 +307,10 @@
             <End Role="Faculty" EntitySet="Faculty" />
             <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_ClassSubjectFacultyTable_Section" Association="LaburnumModel.Store.FK_ClassSubjectFacultyTable_Section">
+            <End Role="Section" EntitySet="Section" />
+            <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_ClassSubjectFacultyTable_Subject" Association="LaburnumModel.Store.FK_ClassSubjectFacultyTable_Subject">
             <End Role="Subject" EntitySet="Subject" />
             <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
@@ -769,7 +773,7 @@
           <Key>
             <PropertyRef Name="ClassSubjectFacultyTableId" />
           </Key>
-          <Property Name="ClassSubjectFacultyTableId" Type="bigint" Nullable="false" />
+          <Property Name="ClassSubjectFacultyTableId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SubjectId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
@@ -1783,6 +1787,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ClassSubjectFacultyTable_Section">
+          <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+          <End Role="ClassSubjectFacultyTable" Type="LaburnumModel.Store.ClassSubjectFacultyTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="SectionId" />
+            </Principal>
+            <Dependent Role="ClassSubjectFacultyTable">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ClassSubjectFacultyTable_Subject">
           <End Role="Subject" Type="LaburnumModel.Store.Subject" Multiplicity="1" />
           <End Role="ClassSubjectFacultyTable" Type="LaburnumModel.Store.ClassSubjectFacultyTable" Multiplicity="*" />
@@ -2529,6 +2545,10 @@
             <End Role="Faculty" EntitySet="Faculties" />
             <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTables" />
           </AssociationSet>
+          <AssociationSet Name="FK_ClassSubjectFacultyTable_Section" Association="LaburnumModel.FK_ClassSubjectFacultyTable_Section">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTables" />
+          </AssociationSet>
           <AssociationSet Name="FK_ClassSubjectFacultyTable_Subject" Association="LaburnumModel.FK_ClassSubjectFacultyTable_Subject">
             <End Role="Subject" EntitySet="Subjects" />
             <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTables" />
@@ -3031,7 +3051,7 @@
           <Key>
             <PropertyRef Name="ClassSubjectFacultyTableId" />
           </Key>
-          <Property Type="Int64" Name="ClassSubjectFacultyTableId" Nullable="false" />
+          <Property Type="Int64" Name="ClassSubjectFacultyTableId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SubjectId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
@@ -3041,6 +3061,7 @@
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
           <NavigationProperty Name="Class" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Class" FromRole="ClassSubjectFacultyTable" ToRole="Class" />
           <NavigationProperty Name="Faculty" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Faculty" FromRole="ClassSubjectFacultyTable" ToRole="Faculty" />
+          <NavigationProperty Name="Section" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Section" FromRole="ClassSubjectFacultyTable" ToRole="Section" />
           <NavigationProperty Name="Subject" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Subject" FromRole="ClassSubjectFacultyTable" ToRole="Subject" />
         </EntityType>
         <EntityType Name="Faculty">
@@ -3201,6 +3222,7 @@
           <NavigationProperty Name="AttendanceClassPreNurseries" Relationship="LaburnumModel.FK_AttendanceClassPreNursery_Section" FromRole="Section" ToRole="AttendanceClassPreNursery" />
           <NavigationProperty Name="AttendanceClassUKGs" Relationship="LaburnumModel.FK_AttendanceClassUKG_Section" FromRole="Section" ToRole="AttendanceClassUKG" />
           <NavigationProperty Name="Class" Relationship="LaburnumModel.FK_Section_Class" FromRole="Section" ToRole="Class" />
+          <NavigationProperty Name="ClassSubjectFacultyTables" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Section" FromRole="Section" ToRole="ClassSubjectFacultyTable" />
           <NavigationProperty Name="Faculties" Relationship="LaburnumModel.FK_Faculty_Section" FromRole="Section" ToRole="Faculty" />
           <NavigationProperty Name="HomeWork" Relationship="LaburnumModel.FK_HomeWork_Section" FromRole="Section" ToRole="HomeWork" />
           <NavigationProperty Name="Students" Relationship="LaburnumModel.FK_Student_Section" FromRole="Section" ToRole="Student" />
@@ -4310,6 +4332,18 @@
             </Principal>
             <Dependent Role="ClassSubjectFacultyTable">
               <PropertyRef Name="FacultyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassSubjectFacultyTable_Section">
+          <End Type="LaburnumModel.Section" Role="Section" Multiplicity="1" />
+          <End Type="LaburnumModel.ClassSubjectFacultyTable" Role="ClassSubjectFacultyTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="SectionId" />
+            </Principal>
+            <Dependent Role="ClassSubjectFacultyTable">
+              <PropertyRef Name="SectionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

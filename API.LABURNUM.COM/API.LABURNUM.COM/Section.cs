@@ -31,6 +31,7 @@ namespace API.LABURNUM.COM
             this.AttendanceClassLKGs = new HashSet<AttendanceClassLKG>();
             this.AttendanceClassPreNurseries = new HashSet<AttendanceClassPreNursery>();
             this.AttendanceClassUKGs = new HashSet<AttendanceClassUKG>();
+            this.ClassSubjectFacultyTables = new HashSet<ClassSubjectFacultyTable>();
             this.Faculties = new HashSet<Faculty>();
             this.HomeWork = new HashSet<HomeWork>();
             this.Students = new HashSet<Student>();
@@ -61,6 +62,7 @@ namespace API.LABURNUM.COM
         public virtual ICollection<AttendanceClassPreNursery> AttendanceClassPreNurseries { get; set; }
         public virtual ICollection<AttendanceClassUKG> AttendanceClassUKGs { get; set; }
         public virtual Class Class { get; set; }
+        public virtual ICollection<ClassSubjectFacultyTable> ClassSubjectFacultyTables { get; set; }
         public virtual ICollection<Faculty> Faculties { get; set; }
         public virtual ICollection<HomeWork> HomeWork { get; set; }
         public virtual ICollection<Student> Students { get; set; }

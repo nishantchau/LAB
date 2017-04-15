@@ -236,6 +236,7 @@
     <Compile Include="Component\PasswordConvertor.cs" />
     <Compile Include="Component\SalutationHelper.cs" />
     <Compile Include="Component\SectionHelper.cs" />
+    <Compile Include="Component\SMSAPI.cs" />
     <Compile Include="Component\StudentFeeDetailHelper.cs" />
     <Compile Include="Component\StudentFeeHelper.cs" />
     <Compile Include="Component\StudentHelper.cs" />
@@ -280,6 +281,7 @@
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SalutationController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\SMSAPIController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentFeeController.cs" />
     <Compile Include="Controllers\StudentFeeDetailController.cs" />

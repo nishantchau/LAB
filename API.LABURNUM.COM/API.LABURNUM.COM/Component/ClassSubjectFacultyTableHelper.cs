@@ -46,19 +46,25 @@ namespace API.LABURNUM.COM.Component
             return MapCore(this.ClassSubjectFacultyTables[0]);
         }
 
-        private DTO.LABURNUM.COM.ClassSubjectFacultyTableModel MapCore(API.LABURNUM.COM.ClassSubjectFacultyTable apiBusRoute)
+        private DTO.LABURNUM.COM.ClassSubjectFacultyTableModel MapCore(API.LABURNUM.COM.ClassSubjectFacultyTable apiModel)
         {
 
             DTO.LABURNUM.COM.ClassSubjectFacultyTableModel dtoClass = new DTO.LABURNUM.COM.ClassSubjectFacultyTableModel()
             {
-                ClassSubjectFacultyTableId = apiBusRoute.ClassSubjectFacultyTableId,
-                ClassId = apiBusRoute.ClassId,
-                SubjectId = apiBusRoute.SubjectId,
-                FacultyId = apiBusRoute.FacultyId,
-                SectionId = apiBusRoute.SectionId,
-                CreatedOn = apiBusRoute.CreatedOn,
-                LastUpdated = apiBusRoute.LastUpdated,
-                IsActive = apiBusRoute.IsActive,
+                ClassSubjectFacultyTableId = apiModel.ClassSubjectFacultyTableId,
+                ClassId = apiModel.ClassId,
+                SubjectId = apiModel.SubjectId,
+                FacultyId = apiModel.FacultyId,
+                SectionId = apiModel.SectionId,
+                CreatedOn = apiModel.CreatedOn,
+                LastUpdated = apiModel.LastUpdated,
+                IsActive = apiModel.IsActive,
+                ClassName = apiModel.Class.ClassName,
+                SubjectName = apiModel.Subject.SubjectName,
+                FacultyName = apiModel.Faculty.FacultyName,
+                SectionName = apiModel.Section.SectionName,
+                FacultyContact = apiModel.Faculty.ContactNumber,
+                FacultyEmail = apiModel.Faculty.Email,
             };
             return dtoClass;
         }

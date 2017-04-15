@@ -25,6 +25,7 @@ namespace API.LABURNUM.COM
     
         public virtual Class Class { get; set; }
         public virtual Faculty Faculty { get; set; }
+        public virtual Section Section { get; set; }
         public virtual Subject Subject { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace API.LABURNUM.COM.Component
             public static string MORE_THAN_ONE_RECORDFOUND = "More Than One Record Found.";
             public static string PARAMETER_LIST_CANNOT_BE_NULL = "Parameter List Cannot Be Null";
             public static string PARAMETER_CANNOT_BE_NULL = "Parameter Cannot Be Null";
+            public static string SOMETHING_GOES_WRONG = "SomeThing Goes Wrong Please Try Again Later";
         }
 
         public static class URL
@@ -33,6 +34,16 @@ namespace API.LABURNUM.COM.Component
         {
             public static string SALTKEY = System.Configuration.ConfigurationManager.AppSettings["SALTKEY"];
             public static string SHAREDKEY = System.Configuration.ConfigurationManager.AppSettings["SHAREDKEY"];
+        }
+
+        public static class SMSAPI
+        {
+            public static string SMSAPIURL = System.Configuration.ConfigurationManager.AppSettings["SMSAPIURL"];
+            public static string SENDERID = System.Configuration.ConfigurationManager.AppSettings["SENDERID"];
+            public static string SMSUSERNAME = System.Configuration.ConfigurationManager.AppSettings["SMSUSERNAME"];
+            public static string SMSPASSWORD = System.Configuration.ConfigurationManager.AppSettings["SMSPASSWORD"];
+            public static string PRESENTSMSMSG = System.Configuration.ConfigurationManager.AppSettings["PRESENTSMSMSG"];
+            public static string ABSENTSMSMSG = System.Configuration.ConfigurationManager.AppSettings["ABSENTSMSMSG"];
         }
     }
 }
