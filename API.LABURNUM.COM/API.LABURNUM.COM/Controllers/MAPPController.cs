@@ -10,6 +10,11 @@ namespace API.LABURNUM.COM.Controllers
 {
     public class MAPPController : ApiController
     {
+        private string GetEncryptedPassword(string password)
+        {
+            return new API.LABURNUM.COM.Component.PasswordConvertor().Password(password);
+        }
+
         private DTO.LABURNUM.COM.ApiResponseModel GetApiResponseModel(string message, bool status, object model)
         {
             DTO.LABURNUM.COM.ApiResponseModel apiresponsemodel = new DTO.LABURNUM.COM.ApiResponseModel() { Message = message, Status = status, Result = model };
@@ -21,6 +26,7 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 DTO.LABURNUM.COM.SessionModel sessionmodel = new DTO.LABURNUM.COM.SessionModel();
+                model.Password = GetEncryptedPassword(model.Password);
                 try
                 {
                     if (model.LoginBy == 0)
@@ -37,6 +43,7 @@ namespace API.LABURNUM.COM.Controllers
                         DTO.LABURNUM.COM.StudentModel studentmodel = new DTO.LABURNUM.COM.StudentModel() { StudentUserName = model.UserName, StudentPassword = model.Password, ApiClientModel = model.ApiClientModel, IsStudentLogin = true };
 
                         sessionmodel.StudentModel = new API.LABURNUM.COM.Controllers.StudentController().ParentStudentLogin(studentmodel);
+                        sessionmodel.LoginByUserId = sessionmodel.StudentModel.StudentId;
                     }
                     if (model.LoginBy == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
                     {
@@ -48,6 +55,7 @@ namespace API.LABURNUM.COM.Controllers
 
                         DTO.LABURNUM.COM.StudentModel studentmodel = new DTO.LABURNUM.COM.StudentModel() { ParentUserName = model.UserName, ParentPassword = model.Password, ApiClientModel = model.ApiClientModel };
                         sessionmodel.StudentModel = new API.LABURNUM.COM.Controllers.StudentController().ParentStudentLogin(studentmodel);
+                        sessionmodel.LoginByUserId = sessionmodel.StudentModel.StudentId;
                     }
                     if (model.LoginBy == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
                     {
@@ -58,6 +66,7 @@ namespace API.LABURNUM.COM.Controllers
 
                         DTO.LABURNUM.COM.FacultyModel facultyModel = new DTO.LABURNUM.COM.FacultyModel() { UserName = model.UserName, Password = model.Password, ApiClientModel = model.ApiClientModel };
                         sessionmodel.FacultyModel = new API.LABURNUM.COM.Controllers.FacultyController().FacultyLogin(facultyModel);
+                        sessionmodel.LoginByUserId = sessionmodel.FacultyModel.FacultyId;
                     }
 
                     sessionmodel.LoginBy = model.LoginBy;
