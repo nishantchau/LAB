@@ -436,5 +436,37 @@ namespace API.LABURNUM.COM.Controllers
             }
             return null;
         }
+
+        public List<DTO.LABURNUM.COM.CommonAttendanceModel> SearchStudentListForAttendance(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        {
+            try
+            {
+                List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = new List<DTO.LABURNUM.COM.CommonAttendanceModel>();
+                List<API.LABURNUM.COM.Student> dbStudents = new FrontEndApi.StudentApi().GetStudentByAdvanceSearch(new DTO.LABURNUM.COM.StudentModel() { ClassId = model.ClassId, SectionId = model.SectionId });
+                foreach (API.LABURNUM.COM.Student item in dbStudents)
+                {
+                    dbList.Add(new DTO.LABURNUM.COM.CommonAttendanceModel()
+                    {
+                        ClassId = item.ClassId,
+                        SectionId = item.SectionId,
+                        StudentId = item.StudentId,
+                        StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName,
+                    });
+                }
+                return dbList;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public void AddAttendanceList(List<DTO.LABURNUM.COM.CommonAttendanceModel> model)
+        {
+            foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in model)
+            {
+                Add(item);
+            }
+        }
     }
 }

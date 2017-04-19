@@ -204,11 +204,15 @@ namespace API.LABURNUM.COM.Controllers
 
         public dynamic AddAttendanceList(List<DTO.LABURNUM.COM.CommonAttendanceModel> model)
         {
-            foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in model)
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model[0].ApiClientModel.UserName, model[0].ApiClientModel.Password))
             {
-                AddAttendance(item);
+                foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in model)
+                {
+                    AddAttendance(item);
+                }
+                return GetApiResponseModel("Attendance Submitted Successfully", false, null);
             }
-            return GetApiResponseModel("Attendance Submitted Successfully", false, null);
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
         }
 
         public dynamic SearchFacultyByFacultyId(DTO.LABURNUM.COM.FacultyModel model)
