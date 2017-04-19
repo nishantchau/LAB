@@ -16,7 +16,7 @@ namespace LABURNUM.COM.Component
                 DTO.LABURNUM.COM.SMSAPIModel model = new DTO.LABURNUM.COM.SMSAPIModel();
                 model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
                 HttpClient client = new LABURNUM.COM.Component.Common().GetHTTPClient("application/json");
-                HttpResponseMessage response = client.PostAsJsonAsync("SMSAPI/SearchSMSBalance", model).Result;
+                HttpResponseMessage response = client.PostAsJsonAsync("Message/SearchSMSBalance", model).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var data = response.Content.ReadAsStringAsync().Result;

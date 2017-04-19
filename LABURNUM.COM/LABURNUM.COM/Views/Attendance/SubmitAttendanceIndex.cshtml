@@ -1,0 +1,76 @@
+﻿@model List<DTO.LABURNUM.COM.CommonAttendanceModel>
+
+@{int counter = 1;}
+
+<div class="row">
+    <div class="col-md-12">
+        <!--breadcrumbs start -->
+        <ul class="breadcrumb">
+            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+            <li>Attendance</li>
+            <li class="active">Submit Attendance</li>
+        </ul>
+        <!--breadcrumbs end -->
+    </div>
+</div>
+
+@if (Model.Count == 0)
+{
+    <section>
+        <header class="panel-heading">
+            Submit Attendance For Today
+        </header>
+        <div class="col-md-12 margin_top">
+        </div>
+        <div class="text-center">
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+        </div>
+    </section>
+}
+else
+{
+    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnSubmitAttendanceBegin", OnSuccess = "OnSubmitAttendanceSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Attendance/SubmitAttendance" }))
+    {
+    <section>
+        <header class="panel-heading">
+            Submit Attendance For Today
+            <span class="tools pull-right">
+                <button type="button" onclick="StudentList('BusRoutes');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            </span>
+        </header>
+        <div class="row" id="divTable">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Student Name</th>
+                                <th>Present / Absent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in @Model)
+                            {
+                                <tr>
+                                    <td style="width: 17%;">@counter</td>
+                                    <td style="width: 20%;">@item.StudentName</td>
+                                    <td>@Html.CheckBoxFor(m => item.IsPresent)</td>
+                                </tr>
+                                counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button id="btnSubmit" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">Submit</button>
+        </div>
+        <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+        </div>
+        <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+    </section>
+    }
+}

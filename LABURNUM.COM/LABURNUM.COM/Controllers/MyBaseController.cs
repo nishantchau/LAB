@@ -28,7 +28,7 @@ namespace LABURNUM.COM.Controllers
             catch (Exception ex)
             {
                 Session.RemoveAll();
-                filterContext.Result = Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Logout/Index"); ;
+                filterContext.Result = Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Logout/Index"); 
             }
         }
 

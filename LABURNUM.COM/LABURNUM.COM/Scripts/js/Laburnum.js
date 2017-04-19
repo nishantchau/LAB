@@ -716,7 +716,7 @@ function OnAdmissionTypeAdvanceSeachIndexReady() {
 
 function OnLoginBegin() {
     SetHtmlBlank("divMessage");
-    if (Validate.IntValueValidate("hdnLoginBy", "divMessage", "Please Choose Either \'Teacher\' or \'Student\' or \'Parent\'")) { }
+    if (Validate.IntValueValidate("hdnLoginBy", "divMessage", "Please Choose Either \'Staff\' or \'Student\' or \'Parent\'")) { }
     else { return false; }
 
     if (Validate.StringValueValidate("txtUserName", "divMessage", "Plese Enter UserName.")) { }
@@ -2552,5 +2552,24 @@ function OnDashBoardReady() {
         CreateDigitalWatch();
     } catch (e) {
         MyAlert("OnDashBoardReady : " + e);
+    }
+}
+
+function OnSubmitAttendanceBegin() {
+    try {
+        Disablebutton("btnSubmit");
+        DisplayLoader(_LOADERDIVID);
+    } catch (e) {
+        MyAlert("OnSubmitAttendanceBegin : " + e);
+    }
+}
+
+function OnSubmitAttendanceSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code != 0) { Enablebutton("btnSubmit"); }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, "Attendance Submitted SuccessFully.", "Failed To Submit Please Try Again Later.");
+    } catch (e) {
+        MyAlert("OnSubmitAttendanceSuccess : " + e);
     }
 }
