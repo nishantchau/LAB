@@ -5,43 +5,43 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="87e503062e7f4e91aec09e04a531fea8" Name="Diagram1" ZoomLevel="52">
-        <EntityTypeShape EntityType="LaburnumModel.AcademicYearTable" Width="1.5" PointX="7.74414414528019" PointY="15.907838292376994" />
-        <EntityTypeShape EntityType="LaburnumModel.AdmissionType" Width="1.5" PointX="11.690439915140365" PointY="20.013653496286672" />
-        <EntityTypeShape EntityType="LaburnumModel.ApiClient" Width="1.5" PointX="9.7713794511609624" PointY="8.5783160219799335" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass1" Width="1.5" PointX="9.1642203243282712" PointY="15.821294180965653" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass10" Width="1.5" PointX="0.20927739711910365" PointY="14.799794472195112" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass11" Width="1.5" PointX="11.022530430472703" PointY="0.4818387182810524" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass12" Width="1.5" PointX="5.6631846119012614" PointY="9.9359695659652214" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass2" Width="1.5" PointX="5.3376718430489634" PointY="0.16975279160298071" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass3" Width="1.5" PointX="0.6697370580722285" PointY="20.694823215107817" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass4" Width="1.5" PointX="4.643599197568185" PointY="8.9447161149907473" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass5" Width="1.5" PointX="2.0558302691466315" PointY="8.5346727112935259" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass6" Width="1.5" PointX="7.192370684441352" PointY="9.0606581461898319" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass7" Width="1.5" PointX="9.5903944976583091" PointY="28.543398393571096" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass8" Width="1.5" PointX="11.57330023663738" PointY="8.882771123611727" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass9" Width="1.5" PointX="3.2315211814043678" PointY="2.0536206225182956" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClassLKG" Width="1.5" PointX="7.4980508310245586" PointY="14.320609561316953" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClassPreNursery" Width="1.5" PointX="2.4915340684780545" PointY="5.3703899110529525" />
-        <EntityTypeShape EntityType="LaburnumModel.AttendanceClassUKG" Width="1.5" PointX="2.8148998631233813" PointY="19.845766166153254" />
-        <EntityTypeShape EntityType="LaburnumModel.BusRoute" Width="1.5" PointX="4.5303788802262295" PointY="23.020227815499634" />
-        <EntityTypeShape EntityType="LaburnumModel.Circular" Width="1.5" PointX="5.3615880670778395" PointY="7.905996832952833" />
-        <EntityTypeShape EntityType="LaburnumModel.CircularNotificationTable" Width="1.5" PointX="5.4601330130641035" PointY="2.90350082651875" />
-        <EntityTypeShape EntityType="LaburnumModel.CircularNotificationTracker" Width="1.5" PointX="4.83284071685413" PointY="30.765955745599211" />
-        <EntityTypeShape EntityType="LaburnumModel.Class" Width="1.5" PointX="5.9112318986613452" PointY="11.403023501580126" />
-        <EntityTypeShape EntityType="LaburnumModel.ClassSubjectFacultyTable" Width="1.5" PointX="5.5017878252555557" PointY="9.9490076200799127" />
-        <EntityTypeShape EntityType="LaburnumModel.Faculty" Width="1.5" PointX="2.7713290093333129" PointY="12.441151371431142" />
-        <EntityTypeShape EntityType="LaburnumModel.Fee" Width="1.5" PointX="8.1646282189360946" PointY="4.3681628128365437" />
-        <EntityTypeShape EntityType="LaburnumModel.HomeWork" Width="1.5" PointX="2.7262107612221551" PointY="18.806974494274229" />
-        <EntityTypeShape EntityType="LaburnumModel.LateFeePaneltyMaster" Width="1.5" PointX="11.861754074628351" PointY="12.11637834278698" />
-        <EntityTypeShape EntityType="LaburnumModel.LoginActivity" Width="1.5" PointX="10.773068675200021" PointY="22.113848294184471" />
-        <EntityTypeShape EntityType="LaburnumModel.Month" Width="1.5" PointX="9.914725563449192" PointY="29.513613476191466" />
-        <EntityTypeShape EntityType="LaburnumModel.Salutation" Width="1.5" PointX="3.6435682716050968" PointY="15.555149741263664" />
-        <EntityTypeShape EntityType="LaburnumModel.Section" Width="1.5" PointX="2.7014641364577527" PointY="30.504452436465982" />
-        <EntityTypeShape EntityType="LaburnumModel.Student" Width="1.5" PointX="10.051872096048609" PointY="15.072804919943588" />
-        <EntityTypeShape EntityType="LaburnumModel.StudentFee" Width="1.5" PointX="9.68915545087734" PointY="9.7314357206837432" />
-        <EntityTypeShape EntityType="LaburnumModel.StudentFeeDetail" Width="1.5" PointX="0.91108872411357655" PointY="26.388025415310647" />
-        <EntityTypeShape EntityType="LaburnumModel.Subject" Width="1.5" PointX="7.5332784166248885" PointY="10.765737672692975" />
-        <EntityTypeShape EntityType="LaburnumModel.UserType" Width="1.5" PointX="2.3989706385875915" PointY="4.4769343605623275" />
+        <EntityTypeShape EntityType="LaburnumModel.AcademicYearTable" Width="1.5" PointX="5.5750645853462935" PointY="30.155424072479562" />
+        <EntityTypeShape EntityType="LaburnumModel.AdmissionType" Width="1.5" PointX="1.0986929056694232" PointY="8.3398558536264371" />
+        <EntityTypeShape EntityType="LaburnumModel.ApiClient" Width="1.5" PointX="2.1170306513630925" PointY="2.09188921847003" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass1" Width="1.5" PointX="11.143459779742853" PointY="3.8321854042970509" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass10" Width="1.5" PointX="7.58990467134393" PointY="3.0768675222419515" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass11" Width="1.5" PointX="11.852578684618967" PointY="7.63766356168206" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass12" Width="1.5" PointX="8.3683643733935256" PointY="16.69899030807381" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass2" Width="1.5" PointX="10.32096649814442" PointY="27.867641700370072" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass3" Width="1.5" PointX="10.00696647446927" PointY="25.98886020201671" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass4" Width="1.5" PointX="10.260499828616391" PointY="29.160366235841238" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass5" Width="1.5" PointX="2.0708171734916125" PointY="30.332575856862857" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass6" Width="1.5" PointX="10.656620324895075" PointY="18.703609624273895" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass7" Width="1.5" PointX="6.9757079644946884" PointY="30.453748657579418" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass8" Width="1.5" PointX="5.200921970047486" PointY="20.696417058211015" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClass9" Width="1.5" PointX="7.22072332688641" PointY="31.531599774738588" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClassLKG" Width="1.5" PointX="5.2043442619984708" PointY="7.1050163242523636" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClassPreNursery" Width="1.5" PointX="5.6339156095096445" PointY="28.300886018341821" />
+        <EntityTypeShape EntityType="LaburnumModel.AttendanceClassUKG" Width="1.5" PointX="1.9043512017952051" PointY="22.8889142530453" />
+        <EntityTypeShape EntityType="LaburnumModel.BusRoute" Width="1.5" PointX="3.8146848919869796" PointY="19.562186533381318" />
+        <EntityTypeShape EntityType="LaburnumModel.Circular" Width="1.5" PointX="10.012243491603176" PointY="12.745877242063115" />
+        <EntityTypeShape EntityType="LaburnumModel.CircularNotificationTable" Width="1.5" PointX="9.918739908337006" PointY="0.72695562277313119" />
+        <EntityTypeShape EntityType="LaburnumModel.CircularNotificationTracker" Width="1.5" PointX="2.9929883214612438" PointY="18.264973097604223" />
+        <EntityTypeShape EntityType="LaburnumModel.Class" Width="1.5" PointX="10.791101121712057" PointY="6.3532037466546534" />
+        <EntityTypeShape EntityType="LaburnumModel.ClassSubjectFacultyTable" Width="1.5" PointX="6.0388148920791291" PointY="21.853422547622316" />
+        <EntityTypeShape EntityType="LaburnumModel.Faculty" Width="1.5" PointX="9.74389341927315" PointY="8.0728127844970725" />
+        <EntityTypeShape EntityType="LaburnumModel.Fee" Width="1.5" PointX="6.3183572917796473" PointY="8.7739671956626548" />
+        <EntityTypeShape EntityType="LaburnumModel.HomeWork" Width="1.5" PointX="7.7785329761814941" PointY="24.353006106034389" />
+        <EntityTypeShape EntityType="LaburnumModel.LateFeePaneltyMaster" Width="1.5" PointX="6.490085064661729" PointY="16.534263037393924" />
+        <EntityTypeShape EntityType="LaburnumModel.LoginActivity" Width="1.5" PointX="0.65166370228476067" PointY="16.2262381241779" />
+        <EntityTypeShape EntityType="LaburnumModel.Month" Width="1.5" PointX="8.1517379806152253" PointY="7.1916664127221637" />
+        <EntityTypeShape EntityType="LaburnumModel.Salutation" Width="1.5" PointX="7.5835364868787751" PointY="9.019475687769928" />
+        <EntityTypeShape EntityType="LaburnumModel.Section" Width="1.5" PointX="6.2163461997249838" PointY="20.708146015511893" />
+        <EntityTypeShape EntityType="LaburnumModel.Student" Width="1.5" PointX="7.9494810588422613" PointY="24.50186016806488" />
+        <EntityTypeShape EntityType="LaburnumModel.StudentFee" Width="1.5" PointX="9.2302082261211282" PointY="26.014752310707586" />
+        <EntityTypeShape EntityType="LaburnumModel.StudentFeeDetail" Width="1.5" PointX="4.3577701637324733" PointY="4.6336630753398236" />
+        <EntityTypeShape EntityType="LaburnumModel.Subject" Width="1.5" PointX="6.635680745651797" PointY="7.1230573985367354" />
+        <EntityTypeShape EntityType="LaburnumModel.UserType" Width="1.5" PointX="11.733579084153091" PointY="14.615455634247258" />
         <AssociationConnector Association="LaburnumModel.FK_StudentFee_AcademicYearTable" />
         <AssociationConnector Association="LaburnumModel.FK_StudentFeeDetail_AcademicYearTable" />
         <AssociationConnector Association="LaburnumModel.FK_Fee_AdmissionType" />
@@ -122,6 +122,7 @@
         <AssociationConnector Association="LaburnumModel.FK_StudentFee_Class" />
         <AssociationConnector Association="LaburnumModel.FK_StudentFeeDetail_Class" />
         <AssociationConnector Association="LaburnumModel.FK_ClassSubjectFacultyTable_Faculty" />
+        <AssociationConnector Association="LaburnumModel.FK_ClassSubjectFacultyTable_Section" />
         <AssociationConnector Association="LaburnumModel.FK_ClassSubjectFacultyTable_Subject" />
         <AssociationConnector Association="LaburnumModel.FK_Faculty_Section" />
         <AssociationConnector Association="LaburnumModel.FK_Faculty_Subject" />
