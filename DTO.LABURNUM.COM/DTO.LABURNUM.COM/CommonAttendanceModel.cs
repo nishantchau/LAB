@@ -24,6 +24,8 @@ namespace DTO.LABURNUM.COM
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
+        public string StudentName { get; set; }
+
         public ApiClientModel ApiClientModel { get; set; }
     }
 }
