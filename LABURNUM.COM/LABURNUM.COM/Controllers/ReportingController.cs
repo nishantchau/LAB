@@ -83,7 +83,7 @@ namespace LABURNUM.COM.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     var data = response.Content.ReadAsStringAsync().Result;
-                    DTO.LABURNUM.COM.FeeReportingResultModel dbFeeReportingResult = JsonConvert.DeserializeObject<DTO.LABURNUM.COM.FeeReportingResultModel>(data);
+                    List<DTO.LABURNUM.COM.FeeReportingResultModel> dbFeeReportingResult = JsonConvert.DeserializeObject<List<DTO.LABURNUM.COM.FeeReportingResultModel>>(data);
                     string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Reporting/StudentFeeReporting.cshtml", dbFeeReportingResult);
                     return Json(new { code = 0, message = "success", result = html });
                 }

@@ -19,8 +19,13 @@ namespace LABURNUM.COM.Controllers
                 ClassId = sessionManagement.GetFacultyClassId(),
                 SectionId = sessionManagement.GetFacultySectionId(),
             };
-            List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetStudentListForAttendance(model);
-            return View(dblist);
+            if (new Component.CommonAttendance().IsAttendanceSubmittedForToday(model))
+            { return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Attendance/IsAttendanceSubmitted"); }
+            else
+            {
+                List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetStudentListForAttendance(model);
+                return View(dblist);
+            }
         }
 
         public ActionResult IsAttendanceSubmitted()
@@ -32,7 +37,8 @@ namespace LABURNUM.COM.Controllers
              };
             if (new Component.CommonAttendance().IsAttendanceSubmittedForToday(model))
             {
-                return View(model);
+                List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(model);
+                return View(dblist);
             }
             else { return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Attendance/SubmitAttendanceIndex"); }
         }
@@ -41,7 +47,12 @@ namespace LABURNUM.COM.Controllers
         {
             try
             {
-                dbList[0].ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in dbList)
+                {
+                    item.FacultyId = sessionManagement.GetFacultyId();
+                    item.Date = System.DateTime.Now;
+                    item.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                }
                 HttpClient client = new LABURNUM.COM.Component.Common().GetHTTPClient("application/json");
                 HttpResponseMessage response = client.PostAsJsonAsync("CommonAttendance/AddAttendanceList", dbList).Result;
                 if (response.IsSuccessStatusCode)
@@ -55,6 +66,40 @@ namespace LABURNUM.COM.Controllers
             {
                 return Json(new { code = -2, message = "failed" });
             }
+        }
+
+        public ActionResult SearchAttendanceIndex()
+        {
+            DTO.LABURNUM.COM.CommonAttendanceModel model = new DTO.LABURNUM.COM.CommonAttendanceModel();
+            return View(model);
+        }
+
+        public ActionResult SearchAttendance(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        {
+            try
+            {
+                string html = null;
+                if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
+                {
+                    model.ClassId = sessionManagement.GetFacultyClassId();
+                    model.SectionId = sessionManagement.GetFacultySectionId();
+                }
+                if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+                {
+                    model.ClassId = sessionManagement.GetClassId();
+                    model.SectionId = sessionManagement.GetSectionId();
+                    model.StudentId = sessionManagement.GetSudentId();
+                }
+                List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(model);
+                html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Attendance/SearchResult.cshtml", dblist);
+                return Json(new { code = 0, message = "success", result = html });
+            }
+            catch (Exception)
+            {
+                string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Error404.cshtml", null);
+                return Json(new { code = 0, message = "success", result = html });
+            }
+
         }
     }
 }

@@ -135,5 +135,18 @@ namespace LABURNUM.COM.Controllers
 
             }
         }
+
+        public ActionResult StudentByClassandSection(long classId, long sectionId)
+        {
+            try
+            {
+                return Json(new { code = 0, students = new LABURNUM.COM.Component.Student().GetStudentByClassandSection(classId, sectionId) });
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -1, sections = string.Empty });
+
+            }
+        }
     }
 }

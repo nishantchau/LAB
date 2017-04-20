@@ -96,5 +96,13 @@ namespace LABURNUM.COM.Controllers
                 return Json(new { code = -2, message = "failed" });
             }
         }
+
+
+        public ActionResult SearchAssignedClassToFaculty()
+        {
+            DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model = new DTO.LABURNUM.COM.ClassSubjectFacultyTableModel() { FacultyId = sessionManagement.GetFacultyId() };
+            List<DTO.LABURNUM.COM.ClassSubjectFacultyTableModel> dblist = new Component.ClassSubjectFacultyTable().GetClassSubjectFacultyByAdvanceSearch(model);
+            return View(dblist);
+        }
     }
 }

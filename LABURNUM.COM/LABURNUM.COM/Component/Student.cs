@@ -63,5 +63,10 @@ namespace LABURNUM.COM.Component
                 throw new Exception("Error While Getting Student Model");
             }
         }
+
+        public List<DTO.LABURNUM.COM.StudentModel> GetStudentByClassandSection(long classId, long sectionId)
+        {
+            return GetStudentByAdvanceSearch(new DTO.LABURNUM.COM.StudentModel() { ClassId = classId, SectionId = sectionId });
+        }
     }
 }

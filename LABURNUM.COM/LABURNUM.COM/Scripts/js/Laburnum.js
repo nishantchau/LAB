@@ -2413,6 +2413,7 @@ function OnStudentFeeReportingIndexReady() {
     try {
         $("ddlAcademicYear").val(GetHtml("divAcademicYear"));
         BindSectionsDropdownByClass();
+        BindStudentDropdownBySection();
     } catch (e) {
         MyAlert("OnStudentFeeReportingIndexReady : " + e);
     }
@@ -2421,10 +2422,13 @@ function OnStudentFeeReportingIndexReady() {
 function OnStudentFeeReportingBegin() {
     try {
         SetHtmlBlank(_MESSAGEDIVID);
-
+        SetHtmlBlank(_RESULTDIVID);
+        if (Validate.IntValueValidate("ddlStudent", _MESSAGEDIVID, "Please Select A Student")) { }
+        else { return false; }
         DisplayLoader(_LOADERDIVID);
         Disablebutton("btnSearch");
         Disablebutton("btnReset");
+       
     } catch (e) {
         MyAlert("OnStudentFeeReportingBegin : " + e);
     }
@@ -2434,12 +2438,79 @@ function OnStudentFeeReportingSuccess(data) {
     try {
         HideLoader(_LOADERDIVID);
         FillSuccessResultView(data, _RESULTDIVID);
-        if (data.code != 0) {
-            Enablebutton("btnSearch");
-            Enablebutton("btnReset");
-        }
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+
     } catch (e) {
         MyAlert("OnStudentFeeReportingSuccess : " + e);
+    }
+}
+
+function BindStudentDropdownBySection() {
+    try {
+        $("#ddlSection").on("change", function () {
+            BindCoreStudentsDropDownBySection();
+        });
+
+    } catch (e) {
+        MyAlert("BindStudentDropdownBySection :" + e);
+        return false;
+    }
+}
+
+function BindCoreStudentsDropDownBySection(IsTriggeredByCode) {
+    try {
+        $("#ddlStudent").prop('disabled', false);
+        $("#ddlStudent").empty();
+
+        var value = $("#ddlClass option:selected").val();
+        var value1 = $("#ddlSection option:selected").val();
+        if (value == "") {
+            $('#ddlStudent').append(new Option("Please Select A Student", 0));
+            $("#ddlStudent").prop('disabled', true);
+            return;
+        }
+
+        var url = GetDomain(_DOMAINDIVID) + "Common/StudentByClassandSection?classId=" + value + "&sectionId=" + value1;
+
+        $.ajax({
+            method: "POST",
+            url: url,
+            success: function (data) {
+
+                data = eval(data);
+
+                if (data.code == -1) {
+                    $('#ddlStudent').append(new Option("Please Select A Student", 0));
+                    $("#ddlStudent").prop('disabled', true);
+                    return;
+                }
+
+                if (data.code == 0) {
+
+                    $('#ddlStudent').append(new Option("Please Select A Student", 0));
+                    $.each(data.students, function (i, item) {
+                        $('#ddlStudent').append(new Option(data.students[i].StudentFullName, data.students[i].StudentId));
+                    });
+
+                    //set selected index- ONLY_FOR_EDIT
+                    if (IsTriggeredByCode != null) {
+                        if (IsTriggeredByCode) {
+                            var v = $("#hdnStudentId").val();
+                            if (v != null && v != "") { $('#ddlStudent').val(v); }
+                            $("#hdnStudentId").val(v);
+                        }
+                    }
+                }
+            },
+            error: function () {
+                $('#divInfo').html('<p>An Error Has Occurred</p>');
+            }
+        });
+    }
+    catch (e) {
+        MyAlert("BindCoreStudentsDropDownBySection :" + e);
+        return false;
     }
 }
 
@@ -2571,5 +2642,33 @@ function OnSubmitAttendanceSuccess(data) {
         FillSuccessResultMSG(data, _MESSAGEDIVID, "Attendance Submitted SuccessFully.", "Failed To Submit Please Try Again Later.");
     } catch (e) {
         MyAlert("OnSubmitAttendanceSuccess : " + e);
+    }
+}
+
+function OnSearchAttendanceBegin() {
+    try {
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+    } catch (e) {
+        MyAlert("OnSearchAttendanceBegin : " + e);
+    }
+}
+
+function OnSearchAttendanceSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchAttendanceSuccess : " + e);
+    }
+}
+
+function OnSearchAttendanceIndexReady() {
+    try {
+        CreateDatePicker("txtStartDate");
+        CreateDatePicker("txtEndDate");
+    } catch (e) {
+        MyAlert("OnSearchAttendanceIndexReady : " + e);
     }
 }

@@ -517,6 +517,9 @@
     <Content Include="Views\Circular\ListOfAllCirculars.cshtml" />
     <Content Include="Views\Attendance\SubmitAttendanceIndex.cshtml" />
     <Content Include="Views\Attendance\IsAttendanceSubmitted.cshtml" />
+    <Content Include="Views\Attendance\SearchResult.cshtml" />
+    <Content Include="Views\Attendance\SearchAttendanceIndex.cshtml" />
+    <Content Include="Views\ClassSubjectWiseFaculty\SearchAssignedClassToFaculty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
