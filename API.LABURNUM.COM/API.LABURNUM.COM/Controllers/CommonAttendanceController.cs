@@ -34,7 +34,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     new FrontEndApi.AttendanceClassPreNurseryApi().Add(pmodel);
                     break;
@@ -45,7 +46,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClassLKGApi().Add(lkgmodel);
                     break;
@@ -56,7 +58,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClassUKGApi().Add(ukgmodel);
                     break;
@@ -68,7 +71,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass1Api().Add(firstmodel);
                     break;
@@ -80,7 +84,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass2Api().Add(secondmodel);
                     break;
@@ -92,7 +97,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass3Api().Add(thirdmodel);
                     break;
@@ -104,7 +110,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass4Api().Add(fourmodel);
                     break;
@@ -116,7 +123,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass5Api().Add(fivemodel);
                     break;
@@ -128,7 +136,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass6Api().Add(sixmodel);
                     break;
@@ -140,7 +149,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass7Api().Add(sevenmodel);
                     break;
@@ -152,7 +162,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass8Api().Add(eightmodel);
                     break;
@@ -164,7 +175,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass9Api().Add(ninemodel);
                     break;
@@ -176,7 +188,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass10Api().Add(tenmodel);
                     break;
@@ -188,7 +201,8 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass11Api().Add(elevenmodel);
                     break;
@@ -200,12 +214,17 @@ namespace API.LABURNUM.COM.Controllers
                         ClassId = model.ClassId,
                         SectionId = model.SectionId,
                         IsPresent = model.IsPresent,
-                        Date = model.Date
+                        Date = model.Date,
+                        FacultyId = model.FacultyId
                     };
                     AttendenceId = new FrontEndApi.AttendanceClass12Api().Add(twelvemodel);
                     break;
             }
+            string msg = "Blank";
+            if (model.IsPresent) { msg = API.LABURNUM.COM.Component.Constants.SMSAPI.PRESENTSMSMSG; }
+            else { msg = API.LABURNUM.COM.Component.Constants.SMSAPI.ABSENTSMSMSG; }
 
+            new Component.MessageApiHelper().SendSingleSMS(model.Mobile, msg);
             return AttendenceId;
         }
 
@@ -451,6 +470,9 @@ namespace API.LABURNUM.COM.Controllers
                         SectionId = item.SectionId,
                         StudentId = item.StudentId,
                         StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName,
+                        Mobile = item.Mobile,
+                        FatherName = item.FatherName,
+                        AdmissionNumber = item.AdmissionNumber,
                     });
                 }
                 return dbList;

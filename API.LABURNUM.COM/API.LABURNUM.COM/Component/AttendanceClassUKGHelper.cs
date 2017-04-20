@@ -59,7 +59,7 @@ namespace API.LABURNUM.COM.Component
                 IsPresent = apiclass.IsPresent,
                 CreatedOn = apiclass.CreatedOn,
                 IsActive = apiclass.IsActive,
-                LastUpdated = apiclass.LastUpdated
+                LastUpdated = apiclass.LastUpdated,
             };
             return dtoClass;
         }

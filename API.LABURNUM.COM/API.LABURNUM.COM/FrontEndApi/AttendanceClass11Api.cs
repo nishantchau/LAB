@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using API.LABURNUM.COM.Component;
+using System.Globalization;
 
 namespace API.LABURNUM.COM.FrontEndApi
 {
@@ -92,8 +93,28 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 if (model.StartDate.Year != 0001)
                 {
-                    if (model.EndDate.Year == 0001) { model.EndDate = model.EndDate.AddDays(1).AddSeconds(-1); }
+                    string dd = Convert.ToString(model.StartDate.Day);
+                    if (dd.Length == 1) { dd = "0" + dd; }
+                    string mm = Convert.ToString(model.StartDate.Month);
+                    if (mm.Length == 1) { mm = "0" + mm; }
+                    string yy = Convert.ToString(model.StartDate.Year);
+                    string sdate = dd + "/" + mm + "/" + yy;
+                    model.StartDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (model.EndDate.Year != 0001)
+                {
+                    string dd = Convert.ToString(model.EndDate.Day);
+                    if (dd.Length == 1) { dd = "0" + dd; }
+                    string mm = Convert.ToString(model.StartDate.Month);
+                    if (mm.Length == 1) { mm = "0" + mm; }
+                    string yy = Convert.ToString(model.StartDate.Year);
+                    string sdate = dd + "/" + mm + "/" + yy;
+                    model.EndDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 
+                if (model.StartDate.Year != 0001)
+                {
                     iQuery = iQuery.Where(x => x.Date >= model.StartDate && x.Date <= model.EndDate && x.IsActive == true);
                 }
             }
@@ -101,8 +122,28 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 if (model.StartDate.Year != 0001)
                 {
-                    if (model.EndDate.Year == 0001) { model.EndDate = model.EndDate.AddDays(1).AddSeconds(-1); }
+                    string dd = Convert.ToString(model.StartDate.Day);
+                    if (dd.Length == 1) { dd = "0" + dd; }
+                    string mm = Convert.ToString(model.StartDate.Month);
+                    if (mm.Length == 1) { mm = "0" + mm; }
+                    string yy = Convert.ToString(model.StartDate.Year);
+                    string sdate = dd + "/" + mm + "/" + yy;
+                    model.StartDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (model.EndDate.Year != 0001)
+                {
+                    string dd = Convert.ToString(model.EndDate.Day);
+                    if (dd.Length == 1) { dd = "0" + dd; }
+                    string mm = Convert.ToString(model.StartDate.Month);
+                    if (mm.Length == 1) { mm = "0" + mm; }
+                    string yy = Convert.ToString(model.StartDate.Year);
+                    string sdate = dd + "/" + mm + "/" + yy;
+                    model.EndDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 
+                if (model.StartDate.Year != 0001)
+                {
                     iQuery = iQuery.Where(x => x.Date >= model.StartDate && x.Date <= model.EndDate && x.IsActive == true);
                 }
             }

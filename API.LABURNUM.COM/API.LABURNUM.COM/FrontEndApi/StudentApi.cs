@@ -186,8 +186,8 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (iQuery != null) { if (model.BusRouteId > 0) { iQuery = iQuery.Where(x => x.BusRouteId == x.BusRouteId && x.IsActive == true); } }
             else { if (model.BusRouteId > 0) { iQuery = this._laburnum.Students.Where(x => x.BusRouteId == x.BusRouteId && x.IsActive == true); } }
             //Search By SectionId.
-            if (iQuery != null) { if (model.SectionId > 0) { iQuery = iQuery.Where(x => x.SectionId == x.SectionId && x.IsActive == true); } }
-            else { if (model.SectionId > 0) { iQuery = this._laburnum.Students.Where(x => x.SectionId == x.SectionId && x.IsActive == true); } }
+            if (iQuery != null) { if (model.SectionId > 0) { iQuery = iQuery.Where(x => x.SectionId == model.SectionId && x.IsActive == true); } }
+            else { if (model.SectionId > 0) { iQuery = this._laburnum.Students.Where(x => x.SectionId == model.SectionId && x.IsActive == true); } }
 
             List<API.LABURNUM.COM.Student> dbStudents = iQuery.ToList();
             return dbStudents;
