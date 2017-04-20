@@ -30,9 +30,19 @@ namespace DTO.LABURNUM.COM
         public double SecurityFee { get; set; }
         public double DiscountAmount { get; set; }
 
+        public string MonthName { get; set; }
+
         public double TotalPaidAmount { get; set; }
         public double TotalPaidOnAdmission { get; set; }
         public double TotalPaidOnMonthly { get; set; }
         public List<DTO.LABURNUM.COM.StudentFeeDetailModel> MonthlyFeeDetails { get; set; }
+
+        public double MonthlyFee { get; set; }
+        public double LateFee { get; set; }
+        public Nullable<double> TransportFee { get; set; }
+        public Nullable<double> AnnualFunctionFee { get; set; }
+        public Nullable<double> PendingFee { get; set; }
+        public int PayForTheMonth { get; set; }
+        public double MonthDiscountAmount { get; set; }
     }
 }

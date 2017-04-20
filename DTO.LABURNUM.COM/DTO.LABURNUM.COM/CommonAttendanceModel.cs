@@ -25,6 +25,9 @@ namespace DTO.LABURNUM.COM
         public DateTime EndDate { get; set; }
 
         public string StudentName { get; set; }
+        public string FatherName { get; set; }
+        public string AdmissionNumber { get; set; }
+        public string Mobile { get; set; }
 
         public ApiClientModel ApiClientModel { get; set; }
     }
