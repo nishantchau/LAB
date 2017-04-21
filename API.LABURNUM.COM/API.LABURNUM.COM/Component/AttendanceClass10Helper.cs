@@ -59,7 +59,9 @@ namespace API.LABURNUM.COM.Component
                 IsPresent = apiclass.IsPresent,
                 CreatedOn = apiclass.CreatedOn,
                 IsActive = apiclass.IsActive,
-                LastUpdated = apiclass.LastUpdated
+                LastUpdated = apiclass.LastUpdated,
+                StudentName = apiclass.Student.FirstName + " " + apiclass.Student.MiddleName + " " + apiclass.Student.LastName,
+                FatherName = apiclass.Student.FatherName
             };
             return dtoClass;
         }
