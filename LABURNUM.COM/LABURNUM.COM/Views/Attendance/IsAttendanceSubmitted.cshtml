@@ -15,18 +15,14 @@
 
 <section class="panel">
     <header class="panel-heading">
-        Submit Today Attendance
+        Today Attendance Already Submitted
     </header>
-    <div class="col-md-12 margin_top">
-    </div>
-    <div class="text-center">
-        <header>
-            Attendance Submitted For Today Click Here To See Report
-        </header>
-        <div class="col-md-12 margin_top" style="float: left;">
-            Date : @Model[0].Date.ToShortDateString()
-        </div>
-    </div>
+    <header class="panel-heading">
+        Date : @Model[0].Date.ToShortDateString()
+        <span class="tools pull-right">
+            <button type="button" onclick="DownloadRecord('Attendance List');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+        </span>
+    </header>
     <div class="row" id="divTable">
         <div class="col-md-12">
             <div class="table-responsive">
@@ -35,6 +31,7 @@
                         <tr>
                             <th>S.No.</th>
                             <th>Student Name</th>
+                            <th>Father Name</th>
                             <th>Present / Absent</th>
                         </tr>
                     </thead>

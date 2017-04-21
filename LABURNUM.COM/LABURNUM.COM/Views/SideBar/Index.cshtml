@@ -190,20 +190,7 @@
             </ul>
         </li>
     }
-    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
-    {
-        <li class="xn-openable">
-            <a href="javascript:;">
-                <span class="fa fa-sitemap"></span>
-                <span class="xn-text">FACULTY</span>
-            </a>
-            <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Faculty/AddIndex">Add</a></li>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Faculty/SeeAllFaculties">See All Faculties</a></li>
-            </ul>
-        </li>
-    }
-    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
     {
         <li class="xn-openable">
             <a href="javascript:;">
@@ -212,6 +199,16 @@
             </a>
             <ul>
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Subject/SeeAllSubjectsIndex">See All Subjects</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-sitemap"></span>
+                <span class="xn-text">FACULTY</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Faculty/AddIndex">Add</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Faculty/SeeAllFaculties">See All Faculties</a></li>
             </ul>
         </li>
         <li class="xn-openable">
@@ -277,7 +274,7 @@
             </ul>
         </li>
         <li><a href="./"><span class="fa fa-book"></span><span class="xn-text">RESULT </span></a></li>
-        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassWiseFaculties/Index?sid=@(new LABURNUM.COM.Component.Common().GetEncryptedId(Convert.ToString(Model.GetLoginBy())))"><span class="fa fa-users"></span><span class="xn-text">FACULTIES DETAILS/span></a></li>
+        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassWiseFaculties/Index?sid=@(new LABURNUM.COM.Component.Common().GetEncryptedId(Convert.ToString(Model.GetLoginBy())))"><span class="fa fa-users"></span><span class="xn-text">FACULTIES DETAILS</span></a></li>
         <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/ListOfAllCirculars"><span class="fa fa-users"></span><span class="xn-text">LIST OF ALL CIRCULAR(S)</span></a></li>
     }
     @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
@@ -337,11 +334,6 @@
                 </li>
             </ul>
         </li>
-    }
-
-    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
-    { 
-        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassWiseFaculties/Index?sid=@(new LABURNUM.COM.Component.Common().GetEncryptedId(Convert.ToString(Model.GetLoginBy())))"><span class="fa fa-users"></span><span class="xn-text">ASSIGNED DETAILS</span></a></li>
     }
     @if (Model.GetIsClassTeacher())
     {

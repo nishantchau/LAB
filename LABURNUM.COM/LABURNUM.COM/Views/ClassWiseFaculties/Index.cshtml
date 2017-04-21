@@ -1,13 +1,13 @@
 ﻿@model List<DTO.LABURNUM.COM.ClassSubjectFacultyTableModel>
 
-@if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT)))
+@if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT)) || (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT)))
 {
     <div class="row">
         <div class="col-md-12">
             <!--breadcrumbs start -->
             <ul class="breadcrumb">
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
-                <li class="active">Subject Wise Faculties</li>
+                <li class="active">Subject Wise Faculties Details</li>
             </ul>
             <!--breadcrumbs end -->
         </div>
@@ -20,7 +20,7 @@
             <!--breadcrumbs start -->
             <ul class="breadcrumb">
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
-                <li class="active">Assigned Class</li>
+                <li class="active">Assigned Classes</li>
             </ul>
             <!--breadcrumbs end -->
         </div>
