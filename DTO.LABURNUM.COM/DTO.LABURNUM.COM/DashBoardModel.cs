@@ -9,5 +9,8 @@ namespace DTO.LABURNUM.COM
     public class DashBoardModel
     {
         public string SMSBalance { get; set; }
+        public int PresentStudent { get; set; }
+        public int AbsentStudent { get; set; }
+        public bool Status { get; set; }
     }
 }
