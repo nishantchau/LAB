@@ -458,6 +458,44 @@ function CreateDatePicker(boxId) {
     }
 }
 
+function CreateDigitalWatch() {
+    try {
+        // Create two variable with the names of the months and days in an array
+        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+        // Create a newDate() object
+        var newDate = new Date();
+        // Extract the current date from Date object
+        newDate.setDate(newDate.getDate());
+        // Output the day, date, month and year    
+        $('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
+
+        setInterval(function () {
+            // Create a newDate() object and extract the seconds of the current time on the visitor's
+            var seconds = new Date().getSeconds();
+            // Add a leading zero to seconds value
+            $("#sec").html((seconds < 10 ? "0" : "") + seconds);
+        }, 1000);
+
+        setInterval(function () {
+            // Create a newDate() object and extract the minutes of the current time on the visitor's
+            var minutes = new Date().getMinutes();
+            // Add a leading zero to the minutes value
+            $("#min").html((minutes < 10 ? "0" : "") + minutes);
+        }, 1000);
+
+        setInterval(function () {
+            // Create a newDate() object and extract the hours of the current time on the visitor's
+            var hours = new Date().getHours();
+            // Add a leading zero to the hours value
+            $("#hours").html((hours < 10 ? "0" : "") + hours);
+        }, 1000);
+    } catch (e) {
+        MyAlert("CreateDigitalWatch : " + e);
+    }
+}
+
 // End Common Function;
 
 //==============================================================================================================
@@ -678,7 +716,7 @@ function OnAdmissionTypeAdvanceSeachIndexReady() {
 
 function OnLoginBegin() {
     SetHtmlBlank("divMessage");
-    if (Validate.IntValueValidate("hdnLoginBy", "divMessage", "Please Choose Either \'Teacher\' or \'Student\' or \'Parent\'")) { }
+    if (Validate.IntValueValidate("hdnLoginBy", "divMessage", "Please Choose Either \'Staff\' or \'Student\' or \'Parent\'")) { }
     else { return false; }
 
     if (Validate.StringValueValidate("txtUserName", "divMessage", "Plese Enter UserName.")) { }
@@ -727,7 +765,6 @@ function setImageName(isforfaculty) {
 
     if (isforfaculty) { $("#divPhotoName").html($("#txtFacultyName").val()); }
     else {
-        // alert($("#txtAdmissionNumber").val());
         $("#divPhotoName").html($("#txtAdmissionNumber").val());
     }
 }
@@ -1575,25 +1612,9 @@ function OnEditFacultyIndexReady() {
             $("#divSubjectDetails").hide();
         }
 
-
-        //$(":checkbox").on("click", function () {
-        //    if ($(this).is(":checked")) {
-        //        $("#hdnIsClassTeacher").val("true");
-        //        $("#divClassDetails").show();
-        //    }
-        //    else {
-        //        $("#hdnIsClassTeacher").val("false");
-        //        $("#divClassDetails").hide();
-        //        $("#ddlClass").val("");
-        //        $("#ddlSection").val("0");
-        //        $("#ddlSection").prop("disabled", true);
-        //    }
-        //});
-
         $("#ddlUserType").on("change", function () {
             var uid = $("#ddlUserType").val();
             if (uid == LoginType.Faculty) {
-                alert("ee");
                 $("#divClassTeacher").show();
             }
             else {
@@ -2124,9 +2145,7 @@ function OnAddHomeWorkIndex() {
     try {
         BindSectionsDropdownByClass();
         var isst = GetHtml("hdnIsSubjectTeacher");
-        MyAlert(isst);
-        if (isst == 'true') {
-            MyAlert("1");
+        if (isst) {
             $("#ddlSubject").prop("disabled", true);
         }
     }
@@ -2139,6 +2158,9 @@ function OnSearchHomeWorkIndexReady() {
     try {
         CreateDatePicker("txtStartDate");
         CreateDatePicker("txtEndDate");
+        GetHtml("hdnIsSubjectTeacher");
+        GetHtml("hdnIsClassTeacher");
+        if (GetHtml("hdnIsSubjectTeacher")) { $("#ddlSubject").prop('disabled', true); }
     } catch (e) {
         MyAlert("OnSearchHomeWorkIndexReady : " + e);
     }
@@ -2296,9 +2318,9 @@ function OnEditCircularSuccess(data) {
 function OnAddClassSubjectFacultyIndex() {
     try {
         BindSectionsDropdownByClass();
-
+        BindFacultyDropdownBySubject();
     } catch (e) {
-
+        MyAlert("OnAddClassSubjectFacultyIndex : " + e);
     }
 }
 
@@ -2319,6 +2341,10 @@ function OnAddClassSubjectFacultyBegin() {
 
 function OnAddClassSubjectFacultySuccess(data) {
     HideLoader(_LOADERDIVID);
+    if (data.code == -3) {
+        SetHtml(_MESSAGEDIVID, "For This Class and Subject Faculty Already Assigned Please Re-Assigned it Before New Faculty Assign.");
+        return false;
+    }
     FillSuccessResultMSG(data, _MESSAGEDIVID, "Successfully Assigned.", "Failed To Assign Please Try Again Later");
     if (data.code != 0) { }
 }
@@ -2358,16 +2384,16 @@ function BindCoreFacultiesDropDownBySubject(IsTriggeredByCode) {
 
                 if (data.code == 0) {
                     $('#ddlFaculty').append(new Option("Please Select A Faculty", 0));
-                    $.each(data.sections, function (i, item) {
+                    $.each(data.faculties, function (i, item) {
                         $('#ddlFaculty').append(new Option(data.faculties[i].FacultyName, data.faculties[i].FacultyId));
                     });
 
                     //set selected index- ONLY_FOR_EDIT
                     if (IsTriggeredByCode != null) {
                         if (IsTriggeredByCode) {
-                            var v = $("#hdnSectionId").val();
+                            var v = $("#hdnFacultyId").val();
                             if (v != null && v != "") { $('#ddlFaculty').val(v); }
-                            $("#hdnSectionId").val(v);
+                            $("#hdnFacultyId").val(v);
                         }
                     }
                 }
@@ -2380,5 +2406,269 @@ function BindCoreFacultiesDropDownBySubject(IsTriggeredByCode) {
     catch (e) {
         MyAlert("BindCoreFacultiesDropDownBySubject :" + e);
         return false;
+    }
+}
+
+function OnStudentFeeReportingIndexReady() {
+    try {
+        $("ddlAcademicYear").val(GetHtml("divAcademicYear"));
+        BindSectionsDropdownByClass();
+        BindStudentDropdownBySection();
+    } catch (e) {
+        MyAlert("OnStudentFeeReportingIndexReady : " + e);
+    }
+}
+
+function OnStudentFeeReportingBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
+        if (Validate.IntValueValidate("ddlStudent", _MESSAGEDIVID, "Please Select A Student")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+       
+    } catch (e) {
+        MyAlert("OnStudentFeeReportingBegin : " + e);
+    }
+}
+
+function OnStudentFeeReportingSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        FillSuccessResultView(data, _RESULTDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+
+    } catch (e) {
+        MyAlert("OnStudentFeeReportingSuccess : " + e);
+    }
+}
+
+function BindStudentDropdownBySection() {
+    try {
+        $("#ddlSection").on("change", function () {
+            BindCoreStudentsDropDownBySection();
+        });
+
+    } catch (e) {
+        MyAlert("BindStudentDropdownBySection :" + e);
+        return false;
+    }
+}
+
+function BindCoreStudentsDropDownBySection(IsTriggeredByCode) {
+    try {
+        $("#ddlStudent").prop('disabled', false);
+        $("#ddlStudent").empty();
+
+        var value = $("#ddlClass option:selected").val();
+        var value1 = $("#ddlSection option:selected").val();
+        if (value == "") {
+            $('#ddlStudent').append(new Option("Please Select A Student", 0));
+            $("#ddlStudent").prop('disabled', true);
+            return;
+        }
+
+        var url = GetDomain(_DOMAINDIVID) + "Common/StudentByClassandSection?classId=" + value + "&sectionId=" + value1;
+
+        $.ajax({
+            method: "POST",
+            url: url,
+            success: function (data) {
+
+                data = eval(data);
+
+                if (data.code == -1) {
+                    $('#ddlStudent').append(new Option("Please Select A Student", 0));
+                    $("#ddlStudent").prop('disabled', true);
+                    return;
+                }
+
+                if (data.code == 0) {
+
+                    $('#ddlStudent').append(new Option("Please Select A Student", 0));
+                    $.each(data.students, function (i, item) {
+                        $('#ddlStudent').append(new Option(data.students[i].StudentFullName, data.students[i].StudentId));
+                    });
+
+                    //set selected index- ONLY_FOR_EDIT
+                    if (IsTriggeredByCode != null) {
+                        if (IsTriggeredByCode) {
+                            var v = $("#hdnStudentId").val();
+                            if (v != null && v != "") { $('#ddlStudent').val(v); }
+                            $("#hdnStudentId").val(v);
+                        }
+                    }
+                }
+            },
+            error: function () {
+                $('#divInfo').html('<p>An Error Has Occurred</p>');
+            }
+        });
+    }
+    catch (e) {
+        MyAlert("BindCoreStudentsDropDownBySection :" + e);
+        return false;
+    }
+}
+
+function OnSearchClassSubjectWiseFacultyIndexReady() {
+    try {
+        BindSectionsDropdownByClass();
+        BindFacultyDropdownBySubject();
+    } catch (e) {
+        MyAlert("OnSearchClassSubjectWiseFacultyIndexReady : " + e);
+    }
+}
+
+function OnClassSubjectFacultySearchBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnClassSubjectFacultySearchBegin : " + e);
+    }
+}
+
+function OnClassSubjectFacultySearchSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnClassSubjectFacultySearchSuccess : " + e);
+    }
+}
+
+function DeleteClassSubjectFacultyPopup(id) {
+    try {
+        var url = GetDomain(_DOMAINDIVID) + "Common/EncrptId?id=" + id;
+        $.ajax({
+            method: "Post",
+            url: url,
+            success: function (data) {
+                data = eval(data);
+                if (data.message == "y") {
+                    var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/DeleteClassSubjectFacultyPopup?id=" + data.id;
+                    FillViewInModelDiv(url, "myModal");
+                }
+                if (data.message == "n") {
+                }
+            }
+        });
+
+    } catch (e) {
+        MyAlert("DeleteClassSubjectFacultyPopup : " + e);
+    }
+}
+
+function OnDeleteClassSubjectFacultyBegin() {
+    try {
+        DisplayLoader(_POPUPLOADERDIVID);
+        Disablebutton("btnSubmit");
+    } catch (e) {
+        MyAlert("OnDeleteClassSubjectFacultyBegin : " + e);
+    }
+}
+
+function OnDeleteClassSubjectFacultySuccess(data) {
+    try {
+        HideLoader(_POPUPLOADERDIVID);
+        FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, "Successfull Remove.", "Failed To Proceed Please Try Again Lator.");
+        if (data.code != 0) { Enablebutton("btnSubmit"); }
+    } catch (e) {
+        MyAlert("OnDeleteClassSubjectFacultySuccess : " + e);
+    }
+}
+
+function OnSearchStudentHomeWorkIndexReady() {
+    try {
+        CreateDatePicker("txtStartDate");
+        CreateDatePicker("txtEndDate");
+    } catch (e) {
+        MyAlert("OnSearchStudentHomeWorkIndexReady : " + e);
+    }
+}
+
+function OnSearchStudentAssignedHomeworkBegin() {
+    try {
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+        Disablebutton("btnReset");
+
+    } catch (e) {
+        MyAlert("OnSearchStudentAssignedHomeworkBegin : " + e);
+    }
+}
+
+function OnSearchStudentAssignedHomeworkSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSubmit");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchStudentAssignedHomeworkSuccess : " + e);
+    }
+}
+
+function OnDashBoardReady() {
+    try {
+        CreateDigitalWatch();
+    } catch (e) {
+        MyAlert("OnDashBoardReady : " + e);
+    }
+}
+
+function OnSubmitAttendanceBegin() {
+    try {
+        Disablebutton("btnSubmit");
+        DisplayLoader(_LOADERDIVID);
+    } catch (e) {
+        MyAlert("OnSubmitAttendanceBegin : " + e);
+    }
+}
+
+function OnSubmitAttendanceSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code != 0) { Enablebutton("btnSubmit"); }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, "Attendance Submitted SuccessFully.", "Failed To Submit Please Try Again Later.");
+    } catch (e) {
+        MyAlert("OnSubmitAttendanceSuccess : " + e);
+    }
+}
+
+function OnSearchAttendanceBegin() {
+    try {
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+    } catch (e) {
+        MyAlert("OnSearchAttendanceBegin : " + e);
+    }
+}
+
+function OnSearchAttendanceSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchAttendanceSuccess : " + e);
+    }
+}
+
+function OnSearchAttendanceIndexReady() {
+    try {
+        CreateDatePicker("txtStartDate");
+        CreateDatePicker("txtEndDate");
+    } catch (e) {
+        MyAlert("OnSearchAttendanceIndexReady : " + e);
     }
 }
