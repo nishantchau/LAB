@@ -9545,8 +9545,12 @@ section.banner-main {
 }
 
 .dashboard_clock {
-font-size:18px;
-text-align:center;
-font-weight:600;
-color:white;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+    color: white;
+}
+
+sup {
+    color: red;
 }

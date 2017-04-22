@@ -22,6 +22,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
+                                @Html.HiddenFor(x => x.BusRouteId)
                                 @Html.TextBoxFor(x => x.BusStartFrom, new { @id = "txtBusStartFrom", @autocomplete = "Off" })
                             </div>
                         </div>
