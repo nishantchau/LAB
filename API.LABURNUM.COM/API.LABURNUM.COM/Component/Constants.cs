@@ -20,6 +20,7 @@ namespace API.LABURNUM.COM.Component
         {
             public static string WEBSITEURL = System.Configuration.ConfigurationManager.AppSettings["WEBSITEURL"];
             public static string WEBSITEURLWITHOUTSLASH = System.Configuration.ConfigurationManager.AppSettings["WEBSITEURLWITHOUTSLASH"];
+            public static string WEBAPIURLWITHOUTSLASH = System.Configuration.ConfigurationManager.AppSettings["WEBAPIURLWITHOUTSLASH"];
         }
 
         public static class SMTP

@@ -274,6 +274,7 @@
     <Compile Include="Controllers\LateFeePaneltyMasterController.cs" />
     <Compile Include="Controllers\LoginActivityController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MailerController.cs" />
     <Compile Include="Controllers\MAPPController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\MobileApp.cs" />
@@ -502,6 +503,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Partial\NewAdmissionThankyouEmail.cshtml" />
+    <Content Include="Views\Partial\ContactUsMail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
