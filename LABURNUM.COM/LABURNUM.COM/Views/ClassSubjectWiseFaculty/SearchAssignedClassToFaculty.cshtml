@@ -4,6 +4,17 @@
 
 @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
 {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
+                <li class="active">See Assigned Classes</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
     if (Model.Count == 0)
     {
     <div class="text-center">
@@ -12,17 +23,6 @@
     }
     else
     {
-    <div class="row">
-        <div class="col-md-12">
-            <!--breadcrumbs start -->
-            <ul class="breadcrumb">
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
-                <li class="active">See Assigned Classes</li>
-            </ul>
-            <!--breadcrumbs end -->
-        </div>
-    </div>
-    
     <section class="panel">
         <header class="panel-heading">
             See Assigned Classes

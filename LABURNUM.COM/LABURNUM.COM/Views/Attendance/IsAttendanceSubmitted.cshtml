@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <!--breadcrumbs start -->
         <ul class="breadcrumb">
-            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
             <li>Attendance</li>
             <li class="active">Submit Today Attendance</li>
         </ul>
@@ -20,7 +20,7 @@
     <header class="panel-heading">
         Date : @Model[0].Date.ToShortDateString()
         <span class="tools pull-right">
-            <button type="button" onclick="DownloadRecord('Attendance List');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            <button type="button" onclick="DownloadRecord('Today(s) Attendance List');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
         </span>
     </header>
     <div class="row" id="divTable">

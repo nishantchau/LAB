@@ -1,0 +1,89 @@
+﻿@model DTO.LABURNUM.COM.MailerModel
+
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnContactUsBegin", OnSuccess = "OnContactUsSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "ContactUs/SendMail" }))
+{
+    <header id="head" class="secondary">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h1>Contact Us</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="container" style="background: white; padding: 15px;margin-top:15px">
+        <div class="row big-margin">
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="col-md-4">
+                        <span class="score_adept">Name <sup class="red-color">*</sup> &nbsp; :</span>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "forgot pull-left", @id = "txtName", @autocomplete = "off" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="col-md-4">
+                        <span class="score_adept">Email <sup class="red-color">*</sup> &nbsp; :</span>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            @Html.TextBoxFor(x => x.From, new { @class = "forgot pull-left", @id = "txtEmail", @autocomplete = "off" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="col-md-4">
+                        <span class="score_adept">Contact Number <sup class="red-color"></sup> &nbsp; :</span>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            @Html.TextBoxFor(x => x.Contact, new { @class = "forgot pull-left", @maxlength = "12", @id = "txtContact", @autocomplete = "off", @onkeypress = "return isNumber(event)" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="col-md-4">
+                        <span class="score_adept">Message <sup class="red-color">*</sup> &nbsp; :</span>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            @Html.TextAreaFor(x => x.Message, new { @class = "forgot pull-left", @id = "txtMessage", @autocomplete = "off" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="col-md-4">
+                        <span class="score_adept">Confirm That You Are Not A Robot <sup class="red-color">*</sup></span>
+                    </div>
+                    <div class="g-recaptcha captcha-key pull-left" data-sitekey=""></div>
+                </div>
+                <div class="postscore-hd text-center">
+                    <button type="submit" class="btn btn-default" id="btnSubmit">SUBMIT <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+                </div>
+                <div id="divLoader" class="col-md-12 text-left" style="display: none">
+                    <div id="loaderwrapper">
+                        <div id="loader"></div>
+                    </div>
+                </div>
+                <div id="divMessage" style="display: none"></div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div>
+                    <h4>Team Laburnum Public School</h4>
+                    Bhondsi, Sohna Road,
+                <br />
+                    Gurugram , Haryana – 122102<br />
+                    Phone : <a href="tel:+918377000147">+91-83-77000147</a>, <a href="tel:+917777022229"> +91-77-77022229</a>
+                    <br />
+                    Fax : +91- 124 – 2265111<br />
+                    Email : <a href="mailto:laburnumpublicschool@gmail.com">laburnumpublicschool@gmail.com</a>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.3939928758946!2d77.06443921507613!3d28.34693568253131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d239b3b22aa57%3A0x889c6a5643a82f43!2sLaburnum+Public+School!5e0!3m2!1sen!2sin!4v1494076709716" width="500" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+}

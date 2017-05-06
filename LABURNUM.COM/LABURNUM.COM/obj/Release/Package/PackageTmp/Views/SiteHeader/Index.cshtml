@@ -4,19 +4,12 @@
 <div class="row">
     <div class="brand">
         <a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Home/Index" class="logo" style="color: #FFF;">
-            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" class="Normal_header_logo_size" />
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" alt="Laburnum Public School" class="Normal_header_logo_size" />
         </a>
     </div>
     <div class="logo col-md-8 header_solgan">
         <a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Home/Index">Laburnum Public School</a>
     </div>
-    @*  <div class="top-nav clearfix">
-        <ul class="nav pull-right top-menu">
-            <li class="dropdown">
-                <a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Login/Index">Login</a></li>
-        </ul>
-    </div>*@
-
     <div class="user-login-Nav_new" style="float: right; background: navajowhite; margin-right: 30px">
         <ul>
             <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Login/Index">
@@ -27,7 +20,57 @@
         </ul>
     </div>
 </div>
-<div class="col-md-12 horizontal-menu" style="background: #1fb5ad; margin-top: -1px;">
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            <a class="navbar-brand" href="index.html"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right mainNav">
+                <li class="active"><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURL">Home</a></li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<b class="caret"></b></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/AboutUs/Index">About School</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Chairman/Index">Chairman</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Principal/Index">Principal</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/VisionAndMission/Index">Mission/Vision</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">School Emblem</a></li>
+                    </ul>
+                </li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Campus</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Curriculum</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Gallery</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Event</a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Admission<b class="caret"></b></a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Timing</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Uniform</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Fee Structure</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Admission form</a></li>
+                        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Prospectus</a></li>
+                    </ul>
+                </li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Circulars</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">Careers</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ContactUs/Index">Contact Us</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<!-- /.navbar -->
+
+
+
+
+
+@*<div class="col-md-12 horizontal-menu" style="background: #1fb5ad; margin-top: -1px;">
     <div style="margin-left: 6%; font-size: 1.4em; font-weight: 600;">
         <ul class="navbar-nav" style="list-style: none;">
             <li class="dropdown">
@@ -41,10 +84,11 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">CHAIRMAN</a></li>
-                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">PRINCIPLE</a></li>
-                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">MISSION/VISION</a></li>
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Chairman/Index">CHAIRMAN</a></li>
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Principal/Index">PRINCIPAL</a></li>
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/VisionAndMission/Index">MISSION/VISION</a></li>
                     <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">SCHOOL EMBLEM</a></li>
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/AboutUs/Index">ABOUT US</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -77,7 +121,7 @@
                     <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">UNIFORM</a></li>
                     <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">FEE STRUCTURE</a></li>
                     <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">ADMISSION FORM</a></li>
-                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/UnderConstruction/Index">PROSPECTOR</a></li>
+                    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/Prospectus/PROSPECTUS.pdf">PROSPECTOR</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -92,21 +136,6 @@
             </li>
         </ul>
     </div>
-</div>
-
-@*<div class="">
-    <div class="horizontal-menu">
-        <ul class="nav top-menu">
-            <li class="dropdown">
-                <a  data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)">HOME</a>
-                <ul class="dropdown-menu extended logout">
-                    <li>active</li>
-                    </ul>
-            </li>
-            <li>HOME</li>
-            <li>HOME</li>
-            <li>HOME</li>
-        </ul>
-    </div>
 </div>*@
+
 

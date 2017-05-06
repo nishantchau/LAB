@@ -2669,3 +2669,32 @@ function OnSearchAttendanceIndexReady() {
         MyAlert("OnSearchAttendanceIndexReady : " + e);
     }
 }
+
+function OnContactUsBegin() {
+    try {
+        if (Validate.StringValueValidate("txtName", _MESSAGEDIVID, "Please Enter Name.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtEmail", _MESSAGEDIVID, "Please Enter Email.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtContact", _MESSAGEDIVID, "Please Enter Contact Number.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtMessage", _MESSAGEDIVID, "Please Enter Message or Query.")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+
+    } catch (e) {
+        MyAlert("OnContactUsBegin :" + e);
+    }
+}
+
+function OnContactUsSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSubmit");
+        FillSuccessResultMSG(data, _MESSAGEDIVID, "Thank you for Submitting Query. Our Team Will be Contacted Soon.");
+
+    } catch (e) {
+        MyAlert("OnContactUsSuccess :" + e);
+    }
+}

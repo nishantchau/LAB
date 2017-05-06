@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace LABURNUM.COM.Controllers
 {
-    public class PrincipleController : Controller
+    public class VisionAndMissionController : Controller
     {
         //
-        // GET: /Principle/
+        // GET: /VisionAndMission/
 
         public ActionResult Index()
         {

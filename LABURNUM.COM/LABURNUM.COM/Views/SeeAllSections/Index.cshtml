@@ -4,19 +4,11 @@
 
 @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
 {
-    if (Model.Count == 0)
-    {
-    <div class="text-center">
-        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
-    </div>
-    }
-    else
-    {
     <div class="row">
         <div class="col-md-12">
             <!--breadcrumbs start -->
             <ul class="breadcrumb">
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
                 <li>Section</li>
                 <li class="active">All Sections</li>
             </ul>
@@ -24,7 +16,18 @@
         </div>
     </div>
     
-    <section>
+    if (Model.Count == 0)
+    {
+    <section class="panel">
+        <div class="text-center">
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+        </div>
+    </section>
+    }
+    else
+    {
+  
+    <section class="panel">
         <header class="panel-heading">
             See All Sections
             <span class="tools pull-right">
@@ -56,7 +59,7 @@
                                     <td style="width: 20%;">@item.ClassName</td>
                                     <td style="width: 20%;">@item.SectionName</td>
                                     <td style="width: 12%;">
-                                        <button type="button" onclick="EditSectionPopup(@item.SectionId)" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">EDIT</button></td>
+                                        <button type="button" onclick="EditSectionPopup(@item.SectionId)" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">EDIT <i class="fa fa-pencil-square" aria-hidden="true"></i></button></td>
                                 </tr>
                                 counter++;
                             }

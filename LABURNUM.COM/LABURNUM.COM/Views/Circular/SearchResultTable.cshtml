@@ -12,7 +12,7 @@ else
 {
     <section class="panel">
         <header class="panel-heading">
-            <strong>Number of Record Found : @Model.Count</strong>
+            <strong>Number of Circular / Event Found : @Model.Count</strong>
             <span class="tools pull-right">
                 <button type="button" onclick="DownloadRecord('Circular Record');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
             </span>
@@ -68,16 +68,17 @@ else
                                     }
 
                                     <td>
-                                        <button type="button" onclick="ViewCircular(@item.CircularId)" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">VIEW</button></td>
+                                        <button type="button" onclick="ViewCircular(@item.CircularId)" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">VIEW <i class="fa fa-eye" aria-hidden="true"></i>
+</button></td>
 
                                     @if (item.IsEditable)
                                     {
                                         <td style="width: 12%;">
-                                            <button type="button" onclick="EditCircular(@item.CircularId)" class="btn btn-success adept-view">EDIT</button>
+                                            <button type="button" onclick="EditCircular(@item.CircularId)" class="btn btn-success adept-view">EDIT <i class="fa fa-pencil-square" aria-hidden="true"></i></button>
                                         </td> }
                                     else
                                     {<td style="width: 12%;">
-                                        <button type="button" class="btn btn-success adept-view" disabled>Edit</button></td>  
+                                        <button type="button" class="btn btn-success adept-view" disabled>Edit <i class="fa fa-pencil-square" aria-hidden="true"></i></button></td>  
                                     }
 
 

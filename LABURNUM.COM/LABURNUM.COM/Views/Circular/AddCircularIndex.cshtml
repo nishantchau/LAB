@@ -8,7 +8,7 @@
             <ul class="breadcrumb">
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
                 <li>Circular</li>
-                <li class="active">Publish Circular</li>
+                <li class="active">Publish Circular / Event</li>
             </ul>
             <!--breadcrumbs end -->
         </div>
@@ -16,7 +16,7 @@
     
     <section class="panel">
         <header class="panel-heading">
-            Publish Circular
+            Publish Circular / Event
         </header>
         <div class="panel-body">
             <div class="row">
@@ -34,7 +34,7 @@
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <div class="row">
                         <div class="col-md-4">
-                            <span class="score_adept">Published on : </span>
+                            <span class="score_adept">Published on <sup>*</sup> : </span>
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
@@ -94,7 +94,7 @@
                 <div class="col-sm-12 col-md-12 col-xs-12">
                     <div class="row">
                         <div class="col-md-2">
-                            <span class="score_adept">Subject : </span>
+                            <span class="score_adept">Subject <sup>*</sup> : </span>
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
@@ -106,7 +106,7 @@
                 <div class="col-sm-12 col-md-12 col-xs-12">
                     <div class="row">
                         <div class="col-md-2">
-                            <span class="score_adept">Circular Details : </span>
+                            <span class="score_adept">Circular Details <sup>*</sup> : </span>
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
@@ -130,16 +130,20 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </div>
         @Html.HiddenFor(x => x.IsPublishNow, new { @id = "hdnIsPublishNow" })
+
     </section>
+    <span><sup>*</sup> Marked Field Mandatory.</span>
     <div class="text-center col-md-12 margin_top">
-        <button type="button" id="btnSave" class="btn btn-success btn-adeptsubmit" onclick="SaveCircular();">Save</button>
+        <button type="button" id="btnSave" class="btn btn-success btn-adeptsubmit" onclick="SaveCircular();">SAVE <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
         <button type="button" id="btnSavePublish" class="btn btn-default btn-adeptsubmit btn-default" onclick="SavePublishCircular();">Save & Publish Now</button>
         <button type="submit" id="btnSubmit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst display_none">Publish</button>
-        <button type="button" id="btnReset" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">Reset</button>
+        <button type="button" id="btnReset" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">Reset <i class="fa fa-repeat" aria-hidden="true"></i></button>
     </div>
     <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
         <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
