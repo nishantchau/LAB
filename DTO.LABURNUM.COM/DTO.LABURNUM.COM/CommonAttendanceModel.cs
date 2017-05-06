@@ -30,5 +30,7 @@ namespace DTO.LABURNUM.COM
         public string Mobile { get; set; }
 
         public ApiClientModel ApiClientModel { get; set; }
+        public List<ClassModel> Classes { get; set; }
+        public List<SectionModel> Sections { get; set; }
     }
 }

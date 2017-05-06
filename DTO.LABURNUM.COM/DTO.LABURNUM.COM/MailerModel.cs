@@ -8,6 +8,10 @@ namespace DTO.LABURNUM.COM
 {
     public class MailerModel
     {
+        public MailerModel()
+        {
+            this.ApiClientModel = new ApiClientModel();
+        }
         public string ToEmails { get; set; }
         public string Subject { get; set; }
         public string Attachment { get; set; }
@@ -18,5 +22,7 @@ namespace DTO.LABURNUM.COM
         public string Message { get; set; }
         public string Contact { get; set; }
         public string CCMail { get; set; }
+
+        public ApiClientModel ApiClientModel { get; set; }
     }
 }
