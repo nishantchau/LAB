@@ -22,7 +22,7 @@ namespace API.LABURNUM.COM.Controllers
             }
         }
 
-        private long AddAttendanceAsperClass(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        public long AddAttendanceAsperClass(DTO.LABURNUM.COM.CommonAttendanceModel model)
         {
             long AttendenceId = 0;
             switch (model.ClassId)
@@ -458,7 +458,7 @@ namespace API.LABURNUM.COM.Controllers
 
         public List<DTO.LABURNUM.COM.CommonAttendanceModel> SearchStudentListForAttendance(DTO.LABURNUM.COM.CommonAttendanceModel model)
         {
-            try
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = new List<DTO.LABURNUM.COM.CommonAttendanceModel>();
                 List<API.LABURNUM.COM.Student> dbStudents = new FrontEndApi.StudentApi().GetStudentByAdvanceSearch(new DTO.LABURNUM.COM.StudentModel() { ClassId = model.ClassId, SectionId = model.SectionId });
@@ -477,7 +477,7 @@ namespace API.LABURNUM.COM.Controllers
                 }
                 return dbList;
             }
-            catch (Exception)
+            else
             {
                 return null;
             }

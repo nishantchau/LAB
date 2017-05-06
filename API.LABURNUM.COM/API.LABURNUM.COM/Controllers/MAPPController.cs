@@ -183,38 +183,6 @@ namespace API.LABURNUM.COM.Controllers
             else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
         }
 
-        public dynamic AddAttendance(DTO.LABURNUM.COM.CommonAttendanceModel model)
-        {
-            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
-            {
-
-                if (model.ClassId <= 0 && model.SectionId <= 0 && model.StudentId <= 0) { return GetApiResponseModel("Class Id, SectionId & Student Id Cannnot be Zero or Less Than Zero.", true, null); }
-                if (model.ClassId <= 0) { return GetApiResponseModel("Class Id Cannnot be null.", true, null); }
-                if (model.SectionId <= 0) { return GetApiResponseModel("Section Id Cannnot be null.", true, null); }
-                if (model.StudentId <= 0) { return GetApiResponseModel("Student Id Cannnot be null.", true, null); }
-                long id = new Controllers.CommonAttendanceController().Add(model);
-                //if (id <= 0) { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
-                return GetApiResponseModel("Attendance Submitted Successfully", false, id);
-            }
-            else
-            {
-                return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null);
-            }
-        }
-
-        public dynamic AddAttendanceList(List<DTO.LABURNUM.COM.CommonAttendanceModel> model)
-        {
-            if (new FrontEndApi.ApiClientApi().IsClientValid(model[0].ApiClientModel.UserName, model[0].ApiClientModel.Password))
-            {
-                foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in model)
-                {
-                    AddAttendance(item);
-                }
-                return GetApiResponseModel("Attendance Submitted Successfully", false, null);
-            }
-            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
-        }
-
         public dynamic SearchFacultyByFacultyId(DTO.LABURNUM.COM.FacultyModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
@@ -316,6 +284,79 @@ namespace API.LABURNUM.COM.Controllers
                 List<DTO.LABURNUM.COM.StudentFeeModel> studentFeeList = new StudentFeeHelper(new FrontEndApi.StudentFeeApi().GetStudentFeeByAdvanceSearch(studentFeeModel)).Map();
 
                 return GetApiResponseModel("Successfully Performed.", true, studentFeeList);
+            }
+            else
+            {
+                return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null);
+            }
+        }
+
+        public dynamic SearchStudentListForAttendance(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                if (model.ClassId <= 0 && model.SectionId <= 0) { return GetApiResponseModel("Class Id And Section Id Cannot be blank.", false, null); }
+                if (model.ClassId <= 0) { return GetApiResponseModel("Class Id Id Cannot be blank.", false, null); }
+                if (model.SectionId <= 0) { return GetApiResponseModel("Section Id Cannot be blank.", false, null); }
+                List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = new List<DTO.LABURNUM.COM.CommonAttendanceModel>();
+                List<API.LABURNUM.COM.Student> dbStudents = new FrontEndApi.StudentApi().GetStudentByAdvanceSearch(new DTO.LABURNUM.COM.StudentModel() { ClassId = model.ClassId, SectionId = model.SectionId });
+                foreach (API.LABURNUM.COM.Student item in dbStudents)
+                {
+                    dbList.Add(new DTO.LABURNUM.COM.CommonAttendanceModel()
+                    {
+                        ClassId = item.ClassId,
+                        SectionId = item.SectionId,
+                        StudentId = item.StudentId,
+                        StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName,
+                        Mobile = item.Mobile,
+                        FatherName = item.FatherName,
+                        AdmissionNumber = item.AdmissionNumber,
+                    });
+                }
+                return GetApiResponseModel("Successfully Performed.", true, dbList);
+            }
+            else
+            {
+                return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null);
+            }
+        }
+
+        public dynamic AddAttendance(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+
+                if (model.ClassId <= 0 && model.SectionId <= 0 && model.StudentId <= 0) { return GetApiResponseModel("Class Id, SectionId & Student Id Cannnot be Zero or Less Than Zero.", true, null); }
+                if (model.ClassId <= 0) { return GetApiResponseModel("Class Id Cannnot be null.", true, null); }
+                if (model.SectionId <= 0) { return GetApiResponseModel("Section Id Cannnot be null.", true, null); }
+                if (model.StudentId <= 0) { return GetApiResponseModel("Student Id Cannnot be null.", true, null); }
+                long id = new Controllers.CommonAttendanceController().Add(model);
+                return GetApiResponseModel("Attendance Submitted Successfully", true, id);
+            }
+            else
+            {
+                return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null);
+            }
+        }
+
+        public dynamic AddAttendanceList(List<DTO.LABURNUM.COM.CommonAttendanceModel> model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model[0].ApiClientModel.UserName, model[0].ApiClientModel.Password))
+            {
+                foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in model)
+                {
+                    AddAttendance(item);
+                }
+                return GetApiResponseModel("Attendance List Submitted Successfully", true, null);
+            }
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
+        }
+
+        public dynamic SearchAttendanceByAdvanceSearch(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                return GetApiResponseModel("Search Attendance Result", true, new Controllers.CommonAttendanceController().SearchAttendanceByAdvanceSearch(model));
             }
             else
             {
