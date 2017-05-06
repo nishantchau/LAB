@@ -30,7 +30,7 @@
                             <div style="line-height: 2.1em;">
                                 <div style="font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B; vertical-align: bottom; line-height: 2.1em;">
                                     <a style="font-family: 'Yellowtail', cursive; color: #2B2B2B; font-size: 2.2em;" href="#">T</a>hanks For Receiving Fee From <strong>@Model.StudentName S/o @Model.FatherName.</strong>
-                                    Total Paid Amount <strong>@Model.TotalPayableAmount </strong>For the M/o @Model.MonthName <strong>@Model.CreatedOn.ToShortDateString() </strong>For Class <strong>@Model.ClassName</strong> & Section <strong>@Model.SectionName</strong>
+                                    Total Paid Amount <strong>@Model.TotalPayableAmount </strong>For the M/o @Model.MonthName <strong>@Model.CreatedOn.ToShortDateString() </strong>For Class <strong>@Model.ClassName</strong> & Section <strong>@Model.SectionName</strong>.
                                     <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; margin: 10px; border: 2px dotted black;">
                                         <thead style="border: 1px dotted green;">
                                             <tr>
@@ -95,8 +95,6 @@
         function Popup(data) {
             var mywindow = window.open('', 'my div', 'height=1002,width=680');
             mywindow.document.write('<html><head><title>my div</title>');
-        @*  /*optional stylesheet*/ mywindow.document.write('<link rel="stylesheet" href="@IGUNHS.COM.Components.Constants.Url.WebSiteUrlWithoutSlash/css/style.css" type="text/css" />');
-        mywindow.document.write('<link rel="stylesheet" href="@IGUNHS.COM.Components.Constants.Url.WebSiteUrlWithoutSlash/css/bootstrap.css" type="text/css" />');*@
             mywindow.document.write('</head><body >');
             mywindow.document.write(data);
             mywindow.document.write('</body></html>');
@@ -104,9 +102,4 @@
             mywindow.close();
             return true;
         }
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //OnNHSCertificateReady();
-        });
     </script>

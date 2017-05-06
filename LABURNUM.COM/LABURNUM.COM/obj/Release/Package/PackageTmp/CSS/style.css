@@ -9545,8 +9545,43 @@ section.banner-main {
 }
 
 .dashboard_clock {
-font-size:18px;
-text-align:center;
-font-weight:600;
-color:white;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+    color: white;
+}
+
+sup {
+    color: red;
+}
+
+.heading-undelign {
+    border-bottom: 3px solid #eee;
+}
+
+#head.secondary {
+    background: #181015 url("../Images/Background.jpg") no-repeat scroll 0 -164px / cover;
+    height: 100px;
+    min-height: 100px;
+    padding-top: 0;
+    text-align: left;
+    color:white;
+    /*margin-top: 27px;*/
+}
+
+#contain.container {
+    background: #181015 url("../Images/banner-main.png") no-repeat scroll / cover;
+}
+
+
+.btn-inline {
+    color: #ae130c;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.navbar-inverse {
+    background-color: #1fb5ad;
+    margin-top: -1px;
+    border-color: none;
 }

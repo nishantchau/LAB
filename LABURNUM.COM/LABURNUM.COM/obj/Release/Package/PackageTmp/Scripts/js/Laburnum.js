@@ -227,6 +227,7 @@ function FillSuccessResultMSG(data, messagedivId, successmsg, failmsg) {
 //Fill Success Result View.
 function FillSuccessResultView(data, resultDiv) {
     try {
+        SetHtmlBlank(resultDiv);
         switch (data.code) {
             case 0:
                 SetHtml(resultDiv, data.result);
@@ -239,7 +240,7 @@ function FillSuccessResultView(data, resultDiv) {
                 break;
         }
     }
-    catch (e) { MyAlert("SuccessResult : " + e); }
+    catch (e) { MyAlert("FillSuccessResultView : " + e); }
 }
 
 // Show Message.
@@ -772,11 +773,13 @@ function setImageName(isforfaculty) {
 function OnAddStudentBegin() {
     try {
         SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.IntValueValidate("txtAdmissionNumber", "divMessage", "Please Enter Admission No.")) { }
+        else { return false; }
         if (Validate.IntValueValidate("ddlClass", "divMessage", "Please Select A Class.")) { }
         else { return false; }
         if (Validate.IntValueValidate("ddlSection", "divMessage", "Please Select A Section.")) { }
         else { return false; }
-        if (Validate.IntValueValidate("ddlClassStartWith", "divMessage", "Please Select Initial Class.")) { }
+        if (Validate.IntValueValidate("ddlClassStartWith", "divMessage", "Please Select Class Start With.")) { }
         else { return false; }
         if (Validate.IntValueValidate("ddlSalutation", "divMessage", "Please Select A Salutation.")) { }
         else { return false; }
@@ -786,11 +789,7 @@ function OnAddStudentBegin() {
         //else { return false; }
         if (Validate.StringValueValidate("txtLastName", "divMessage", "Plese Enter Last Name.")) { }
         else { return false; }
-        if (Validate.StringValueValidate("txtMobile", "divMessage", "Plese Enter Mobile Number.")) { }
-        else { return false; }
-        //if (Validate.StringValueValidate("txtLandline", "divMessage", "Plese Enter Landline Number.")) { }
-        //else { return false; }
-        if (Validate.StringValueValidate("txtAddress", "divMessage", "Plese Enter Address.")) { }
+        if (Validate.StringValueValidate("txtStudentAdharNo", "divMessage", "Plese Enter Student's Adhar Number.")) { }
         else { return false; }
         if (Validate.StringValueValidate("txtFatherName", "divMessage", "Plese Enter Father's Name.")) { }
         else { return false; }
@@ -798,32 +797,32 @@ function OnAddStudentBegin() {
         else { return false; }
         if (Validate.StringValueValidate("txtFatherMobile", "divMessage", "Plese Enter Father's Mobile Number.")) { }
         else { return false; }
+        if (Validate.StringValueValidate("txtFatherAdharNo", "divMessage", "Plese Enter Father's Adhar Number.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtPAN", "divMessage", "Plese Enter PAN Number.")) { }
+        else { return false; }
         if (Validate.StringValueValidate("txtMotherName", "divMessage", "Plese Enter Mother's Name.")) { }
         else { return false; }
         if (Validate.StringValueValidate("txtMotherProfession", "divMessage", "Plese Enter Mother's Profession.")) { }
         else { return false; }
         if (Validate.StringValueValidate("txtMotherMobile", "divMessage", "Plese Enter Mother's Mobile Number.")) { }
         else { return false; }
-        if (Validate.StringValueValidate("txtEmail", "divMessage", "Plese Enter Email Id.")) { }
+        if (Validate.StringValueValidate("txtMotherAdharNo", "divMessage", "Plese Enter Mother's Adhar Number.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtAddress", "divMessage", "Plese Enter Address.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtMobile", "divMessage", "Plese Enter Communication Mobile Number.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtEmail", "divMessage", "Plese Enter Communication Email Id.")) { }
         else { return false; }
         if (!isEmail(GetValue("txtEmail"))) {
             SetHtml(_MESSAGEDIVID, "Please Enter Valid Email.");
             return false;
         }
-        if (Validate.StringValueValidate("txtFatherAdharNo", "divMessage", "Plese Enter Father's Adhar Number.")) { }
-        else { return false; }
-        if (Validate.StringValueValidate("txtMotherAdharNo", "divMessage", "Plese Enter Mother's Adhar Number.")) { }
-        else { return false; }
-        if (Validate.StringValueValidate("txtPAN", "divMessage", "Plese Enter PAN Number.")) { }
-        else { return false; }
-        if (Validate.StringValueValidate("txtStudentAdharNo", "divMessage", "Plese Enter Student's Adhar Number.")) { }
-        else { return false; }
         if (istransportrqd = document.getElementById('chkIsTransportRqd').checked == true) {
             if (Validate.IntValueValidate("ddlBusRoute", _MESSAGEDIVID, "Please Select Bus Route.")) { }
             else { return false; }
         }
-        //if (Validate.StringValueValidate("txtBusRoute", "divMessage", "Plese Enter Bus Route Number.")) { }
-        //else { return false; }
         if (Validate.StringValueValidate("txtStudentUserName", "divMessage", "Plese Enter Student's UserName.")) { }
         else { return false; }
         if (Validate.StringValueValidate("txtStudentPassword", "divMessage", "Plese Enter Student's Password.")) { }
@@ -979,11 +978,9 @@ function OnUpdateStudentBegin() {
         else { return false; }
         if (Validate.StringValueValidate("txtParentPassword", "divMessage", "Plese Enter Parent's Password.")) { }
         else { return false; }
-
         DisplayLoader(_LOADERDIVID);
         Disablebutton("btnSave");
         Disablebutton("btnSaveNext");
-
     }
     catch (e) {
         MyAlert("OnAddStudentSuccess" + e);
@@ -1194,7 +1191,7 @@ function CheckValidateStartWithClass() {
         var classjoin = GetValue("ddlClass");
         var classStartWith = GetValue("ddlClassStartWith");
         if (classStartWith > classjoin) {
-            alert("Start Class Cannnot Be Grater Than Class Join");
+            alert("Start Class Cannnot Be Grater Than Admission Class.");
             $("#ddlClassStartWith").val('');
         }
     } catch (e) {
@@ -2428,7 +2425,7 @@ function OnStudentFeeReportingBegin() {
         DisplayLoader(_LOADERDIVID);
         Disablebutton("btnSearch");
         Disablebutton("btnReset");
-       
+
     } catch (e) {
         MyAlert("OnStudentFeeReportingBegin : " + e);
     }
@@ -2670,5 +2667,34 @@ function OnSearchAttendanceIndexReady() {
         CreateDatePicker("txtEndDate");
     } catch (e) {
         MyAlert("OnSearchAttendanceIndexReady : " + e);
+    }
+}
+
+function OnContactUsBegin() {
+    try {
+        if (Validate.StringValueValidate("txtName", _MESSAGEDIVID, "Please Enter Name.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtEmail", _MESSAGEDIVID, "Please Enter Email.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtContact", _MESSAGEDIVID, "Please Enter Contact Number.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("txtMessage", _MESSAGEDIVID, "Please Enter Message or Query.")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+
+    } catch (e) {
+        MyAlert("OnContactUsBegin :" + e);
+    }
+}
+
+function OnContactUsSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSubmit");
+        FillSuccessResultMSG(data, _MESSAGEDIVID, "Thank you for Submitting Query. Our Team Will be Contacted Soon.");
+
+    } catch (e) {
+        MyAlert("OnContactUsSuccess :" + e);
     }
 }

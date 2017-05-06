@@ -16,7 +16,7 @@ else
             </span>
         </header>
 
-        <div class="panel-body" id="divTable">
+        <div id="divTable">
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table table-hover general-table responsive">
@@ -61,12 +61,12 @@ else
                                     @if (item.StudentFeeId > 0)
                                     {
                                         <td>
-                                            <button type="button" class="btn btn-success adept-view" disabled>Pay Admission Fee</button></td> 
+                                            <button type="button" class="btn btn-primary adept-view" disabled>Pay Admission Fee</button></td> 
                                     }
                                     else
                                     {
                                         <td>
-                                            <button type="button" onclick="UpdateFee('@item.StudentId','@item.ClassId','@item.SectionId',@counter)" class="btn btn-success adept-view">Pay Admission Fee</button></td>
+                                            <button type="button" onclick="UpdateFee('@item.StudentId','@item.ClassId','@item.SectionId',@counter)" class="btn btn-primary adept-view">Pay Admission Fee</button></td>
                                     }
                                     @if (item.StudentFeeId < 0)
                                     {<td>

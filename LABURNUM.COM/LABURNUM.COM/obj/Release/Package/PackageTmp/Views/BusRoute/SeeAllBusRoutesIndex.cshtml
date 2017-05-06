@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <!--breadcrumbs start -->
             <ul class="breadcrumb">
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
                 <li>Bus Route</li>
                 <li class="active">All Bus Route</li>
             </ul>
@@ -38,7 +38,7 @@
         <header class="panel-heading">
             See All Bus Routes
             <span class="tools pull-right">
-                <button type="button" onclick="DownloadRecord('BusRoutes');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+                <button type="button" onclick="DownloadRecord('All Bus Routes');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
             </span>
         </header>
         <div class="col-md-12 margin_top">
@@ -72,12 +72,12 @@
                                     @if (item.BusRouteId == 0)
                                     {
                                         <td style="width: 12%;">
-                                            <button type="button" class="btn btn-success adept-view" disabled>EDIT</button></td>
+                                            <button type="button" class="btn btn-success adept-view" disabled>EDIT <i class="fa fa-pencil-square" aria-hidden="true"></i></button></td>
                                     }
                                     else
                                     {
                                         <td style="width: 12%;">
-                                            <button type="button" onclick="EditBusRoutePopup('@item.BusRouteId')" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">EDIT</button></td>
+                                            <button type="button" onclick="EditBusRoutePopup('@item.BusRouteId')" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">EDIT <i class="fa fa-pencil-square" aria-hidden="true"></i></button></td>
                                     }
                                 </tr>
                                     counter++;

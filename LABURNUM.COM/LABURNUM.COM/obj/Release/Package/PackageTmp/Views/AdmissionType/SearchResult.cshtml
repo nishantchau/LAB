@@ -32,7 +32,7 @@ else
                                 <td style="width: 19%;">@item.CreatedOn</td>
                                 <td style="width: 12%;">
                                     <button type="button" onclick="EditAdmissionTypePopup(@item.AdmissionTypeId)" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">EDIT</button></td>
-                                <td>
+                                <td style="width: 12%;">
                                     <button type="button" class="btn btn-danger adept-view" onclick="UpdateAdmissionTypeStatusPoup(@item.AdmissionTypeId,@counter)" data-toggle="modal" data-target="#myModal">Delete</button></td>
                                 <td style="display: none;" id="tdIsActive@(counter)">@item.IsActive</td>
                             </tr>

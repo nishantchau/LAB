@@ -16,7 +16,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <span class="score_adept">Admission Type Name<i>:</i></span>
+                        <span class="score_adept">Admission Type Name <sup>*</sup> <i>:</i></span>
                     </div>
                     <div class="col-md-8">
                         <div class="form-group">
@@ -24,10 +24,9 @@
                             @Html.TextBoxFor(x => x.Name, new { @id = "txtAdmissionTypeNameP", @autocomplete = "Off" })
                         </div>
                     </div>
-
                     <div class="col-md-12 text-center">
-                        <button id="btnSubmit" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">Update</button>
-                        <button type="button" class="btn btn-default btn-adeptsubmit btn-danger" data-dismiss="modal" aria-label="Close">Close</button>
+                        <button id="btnSubmit" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">UPDATE <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-default btn-adeptsubmit btn-danger" data-dismiss="modal" aria-label="Close">CLOSE <i class="fa fa-times" aria-hidden="true"></i></button>
                     </div>
                     <div id="divPopupLoader" class="col-md-12 display_none text-center margin_small">
                         <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
