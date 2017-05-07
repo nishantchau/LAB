@@ -43,6 +43,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
+                                <div id="hdnTranportCharges" class="display_none">@Model.TransportFee</div>
                                 @Html.TextBoxFor(x => x.TransportFee, new { @id = "txtTransportFee", @readonly = "yes" })
                             </div>
                         </div>
@@ -83,7 +84,6 @@
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
-                                <div class="display_none" id="hdnTotalFees">@(Model.MonthlyFee + Model.TransportFee + Model.LateFee + Model.AnnualFunctionFee + Model.PendingFee)</div>
                                 @Html.TextBoxFor(x => x.DiscountAmount, new { @id = "txtDiscountAmount", @autocomplete = "Off", @class = "ToReset", onkeypress = "return isNumber(event)", onkeyup = "CalculatePayableAmount()", @maxlength = "12" })
                             </div>
                         </div>
@@ -104,6 +104,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
+                                <div class="display_none" id="hdnTotalFees">@(Model.MonthlyFee + Model.TransportFee + Model.LateFee + Model.AnnualFunctionFee + Model.PendingFee)</div>
                                 @Html.TextBoxFor(x => x.TotalPayableAmount, new { @id = "txtTotalPayableAmount", @readonly = "yes" })
                             </div>
                         </div>

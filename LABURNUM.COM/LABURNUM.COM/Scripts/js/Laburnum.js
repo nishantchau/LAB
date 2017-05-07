@@ -1814,17 +1814,40 @@ function CalculatePayableAmount() {
 function ShowHideAnnualFee() {
     var smonth = GetValue("ddlMonth");
     var affpm = GetValue("hdbAFFPM");
+    var tf = parseFloat(GetHtml("hdnTotalFees"));
+    var tpa = parseFloat(GetValue("txtTotalPayableAmount"));
+
     if (smonth == affpm) {
         $("#divAnnualFunctionFee").removeClass("display_none");
         $("#txtAnnualFunctionFee").val(GetHtml("hdnAnnualFunctionFee"));
-        $("#txtTotalPayableAmount").val((parseFloat($("#txtTotalPayableAmount").val()) + parseFloat(GetHtml("hdnAnnualFunctionFee"))));
+        if (tpa == tf) {
+            $("#txtTotalPayableAmount").val(parseFloat($("#txtTotalPayableAmount").val()) + parseFloat(GetHtml("hdnAnnualFunctionFee")));
+        }
     }
-    //else
-    //{
-    //    $("#divAnnualFunctionFee").hide();
-    //    $("#txtAnnualFunctionFee").val('0');
-    //    $("#txtTotalPayableAmount").val((parseFloat($("#txtTotalPayableAmount").val()) - parseFloat(GetHtml("hdnAnnualFunctionFee"))));
-    //}
+    else {
+        $("#divAnnualFunctionFee").hide();
+        $("#txtAnnualFunctionFee").val('0');
+        if (tpa < tf) {
+            $("#txtTotalPayableAmount").val((parseFloat($("#txtTotalPayableAmount").val()) - parseFloat(GetHtml("hdnAnnualFunctionFee"))));
+        }
+    }
+
+    if (smonth == 6) {
+        $("#txtTransportFee").val("0");
+        if (tpa == tf) {
+            $("#txtTotalPayableAmount").val(
+                parseFloat($("#txtTotalPayableAmount").val() - parseFloat(GetHtml("hdnTranportCharges"))
+                ));
+        }
+    }
+    else {
+        $("#txtTransportFee").val($("#hdnTranportCharges").html());
+        if (tpa < tf) {
+            $("#txtTotalPayableAmount").val(
+               parseFloat($("#txtTotalPayableAmount").val()) + parseFloat(GetHtml("hdnTranportCharges"))
+               );
+        }
+    }
 }
 
 function OnPayMonthlyFeeBegin() {

@@ -290,7 +290,8 @@ namespace LABURNUM.COM.Controllers
                     }
                     model.AnnualFunctionFeePayableMonth = Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEEPAYABLEMONTH;
                     model.PayForTheMonth = System.DateTime.Now.Month;
-                    if (System.DateTime.Now.Month == Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEEPAYABLEMONTH) { model.AnnualFunctionFee = Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEE; }
+                    //if (model.PayForTheMonth == 6) { model.TransportFee = 0; }
+                    if (System.DateTime.Now.Month == model.AnnualFunctionFeePayableMonth) { model.AnnualFunctionFee = Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEE; }
                     int currentday = System.DateTime.Now.Day;
                     model.LateFee = new Component.LateFeePaneltyMaster().GetFineAmount(currentday);
                     string html = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/AjaxRequest/PayMonthlyFee.cshtml", model);
