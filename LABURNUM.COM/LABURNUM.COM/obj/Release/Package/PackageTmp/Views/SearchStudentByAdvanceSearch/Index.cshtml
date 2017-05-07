@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <!--breadcrumbs start -->
             <ul class="breadcrumb">
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
                 <li>Student</li>
                 <li class="active">Pay Fee</li>
             </ul>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                @Html.DropDownList("ClassId", new SelectList(Model.Classes, "ClassId", "ClassName"), "Please Select A class", new { @id = "ddlClass", @autocomplete = "Off" })
+                                @Html.DropDownList("ClassId", new SelectList(Model.Classes, "ClassId", "ClassName"), "Please Select A Class", new { @id = "ddlClass", @autocomplete = "Off", @class = "ToReset" })
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                @Html.DropDownList("SectionId", new SelectList(Model.Sections, "SectionId", "SectionName"), "Please Select A Section", new { @id = "ddlSection", @autocomplete = "Off" })
+                                @Html.DropDownList("SectionId", new SelectList(Model.Sections, "SectionId", "SectionName"), "Please Select A Class", new { @id = "ddlSection", @autocomplete = "Off", @class = "ToReset" })
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.StudentId, new { @id = "txtStudentId", @autocomplete = "Off", @onkeypress = "return isNumber(event);" })
+                                @Html.TextBoxFor(x => x.StudentId, new { @id = "txtStudentId", @autocomplete = "Off", @onkeypress = "return isNumber(event);", @class = "ToReset" })
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.FirstName, new { @id = "txtFirstName", @autocomplete = "Off" })
+                                @Html.TextBoxFor(x => x.FirstName, new { @id = "txtFirstName", @autocomplete = "Off", @class = "ToReset" })
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.MiddleName, new { @id = "txtMiddleName", @autocomplete = "Off" })
+                                @Html.TextBoxFor(x => x.MiddleName, new { @id = "txtMiddleName", @autocomplete = "Off", @class = "ToReset" })
                             </div>
                         </div>
                     </div>
@@ -91,12 +91,11 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.LastName, new { @id = "txtLastName", @autocomplete = "Off" })
+                                @Html.TextBoxFor(x => x.LastName, new { @id = "txtLastName", @autocomplete = "Off", @class = "ToReset" })
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-sm-4 col-md-4 col-xs-12">
                     <div class="row">
                         <div class="col-md-5">
@@ -104,7 +103,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.FatherName, new { @id = "txtFatherName", @autocomplete = "Off" })
+                                @Html.TextBoxFor(x => x.FatherName, new { @id = "txtFatherName", @autocomplete = "Off", @class = "ToReset" })
                             </div>
                         </div>
                     </div>
@@ -116,18 +115,29 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.MotherName, new { @id = "txtMotherName", @autocomplete = "Off" })
+                                @Html.TextBoxFor(x => x.MotherName, new { @id = "txtMotherName", @autocomplete = "Off", @class = "ToReset" })
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Admission No. : </span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.AdmissionNumber, new { @id = "txtAdmissionNumber", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <div class="text-center">
         <button id="btnSearch" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">SEARCH <i class="fa fa-search" aria-hidden="true"></i></button>
-        <button id="btnReset" type="button" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetEntries();">RESET <i class="fa fa-repeat" aria-hidden="true"></i></button>
+        <button id="btnReset" type="button" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">RESET <i class="fa fa-repeat" aria-hidden="true"></i></button>
     </div>
     <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
         <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />

@@ -1117,9 +1117,10 @@ function OnSearchStudentByAdvanceSearchBegin() {
         var studentId = $("#txtStudentId").val();
         var fatherName = $("#txtFatherName").val();
         var motherName = $("#txtMotherName").val();
+        var admissionNumber = $("#txtAdmissionNumber").val();
 
         if ((fn == "" || fn == null) && (mn == "" || mn == null) && (ln == "" || ln == null) && (cls == "" || cls == null) && (section == "" || section == null)
-            && (studentId == "" || studentId == null) && (fatherName == "" || fatherName == null) && (motherName == "" || motherName == null)
+            && (studentId == "" || studentId == null) && (fatherName == "" || fatherName == null) && (motherName == "" || motherName == null) && (admissionNumber == "" || admissionNumber == null)
             ) {
             SetHtml("divMessage", "Please Enter Value In Any Of The Above Fields");
             return false

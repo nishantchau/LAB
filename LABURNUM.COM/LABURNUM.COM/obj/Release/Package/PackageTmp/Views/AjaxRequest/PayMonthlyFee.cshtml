@@ -18,70 +18,70 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span class="score_adept">Pay For The Month <sup>*</sup> <i>:</i></span>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 @Html.DropDownList("PayForTheMonth", new SelectList(Model.Months, "MonthId", "MonthName"), "Please Select A Month", new { @id = "ddlMonth", @autocomplete = "Off", @class = "ToReset", @onChange = "ShowHideAnnualFee();" })
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span class="score_adept">Monthly Fee <sup>*</sup>  <i>:</i></span>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 @Html.TextBoxFor(x => x.MonthlyFee, new { @id = "txtMonthlyFee", @readonly = "yes" })
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span class="score_adept">Transport Fee <sup>*</sup>  <i>:</i></span>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 @Html.TextBoxFor(x => x.TransportFee, new { @id = "txtTransportFee", @readonly = "yes" })
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span class="score_adept">Late Fee Panelty <sup>*</sup>  <i>:</i></span>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 @Html.TextBoxFor(x => x.LateFee, new { @id = "txtLateFee", @readonly = "yes" })
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 display_none" id="divAnnualFunctionFee">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span class="score_adept">Annual Function Fee <sup>*</sup>  <i>:</i></span>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 @Html.TextBoxFor(x => x.AnnualFunctionFee, new { @id = "txtAnnualFunctionFee", @readonly = "yes" })
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span class="score_adept">Pending Fee <sup>*</sup>  <i>:</i></span>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 @Html.TextBoxFor(x => x.PendingFee, new { @id = "txtPendingFee", @readonly = "yes" })
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span class="score_adept">Discount Amount <i>:</i></span>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 <div class="display_none" id="hdnTotalFees">@(Model.MonthlyFee + Model.TransportFee + Model.LateFee + Model.AnnualFunctionFee + Model.PendingFee)</div>
                                 @Html.TextBoxFor(x => x.DiscountAmount, new { @id = "txtDiscountAmount", @autocomplete = "Off", @class = "ToReset", onkeypress = "return isNumber(event)", onkeyup = "CalculatePayableAmount()", @maxlength = "12" })
@@ -89,20 +89,20 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span class="score_adept">Discount Remarks <i>:</i></span>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 @Html.TextAreaFor(x => x.DiscountRemarks, new { @id = "txtDiscountRemarks", @autocomplete = "Off", @class = "ToReset" })
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="col-md-4">
-                            <span class="score_adept">Total Payable Amount <i>:</i></span>
+                        <div class="col-md-5">
+                            <span class="score_adept">Total Payable <i>:</i></span>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 @Html.TextBoxFor(x => x.TotalPayableAmount, new { @id = "txtTotalPayableAmount", @readonly = "yes" })
                             </div>

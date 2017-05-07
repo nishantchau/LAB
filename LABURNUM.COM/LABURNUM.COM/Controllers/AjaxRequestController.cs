@@ -284,7 +284,10 @@ namespace LABURNUM.COM.Controllers
                     DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel() { ClassId = cid, SectionId = sectionId, StudentId = sid, IsNewAdmission = isNewAdmission };
                     model.MonthlyFee = new Component.Fee().GetFeeByClassIdandAdmissionType(cid, isNewAdmission).MonthlyFee.GetValueOrDefault();
                     model.Months = new Component.Month().GetActiveMonths();
-                    model.TransportFee = new Component.BusRoute().GetTransportChargeByRouteId(routeId);
+                    if (routeId > 0)
+                    {
+                        model.TransportFee = new Component.BusRoute().GetTransportChargeByRouteId(routeId);
+                    }
                     model.AnnualFunctionFeePayableMonth = Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEEPAYABLEMONTH;
                     model.PayForTheMonth = System.DateTime.Now.Month;
                     if (System.DateTime.Now.Month == Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEEPAYABLEMONTH) { model.AnnualFunctionFee = Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEE; }
