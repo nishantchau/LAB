@@ -18,7 +18,9 @@ namespace API.LABURNUM.COM.Controllers
                 if (model.IsNewAdmission) { admissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION); }
                 else { admissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.READMISSION); }
                 //model.StudentFeeId = new FrontEndApi.StudentFeeApi().GetStudentFeeId(model.ClassId, model.SectionId, model.StudentId, admissionTypeId);
-                return new FrontEndApi.StudentFeeDetailApi().Add(model);
+                long studentfeeDetailsId = new FrontEndApi.StudentFeeDetailApi().Add(model);
+                //sendmail(studentfeeDetailsId);
+                return studentfeeDetailsId;
             }
             else
             {
@@ -49,6 +51,22 @@ namespace API.LABURNUM.COM.Controllers
                 return new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByAdvanceSearch(model)).Map();
             }
             else { return null; }
+        }
+
+        private void sendmail(long studentfeeDetailId)
+        {
+            DTO.LABURNUM.COM.StudentFeeDetailModel studentfeeDetail = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByID(studentfeeDetailId)).MapSingle();
+            DTO.LABURNUM.COM.StudentModel studentmodel = new StudentHelper(new FrontEndApi.StudentApi().GetStudentByStudentId(studentfeeDetail.StudentId)).MapSingle();
+
+            string from = Component.Constants.MAIL.MAILSENTFROM;
+            string subject = "Thank you For Paying Fee For the Month Of " + studentfeeDetail.MonthName + " At Laburnum Public School.";
+            string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/ThankYouMailOnPaymentOfMonthlyFee.cshtml", studentfeeDetail);
+            if (new Component.Mailer().MailSend(studentmodel.EmailId, "", body, from, subject))
+            {
+            }
+            else
+            {
+            }
         }
     }
 }

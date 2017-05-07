@@ -503,6 +503,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Partial\NewAdmissionThankyouEmail.cshtml" />
+    <Content Include="Views\Partial\NewStudentRegistrationMail.cshtml" />
+    <Content Include="Views\Partial\ThankYouMailOnPaymentOfMonthlyFee.cshtml" />
     <Content Include="Views\Partial\ContactUsMail.cshtml" />
   </ItemGroup>
   <ItemGroup>

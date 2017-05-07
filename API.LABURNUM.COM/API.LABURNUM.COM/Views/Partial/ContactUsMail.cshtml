@@ -1,0 +1,35 @@
+﻿@model DTO.LABURNUM.COM.MailerModel
+
+<table width="600" class="bodyTable">
+    <tbody>
+        <tr style="background-color: #186a40; min-height: 88px; text-align: center;">
+            <td>
+                <img src="@API.LABURNUM.COM.Component.Constants.URL.WEBAPIURLWITHOUTSLASH/Images/Uploads/logo.jpg" alt="LABURNUM PUBLIC SCHOOL" style="width:60px;height:60px;"/></td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="padding-top: 15px; line-height: 1.4em;">Dear <strong>Admin,</strong>
+                <br />
+                <br />
+                Some One Fill his/her detail to contact TEAM LABURNUM PUBLIC SCHOOL, please get following Detail.<br />
+                <br />
+                Name : @Model.Name
+                <br />
+                Email : @Model.From
+                <br />
+                Contact No : @Model.Contact
+                <br />
+                Message : @Model.Body
+            </td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="padding-top: 15px; line-height: 1.4em;">Happy!
+            </td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="padding-top: 15px; line-height: 1.4em; color: #256546;">
+                <strong>Team LABURNUM PUBLIC SCHOOL</strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

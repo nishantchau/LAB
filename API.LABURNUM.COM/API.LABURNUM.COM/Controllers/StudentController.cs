@@ -89,9 +89,9 @@ namespace API.LABURNUM.COM.Controllers
 
         private void sendmail(DTO.LABURNUM.COM.StudentModel user)
         {
-            string from = "admin@laburnumpublicschool.com";
-            string subject = "Thank For Admission at Laburnum Public School";
-            string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/NewAdmissionThankyouEmail.cshtml", user);
+            string from = Component.Constants.MAIL.MAILSENTFROM;
+            string subject = Component.Constants.MAILSUBJECT.REGISTRATIONSUBJECT;
+            string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/NewStudentRegistrationMail.cshtml", user);
             if (new Component.Mailer().MailSend(user.EmailId, "", body, from, subject))
             {
             }

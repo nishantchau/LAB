@@ -31,6 +31,19 @@ namespace API.LABURNUM.COM.Component
             public static int SMTPPORT = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["SMTPPORT"]);
         }
 
+        public static class MAIL
+        {
+            public static string ADMINMAIL = System.Configuration.ConfigurationManager.AppSettings["ADMINMAIL"];
+            public static string MAILSENTFROM = System.Configuration.ConfigurationManager.AppSettings["MAILSENTFROM"];
+        }
+
+        public static class MAILSUBJECT
+        {
+            public static string REGISTRATIONSUBJECT = "Thank you for Registration at Laburnum Public School";
+            public static string ADMISSIONSUBJECT = "Thank you for Admission at Laburnum Public School";
+            
+        }
+
         public static class KEYS
         {
             public static string SALTKEY = System.Configuration.ConfigurationManager.AppSettings["SALTKEY"];

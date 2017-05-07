@@ -90,9 +90,9 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbStudents[0].StudentPhoto = model.StudentPhoto;
             dbStudents[0].ClassId = model.ClassId;
             dbStudents[0].ClassStartWithId = model.ClassStartWithId;
-            dbStudents[0].FirstName = model.FirstName.Substring(0, 1).ToUpper() + model.FirstName.Substring(1).ToLower();
-            dbStudents[0].MiddleName = model.MiddleName.Substring(0, 1).ToUpper() + model.MiddleName.Substring(1).ToLower();
-            dbStudents[0].LastName = model.LastName.Substring(0, 1).ToUpper() + model.LastName.Substring(1).ToLower();
+            dbStudents[0].FirstName = model.FirstName;
+            dbStudents[0].MiddleName = model.MiddleName;
+            dbStudents[0].LastName = model.LastName;
             dbStudents[0].SalutationId = model.SalutationId;
             dbStudents[0].EmailId = model.EmailId;
             dbStudents[0].Mobile = model.Mobile;
@@ -188,6 +188,9 @@ namespace API.LABURNUM.COM.FrontEndApi
             //Search By SectionId.
             if (iQuery != null) { if (model.SectionId > 0) { iQuery = iQuery.Where(x => x.SectionId == model.SectionId && x.IsActive == true); } }
             else { if (model.SectionId > 0) { iQuery = this._laburnum.Students.Where(x => x.SectionId == model.SectionId && x.IsActive == true); } }
+            //Search By AdmissionNumber.
+            if (iQuery != null) { if (model.AdmissionNumber != null) { iQuery = iQuery.Where(x => x.AdmissionNumber.Equals(model.AdmissionNumber) && x.IsActive == true); } }
+            else { if (model.AdmissionNumber != null) { iQuery = this._laburnum.Students.Where(x => x.AdmissionNumber.Equals(model.AdmissionNumber) && x.IsActive == true); } }
 
             List<API.LABURNUM.COM.Student> dbStudents = iQuery.ToList();
             return dbStudents;

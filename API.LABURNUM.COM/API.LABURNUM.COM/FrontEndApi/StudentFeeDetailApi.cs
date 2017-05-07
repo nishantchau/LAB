@@ -130,5 +130,15 @@ namespace API.LABURNUM.COM.FrontEndApi
                 return true;
             }
         }
+
+        public API.LABURNUM.COM.StudentFeeDetail GetStudentFeeDetailByID(long Id)
+        {
+            Id.TryValidate();
+            IQueryable<API.LABURNUM.COM.StudentFeeDetail> iQuery = this._laburnum.StudentFeeDetails.Where(x => x.StudentFeeDetailId == Id && x.IsActive == true);
+            List<API.LABURNUM.COM.StudentFeeDetail> dbStudentFeeDetails = iQuery.ToList();
+            if (dbStudentFeeDetails.Count == 0) { throw new Exception(Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
+            if (dbStudentFeeDetails.Count > 1) { throw new Exception(Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            return dbStudentFeeDetails[0];
+        }
     }
 }
