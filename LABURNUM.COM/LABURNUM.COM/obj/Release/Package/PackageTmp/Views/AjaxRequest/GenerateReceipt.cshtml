@@ -30,7 +30,7 @@
                             <div style="line-height: 2.1em;">
                                 <div style="font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B; vertical-align: bottom; line-height: 2.1em;">
                                     <a style="font-family: 'Yellowtail', cursive; color: #2B2B2B; font-size: 2.2em;" href="#">T</a>hanks For Receiving Fee From <strong>@Model.StudentName S/o @Model.FatherName.</strong>
-                                    Total Paid Amount <strong>@Model.TotalPayableAmount </strong>For the M/o @Model.MonthName <strong>@Model.CreatedOn.ToShortDateString() </strong>For Class <strong>@Model.ClassName</strong> & Section <strong>@Model.SectionName</strong>.
+                                    Total Paid Amount <strong>@(Model.CashPaidAmount + Model.ChequePaidAmount) </strong>Against Payable Amount <strong>@(Model.TotalPayableAmount + Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty) </strong>For the M/o @Model.MonthName <strong>@Model.CreatedOn.ToShortDateString() </strong>For Class <strong>@Model.ClassName</strong> & Section <strong>@Model.SectionName</strong>.
                                     <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; margin: 10px; border: 2px dotted black;">
                                         <thead style="border: 1px dotted green;">
                                             <tr>
@@ -52,18 +52,51 @@
                                             </tr>
                                             <tr style="border: 1px dotted green;">
                                                 <td style="text-align: center;">3.</td>
-                                                <td style="text-align: center;">Annual Function Fee</td>
-                                                <td style="text-align: center;">@Model.AnnualFunctionFee</td>
+                                                <td style="text-align: center;">Last Pending Fee</td>
+                                                <td style="text-align: center;">@Model.LastPendingFee</td>
                                             </tr>
                                             <tr style="border: 1px dotted green;">
                                                 <td style="text-align: center;">4.</td>
-                                                <td style="text-align: center;">Pending Fee</td>
-                                                <td style="text-align: center;">@Model.PendingFee</td>
+                                                <td style="text-align: center;">Late Fee</td>
+                                                <td style="text-align: center;">@Model.LateFee</td>
                                             </tr>
                                             <tr style="border: 1px dotted green;">
                                                 <td style="text-align: center;">5.</td>
-                                                <td style="text-align: center;">Late Fee</td>
-                                                <td style="text-align: center;">@Model.LateFee</td>
+                                                <td style="text-align: center;">Bounce Cheque Amount</td>
+                                                <td style="text-align: center;">@Model.BounceChequeAmount</td>
+                                            </tr>
+                                            <tr style="border: 1px dotted green;">
+                                                <td style="text-align: center;">6.</td>
+                                                <td style="text-align: center;">Cheque Bounce Panelty</td>
+                                                <td style="text-align: center;">@Model.BounceChequePanelty</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; margin: 10px; border: 2px dotted black;">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3" style="text-align: center;">Payment Details</th>
+                                            </tr>
+                                            <tr>
+                                                <th>S.No.</th>
+                                                <th style="text-align: center;">Mode Of Payment</th>
+                                                <th>Paid Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Cash</td>
+                                                <td>@Model.CashPaidAmount</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                @if (Model.ChequeDate.GetValueOrDefault().Year == 0001)
+                                                {<td>Cheque - ( N/A & N/A)</td> }
+                                                else
+                                                {
+                                                    <td>Cheque - (@Model.ChequeNumber & @Model.ChequeDate.GetValueOrDefault().ToShortDateString())</td>}
+                                                <td>@Model.ChequePaidAmount</td>
                                             </tr>
                                         </tbody>
                                     </table>
