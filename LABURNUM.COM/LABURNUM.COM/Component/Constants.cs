@@ -38,7 +38,9 @@ namespace LABURNUM.COM.Component
         public static class DEFAULTVALUE
         {
             public static int ANNUALFUNCTIONFEEPAYABLEMONTH = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["ANNUALFUNCTIONFEEPAYMONTH"]);
+            public static int CHEQUEBOUNCEPANELTY = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["CHEQUEBOUNCEPANELTY"]);
             public static double ANNUALFUNCTIONFEE = Convert.ToDouble(System.Configuration.ConfigurationManager.AppSettings["ANNUALFUNCTIONFEE"]);
+            
         }
 
         public static class Cookies

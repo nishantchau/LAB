@@ -84,7 +84,7 @@ namespace LABURNUM.COM.Controllers
         {
             if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
             {
-                string text = new Component.Crypto().DecryptStringAES(id, Component.Constants.KEYS.SALTKEY);
+                string text = new Component.Crypto().DecryptStringAES(id, Component.Constants.KEYS.SHAREDKEY);
                 long circularId = Convert.ToInt64(text);
                 DTO.LABURNUM.COM.CircularModel model = new Component.Circular().GetCircularByCircularId(circularId);
                 return View(model);

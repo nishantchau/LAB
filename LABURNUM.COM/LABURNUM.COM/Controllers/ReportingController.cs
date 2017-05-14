@@ -31,7 +31,7 @@ namespace LABURNUM.COM.Controllers
         {
             try
             {
-                DTO.LABURNUM.COM.StudentFeeModel model = new DTO.LABURNUM.COM.StudentFeeModel() { StartDate = System.DateTime.Now, EndDate = System.DateTime.Now };
+                DTO.LABURNUM.COM.StudentFeeModel model = new DTO.LABURNUM.COM.StudentFeeModel() { StartDate = System.DateTime.Now };
                 List<DTO.LABURNUM.COM.StudentFeeModel> dbStudentFees = new Component.StudentFee().GetStudentFeeByAdvanceSearch(model);
                 double x = 0, y = 0, totalamount = 0;
                 foreach (DTO.LABURNUM.COM.StudentFeeModel item in dbStudentFees)

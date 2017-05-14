@@ -36,7 +36,7 @@ namespace LABURNUM.COM.Controllers
                     x = x + item.TotalPayableAmount;
                     foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item1 in item.StudentFeeDetails)
                     {
-                        y = y + item1.AnnualFunctionFee.GetValueOrDefault() + item1.MonthlyFee + item1.LateFee + item1.PendingFee.GetValueOrDefault();
+                        y = y + item1.MonthlyFee + item1.LateFee + item1.PendingFee.GetValueOrDefault();
                     }
                     totalamount = x + y;
                 }

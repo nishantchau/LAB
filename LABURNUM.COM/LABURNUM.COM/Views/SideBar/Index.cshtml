@@ -250,6 +250,25 @@
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SearchStudentByAdvanceSearch/Index">Pay Monthly Fee</a></li>
             </ul>
         </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-inr"></span>
+                <span class="xn-text">CHEQUE</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Cheque/SearchChequeIndex">Search Cheque Details</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+            <a href="javascript:;">
+                <span class="fa fa-inr"></span>
+                <span class="xn-text">FEE RECEIPT</span>
+            </a>
+            <ul>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/SearchFeeReceipt/Index">Search Fee Receipt</a></li>
+            </ul>
+        </li>
+       
     }
 
     @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))

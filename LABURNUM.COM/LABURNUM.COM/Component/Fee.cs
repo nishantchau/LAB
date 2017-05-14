@@ -16,7 +16,7 @@ namespace LABURNUM.COM.Component
             {
                 model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
                 HttpClient client = new LABURNUM.COM.Component.Common().GetHTTPClient("application/json");
-                HttpResponseMessage response = client.PostAsJsonAsync("Fee/Update", model).Result;
+                HttpResponseMessage response = client.PostAsJsonAsync("Fee/UpdateStatus", model).Result;
                 if (response.IsSuccessStatusCode)
                 {
 

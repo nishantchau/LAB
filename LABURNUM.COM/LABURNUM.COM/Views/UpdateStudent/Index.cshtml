@@ -137,7 +137,8 @@
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.DOB, new { @autocomplete = "off", @id = "datepicker" })
+                                <div class="display_none" id="hdndivDOB">@Model.DOB</div>
+                                @Html.TextBoxFor(x => x.DOB, new { @autocomplete = "off", @id = "txtDOB" })
                             </div>
                         </div>
                     </div>
@@ -426,7 +427,7 @@
     </section>
     
                 //Login Details
-    <section class="panel">
+    @*<section class="panel">
         <header class="panel-heading">
             Login Details<span class="tools pull-right">
                 <a class="fa fa-chevron-down" href="javascript:;"></a>
@@ -484,7 +485,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>*@
     
     
     

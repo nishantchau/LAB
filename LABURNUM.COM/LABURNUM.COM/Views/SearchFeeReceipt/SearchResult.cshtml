@@ -1,0 +1,63 @@
+﻿@model List<DTO.LABURNUM.COM.StudentFeeDetailModel>
+@{int counter = 1;}
+ <section class="panel">
+@if (Model.Count == 0)
+{
+    <div class="text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+    </div>
+}
+else
+{
+        <header class="panel-heading">
+            <strong>Number of Record Found : @Model.Count</strong>
+            <span class="tools pull-right">
+                <button class="btn btn-primary adept-view" type="button" onclick="DownloadRecord("Cheque Details List");">
+                    Download
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </button>
+            </span>
+        </header>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Class Name</th>
+                                <th>Section Name</th>
+                                <th>Student Name</th>
+                                <th>Father Name</th>
+                                <th>Month</th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item in @Model)
+                            {
+                                <tr>
+                                    <td style="width: 17%;">@counter</td>
+                                    <td style="width: 20%;">@item.ClassName</td>
+                                    <td style="width: 23%;">@item.SectionName</td>
+                                    <td style="width: 19%;">@item.StudentName</td>
+                                    <td style="width: 19%;">@item.FatherName</td>
+                                    <td style="width: 19%;">@item.MonthName</td>
+                                    @if (item.MonthlyFee > 0)
+                                    {
+                                        <td><button id="btnPrint" type="button" class="btn btn-success adept-view" onclick="GenerateReceipt('@item.StudentFeeDetailId','false');" data-toggle="modal" data-target="#myModal">Generate Receipt</button></td>
+                                    }
+                                    @if (item.MonthlyFee == 0)
+                                    { <td><button id="btnPrint" type="button" class="btn btn-success adept-view" onclick="GenerateReceipt('@item.StudentFeeDetailId','true');" data-toggle="modal" data-target="#myModal">Generate Receipt</button></td>}
+                                </tr>
+                                    counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+   
+}
+ </section>

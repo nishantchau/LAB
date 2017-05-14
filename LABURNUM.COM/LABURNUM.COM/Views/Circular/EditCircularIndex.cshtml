@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <!--breadcrumbs start -->
             <ul class="breadcrumb">
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
                 <li>Circular</li>
                 <li class="active">Publish Circular</li>
             </ul>
@@ -100,6 +100,24 @@
                             <div class="form-group">
                                 @Html.TextBoxFor(x => x.Subject, new { @id = "txtSubject", @autocomplete = "Off", @class = "ToReset" })
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span class="score_adept">Old Attachment <sup>*</sup> : </span>
+                        </div>
+                        <div class="col-md-8">
+
+                            @if (Model.Attachment != null && Model.Attachment != "")
+                            {
+                                <div class="form-group"><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/Circulars/@Model.Attachment" target="_blank">Click Here To See</a></div>
+                            }
+                            else
+                            {
+                                <div class="form-group">No Attachment</div>
+                            }
                         </div>
                     </div>
                 </div>

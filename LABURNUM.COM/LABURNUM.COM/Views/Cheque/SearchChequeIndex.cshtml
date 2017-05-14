@@ -1,0 +1,90 @@
+﻿@model DTO.LABURNUM.COM.StudentFeeDetailModel
+
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+{
+    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnSeachChequeByAdvanceSearchBegin", OnSuccess = "OnSeachChequeByAdvanceSearchSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Cheque/SerchChequeDetails" }))
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
+                <li>Cheque</li>
+                <li class="active">Search Cheque Details</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            Search Cheque Details<span class="tools pull-right">
+                <a class="fa fa-chevron-down" href="javascript:;"></a>
+            </span>
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Cheque No. : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.ChequeNumber, new { @id = "txtChequeNumber", @autocomplete = "Off", @onkeypress = "return isNumber(event);" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Cheque Date : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.ChequeDate, new { @id = "txtChequeDate", @autocomplete = "Off" })
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Cheque Status : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DropDownList("ChequeStatus", new SelectList(Model.ChequeStatusMasters, "ChequeStatusMasterId", "TextToDisplay"), new { @id = "ddlChequeStatus", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="text-center col-md-12 margin_small">
+        <button id="btnSearch" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">SEARCH</button>
+        <button id="btnReset" type="button" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetEntries();">RESET</button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+    }
+    <div id="divResult" class="panel margin_small"></div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            OnChequeAdvanceSeachIndexReady();
+        });
+    </script>
+}
+else
+{
+    <section>
+        <header class="panel-heading">
+            @(LABURNUM.COM.Component.Constants.ERRORMESSAGES.ACCESS_DENIED)
+        </header>
+    </section>
+}

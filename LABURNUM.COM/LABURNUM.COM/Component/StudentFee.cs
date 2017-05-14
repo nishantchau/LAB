@@ -48,5 +48,53 @@ namespace LABURNUM.COM.Component
             }
         }
 
+        public DTO.LABURNUM.COM.StudentFeeModel GetAdmissionFeeReceiptData(long studentFeeId)
+        {
+            try
+            {
+                DTO.LABURNUM.COM.StudentFeeModel model = new DTO.LABURNUM.COM.StudentFeeModel() { StudentFeeId = studentFeeId };
+                model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("StudentFee", "SearchAdmissionFeeReceiptData", model);
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    DTO.LABURNUM.COM.StudentFeeModel dbStudentFees = JsonConvert.DeserializeObject<DTO.LABURNUM.COM.StudentFeeModel>(data);
+                    return dbStudentFees;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public DTO.LABURNUM.COM.StudentFeeModel GetAdmissionFeeReceiptDataByDetailsId(long studentFeeDetailsId)
+        {
+            try
+            {
+                DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentFeeDetailId = studentFeeDetailsId };
+                model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("StudentFee", "SearchAdmissionFeeReceiptDataByDetailId", model);
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    DTO.LABURNUM.COM.StudentFeeModel dbStudentFees = JsonConvert.DeserializeObject<DTO.LABURNUM.COM.StudentFeeModel>(data);
+                    dbStudentFees.StudentFeeId = studentFeeDetailsId;
+                    return dbStudentFees;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }

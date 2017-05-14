@@ -73,6 +73,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                     <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Attachment <sup>*</sup> : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                              <input type="file" id="fileUpload" style="width: 200px" onclick="UploadHomeWorkAttachment();" />
+                                @Html.HiddenFor(x => x.Attachment, new { @id = "hdnAttachment", @autocomplete = "Off", @class = "ToReset" })
+                                <div id="file_name" style="display: none;"></div>
+                                <div id="divHomeWorkUploadStatus" style="display: none;"></div>
+                                <div id="divFileName" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

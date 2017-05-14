@@ -18,13 +18,16 @@ namespace LABURNUM.COM.Controllers
             if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
             {
                 DTO.LABURNUM.COM.FeeModel feemodel = new LABURNUM.COM.Component.Fee().GetFeeByClassIdandAdmissionType(classId, isNewAdmission);
-
+                DTO.LABURNUM.COM.StudentModel smodel = new LABURNUM.COM.Component.Student().GetStudentByStudentId(studentId);
                 DTO.LABURNUM.COM.StudentFeeModel model = new DTO.LABURNUM.COM.StudentFeeModel()
                 {
                     StudentId = studentId,
                     ClassId = classId,
                     IsNewAdmission = isNewAdmission,
-                    SectionId = sectionId
+                    SectionId = sectionId,
+                    StudentName = smodel.StudentFullName,
+                    ClassName = smodel.ClassName,
+                    SectionName = smodel.SectionName
                 };
 
                 if (isNewAdmission) { model.AdmissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION); }
@@ -35,6 +38,8 @@ namespace LABURNUM.COM.Controllers
                 model.DevelopementFee = feemodel.DevelopementCharges.GetValueOrDefault();
                 model.ExamFee = feemodel.ExamFee.GetValueOrDefault();
                 model.SportsFee = feemodel.SportsFee.GetValueOrDefault();
+                model.AnnualFunctionFee = Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEE;
+                model.Banks = new Component.Bank().GetAllActiveBank();
                 return View(model);
             }
             else
@@ -47,19 +52,27 @@ namespace LABURNUM.COM.Controllers
         {
             try
             {
-                model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
-                model.CollectedById = sessionManagement.GetFacultyId();
-                model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
-                HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("StudentFee", "Add", model);
-                if (response.IsSuccessStatusCode)
+                if (new Component.StudentFeeDetails().IsAlreadyAdmissionDone(model.StudentId, model.ClassId, model.SectionId))
                 {
-                    var data = response.Content.ReadAsStringAsync().Result;
-                    var id = Convert.ToInt16(data);
-                    return Json(new { code = 0, message = "success", id = id });
+                    return Json(new { code = -3, message = "failed" });
                 }
                 else
                 {
-                    return Json(new { code = -1, message = "failed" });
+
+                    model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
+                    model.CollectedById = sessionManagement.GetFacultyId();
+                    model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                    HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("StudentFee", "Add", model);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var data = response.Content.ReadAsStringAsync().Result;
+                        var id = Convert.ToInt16(data);
+                        return Json(new { code = 0, message = "success", id = id });
+                    }
+                    else
+                    {
+                        return Json(new { code = -1, message = "failed" });
+                    }
                 }
             }
             catch (Exception)

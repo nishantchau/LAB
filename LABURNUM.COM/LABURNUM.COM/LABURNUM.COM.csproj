@@ -166,7 +166,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Component\AcademicYear.cs" />
     <Compile Include="Component\AdmissionType.cs" />
+    <Compile Include="Component\Bank.cs" />
     <Compile Include="Component\BusRoute.cs" />
+    <Compile Include="Component\ChequeStatusMaster.cs" />
     <Compile Include="Component\Circular.cs" />
     <Compile Include="Component\CircularNotificationTable.cs" />
     <Compile Include="Component\CircularNotificationTracker.cs" />
@@ -205,6 +207,7 @@
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\BusRouteController.cs" />
     <Compile Include="Controllers\ChairmanController.cs" />
+    <Compile Include="Controllers\ChequeController.cs" />
     <Compile Include="Controllers\CircularController.cs" />
     <Compile Include="Controllers\ClassSubjectWiseFacultyController.cs" />
     <Compile Include="Controllers\ClassWiseFacultiesController.cs" />
@@ -230,6 +233,7 @@
     <Compile Include="Controllers\SeachClassByAdvanceSearchController.cs" />
     <Compile Include="Controllers\SearchDueFeeStudentListController.cs" />
     <Compile Include="Controllers\SearchFeeByAdnvanceSearchController.cs" />
+    <Compile Include="Controllers\SearchFeeReceiptController.cs" />
     <Compile Include="Controllers\SearchStudentByAdvanceSearchController.cs" />
     <Compile Include="Controllers\SearchStudentFeeByAdvanceSearchController.cs" />
     <Compile Include="Controllers\SeeAllClassController.cs" />
@@ -388,6 +392,7 @@
     <Content Include="Images\search-icon.png" />
     <Content Include="Images\sechand.png" />
     <Content Include="Images\underconstruction.png" />
+    <Content Include="Scripts\js\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -533,6 +538,11 @@
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Principal\Index.cshtml" />
     <Content Include="Views\VisionAndMission\Index.cshtml" />
+    <Content Include="Views\Cheque\SearchChequeIndex.cshtml" />
+    <Content Include="Views\Cheque\SearchResult.cshtml" />
+    <Content Include="Views\AjaxRequest\UpdateChequeStatusPopup.cshtml" />
+    <Content Include="Views\SearchFeeReceipt\Index.cshtml" />
+    <Content Include="Views\SearchFeeReceipt\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
