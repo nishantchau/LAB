@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <!--breadcrumbs start -->
             <ul class="breadcrumb">
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
                 <li>Cheque</li>
                 <li class="active">Search Cheque Details</li>
             </ul>
@@ -24,38 +24,54 @@
         </header>
         <div class="panel-body">
             <div class="row">
-                <div class="col-sm-4 col-md-4 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <span class="score_adept">Cheque No. : </span>
+                <div class="col-md-12">
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <span class="score_adept">Cheque No. : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(x => x.ChequeNumber, new { @id = "txtChequeNumber", @autocomplete = "Off", @onkeypress = "return isNumber(event);" })
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                @Html.TextBoxFor(x => x.ChequeNumber, new { @id = "txtChequeNumber", @autocomplete = "Off", @onkeypress = "return isNumber(event);" })
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <span class="score_adept">Cheque Status : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.DropDownList("ChequeStatus", new SelectList(Model.ChequeStatusMasters, "ChequeStatusMasterId", "TextToDisplay"), new { @id = "ddlChequeStatus", @autocomplete = "Off", @class = "ToReset" })
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @*<div class="col-sm-4 col-md-4 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <span class="score_adept">Cheque Date : </span>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                @Html.TextBoxFor(x => x.ChequeDate, new { @id = "txtChequeDate", @autocomplete = "Off" })
+                <div class="col-md-12">
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <span class="score_adept">From : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(x => x.StartDate, new { @id = "txtStartDate", @autocomplete = "Off" })
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>*@
-                <div class="col-sm-4 col-md-4 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <span class="score_adept">Cheque Status : </span>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                @Html.DropDownList("ChequeStatus", new SelectList(Model.ChequeStatusMasters, "ChequeStatusMasterId", "TextToDisplay"), new { @id = "ddlChequeStatus", @autocomplete = "Off", @class = "ToReset" })
+                    <div class="col-sm-6 col-md-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <span class="score_adept">To : </span>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(x => x.EndDate, new { @id = "txtEndDate", @autocomplete = "Off" })
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,7 +79,7 @@
             </div>
         </div>
     </section>
-    <div class="text-center col-md-12 margin_small">
+    <div class="text-center margin_small">
         <button id="btnSearch" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">SEARCH</button>
         <button id="btnReset" type="button" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetEntries();">RESET</button>
     </div>

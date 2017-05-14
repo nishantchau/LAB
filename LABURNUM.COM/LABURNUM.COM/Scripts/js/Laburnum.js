@@ -2864,7 +2864,8 @@ function CalculateBalanceAmount() {
 
 function OnChequeAdvanceSeachIndexReady() {
     try {
-        CreateDatePicker("txtChequeDate");
+        CreateDatePicker("txtStartDate");
+        CreateDatePicker("txtEndDate");
     } catch (e) {
         MyAlert("OnChequeAdvanceSeachIndexReady : " + e);
     }
@@ -2878,8 +2879,8 @@ function OnSeachChequeByAdvanceSearchBegin() {
         var cNumber = GetValue("txtChequeNumber");
         var cstatus = GetValue("ddlChequeStatus");
 
-        if ((cDate == null || cDate == "") && (cNumber == "" || cNumber == null) && (cstatus == 0 || cstatus == -1)) {
-            SetHtml(_MESSAGEDIVID, "Please Enter Value In Above Field.");
+        if ((cNumber == "" || cNumber == null) && (cstatus == 0 || cstatus == "")) {
+            SetHtml(_MESSAGEDIVID, "Either Enter Cheque No. Or Select Cheque Status.");
             return false;
         }
         DisplayLoader(_LOADERDIVID);
