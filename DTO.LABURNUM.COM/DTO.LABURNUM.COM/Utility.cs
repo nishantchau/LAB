@@ -188,6 +188,8 @@ namespace DTO.LABURNUM.COM
             INVALIDCLASS = DTO.LABURNUM.COM.Utility.Class.InvalidClass,
         }
 
+
+
         public static class Class
         {
             public const Int32 InvalidClass = -1;
@@ -313,6 +315,63 @@ namespace DTO.LABURNUM.COM
 
                 return -1;
             }
+        }
+
+
+        public enum EnumChequeStatusMaster
+        {
+            NONE = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.None,
+            CLEARED = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.Cleared,
+            BOUNCE = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.Bounce,
+            SUBMITTED = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.Submitted,
+            INVALIDCHEQUESSTATUSMASTER = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.InvalidChequesStatusMaster,
+        }
+
+        public static class ChequeStatusMaster
+        {
+            public const Int32 InvalidChequesStatusMaster = -1;
+            public const Int32 None = 0;
+            public const Int32 Cleared = 1;
+            public const Int32 Bounce = 2;
+            public const Int32 Submitted = 3;
+
+            public static EnumChequeStatusMaster GetEnumChequeStausMasterById(long chequeStatusMasterId)
+            {
+                EnumChequeStatusMaster enumChequeStatusMaster;
+                switch (chequeStatusMasterId)
+                {
+                    case None:
+                        enumChequeStatusMaster = EnumChequeStatusMaster.NONE;
+                        break;
+                    case Cleared:
+                        enumChequeStatusMaster = EnumChequeStatusMaster.CLEARED;
+                        break;
+                    case Bounce:
+                        enumChequeStatusMaster = EnumChequeStatusMaster.BOUNCE;
+                        break;
+                    case Submitted:
+                        enumChequeStatusMaster = EnumChequeStatusMaster.SUBMITTED;
+                        break;
+                    default:
+                        enumChequeStatusMaster = EnumChequeStatusMaster.INVALIDCHEQUESSTATUSMASTER;
+                        break;
+                }
+                return enumChequeStatusMaster;
+            }
+
+            public static Int64 GetChequeStatusMasterId(EnumChequeStatusMaster enumChequeStatusMaster)
+            {
+                if (enumChequeStatusMaster == EnumChequeStatusMaster.NONE)
+                { return DTO.LABURNUM.COM.Utility.ChequeStatusMaster.None; }
+                if (enumChequeStatusMaster == EnumChequeStatusMaster.SUBMITTED)
+                { return DTO.LABURNUM.COM.Utility.ChequeStatusMaster.Submitted; }
+                if (enumChequeStatusMaster == EnumChequeStatusMaster.CLEARED)
+                { return DTO.LABURNUM.COM.Utility.ChequeStatusMaster.Cleared; }
+                if (enumChequeStatusMaster == EnumChequeStatusMaster.BOUNCE)
+                { return DTO.LABURNUM.COM.Utility.ChequeStatusMaster.Bounce; }
+                return -1;
+            }
+
         }
 
 

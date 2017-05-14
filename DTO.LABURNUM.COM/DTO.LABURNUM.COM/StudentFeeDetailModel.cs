@@ -13,11 +13,12 @@ namespace DTO.LABURNUM.COM
             this.ApiClientModel = new ApiClientModel();
             this.LateFee = new double();
             this.TransportFee = new double();
-            this.AnnualFunctionFee = new double();
+            //this.AnnualFunctionFee = new double();
             this.MonthlyFee = new double();
             this.PendingFee = new double();
             this.Months = new List<MonthModel>();
-
+            this.Banks = new List<BankModel>();
+            this.ChequeStatusMasters = new List<ChequeStatusMasterModel>();
         }
 
         public long StudentFeeDetailId { get; set; }
@@ -27,17 +28,32 @@ namespace DTO.LABURNUM.COM
         public double MonthlyFee { get; set; }
         public double LateFee { get; set; }
         public Nullable<double> TransportFee { get; set; }
-        public Nullable<double> AnnualFunctionFee { get; set; }
+        //public Nullable<double> AnnualFunctionFee { get; set; }
         public Nullable<double> PendingFee { get; set; }
         public int PayForTheMonth { get; set; }
         public double DiscountAmount { get; set; }
         public string DiscountRemarks { get; set; }
         public long CollectedById { get; set; }
         public long AcademicYearId { get; set; }
+        public double CashPaidAmount { get; set; }
+        public double ChequePaidAmount { get; set; }
+        public string ChequeNumber { get; set; }
+        public string ChequeBankName { get; set; }
+        public long BankId { get; set; }
+        public Nullable<System.DateTime> ChequeDate { get; set; }
+        public Nullable<long> ChequeStatus { get; set; }
+        public string ChequeBounceRemarks { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
 
+        public double LastPendingFee { get; set; }
+        public double BounceChequeAmount { get; set; }
+        public string BounceChequeNumber { get; set; }
+        public string BounceChequeBankName { get; set; }
+        public DateTime BounceChequeDate { get; set; }
+        public string ChequeStatusName { get; set; }
+        public int BounceChequePanelty { get; set; }
 
 
         public string MonthName { get; set; }
@@ -47,11 +63,16 @@ namespace DTO.LABURNUM.COM
         public double TotalPayableAmount { get; set; }
         public string CollectedByName { get; set; }
         public List<DTO.LABURNUM.COM.MonthModel> Months { get; set; }
+        public List<DTO.LABURNUM.COM.BankModel> Banks { get; set; }
         public DTO.LABURNUM.COM.ApiClientModel ApiClientModel { get; set; }
+        public List<DTO.LABURNUM.COM.ChequeStatusMasterModel> ChequeStatusMasters { get; set; }
 
         public string StudentName { get; set; }
         public string FatherName { get; set; }
         public string ClassName { get; set; }
         public string SectionName { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public DateTime ChequeSearchEndDate { get; set; }
     }
 }

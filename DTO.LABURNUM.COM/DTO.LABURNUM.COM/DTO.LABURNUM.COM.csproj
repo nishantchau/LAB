@@ -58,7 +58,9 @@
     <Compile Include="AttendanceClassLKGModel.cs" />
     <Compile Include="AttendanceClassPreNurseryModel.cs" />
     <Compile Include="AttendanceClassUKGModel.cs" />
+    <Compile Include="BankModel.cs" />
     <Compile Include="BusRouteModel.cs" />
+    <Compile Include="ChequeStatusMasterModel.cs" />
     <Compile Include="CircularModel.cs" />
     <Compile Include="CircularNotificationTableModel.cs" />
     <Compile Include="CircularNotificationTrackerModel.cs" />
