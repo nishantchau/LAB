@@ -112,10 +112,10 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbStudents[0].IsTransportRqd = model.IsTransportRqd;
             dbStudents[0].BusRouteId = model.BusRouteId;
             dbStudents[0].StudentAadharNumber = model.StudentAadharNumber;
-            dbStudents[0].StudentUserName = model.StudentUserName;
-            dbStudents[0].StudentPassword = GetEncryptedPassword(model.StudentPassword);
-            dbStudents[0].ParentUserName = model.ParentUserName;
-            dbStudents[0].ParentPassword = GetEncryptedPassword(model.ParentPassword);
+            //dbStudents[0].StudentUserName = model.StudentUserName;
+            //dbStudents[0].StudentPassword = GetEncryptedPassword(model.StudentPassword);
+            //dbStudents[0].ParentUserName = model.ParentUserName;
+            //dbStudents[0].ParentPassword = GetEncryptedPassword(model.ParentPassword);
             dbStudents[0].LastUpdated = System.DateTime.Now;
             this._laburnum.SaveChanges();
 

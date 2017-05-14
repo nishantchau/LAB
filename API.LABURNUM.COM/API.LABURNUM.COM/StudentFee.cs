@@ -25,6 +25,7 @@ namespace API.LABURNUM.COM
         public double ExamFee { get; set; }
         public double SportsFee { get; set; }
         public double SecurityFee { get; set; }
+        public Nullable<double> AnnualFunctionFee { get; set; }
         public double DiscountAmount { get; set; }
         public string DiscountRemarks { get; set; }
         public long CollectedById { get; set; }

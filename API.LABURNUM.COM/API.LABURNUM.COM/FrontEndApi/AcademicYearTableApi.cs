@@ -93,14 +93,14 @@ namespace API.LABURNUM.COM.FrontEndApi
             //Search By Start Year.
             if (iQuery != null)
             {
-                if (model.StartYear != null)
+                if (model.StartYear > 0)
                 {
                     iQuery = iQuery.Where(x => x.StartYear == model.StartYear && x.IsActive == true);
                 }
             }
             else
             {
-                if (model.StartYear != null)
+                if (model.StartYear > 0)
                 {
                     iQuery = this._laburnum.AcademicYearTables.Where(x => x.StartYear == model.StartYear && x.IsActive == true);
                 }
@@ -108,14 +108,14 @@ namespace API.LABURNUM.COM.FrontEndApi
             //Search By End Year.
             if (iQuery != null)
             {
-                if (model.EndYear != null)
+                if (model.EndYear > 0)
                 {
                     iQuery = iQuery.Where(x => x.EndYear == model.EndYear && x.IsActive == true);
                 }
             }
             else
             {
-                if (model.StartYear != null)
+                if (model.EndYear > 0)
                 {
                     iQuery = this._laburnum.AcademicYearTables.Where(x => x.EndYear == model.EndYear && x.IsActive == true);
                 }

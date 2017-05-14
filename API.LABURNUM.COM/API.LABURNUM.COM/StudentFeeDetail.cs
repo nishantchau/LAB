@@ -21,18 +21,26 @@ namespace API.LABURNUM.COM
         public double MonthlyFee { get; set; }
         public double LateFee { get; set; }
         public Nullable<double> TransportFee { get; set; }
-        public Nullable<double> AnnualFunctionFee { get; set; }
         public Nullable<double> PendingFee { get; set; }
         public long PayForTheMonth { get; set; }
         public double DiscountAmount { get; set; }
         public string DiscountRemarks { get; set; }
         public long CollectedById { get; set; }
         public long AcademicYearId { get; set; }
+        public Nullable<double> CashPaidAmount { get; set; }
+        public Nullable<double> ChequePaidAmount { get; set; }
+        public string ChequeNumber { get; set; }
+        public long BankId { get; set; }
+        public Nullable<System.DateTime> ChequeDate { get; set; }
+        public Nullable<long> ChequeStatus { get; set; }
+        public string ChequeBounceRemarks { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
     
         public virtual AcademicYearTable AcademicYearTable { get; set; }
+        public virtual Bank Bank { get; set; }
+        public virtual ChequeStatusMaster ChequeStatusMaster { get; set; }
         public virtual Class Class { get; set; }
         public virtual Faculty Faculty { get; set; }
         public virtual Month Month { get; set; }

@@ -24,7 +24,9 @@
           <EntitySet Name="AttendanceClassLKG" EntityType="LaburnumModel.Store.AttendanceClassLKG" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AttendanceClassPreNursery" EntityType="LaburnumModel.Store.AttendanceClassPreNursery" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AttendanceClassUKG" EntityType="LaburnumModel.Store.AttendanceClassUKG" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Bank" EntityType="LaburnumModel.Store.Bank" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BusRoute" EntityType="LaburnumModel.Store.BusRoute" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ChequeStatusMaster" EntityType="LaburnumModel.Store.ChequeStatusMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Circular" EntityType="LaburnumModel.Store.Circular" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CircularNotificationTable" EntityType="LaburnumModel.Store.CircularNotificationTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CircularNotificationTracker" EntityType="LaburnumModel.Store.CircularNotificationTracker" store:Type="Tables" Schema="dbo" />
@@ -419,6 +421,14 @@
             <End Role="AcademicYearTable" EntitySet="AcademicYearTable" />
             <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_StudentFeeDetail_Bank" Association="LaburnumModel.Store.FK_StudentFeeDetail_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentFeeDetail_ChequeStatusMaster" Association="LaburnumModel.Store.FK_StudentFeeDetail_ChequeStatusMaster">
+            <End Role="ChequeStatusMaster" EntitySet="ChequeStatusMaster" />
+            <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_StudentFeeDetail_Class" Association="LaburnumModel.Store.FK_StudentFeeDetail_Class">
             <End Role="Class" EntitySet="Class" />
             <End Role="StudentFeeDetail" EntitySet="StudentFeeDetail" />
@@ -663,7 +673,7 @@
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="StudentId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="IsPresent" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
@@ -699,6 +709,16 @@
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
         </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BankName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="BusRoute">
           <Key>
             <PropertyRef Name="BusRouteId" />
@@ -711,6 +731,17 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ChequeStatusMaster">
+          <Key>
+            <PropertyRef Name="ChequeStatusMasterId" />
+          </Key>
+          <Property Name="ChequeStatusMasterId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TextToDisplay" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Circular">
           <Key>
@@ -831,6 +862,7 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="HomeWorkText" Type="nvarchar" Nullable="false" MaxLength="400" />
+          <Property Name="Attachment" Type="nvarchar" MaxLength="200" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -945,6 +977,7 @@
           <Property Name="ExamFee" Type="float" Nullable="false" />
           <Property Name="SportsFee" Type="float" Nullable="false" />
           <Property Name="SecurityFee" Type="float" Nullable="false" />
+          <Property Name="AnnualFunctionFee" Type="float" />
           <Property Name="DiscountAmount" Type="float" Nullable="false" />
           <Property Name="DiscountRemarks" Type="nvarchar" />
           <Property Name="CollectedById" Type="bigint" Nullable="false" />
@@ -964,13 +997,19 @@
           <Property Name="MonthlyFee" Type="float" Nullable="false" />
           <Property Name="LateFee" Type="float" Nullable="false" />
           <Property Name="TransportFee" Type="float" />
-          <Property Name="AnnualFunctionFee" Type="float" />
           <Property Name="PendingFee" Type="float" />
           <Property Name="PayForTheMonth" Type="bigint" Nullable="false" />
           <Property Name="DiscountAmount" Type="float" Nullable="false" />
           <Property Name="DiscountRemarks" Type="nvarchar" />
           <Property Name="CollectedById" Type="bigint" Nullable="false" />
           <Property Name="AcademicYearId" Type="bigint" Nullable="false" />
+          <Property Name="CashPaidAmount" Type="float" />
+          <Property Name="ChequePaidAmount" Type="float" />
+          <Property Name="ChequeNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankId" Type="bigint" Nullable="false" />
+          <Property Name="ChequeDate" Type="datetime" />
+          <Property Name="ChequeStatus" Type="bigint" />
+          <Property Name="ChequeBounceRemarks" Type="nvarchar" MaxLength="500" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -2123,6 +2162,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StudentFeeDetail_Bank">
+          <End Role="Bank" Type="LaburnumModel.Store.Bank" Multiplicity="1" />
+          <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankId" />
+            </Principal>
+            <Dependent Role="StudentFeeDetail">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentFeeDetail_ChequeStatusMaster">
+          <End Role="ChequeStatusMaster" Type="LaburnumModel.Store.ChequeStatusMaster" Multiplicity="0..1" />
+          <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChequeStatusMaster">
+              <PropertyRef Name="ChequeStatusMasterId" />
+            </Principal>
+            <Dependent Role="StudentFeeDetail">
+              <PropertyRef Name="ChequeStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StudentFeeDetail_Class">
           <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
           <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
@@ -2206,7 +2269,9 @@
           <EntitySet Name="AttendanceClassLKGs" EntityType="LaburnumModel.AttendanceClassLKG" />
           <EntitySet Name="AttendanceClassPreNurseries" EntityType="LaburnumModel.AttendanceClassPreNursery" />
           <EntitySet Name="AttendanceClassUKGs" EntityType="LaburnumModel.AttendanceClassUKG" />
+          <EntitySet Name="Banks" EntityType="LaburnumModel.Bank" />
           <EntitySet Name="BusRoutes" EntityType="LaburnumModel.BusRoute" />
+          <EntitySet Name="ChequeStatusMasters" EntityType="LaburnumModel.ChequeStatusMaster" />
           <EntitySet Name="Circulars" EntityType="LaburnumModel.Circular" />
           <EntitySet Name="CircularNotificationTables" EntityType="LaburnumModel.CircularNotificationTable" />
           <EntitySet Name="CircularNotificationTrackers" EntityType="LaburnumModel.CircularNotificationTracker" />
@@ -2485,9 +2550,17 @@
             <End Role="Student" EntitySet="Students" />
             <End Role="AttendanceClassUKG" EntitySet="AttendanceClassUKGs" />
           </AssociationSet>
+          <AssociationSet Name="FK_StudentFeeDetail_Bank" Association="LaburnumModel.FK_StudentFeeDetail_Bank">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="StudentFeeDetail" EntitySet="StudentFeeDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_Student_BusRoute" Association="LaburnumModel.FK_Student_BusRoute">
             <End Role="BusRoute" EntitySet="BusRoutes" />
             <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentFeeDetail_ChequeStatusMaster" Association="LaburnumModel.FK_StudentFeeDetail_ChequeStatusMaster">
+            <End Role="ChequeStatusMaster" EntitySet="ChequeStatusMasters" />
+            <End Role="StudentFeeDetail" EntitySet="StudentFeeDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_CircularNotificationTable_Circular" Association="LaburnumModel.FK_CircularNotificationTable_Circular">
             <End Role="Circular" EntitySet="Circulars" />
@@ -2898,7 +2971,7 @@
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="StudentId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
           <Property Type="Boolean" Name="IsPresent" Nullable="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
@@ -2946,6 +3019,17 @@
           <NavigationProperty Name="Section" Relationship="LaburnumModel.FK_AttendanceClassUKG_Section" FromRole="AttendanceClassUKG" ToRole="Section" />
           <NavigationProperty Name="Student" Relationship="LaburnumModel.FK_AttendanceClassUKG_Student" FromRole="AttendanceClassUKG" ToRole="Student" />
         </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Type="Int64" Name="BankId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="BankName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="DateTime" Name="LastUpdated" Precision="3" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
+          <NavigationProperty Name="StudentFeeDetails" Relationship="LaburnumModel.FK_StudentFeeDetail_Bank" FromRole="Bank" ToRole="StudentFeeDetail" />
+        </EntityType>
         <EntityType Name="BusRoute">
           <Key>
             <PropertyRef Name="BusRouteId" />
@@ -2959,6 +3043,18 @@
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdate" Precision="3" />
           <NavigationProperty Name="Students" Relationship="LaburnumModel.FK_Student_BusRoute" FromRole="BusRoute" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="ChequeStatusMaster">
+          <Key>
+            <PropertyRef Name="ChequeStatusMasterId" />
+          </Key>
+          <Property Type="Int64" Name="ChequeStatusMasterId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TextToDisplay" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="DateTime" Name="LastUpdated" Precision="3" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
+          <NavigationProperty Name="StudentFeeDetails" Relationship="LaburnumModel.FK_StudentFeeDetail_ChequeStatusMaster" FromRole="ChequeStatusMaster" ToRole="StudentFeeDetail" />
         </EntityType>
         <EntityType Name="Circular">
           <Key>
@@ -3138,6 +3234,7 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="String" Name="HomeWorkText" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Attachment" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3307,6 +3404,7 @@
           <Property Type="Double" Name="ExamFee" Nullable="false" />
           <Property Type="Double" Name="SportsFee" Nullable="false" />
           <Property Type="Double" Name="SecurityFee" Nullable="false" />
+          <Property Type="Double" Name="AnnualFunctionFee" />
           <Property Type="Double" Name="DiscountAmount" Nullable="false" />
           <Property Type="String" Name="DiscountRemarks" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="CollectedById" Nullable="false" />
@@ -3332,17 +3430,25 @@
           <Property Type="Double" Name="MonthlyFee" Nullable="false" />
           <Property Type="Double" Name="LateFee" Nullable="false" />
           <Property Type="Double" Name="TransportFee" />
-          <Property Type="Double" Name="AnnualFunctionFee" />
           <Property Type="Double" Name="PendingFee" />
           <Property Type="Int64" Name="PayForTheMonth" Nullable="false" />
           <Property Type="Double" Name="DiscountAmount" Nullable="false" />
           <Property Type="String" Name="DiscountRemarks" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="CollectedById" Nullable="false" />
           <Property Type="Int64" Name="AcademicYearId" Nullable="false" />
+          <Property Type="Double" Name="CashPaidAmount" />
+          <Property Type="Double" Name="ChequePaidAmount" />
+          <Property Type="String" Name="ChequeNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="BankId" Nullable="false" />
+          <Property Type="DateTime" Name="ChequeDate" Precision="3" />
+          <Property Type="Int64" Name="ChequeStatus" />
+          <Property Type="String" Name="ChequeBounceRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
           <NavigationProperty Name="AcademicYearTable" Relationship="LaburnumModel.FK_StudentFeeDetail_AcademicYearTable" FromRole="StudentFeeDetail" ToRole="AcademicYearTable" />
+          <NavigationProperty Name="Bank" Relationship="LaburnumModel.FK_StudentFeeDetail_Bank" FromRole="StudentFeeDetail" ToRole="Bank" />
+          <NavigationProperty Name="ChequeStatusMaster" Relationship="LaburnumModel.FK_StudentFeeDetail_ChequeStatusMaster" FromRole="StudentFeeDetail" ToRole="ChequeStatusMaster" />
           <NavigationProperty Name="Class" Relationship="LaburnumModel.FK_StudentFeeDetail_Class" FromRole="StudentFeeDetail" ToRole="Class" />
           <NavigationProperty Name="Faculty" Relationship="LaburnumModel.FK_StudentFeeDetail_Faculty" FromRole="StudentFeeDetail" ToRole="Faculty" />
           <NavigationProperty Name="Month" Relationship="LaburnumModel.FK_StudentFeeDetail_Month" FromRole="StudentFeeDetail" ToRole="Month" />
@@ -4155,6 +4261,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StudentFeeDetail_Bank">
+          <End Type="LaburnumModel.Bank" Role="Bank" Multiplicity="1" />
+          <End Type="LaburnumModel.StudentFeeDetail" Role="StudentFeeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="BankId" />
+            </Principal>
+            <Dependent Role="StudentFeeDetail">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student_BusRoute">
           <End Type="LaburnumModel.BusRoute" Role="BusRoute" Multiplicity="1" />
           <End Type="LaburnumModel.Student" Role="Student" Multiplicity="*" />
@@ -4164,6 +4282,18 @@
             </Principal>
             <Dependent Role="Student">
               <PropertyRef Name="BusRouteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentFeeDetail_ChequeStatusMaster">
+          <End Type="LaburnumModel.ChequeStatusMaster" Role="ChequeStatusMaster" Multiplicity="0..1" />
+          <End Type="LaburnumModel.StudentFeeDetail" Role="StudentFeeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChequeStatusMaster">
+              <PropertyRef Name="ChequeStatusMasterId" />
+            </Principal>
+            <Dependent Role="StudentFeeDetail">
+              <PropertyRef Name="ChequeStatus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4846,6 +4976,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="LaburnumModel.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BusRoutes">
             <EntityTypeMapping TypeName="LaburnumModel.BusRoute">
               <MappingFragment StoreEntitySet="BusRoute">
@@ -4857,6 +4998,18 @@
                 <ScalarProperty Name="BusStartFrom" ColumnName="BusStartFrom" />
                 <ScalarProperty Name="BusRouteNumber" ColumnName="BusRouteNumber" />
                 <ScalarProperty Name="BusRouteId" ColumnName="BusRouteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChequeStatusMasters">
+            <EntityTypeMapping TypeName="LaburnumModel.ChequeStatusMaster">
+              <MappingFragment StoreEntitySet="ChequeStatusMaster">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="TextToDisplay" ColumnName="TextToDisplay" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ChequeStatusMasterId" ColumnName="ChequeStatusMasterId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4982,6 +5135,7 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
                 <ScalarProperty Name="HomeWorkText" ColumnName="HomeWorkText" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5102,6 +5256,7 @@
                 <ScalarProperty Name="CollectedById" ColumnName="CollectedById" />
                 <ScalarProperty Name="DiscountRemarks" ColumnName="DiscountRemarks" />
                 <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="AnnualFunctionFee" ColumnName="AnnualFunctionFee" />
                 <ScalarProperty Name="SecurityFee" ColumnName="SecurityFee" />
                 <ScalarProperty Name="SportsFee" ColumnName="SportsFee" />
                 <ScalarProperty Name="ExamFee" ColumnName="ExamFee" />
@@ -5122,13 +5277,19 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ChequeBounceRemarks" ColumnName="ChequeBounceRemarks" />
+                <ScalarProperty Name="ChequeStatus" ColumnName="ChequeStatus" />
+                <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+                <ScalarProperty Name="ChequePaidAmount" ColumnName="ChequePaidAmount" />
+                <ScalarProperty Name="CashPaidAmount" ColumnName="CashPaidAmount" />
                 <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
                 <ScalarProperty Name="CollectedById" ColumnName="CollectedById" />
                 <ScalarProperty Name="DiscountRemarks" ColumnName="DiscountRemarks" />
                 <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
                 <ScalarProperty Name="PayForTheMonth" ColumnName="PayForTheMonth" />
                 <ScalarProperty Name="PendingFee" ColumnName="PendingFee" />
-                <ScalarProperty Name="AnnualFunctionFee" ColumnName="AnnualFunctionFee" />
                 <ScalarProperty Name="TransportFee" ColumnName="TransportFee" />
                 <ScalarProperty Name="LateFee" ColumnName="LateFee" />
                 <ScalarProperty Name="MonthlyFee" ColumnName="MonthlyFee" />

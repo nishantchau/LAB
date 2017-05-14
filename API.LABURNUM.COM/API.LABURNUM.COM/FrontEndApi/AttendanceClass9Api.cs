@@ -144,7 +144,7 @@ namespace API.LABURNUM.COM.FrontEndApi
 
                 if (model.StartDate.Year != 0001)
                 {
-                    iQuery = iQuery.Where(x => x.Date >= model.StartDate && x.Date <= model.EndDate && x.IsActive == true);
+                    iQuery = this._laburnum.AttendanceClass9.Where(x => x.Date >= model.StartDate && x.Date <= model.EndDate && x.IsActive == true);
                 }
             }
 

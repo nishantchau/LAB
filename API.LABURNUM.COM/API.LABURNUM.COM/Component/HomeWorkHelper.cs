@@ -61,6 +61,7 @@ namespace API.LABURNUM.COM.Component
                 SubjectName = model.Subject.SubjectName,
                 ClassName = model.Class.ClassName,
                 SectionName = model.Section.SectionName,
+                Attachment = model.Attachment,
                 CreatedOn = model.CreatedOn,
                 IsActive = model.IsActive,
                 LastUpdated = model.LastUpdated

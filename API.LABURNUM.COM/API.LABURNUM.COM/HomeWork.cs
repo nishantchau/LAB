@@ -20,6 +20,7 @@ namespace API.LABURNUM.COM
         public long ClassId { get; set; }
         public long SectionId { get; set; }
         public string HomeWorkText { get; set; }
+        public string Attachment { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }

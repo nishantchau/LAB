@@ -59,5 +59,10 @@ namespace API.LABURNUM.COM.Component
             public static string PRESENTSMSMSG = System.Configuration.ConfigurationManager.AppSettings["PRESENTSMSMSG"];
             public static string ABSENTSMSMSG = System.Configuration.ConfigurationManager.AppSettings["ABSENTSMSMSG"];
         }
+
+        public static class DEFAULTVALUE
+        {
+            public static int CHEQUEBOUNCEPANELTY = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["CHEQUEBOUNCEPANELTY"]);
+        }
     }
 }

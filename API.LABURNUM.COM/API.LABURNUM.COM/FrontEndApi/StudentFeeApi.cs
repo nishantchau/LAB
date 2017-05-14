@@ -30,6 +30,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 ExamFee = model.ExamFee,
                 SecurityFee = model.SecurityFee,
                 SportsFee = model.SportsFee,
+                AnnualFunctionFee = model.AnnualFunctionFee,
                 DiscountAmount = model.DiscountAmount,
                 DiscountRemarks = model.DiscountRemarks,
                 CollectedById = model.CollectedById,
@@ -39,6 +40,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             };
             this._laburnum.StudentFees.Add(apiStudentFee);
             this._laburnum.SaveChanges();
+
             return apiStudentFee.StudentFeeId;
         }
 
@@ -70,6 +72,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbStudentFees[0].ExamFee = model.ExamFee;
             dbStudentFees[0].SecurityFee = model.SecurityFee;
             dbStudentFees[0].SportsFee = model.SportsFee;
+            dbStudentFees[0].AnnualFunctionFee = model.AnnualFunctionFee;
             dbStudentFees[0].DiscountAmount = model.DiscountAmount;
             dbStudentFees[0].DiscountRemarks = model.DiscountRemarks;
             dbStudentFees[0].CollectedById = model.CollectedById;
@@ -181,7 +184,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             API.LABURNUM.COM.StudentFeeDetail apiSFD = new StudentFeeDetail()
             {
                 MonthlyFee = model.MonthlyFee,
-                AnnualFunctionFee = model.AnnualFunctionFee,
+                //AnnualFunctionFee = model.AnnualFunctionFee,
                 LateFee = model.LateFee,
                 PendingFee = model.PendingFee,
                 IsActive = true,
@@ -200,6 +203,16 @@ namespace API.LABURNUM.COM.FrontEndApi
             //if (dbStudentFee.Count > 1) { return -1; }
             return dbStudentFee[0].StudentFeeId;
         }
+
+        public API.LABURNUM.COM.StudentFee GetStudentFeeById(long studentFeeId)
+        {
+            studentFeeId.TryValidate();
+            List<API.LABURNUM.COM.StudentFee> dbStudentFee = this._laburnum.StudentFees.Where(x => x.StudentFeeId == studentFeeId && x.IsActive == true).ToList();
+            if (dbStudentFee.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
+            if (dbStudentFee.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            return dbStudentFee[0];
+        }
+
 
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using API.LABURNUM.COM.Component;
+using System.Globalization;
 
 namespace API.LABURNUM.COM.FrontEndApi
 {
@@ -23,7 +24,13 @@ namespace API.LABURNUM.COM.FrontEndApi
                 ClassId = model.ClassId,
                 SectionId = model.SectionId,
                 MonthlyFee = model.MonthlyFee,
-                AnnualFunctionFee = model.AnnualFunctionFee,
+                // AnnualFunctionFee = model.AnnualFunctionFee,
+                CashPaidAmount = model.CashPaidAmount,
+                BankId = model.BankId,
+                ChequeDate = model.ChequeDate,
+                ChequeNumber = model.ChequeNumber,
+                ChequePaidAmount = model.ChequePaidAmount,
+                ChequeStatus = model.ChequeStatus,
                 LateFee = model.LateFee,
                 PendingFee = model.PendingFee,
                 TransportFee = model.TransportFee,
@@ -64,7 +71,13 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbStudentFeeDetails[0].MonthlyFee = model.MonthlyFee;
             dbStudentFeeDetails[0].LateFee = model.LateFee;
             dbStudentFeeDetails[0].TransportFee = model.TransportFee;
-            dbStudentFeeDetails[0].AnnualFunctionFee = model.AnnualFunctionFee;
+            // dbStudentFeeDetails[0].AnnualFunctionFee = model.AnnualFunctionFee;
+            dbStudentFeeDetails[0].CashPaidAmount = model.CashPaidAmount;
+            dbStudentFeeDetails[0].BankId = model.BankId;
+            dbStudentFeeDetails[0].ChequeDate = model.ChequeDate;
+            dbStudentFeeDetails[0].ChequeNumber = model.ChequeNumber;
+            dbStudentFeeDetails[0].ChequePaidAmount = model.ChequePaidAmount;
+            dbStudentFeeDetails[0].ChequeStatus = model.ChequeStatus;
             dbStudentFeeDetails[0].PayForTheMonth = model.PayForTheMonth;
             dbStudentFeeDetails[0].PendingFee = model.PendingFee;
             dbStudentFeeDetails[0].DiscountAmount = model.DiscountAmount;
@@ -108,8 +121,96 @@ namespace API.LABURNUM.COM.FrontEndApi
             //Search By Paid Month.
             if (iQuery != null) { if (model.PayForTheMonth > 0) { iQuery = iQuery.Where(x => x.PayForTheMonth == model.PayForTheMonth && x.IsActive == true); } }
             else { if (model.PayForTheMonth > 0) { iQuery = this._laburnum.StudentFeeDetails.Where(x => x.PayForTheMonth == model.PayForTheMonth && x.IsActive == true); } }
+            //Search By Cheque Status id.
+            if (iQuery != null) { if (model.ChequeStatus > 0) { iQuery = iQuery.Where(x => x.ChequeStatus == model.ChequeStatus && x.IsActive == true); } }
+            else { if (model.ChequeStatus > 0) { iQuery = this._laburnum.StudentFeeDetails.Where(x => x.ChequeStatus == model.ChequeStatus && x.IsActive == true); } }
+            //Search By Collected By id.
+            if (iQuery != null) { if (model.CollectedById > 0) { iQuery = iQuery.Where(x => x.CollectedById == model.CollectedById && x.IsActive == true); } }
+            else { if (model.CollectedById > 0) { iQuery = this._laburnum.StudentFeeDetails.Where(x => x.CollectedById == model.CollectedById && x.IsActive == true); } }
+            //Search By Bank id.
+            if (iQuery != null) { if (model.BankId > 0) { iQuery = iQuery.Where(x => x.BankId == model.BankId && x.IsActive == true); } }
+            else { if (model.BankId > 0) { iQuery = this._laburnum.StudentFeeDetails.Where(x => x.BankId == model.BankId && x.IsActive == true); } }
+            //Search By Cheque No.
+            if (iQuery != null) { if (model.ChequeNumber != null) { iQuery = iQuery.Where(x => x.ChequeNumber.Equals(model.ChequeNumber) && x.IsActive == true); } }
+            else { if (model.ChequeNumber != null) { iQuery = this._laburnum.StudentFeeDetails.Where(x => x.ChequeNumber.Equals(model.ChequeNumber) && x.IsActive == true); } }
 
-            List<API.LABURNUM.COM.StudentFeeDetail> dbStudentFeeDetails = iQuery.OrderBy(x => x.StudentFeeDetailId).ToList();
+            //Search By Cheque Date.
+            //if (iQuery != null)
+            //{
+            //    if (model.ChequeDate.GetValueOrDefault().Year != 0001)
+            //    {
+            //        if (model.ChequeDate.GetValueOrDefault().Year != 0001) { model.ChequeSearchEndDate = model.ChequeDate.GetValueOrDefault().AddDays(1).AddSeconds(-1); }
+            //        iQuery = iQuery.Where(x => x.ChequeDate.GetValueOrDefault() >= model.ChequeDate.GetValueOrDefault() && x.ChequeDate.GetValueOrDefault() <= model.ChequeSearchEndDate && x.IsActive == true);
+            //    }
+            //}
+            //else
+            //{
+            //    if (model.ChequeDate.GetValueOrDefault().Year != 0001)
+            //    {
+            //        if (model.ChequeDate.GetValueOrDefault().Year != 0001) { model.ChequeSearchEndDate = model.ChequeDate.GetValueOrDefault().AddDays(1).AddSeconds(-1); }
+            //        iQuery = this._laburnum.StudentFeeDetails.Where(x => x.ChequeDate.GetValueOrDefault() >= model.ChequeDate.GetValueOrDefault() && x.ChequeDate.GetValueOrDefault() <= model.ChequeSearchEndDate && x.IsActive == true);
+            //    }
+            //}
+
+            //Search By Date Range.
+            if (iQuery != null)
+            {
+                if (model.StartDate.Year != 0001)
+                {
+                    model.StartDate = new Component.Utility().GetDate(model.StartDate);
+                }
+                if (model.EndDate.Year != 0001)
+                {
+                    model.EndDate = new Component.Utility().GetDate(model.EndDate);
+
+                    //string dd = Convert.ToString(model.EndDate.Day);
+                    //if (dd.Length == 1) { dd = "0" + dd; }
+                    //string mm = Convert.ToString(model.StartDate.Month);
+                    //if (mm.Length == 1) { mm = "0" + mm; }
+                    //string yy = Convert.ToString(model.StartDate.Year);
+                    //string sdate = dd + "/" + mm + "/" + yy;
+                    //model.EndDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
+
+                if (model.StartDate.Year != 0001)
+                {
+                    iQuery = iQuery.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
+                }
+            }
+            else
+            {
+                if (model.StartDate.Year != 0001)
+                {
+                    model.StartDate = new Component.Utility().GetDate(model.StartDate);
+                    //string dd = Convert.ToString(model.StartDate.Day);
+                    //if (dd.Length == 1) { dd = "0" + dd; }
+                    //string mm = Convert.ToString(model.StartDate.Month);
+                    //if (mm.Length == 1) { mm = "0" + mm; }
+                    //string yy = Convert.ToString(model.StartDate.Year);
+                    //string sdate = dd + "/" + mm + "/" + yy;
+                    //model.StartDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (model.EndDate.Year != 0001)
+                {
+                    model.EndDate = new Component.Utility().GetDate(model.EndDate);
+                    //string dd = Convert.ToString(model.EndDate.Day);
+                    //if (dd.Length == 1) { dd = "0" + dd; }
+                    //string mm = Convert.ToString(model.StartDate.Month);
+                    //if (mm.Length == 1) { mm = "0" + mm; }
+                    //string yy = Convert.ToString(model.StartDate.Year);
+                    //string sdate = dd + "/" + mm + "/" + yy;
+                    //model.EndDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }
+                if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
+
+                if (model.StartDate.Year != 0001)
+                {
+                    iQuery = this._laburnum.StudentFeeDetails.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
+                }
+            }
+
+            List<API.LABURNUM.COM.StudentFeeDetail> dbStudentFeeDetails = iQuery.OrderByDescending(x => x.StudentFeeDetailId).ToList();
             return dbStudentFeeDetails;
         }
 
@@ -140,5 +241,62 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbStudentFeeDetails.Count > 1) { throw new Exception(Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             return dbStudentFeeDetails[0];
         }
+
+        public API.LABURNUM.COM.StudentFeeDetail UpdateChequeStatus(long studentFeeDetailId, long chequeStatus, string bounceRemarks)
+        {
+            studentFeeDetailId.TryValidate();
+            IQueryable<API.LABURNUM.COM.StudentFeeDetail> iQuery = this._laburnum.StudentFeeDetails.Where(x => x.StudentFeeDetailId == studentFeeDetailId && x.IsActive == true);
+            List<API.LABURNUM.COM.StudentFeeDetail> dbStudentFeeDetails = iQuery.ToList();
+            if (dbStudentFeeDetails.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
+            if (dbStudentFeeDetails.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            dbStudentFeeDetails[0].ChequeStatus = chequeStatus;
+            dbStudentFeeDetails[0].ChequeBounceRemarks = bounceRemarks;
+            dbStudentFeeDetails[0].LastUpdated = System.DateTime.Now;
+            this._laburnum.SaveChanges();
+            return dbStudentFeeDetails[0];
+        }
+
+        //public double GetPendingFee(DTO.LABURNUM.COM.StudentFeeDetailModel model)
+        //{
+        //    double pendingFee = 0;
+        //    List<API.LABURNUM.COM.StudentFeeDetail> dblist = GetStudentFeeDetailByAdvanceSearch(model);
+        //    if (dblist.Count > 0)
+        //    {
+        //        if (dblist[0].ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.BOUNCE)) { pendingFee = pendingFee + dblist[0].ChequePaidAmount.GetValueOrDefault(); }
+        //        else { pendingFee = dblist[0].PendingFee.GetValueOrDefault(); }
+        //    }
+        //    return pendingFee;
+        //}
+
+        public API.LABURNUM.COM.StudentFeeDetail GetPendingFee(DTO.LABURNUM.COM.StudentFeeDetailModel model)
+        {
+            //double pendingFee = 0;
+            List<API.LABURNUM.COM.StudentFeeDetail> dblist = GetStudentFeeDetailByAdvanceSearch(model);
+            //if (dblist.Count > 0)
+            //{
+            //    if (dblist[0].ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.BOUNCE)) { pendingFee = pendingFee + dblist[0].ChequePaidAmount.GetValueOrDefault(); }
+            //    else { pendingFee = dblist[0].PendingFee.GetValueOrDefault(); }
+            //}
+            if (dblist.Count == 0) { throw new Exception(Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
+            return dblist[0];
+        }
+
+        public API.LABURNUM.COM.StudentFeeDetail GetFeePaidDetailDuringAdmission(long studentId, long classId, long sectionId, long academicYear)
+        {
+            List<API.LABURNUM.COM.StudentFeeDetail> model = GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { AcademicYearId = academicYear, StudentId = studentId, ClassId = classId, SectionId = sectionId });
+            List<API.LABURNUM.COM.StudentFeeDetail> dblist = model.Where(x => x.MonthlyFee == 0).ToList();
+            if (dblist.Count == 0) { }
+            return dblist[0];
+        }
+
+        public API.LABURNUM.COM.StudentFeeDetail GetFeePaidDetailDuringMonthlyFeePayment(long studentId, long classId, long sectionId, long academicYear)
+        {
+            List<API.LABURNUM.COM.StudentFeeDetail> model = GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { AcademicYearId = academicYear, StudentId = studentId, ClassId = classId, SectionId = sectionId });
+            List<API.LABURNUM.COM.StudentFeeDetail> dblist = model.ToList();
+            if (dblist.Count == 0) { }
+            return dblist[1];
+        }
+
+
     }
 }

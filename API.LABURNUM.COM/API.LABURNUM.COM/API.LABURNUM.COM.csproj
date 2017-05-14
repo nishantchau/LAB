@@ -181,7 +181,13 @@
     <Compile Include="AttendanceClassUKG.cs">
       <DependentUpon>Laburnum.tt</DependentUpon>
     </Compile>
+    <Compile Include="Bank.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
     <Compile Include="BusRoute.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChequeStatusMaster.cs">
       <DependentUpon>Laburnum.tt</DependentUpon>
     </Compile>
     <Compile Include="Circular.cs">
@@ -216,7 +222,9 @@
     <Compile Include="Component\AttendanceClassLKGHelper.cs" />
     <Compile Include="Component\AttendanceClassPreNurseryHelper.cs" />
     <Compile Include="Component\AttendanceClassUKGHelper.cs" />
+    <Compile Include="Component\BankHelper.cs" />
     <Compile Include="Component\BusRouteHelper.cs" />
+    <Compile Include="Component\ChequeStatusMasterHelper.cs" />
     <Compile Include="Component\CircularHelper.cs" />
     <Compile Include="Component\CircularNotificationTableHelper.cs" />
     <Compile Include="Component\CircularNotificationTrackerHelper.cs" />
@@ -242,6 +250,7 @@
     <Compile Include="Component\StudentHelper.cs" />
     <Compile Include="Component\SubjectHelper.cs" />
     <Compile Include="Component\UserTypeHelper.cs" />
+    <Compile Include="Component\Utility.cs" />
     <Compile Include="Component\Validation.cs" />
     <Compile Include="Controllers\AcademicYearController.cs" />
     <Compile Include="Controllers\AdmissionTypeController.cs" />
@@ -260,7 +269,9 @@
     <Compile Include="Controllers\AttendanceClassLKGController.cs" />
     <Compile Include="Controllers\AttendanceClassPreNurseryController.cs" />
     <Compile Include="Controllers\AttendanceClassUKGController.cs" />
+    <Compile Include="Controllers\BankController.cs" />
     <Compile Include="Controllers\BusRouteController.cs" />
+    <Compile Include="Controllers\ChequeStatusMasterController.cs" />
     <Compile Include="Controllers\CircularController.cs" />
     <Compile Include="Controllers\CircularNotificationTableController.cs" />
     <Compile Include="Controllers\CircularNotificationTrackerController.cs" />
@@ -312,7 +323,9 @@
     <Compile Include="FrontEndApi\AttendanceClassLKGApi.cs" />
     <Compile Include="FrontEndApi\AttendanceClassPreNurseryApi.cs" />
     <Compile Include="FrontEndApi\AttendanceClassUKGApi.cs" />
+    <Compile Include="FrontEndApi\BankApi.cs" />
     <Compile Include="FrontEndApi\BusRouteApi.cs" />
+    <Compile Include="FrontEndApi\ChequeStatusMasterApi.cs" />
     <Compile Include="FrontEndApi\CircularApi.cs" />
     <Compile Include="FrontEndApi\CircularNotificationTableApi.cs" />
     <Compile Include="FrontEndApi\CircularNotificationTrackerApi.cs" />
@@ -445,6 +458,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Laburnum.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\button-close.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\lps-signature.png" />
     <Content Include="Laburnum.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Laburnum.edmx</DependentUpon>
@@ -484,19 +500,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -506,6 +509,9 @@
     <Content Include="Views\Partial\NewStudentRegistrationMail.cshtml" />
     <Content Include="Views\Partial\ThankYouMailOnPaymentOfMonthlyFee.cshtml" />
     <Content Include="Views\Partial\ContactUsMail.cshtml" />
+    <Content Include="Views\Partial\AdmissionFeeReceipt.cshtml" />
+    <Content Include="Views\Partial\MonthlyFeeReceipt.cshtml" />
+    <Content Include="Views\Partial\EmailBodyForChequeStatusUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -62,6 +62,9 @@ namespace API.LABURNUM.COM.Component
                 SportsFee = studentFee.SportsFee,
                 SecurityFee = studentFee.SecurityFee,
                 StudentId = studentFee.StudentId,
+                AnnualFunctionFee = studentFee.AnnualFunctionFee,
+                CollectedById = studentFee.CollectedById,
+                SectionId = studentFee.SectionId,
                 CreatedOn = studentFee.CreatedOn,
                 IsActive = studentFee.IsActive,
                 LastUpdated = studentFee.LastUpdated,
@@ -71,7 +74,7 @@ namespace API.LABURNUM.COM.Component
                 SectionName = studentFee.Section.SectionName,
                 DiscountAmount = studentFee.DiscountAmount,
                 DiscountRemarks = studentFee.DiscountRemarks,
-                TotalPayableAmount = (studentFee.AdmissionFee + studentFee.DevelopementFee + studentFee.AnnualCharges + studentFee.ExamFee + studentFee.SportsFee + studentFee.SecurityFee) - studentFee.DiscountAmount,
+                TotalPayableAmount = (studentFee.AdmissionFee + studentFee.DevelopementFee + studentFee.AnnualCharges + studentFee.ExamFee + studentFee.SportsFee + studentFee.SecurityFee + studentFee.AnnualFunctionFee.GetValueOrDefault()) - studentFee.DiscountAmount,
                 CollectedByName = studentFee.Faculty.FacultyName,
                 ParentName = studentFee.Student.FatherName,
                 AcademicYear = studentFee.AcademicYearTable.StartYear + "-" + studentFee.AcademicYearTable.EndYear

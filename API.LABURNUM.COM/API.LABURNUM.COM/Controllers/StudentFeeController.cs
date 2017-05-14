@@ -14,9 +14,28 @@ namespace API.LABURNUM.COM.Controllers
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                long studentfeeId= new FrontEndApi.StudentFeeApi().Add(model);
+                long studentfeeId = new FrontEndApi.StudentFeeApi().Add(model);
+                long cstatus=0;
+                if (model.ChequePaidAmount > 0) { cstatus = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED); }
+                else { cstatus = model.ChequeStatus.GetValueOrDefault(); }
+                long studentFeeDetailsId = new FrontEndApi.StudentFeeDetailApi().Add(new DTO.LABURNUM.COM.StudentFeeDetailModel()
+                {
+                    CollectedById = model.CollectedById,
+                    AcademicYearId = model.AcademicYearId,
+                    StudentId = model.StudentId,
+                    ClassId = model.ClassId,
+                    SectionId = model.SectionId,
+                    PayForTheMonth = System.DateTime.Now.Month,
+                    CashPaidAmount = model.CashPaidAmount,
+                    ChequePaidAmount = model.ChequePaidAmount,
+                    BankId = model.BankId,
+                    ChequeDate = model.ChequeDate,
+                    ChequeNumber = model.ChequeNumber,
+                    PendingFee = model.PendingFee,
+                    ChequeStatus = cstatus
+                });
                 //sendmail(studentfeeId);
-                return studentfeeId;
+                return studentFeeDetailsId;
             }
             else
             {
@@ -62,6 +81,45 @@ namespace API.LABURNUM.COM.Controllers
             else
             {
             }
+        }
+
+        public DTO.LABURNUM.COM.StudentFeeModel SearchAdmissionFeeReceiptData(DTO.LABURNUM.COM.StudentFeeModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                DTO.LABURNUM.COM.StudentFeeModel studentFeeModel = new StudentFeeHelper(new FrontEndApi.StudentFeeApi().GetStudentFeeById(model.StudentFeeId)).MapSingle();
+                API.LABURNUM.COM.StudentFeeDetail dbstudentfeeDetails = new FrontEndApi.StudentFeeDetailApi().GetFeePaidDetailDuringAdmission(studentFeeModel.StudentId, studentFeeModel.ClassId, studentFeeModel.SectionId, studentFeeModel.AcademicYearId);
+                studentFeeModel.PendingFee = dbstudentfeeDetails.PendingFee.GetValueOrDefault();
+                studentFeeModel.CashPaidAmount = dbstudentfeeDetails.CashPaidAmount.GetValueOrDefault();
+                studentFeeModel.ChequePaidAmount = dbstudentfeeDetails.ChequePaidAmount.GetValueOrDefault();
+                studentFeeModel.ChequeNumber = dbstudentfeeDetails.ChequeNumber;
+                studentFeeModel.ChequeDate = dbstudentfeeDetails.ChequeDate;
+                return studentFeeModel;
+            }
+            else { return null; }
+        }
+
+        public DTO.LABURNUM.COM.StudentFeeModel SearchAdmissionFeeReceiptDataByDetailId(DTO.LABURNUM.COM.StudentFeeDetailModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                API.LABURNUM.COM.StudentFeeDetail dbstudentfeeDetails = new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByID(model.StudentFeeDetailId);
+
+                DTO.LABURNUM.COM.StudentFeeModel studentFeeModel = new StudentFeeHelper(new FrontEndApi.StudentFeeApi().GetStudentFeeByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeModel()
+                {
+                    StudentId = dbstudentfeeDetails.StudentId,
+                    ClassId = dbstudentfeeDetails.ClassId,
+                    SectionId = dbstudentfeeDetails.SectionId
+                })).MapSingle();
+
+                studentFeeModel.PendingFee = dbstudentfeeDetails.PendingFee.GetValueOrDefault();
+                studentFeeModel.CashPaidAmount = dbstudentfeeDetails.CashPaidAmount.GetValueOrDefault();
+                studentFeeModel.ChequePaidAmount = dbstudentfeeDetails.ChequePaidAmount.GetValueOrDefault();
+                studentFeeModel.ChequeNumber = dbstudentfeeDetails.ChequeNumber;
+                studentFeeModel.ChequeDate = dbstudentfeeDetails.ChequeDate;
+                return studentFeeModel;
+            }
+            else { return null; }
         }
     }
 }

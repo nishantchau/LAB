@@ -33,7 +33,7 @@ namespace API.LABURNUM.COM.Component
 
         public List<DTO.LABURNUM.COM.FeeReportingResultModel> GetFeeReportingResultModel(API.LABURNUM.COM.StudentFee dbStudentFee, List<API.LABURNUM.COM.StudentFeeDetail> dblist)
         {
-            int counter = 1;
+            //int counter = 1;
             List<DTO.LABURNUM.COM.FeeReportingResultModel> dbFRList = new List<DTO.LABURNUM.COM.FeeReportingResultModel>();
             DTO.LABURNUM.COM.FeeReportingResultModel model = new DTO.LABURNUM.COM.FeeReportingResultModel();
             foreach (API.LABURNUM.COM.StudentFeeDetail item in dblist)
@@ -51,7 +51,7 @@ namespace API.LABURNUM.COM.Component
                     model.LateFee = item.LateFee;
                     model.TransportFee = item.TransportFee;
                     model.PendingFee = item.PendingFee;
-                    model.AnnualFunctionFee = item.AnnualFunctionFee;
+                    //model.AnnualFunctionFee = item.AnnualFunctionFee;
                     model.MonthDiscountAmount = item.DiscountAmount;
                     model.MonthName = item.Month.MonthName;
                     model.StudentName = dbStudentFee.Student.FirstName + " " + dbStudentFee.Student.MiddleName + " " + dbStudentFee.Student.LastName;
@@ -64,7 +64,7 @@ namespace API.LABURNUM.COM.Component
                     model.LateFee = item.LateFee;
                     model.TransportFee = item.TransportFee;
                     model.PendingFee = item.PendingFee;
-                    model.AnnualFunctionFee = item.AnnualFunctionFee;
+                    //model.AnnualFunctionFee = item.AnnualFunctionFee;
                     model.MonthDiscountAmount = item.DiscountAmount;
                     model.MonthName = item.Month.MonthName;
                     model.StudentName = dbStudentFee.Student.FirstName + " " + dbStudentFee.Student.MiddleName + " " + dbStudentFee.Student.LastName;

@@ -14,9 +14,12 @@ namespace API.LABURNUM.COM.Controllers
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                long admissionTypeId = 0;
+                long admissionTypeId = 0, cstatus = 0;
                 if (model.IsNewAdmission) { admissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION); }
                 else { admissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.READMISSION); }
+                if (model.ChequePaidAmount > 0) { cstatus = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED); }
+                else { cstatus = model.ChequeStatus.GetValueOrDefault(); }
+                model.ChequeStatus = cstatus;
                 //model.StudentFeeId = new FrontEndApi.StudentFeeApi().GetStudentFeeId(model.ClassId, model.SectionId, model.StudentId, admissionTypeId);
                 long studentfeeDetailsId = new FrontEndApi.StudentFeeDetailApi().Add(model);
                 //sendmail(studentfeeDetailsId);
@@ -62,6 +65,65 @@ namespace API.LABURNUM.COM.Controllers
             string subject = "Thank you For Paying Fee For the Month Of " + studentfeeDetail.MonthName + " At Laburnum Public School.";
             string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/ThankYouMailOnPaymentOfMonthlyFee.cshtml", studentfeeDetail);
             if (new Component.Mailer().MailSend(studentmodel.EmailId, "", body, from, subject))
+            {
+            }
+            else
+            {
+            }
+        }
+
+        public DTO.LABURNUM.COM.StudentFeeDetailModel SearchPendingFee(DTO.LABURNUM.COM.StudentFeeDetailModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                return new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetPendingFee(model)).MapSingle();
+            }
+            else { return null; }
+        }
+
+        public DTO.LABURNUM.COM.StudentFeeDetailModel SearchMonthlyFeeReceiptData(DTO.LABURNUM.COM.StudentFeeDetailModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                DTO.LABURNUM.COM.StudentFeeDetailModel studentFeeDetailModel = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByID(model.StudentFeeDetailId)).MapSingle();
+                API.LABURNUM.COM.StudentFeeDetail dbstudentfeeDetails = new FrontEndApi.StudentFeeDetailApi().GetFeePaidDetailDuringMonthlyFeePayment(studentFeeDetailModel.StudentId, studentFeeDetailModel.ClassId, studentFeeDetailModel.SectionId, studentFeeDetailModel.AcademicYearId);
+                if (dbstudentfeeDetails.ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.BOUNCE))
+                {
+                    studentFeeDetailModel.LastPendingFee = dbstudentfeeDetails.PendingFee.GetValueOrDefault();
+                    studentFeeDetailModel.BounceChequePanelty = API.LABURNUM.COM.Component.Constants.DEFAULTVALUE.CHEQUEBOUNCEPANELTY;
+                    studentFeeDetailModel.BounceChequeAmount = dbstudentfeeDetails.ChequePaidAmount.GetValueOrDefault();
+                }
+                else
+                {
+                    model.LastPendingFee = dbstudentfeeDetails.PendingFee.GetValueOrDefault();
+                }
+                return studentFeeDetailModel;
+            }
+            else { return null; }
+        }
+
+        public bool UpdateChequeStatus(DTO.LABURNUM.COM.StudentFeeDetailModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                DTO.LABURNUM.COM.StudentFeeDetailModel dtomodel = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().UpdateChequeStatus(model.StudentFeeDetailId, model.ChequeStatus.GetValueOrDefault(), model.ChequeBounceRemarks)).MapSingle();
+                //SendChequeStatusUpdateEmail(dtomodel.StudentFeeDetailId);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void SendChequeStatusUpdateEmail(long studentFeeDetailsId)
+        {
+            DTO.LABURNUM.COM.StudentFeeDetailModel model = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByID(studentFeeDetailsId)).MapSingle();
+            string EmailId = new FrontEndApi.StudentApi().GetStudentByStudentId(model.StudentId).EmailId;
+            string from = Component.Constants.MAIL.MAILSENTFROM;
+            string subject = "Cheque Status Update Against Cheque No. " + model.ChequeNumber + " Submitted At Laburnum Public School.";
+            string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/EmailBodyForChequeStatusUpdate.cshtml", model);
+            if (new Component.Mailer().MailSend(EmailId, "", body, from, subject))
             {
             }
             else

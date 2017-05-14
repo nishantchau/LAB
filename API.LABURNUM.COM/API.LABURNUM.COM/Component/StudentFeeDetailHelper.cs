@@ -51,11 +51,22 @@ namespace API.LABURNUM.COM.Component
 
             DTO.LABURNUM.COM.StudentFeeDetailModel dtoStudentFeeDetail = new DTO.LABURNUM.COM.StudentFeeDetailModel()
             {
+                StudentId=studentFeeDetail.StudentId,
                 StudentFeeDetailId = studentFeeDetail.StudentFeeDetailId,
                 MonthlyFee = studentFeeDetail.MonthlyFee,
                 LateFee = studentFeeDetail.LateFee,
                 TransportFee = studentFeeDetail.TransportFee,
-                AnnualFunctionFee = studentFeeDetail.AnnualFunctionFee,
+                //AnnualFunctionFee = studentFeeDetail.AnnualFunctionFee,
+                ChequeBankName = studentFeeDetail.Bank.BankName,
+                BankId = studentFeeDetail.BankId,
+                CashPaidAmount = studentFeeDetail.CashPaidAmount.GetValueOrDefault(),
+                ChequeNumber = studentFeeDetail.ChequeNumber,
+                ChequeStatus = studentFeeDetail.ChequeStatus,
+                ChequeDate = studentFeeDetail.ChequeDate,
+                ChequePaidAmount = studentFeeDetail.ChequePaidAmount.GetValueOrDefault(),
+                CollectedById = studentFeeDetail.CollectedById,
+                ClassId = studentFeeDetail.ClassId,
+                SectionId = studentFeeDetail.SectionId,
                 PendingFee = studentFeeDetail.PendingFee,
                 DiscountAmount = studentFeeDetail.DiscountAmount,
                 DiscountRemarks = studentFeeDetail.DiscountRemarks,
@@ -68,10 +79,15 @@ namespace API.LABURNUM.COM.Component
                 StudentName = studentFeeDetail.Student.FirstName + " " + studentFeeDetail.Student.MiddleName + " " + studentFeeDetail.Student.LastName,
                 ClassName = studentFeeDetail.Class.ClassName,
                 SectionName = studentFeeDetail.Section.SectionName,
-                TotalPayableAmount = (studentFeeDetail.MonthlyFee + studentFeeDetail.LateFee + studentFeeDetail.AnnualFunctionFee.GetValueOrDefault() + studentFeeDetail.PendingFee.GetValueOrDefault() + studentFeeDetail.TransportFee.GetValueOrDefault()) - studentFeeDetail.DiscountAmount,
+                TotalPayableAmount = (studentFeeDetail.MonthlyFee + studentFeeDetail.LateFee + studentFeeDetail.TransportFee.GetValueOrDefault()) - studentFeeDetail.DiscountAmount,
                 AcademicYearId = studentFeeDetail.AcademicYearId,
-                AcademicYear = studentFeeDetail.AcademicYearTable.StartYear + "-" + studentFeeDetail.AcademicYearTable.EndYear
+                AcademicYear = studentFeeDetail.AcademicYearTable.StartYear + "-" + studentFeeDetail.AcademicYearTable.EndYear,
+                
             };
+            if (studentFeeDetail.ChequeStatusMaster != null)
+            {
+                dtoStudentFeeDetail.ChequeStatusName = studentFeeDetail.ChequeStatusMaster.TextToDisplay;
+            }
             return dtoStudentFeeDetail;
         }
     }
