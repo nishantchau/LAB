@@ -278,6 +278,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Banks">
+      <EntityTypeMapping TypeName="LaburnumModel.Bank">
+        <MappingFragment StoreEntitySet="Bank">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="BusRoutes">
       <EntityTypeMapping TypeName="LaburnumModel.BusRoute">
         <MappingFragment StoreEntitySet="BusRoute">
@@ -289,6 +300,18 @@
           <ScalarProperty Name="BusStartFrom" ColumnName="BusStartFrom" />
           <ScalarProperty Name="BusRouteNumber" ColumnName="BusRouteNumber" />
           <ScalarProperty Name="BusRouteId" ColumnName="BusRouteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChequeStatusMasters">
+      <EntityTypeMapping TypeName="LaburnumModel.ChequeStatusMaster">
+        <MappingFragment StoreEntitySet="ChequeStatusMaster">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TextToDisplay" ColumnName="TextToDisplay" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ChequeStatusMasterId" ColumnName="ChequeStatusMasterId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -414,6 +437,7 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Attachment" ColumnName="Attachment" />
           <ScalarProperty Name="HomeWorkText" ColumnName="HomeWorkText" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -534,6 +558,7 @@
           <ScalarProperty Name="CollectedById" ColumnName="CollectedById" />
           <ScalarProperty Name="DiscountRemarks" ColumnName="DiscountRemarks" />
           <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="AnnualFunctionFee" ColumnName="AnnualFunctionFee" />
           <ScalarProperty Name="SecurityFee" ColumnName="SecurityFee" />
           <ScalarProperty Name="SportsFee" ColumnName="SportsFee" />
           <ScalarProperty Name="ExamFee" ColumnName="ExamFee" />
@@ -554,13 +579,19 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ChequeBounceRemarks" ColumnName="ChequeBounceRemarks" />
+          <ScalarProperty Name="ChequeStatus" ColumnName="ChequeStatus" />
+          <ScalarProperty Name="ChequeDate" ColumnName="ChequeDate" />
+          <ScalarProperty Name="BankId" ColumnName="BankId" />
+          <ScalarProperty Name="ChequeNumber" ColumnName="ChequeNumber" />
+          <ScalarProperty Name="ChequePaidAmount" ColumnName="ChequePaidAmount" />
+          <ScalarProperty Name="CashPaidAmount" ColumnName="CashPaidAmount" />
           <ScalarProperty Name="AcademicYearId" ColumnName="AcademicYearId" />
           <ScalarProperty Name="CollectedById" ColumnName="CollectedById" />
           <ScalarProperty Name="DiscountRemarks" ColumnName="DiscountRemarks" />
           <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
           <ScalarProperty Name="PayForTheMonth" ColumnName="PayForTheMonth" />
           <ScalarProperty Name="PendingFee" ColumnName="PendingFee" />
-          <ScalarProperty Name="AnnualFunctionFee" ColumnName="AnnualFunctionFee" />
           <ScalarProperty Name="TransportFee" ColumnName="TransportFee" />
           <ScalarProperty Name="LateFee" ColumnName="LateFee" />
           <ScalarProperty Name="MonthlyFee" ColumnName="MonthlyFee" />

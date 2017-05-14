@@ -19,7 +19,9 @@
     <EntitySet Name="AttendanceClassLKGs" EntityType="LaburnumModel.AttendanceClassLKG" />
     <EntitySet Name="AttendanceClassPreNurseries" EntityType="LaburnumModel.AttendanceClassPreNursery" />
     <EntitySet Name="AttendanceClassUKGs" EntityType="LaburnumModel.AttendanceClassUKG" />
+    <EntitySet Name="Banks" EntityType="LaburnumModel.Bank" />
     <EntitySet Name="BusRoutes" EntityType="LaburnumModel.BusRoute" />
+    <EntitySet Name="ChequeStatusMasters" EntityType="LaburnumModel.ChequeStatusMaster" />
     <EntitySet Name="Circulars" EntityType="LaburnumModel.Circular" />
     <EntitySet Name="CircularNotificationTables" EntityType="LaburnumModel.CircularNotificationTable" />
     <EntitySet Name="CircularNotificationTrackers" EntityType="LaburnumModel.CircularNotificationTracker" />
@@ -298,9 +300,17 @@
       <End Role="Student" EntitySet="Students" />
       <End Role="AttendanceClassUKG" EntitySet="AttendanceClassUKGs" />
     </AssociationSet>
+    <AssociationSet Name="FK_StudentFeeDetail_Bank" Association="LaburnumModel.FK_StudentFeeDetail_Bank">
+      <End Role="Bank" EntitySet="Banks" />
+      <End Role="StudentFeeDetail" EntitySet="StudentFeeDetails" />
+    </AssociationSet>
     <AssociationSet Name="FK_Student_BusRoute" Association="LaburnumModel.FK_Student_BusRoute">
       <End Role="BusRoute" EntitySet="BusRoutes" />
       <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFeeDetail_ChequeStatusMaster" Association="LaburnumModel.FK_StudentFeeDetail_ChequeStatusMaster">
+      <End Role="ChequeStatusMaster" EntitySet="ChequeStatusMasters" />
+      <End Role="StudentFeeDetail" EntitySet="StudentFeeDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_CircularNotificationTable_Circular" Association="LaburnumModel.FK_CircularNotificationTable_Circular">
       <End Role="Circular" EntitySet="Circulars" />
@@ -711,7 +721,7 @@
     <Property Type="Int64" Name="SectionId" Nullable="false" />
     <Property Type="Int64" Name="StudentId" Nullable="false" />
     <Property Type="Int64" Name="FacultyId" Nullable="false" />
-    <Property Type="DateTime" Name="Date" Nullable="false" Precision="0" />
+    <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
     <Property Type="Boolean" Name="IsPresent" Nullable="false" />
     <Property Type="Boolean" Name="IsActive" Nullable="false" />
     <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
@@ -759,6 +769,17 @@
     <NavigationProperty Name="Section" Relationship="LaburnumModel.FK_AttendanceClassUKG_Section" FromRole="AttendanceClassUKG" ToRole="Section" />
     <NavigationProperty Name="Student" Relationship="LaburnumModel.FK_AttendanceClassUKG_Student" FromRole="AttendanceClassUKG" ToRole="Student" />
   </EntityType>
+  <EntityType Name="Bank">
+    <Key>
+      <PropertyRef Name="BankId" />
+    </Key>
+    <Property Type="Int64" Name="BankId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="BankName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="DateTime" Name="LastUpdated" Precision="3" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
+    <NavigationProperty Name="StudentFeeDetails" Relationship="LaburnumModel.FK_StudentFeeDetail_Bank" FromRole="Bank" ToRole="StudentFeeDetail" />
+  </EntityType>
   <EntityType Name="BusRoute">
     <Key>
       <PropertyRef Name="BusRouteId" />
@@ -772,6 +793,18 @@
     <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
     <Property Type="DateTime" Name="LastUpdate" Precision="3" />
     <NavigationProperty Name="Students" Relationship="LaburnumModel.FK_Student_BusRoute" FromRole="BusRoute" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="ChequeStatusMaster">
+    <Key>
+      <PropertyRef Name="ChequeStatusMasterId" />
+    </Key>
+    <Property Type="Int64" Name="ChequeStatusMasterId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Text" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TextToDisplay" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="DateTime" Name="LastUpdated" Precision="3" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
+    <NavigationProperty Name="StudentFeeDetails" Relationship="LaburnumModel.FK_StudentFeeDetail_ChequeStatusMaster" FromRole="ChequeStatusMaster" ToRole="StudentFeeDetail" />
   </EntityType>
   <EntityType Name="Circular">
     <Key>
@@ -951,6 +984,7 @@
     <Property Type="Int64" Name="ClassId" Nullable="false" />
     <Property Type="Int64" Name="SectionId" Nullable="false" />
     <Property Type="String" Name="HomeWorkText" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Attachment" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Type="Boolean" Name="IsActive" Nullable="false" />
     <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
     <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -1120,6 +1154,7 @@
     <Property Type="Double" Name="ExamFee" Nullable="false" />
     <Property Type="Double" Name="SportsFee" Nullable="false" />
     <Property Type="Double" Name="SecurityFee" Nullable="false" />
+    <Property Type="Double" Name="AnnualFunctionFee" />
     <Property Type="Double" Name="DiscountAmount" Nullable="false" />
     <Property Type="String" Name="DiscountRemarks" MaxLength="4000" FixedLength="false" Unicode="true" />
     <Property Type="Int64" Name="CollectedById" Nullable="false" />
@@ -1145,17 +1180,25 @@
     <Property Type="Double" Name="MonthlyFee" Nullable="false" />
     <Property Type="Double" Name="LateFee" Nullable="false" />
     <Property Type="Double" Name="TransportFee" />
-    <Property Type="Double" Name="AnnualFunctionFee" />
     <Property Type="Double" Name="PendingFee" />
     <Property Type="Int64" Name="PayForTheMonth" Nullable="false" />
     <Property Type="Double" Name="DiscountAmount" Nullable="false" />
     <Property Type="String" Name="DiscountRemarks" MaxLength="4000" FixedLength="false" Unicode="true" />
     <Property Type="Int64" Name="CollectedById" Nullable="false" />
     <Property Type="Int64" Name="AcademicYearId" Nullable="false" />
+    <Property Type="Double" Name="CashPaidAmount" />
+    <Property Type="Double" Name="ChequePaidAmount" />
+    <Property Type="String" Name="ChequeNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="BankId" Nullable="false" />
+    <Property Type="DateTime" Name="ChequeDate" Precision="3" />
+    <Property Type="Int64" Name="ChequeStatus" />
+    <Property Type="String" Name="ChequeBounceRemarks" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Type="Boolean" Name="IsActive" Nullable="false" />
     <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
     <Property Type="DateTime" Name="LastUpdated" Precision="3" />
     <NavigationProperty Name="AcademicYearTable" Relationship="LaburnumModel.FK_StudentFeeDetail_AcademicYearTable" FromRole="StudentFeeDetail" ToRole="AcademicYearTable" />
+    <NavigationProperty Name="Bank" Relationship="LaburnumModel.FK_StudentFeeDetail_Bank" FromRole="StudentFeeDetail" ToRole="Bank" />
+    <NavigationProperty Name="ChequeStatusMaster" Relationship="LaburnumModel.FK_StudentFeeDetail_ChequeStatusMaster" FromRole="StudentFeeDetail" ToRole="ChequeStatusMaster" />
     <NavigationProperty Name="Class" Relationship="LaburnumModel.FK_StudentFeeDetail_Class" FromRole="StudentFeeDetail" ToRole="Class" />
     <NavigationProperty Name="Faculty" Relationship="LaburnumModel.FK_StudentFeeDetail_Faculty" FromRole="StudentFeeDetail" ToRole="Faculty" />
     <NavigationProperty Name="Month" Relationship="LaburnumModel.FK_StudentFeeDetail_Month" FromRole="StudentFeeDetail" ToRole="Month" />
@@ -1968,6 +2011,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_StudentFeeDetail_Bank">
+    <End Type="LaburnumModel.Bank" Role="Bank" Multiplicity="1" />
+    <End Type="LaburnumModel.StudentFeeDetail" Role="StudentFeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bank">
+        <PropertyRef Name="BankId" />
+      </Principal>
+      <Dependent Role="StudentFeeDetail">
+        <PropertyRef Name="BankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Student_BusRoute">
     <End Type="LaburnumModel.BusRoute" Role="BusRoute" Multiplicity="1" />
     <End Type="LaburnumModel.Student" Role="Student" Multiplicity="*" />
@@ -1977,6 +2032,18 @@
       </Principal>
       <Dependent Role="Student">
         <PropertyRef Name="BusRouteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFeeDetail_ChequeStatusMaster">
+    <End Type="LaburnumModel.ChequeStatusMaster" Role="ChequeStatusMaster" Multiplicity="0..1" />
+    <End Type="LaburnumModel.StudentFeeDetail" Role="StudentFeeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChequeStatusMaster">
+        <PropertyRef Name="ChequeStatusMasterId" />
+      </Principal>
+      <Dependent Role="StudentFeeDetail">
+        <PropertyRef Name="ChequeStatus" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
