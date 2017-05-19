@@ -74,5 +74,11 @@ namespace DTO.LABURNUM.COM
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime ChequeSearchEndDate { get; set; }
+
+        public string PUN { get; set; }
+        public string PUP { get; set; }
+
+        public string SUN { get; set; }
+        public string SUP { get; set; }
     }
 }
