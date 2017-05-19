@@ -21,5 +21,6 @@ namespace DTO.LABURNUM.COM
         public long LoginActivityId { get; set; }
         public string AcademicYear { get; set; }
         public long AcademicYearId { get; set; }
+        public DateTime LastLoginAt { get; set; }
     }
 }

@@ -11,6 +11,8 @@ namespace DTO.LABURNUM.COM
         public CommonAttendanceModel()
         {
             this.ApiClientModel = new ApiClientModel();
+            this.Classes = new List<ClassModel>();
+            this.Sections = new List<SectionModel>();
         }
 
         public long AttendanceId { get; set; }

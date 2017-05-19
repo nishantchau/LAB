@@ -58,6 +58,7 @@
     <Compile Include="AttendanceClassLKGModel.cs" />
     <Compile Include="AttendanceClassPreNurseryModel.cs" />
     <Compile Include="AttendanceClassUKGModel.cs" />
+    <Compile Include="AttendanceReporting\AttendanceReportResponseModel.cs" />
     <Compile Include="BankModel.cs" />
     <Compile Include="BusRouteModel.cs" />
     <Compile Include="ChequeStatusMasterModel.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="ClassSubjectFacultyTableModel.cs" />
     <Compile Include="ClientModel.cs" />
     <Compile Include="CommonAttendanceModel.cs" />
+    <Compile Include="ContactFormTableModel.cs" />
     <Compile Include="DashBoardModel.cs" />
     <Compile Include="FacultyModel.cs" />
     <Compile Include="FeeModel.cs" />
