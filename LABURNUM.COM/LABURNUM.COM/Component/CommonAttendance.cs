@@ -56,5 +56,25 @@ namespace LABURNUM.COM.Component
             if (dbList.Count == 0) { return false; }
             else { return true; }
         }
+
+        public DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel GetAttendanceReport(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        {
+            try
+            {
+                model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                HttpClient client = new LABURNUM.COM.Component.Common().GetHTTPClient("application/json");
+                HttpResponseMessage response = client.PostAsJsonAsync("CommonAttendance/SearchAttendanceReport", model).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    return JsonConvert.DeserializeObject<DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel>(data);
+                }
+                else { return null; }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error While Getting Student List");
+            }
+        }
     }
 }

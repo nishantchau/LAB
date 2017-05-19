@@ -543,6 +543,7 @@
     <Content Include="Views\AjaxRequest\UpdateChequeStatusPopup.cshtml" />
     <Content Include="Views\SearchFeeReceipt\Index.cshtml" />
     <Content Include="Views\SearchFeeReceipt\SearchResult.cshtml" />
+    <Content Include="Views\Attendance\AttendanceReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

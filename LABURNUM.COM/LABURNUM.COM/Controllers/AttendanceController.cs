@@ -90,8 +90,11 @@ namespace LABURNUM.COM.Controllers
                     model.SectionId = sessionManagement.GetSectionId();
                     model.StudentId = sessionManagement.GetSudentId();
                 }
-                List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(model);
-                html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Attendance/SearchResult.cshtml", dblist);
+                //List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(model);
+                //html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Attendance/SearchResult.cshtml", dblist);
+
+                DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel dblist = new Component.CommonAttendance().GetAttendanceReport(model);
+                html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Attendance/AttendanceReport.cshtml", dblist);
                 return Json(new { code = 0, message = "success", result = html });
             }
             catch (Exception)

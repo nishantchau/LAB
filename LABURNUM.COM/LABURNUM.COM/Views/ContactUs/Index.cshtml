@@ -1,6 +1,6 @@
-﻿@model DTO.LABURNUM.COM.MailerModel
+﻿@model DTO.LABURNUM.COM.ContactFormTableModel
 
-@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnContactUsBegin", OnSuccess = "OnContactUsSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "ContactUs/SendMail" }))
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnContactUsBegin", OnSuccess = "OnContactUsSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "ContactUs/Add" }))
 {
     <header id="head" class="secondary">
         <div class="container">
@@ -31,17 +31,17 @@
                     </div>
                     <div class="col-md-7">
                         <div class="form-group">
-                            @Html.TextBoxFor(x => x.From, new { @class = "forgot pull-left", @id = "txtEmail", @autocomplete = "off" })
+                            @Html.TextBoxFor(x => x.Email, new { @class = "forgot pull-left", @id = "txtEmail", @autocomplete = "off" })
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-xs-12">
                     <div class="col-md-4">
-                        <span class="score_adept">Contact Number <sup class="red-color"></sup> &nbsp; :</span>
+                        <span class="score_adept">Contact Number <sup class="red-color">*</sup> &nbsp; :</span>
                     </div>
                     <div class="col-md-7">
                         <div class="form-group">
-                            @Html.TextBoxFor(x => x.Contact, new { @class = "forgot pull-left", @maxlength = "12", @id = "txtContact", @autocomplete = "off", @onkeypress = "return isNumber(event)" })
+                            @Html.TextBoxFor(x => x.ContactNumber, new { @class = "forgot pull-left", @maxlength = "12", @id = "txtContact", @autocomplete = "off", @onkeypress = "return isNumber(event)" })
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                     <div class="col-md-4">
                         <span class="score_adept">Confirm That You Are Not A Robot <sup class="red-color">*</sup></span>
                     </div>
-                    <div class="g-recaptcha captcha-key pull-left" data-sitekey=""></div>
+                    <div class="g-recaptcha captcha-key pull-left" data-sitekey="6Lf6ayAUAAAAAAmfeOXuD3nphia2mszAIW52j09G"></div>
                 </div>
                 <div class="postscore-hd text-center">
                     <button type="submit" class="btn btn-default" id="btnSubmit">SUBMIT <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
@@ -69,7 +69,7 @@
                         <div id="loader"></div>
                     </div>
                 </div>
-                <div id="divMessage" style="display: none"></div>
+                <div id="divMessage" style="display: none;text-align: center;"></div>
             </div>
             <div class="col-sm-6 col-md-6 col-xs-12">
                 <div>

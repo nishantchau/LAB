@@ -1,0 +1,44 @@
+﻿@model DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel
+@{int counter = 1;}
+
+<section class="panel">
+    <header class="panel-heading">
+        @*<strong>Number of Record Found : @Model.Count</strong>*@
+        <span class="tools pull-right">
+            <button type="button" onclick="DownloadRecord('Attendance Report');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+        </span>
+    </header>
+
+    <div class="panel-body" id="divTable">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover general-table responsive">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            @{int index; int indexcounter = 1;}
+                            @for (index = Model.StartDate.Day; index <= @Model.EndDate.Day; index++)
+                            {
+                                <th>@index</th>
+                                indexcounter++;
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance item in @Model.StudentList)
+                        {
+                            <tr>
+                                <td>@counter</td>
+                                <td style="width: 17%;">@item.StudentName</td>
+                                <td>@item.IsPresent</td>
+                            </tr>
+                            counter++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
