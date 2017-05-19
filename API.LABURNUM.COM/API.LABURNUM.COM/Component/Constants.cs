@@ -41,7 +41,9 @@ namespace API.LABURNUM.COM.Component
         {
             public static string REGISTRATIONSUBJECT = "Thank you for Registration at Laburnum Public School";
             public static string ADMISSIONSUBJECT = "Thank you for Admission at Laburnum Public School";
-            
+            public static string CONTACTFORMFILLED = "Contact Form Filled By : ";
+            public static string THANKYOUFORFILLEINGCONTACTFORM = "Thank You For Submitting Contact Us Form At Laburnum Public School ";
+
         }
 
         public static class KEYS
@@ -63,6 +65,12 @@ namespace API.LABURNUM.COM.Component
         public static class DEFAULTVALUE
         {
             public static int CHEQUEBOUNCEPANELTY = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["CHEQUEBOUNCEPANELTY"]);
+        }
+
+        public static class APIACCESS
+        {
+            public static string APIUSERNAME = System.Configuration.ConfigurationManager.AppSettings["APIUSERNAME"];
+            public static string APIPASSWORD = System.Configuration.ConfigurationManager.AppSettings["APIPASSWORD"];
         }
     }
 }

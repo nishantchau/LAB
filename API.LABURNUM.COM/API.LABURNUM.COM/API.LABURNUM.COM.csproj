@@ -231,6 +231,7 @@
     <Compile Include="Component\ClassHelper.cs" />
     <Compile Include="Component\ClassSubjectFacultyTableHelper.cs" />
     <Compile Include="Component\Constants.cs" />
+    <Compile Include="Component\ContactFormTableHelper.cs" />
     <Compile Include="Component\Crypto.cs" />
     <Compile Include="Component\FacultyHelper.cs" />
     <Compile Include="Component\FeeHelper.cs" />
@@ -252,6 +253,9 @@
     <Compile Include="Component\UserTypeHelper.cs" />
     <Compile Include="Component\Utility.cs" />
     <Compile Include="Component\Validation.cs" />
+    <Compile Include="ContactFormTable.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AcademicYearController.cs" />
     <Compile Include="Controllers\AdmissionTypeController.cs" />
     <Compile Include="Controllers\AttendanceClass10Controller.cs" />
@@ -278,6 +282,7 @@
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\ClassSubjectFacultyTableController.cs" />
     <Compile Include="Controllers\CommonAttendanceController.cs" />
+    <Compile Include="Controllers\ContactFormController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\FeeController.cs" />
     <Compile Include="Controllers\FeeReportingController.cs" />
@@ -331,6 +336,7 @@
     <Compile Include="FrontEndApi\CircularNotificationTrackerApi.cs" />
     <Compile Include="FrontEndApi\ClassApi.cs" />
     <Compile Include="FrontEndApi\ClassSubjectFacultyTableApi.cs" />
+    <Compile Include="FrontEndApi\ContactFormTableApi.cs" />
     <Compile Include="FrontEndApi\FacultyApi.cs" />
     <Compile Include="FrontEndApi\FeeApi.cs" />
     <Compile Include="FrontEndApi\HomeWorkApi.cs" />
@@ -512,6 +518,7 @@
     <Content Include="Views\Partial\AdmissionFeeReceipt.cshtml" />
     <Content Include="Views\Partial\MonthlyFeeReceipt.cshtml" />
     <Content Include="Views\Partial\EmailBodyForChequeStatusUpdate.cshtml" />
+    <Content Include="Views\Partial\ThankYouMailOnSubmittingContactUsForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

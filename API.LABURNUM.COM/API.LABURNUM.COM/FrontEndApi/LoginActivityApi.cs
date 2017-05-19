@@ -55,7 +55,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             this._laburnum.SaveChanges();
         }
 
-        public List<API.LABURNUM.COM.LoginActivity> GetClassByAdvanceSearch(DTO.LABURNUM.COM.LoginActivityModel model)
+        public List<API.LABURNUM.COM.LoginActivity> GetLoginActivityByAdvanceSearch(DTO.LABURNUM.COM.LoginActivityModel model)
         {
             IQueryable<API.LABURNUM.COM.LoginActivity> iQuery = null;
 
@@ -91,7 +91,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             }
             else
             {
-                if (model.StudentId > 0)
+                if (model.UserTypeId > 0)
                 {
                     iQuery = this._laburnum.LoginActivities.Where(x => x.UserTypeId == model.UserTypeId && x.IsActive == true);
                 }
@@ -107,7 +107,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             }
             else
             {
-                if (model.StudentId > 0)
+                if (model.ClientId > 0)
                 {
                     iQuery = this._laburnum.LoginActivities.Where(x => x.ClientId == model.ClientId && x.IsActive == true);
                 }
@@ -138,5 +138,15 @@ namespace API.LABURNUM.COM.FrontEndApi
             List<API.LABURNUM.COM.LoginActivity> dbLoginActivities = iQuery.ToList();
             return dbLoginActivities;
         }
+
+        public DateTime GetLastLogin(long id, long loginTypeId)
+        {
+            id.TryValidate(); loginTypeId.TryValidate();
+
+            List<API.LABURNUM.COM.LoginActivity> iQuery = this._laburnum.LoginActivities.Where(x => x.StudentId == id && x.UserTypeId == loginTypeId && x.IsActive == true).OrderByDescending(x => x.LoginActivityId).ToList();
+            if (iQuery.Count == 0) { return new DateTime(0001, 01, 01); }
+            else { return iQuery[0].LoginAt; }
+        }
+
     }
 }

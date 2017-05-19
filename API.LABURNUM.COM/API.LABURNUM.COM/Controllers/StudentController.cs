@@ -15,7 +15,10 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 DTO.LABURNUM.COM.StudentModel smodel = new StudentHelper(new FrontEndApi.StudentApi().Add(model)).MapSingle();
-                //sendmail(smodel);
+                smodel.ParentPassword = model.ParentPassword;
+                smodel.StudentPassword = model.StudentPassword;
+                sendmail(smodel);
+
                 return smodel;
             }
             else

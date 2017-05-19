@@ -15,7 +15,7 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 long studentfeeId = new FrontEndApi.StudentFeeApi().Add(model);
-                long cstatus=0;
+                long cstatus = 0;
                 if (model.ChequePaidAmount > 0) { cstatus = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED); }
                 else { cstatus = model.ChequeStatus.GetValueOrDefault(); }
                 long studentFeeDetailsId = new FrontEndApi.StudentFeeDetailApi().Add(new DTO.LABURNUM.COM.StudentFeeDetailModel()
@@ -34,7 +34,7 @@ namespace API.LABURNUM.COM.Controllers
                     PendingFee = model.PendingFee,
                     ChequeStatus = cstatus
                 });
-                //sendmail(studentfeeId);
+                sendmail(studentFeeDetailsId);
                 return studentFeeDetailsId;
             }
             else
@@ -68,13 +68,18 @@ namespace API.LABURNUM.COM.Controllers
             else { return null; }
         }
 
-        private void sendmail(long studentId)
+        private void sendmail(long studentFeeDetailsId)
         {
-            DTO.LABURNUM.COM.StudentModel studentmodel = new StudentHelper(new FrontEndApi.StudentApi().GetStudentByStudentId(studentId)).MapSingle();
-
+            DTO.LABURNUM.COM.StudentFeeDetailModel smodel = new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentFeeDetailId = studentFeeDetailsId };
+            smodel.ApiClientModel.UserName = Component.Constants.APIACCESS.APIUSERNAME; ;
+            smodel.ApiClientModel.Password = Component.Constants.APIACCESS.APIPASSWORD; ;
+            DTO.LABURNUM.COM.StudentFeeModel model = SearchAdmissionFeeReceiptDataByDetailId(smodel);
+            //DTO.LABURNUM.COM.StudentFeeDetailModel studentfeeDetail = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetFeePaidDetailDuringAdmission(studentId, classId, sectionId, academicyearId)).MapSingle();
+            DTO.LABURNUM.COM.StudentModel studentmodel = new StudentHelper(new FrontEndApi.StudentApi().GetStudentByStudentId(model.StudentId)).MapSingle();
+            model.StudentFeeId = studentFeeDetailsId;
             string from = Component.Constants.MAIL.MAILSENTFROM;
             string subject = Component.Constants.MAILSUBJECT.ADMISSIONSUBJECT;
-            string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/NewAdmissionThankyouEmail.cshtml", studentmodel);
+            string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/NewAdmissionThankyouEmail.cshtml", model);
             if (new Component.Mailer().MailSend(studentmodel.EmailId, "", body, from, subject))
             {
             }

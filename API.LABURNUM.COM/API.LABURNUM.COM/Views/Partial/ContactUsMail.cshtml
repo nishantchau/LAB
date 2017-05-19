@@ -1,10 +1,10 @@
-﻿@model DTO.LABURNUM.COM.MailerModel
+﻿@model DTO.LABURNUM.COM.ContactFormTableModel
 
 <table width="600" class="bodyTable">
     <tbody>
         <tr style="background-color: #186a40; min-height: 88px; text-align: center;">
             <td>
-                <img src="@API.LABURNUM.COM.Component.Constants.URL.WEBAPIURLWITHOUTSLASH/Images/Uploads/logo.jpg" alt="LABURNUM PUBLIC SCHOOL" style="width:60px;height:60px;"/></td>
+                <img src="@API.LABURNUM.COM.Component.Constants.URL.WEBAPIURLWITHOUTSLASH/Images/logo.png" alt="LABURNUM PUBLIC SCHOOL" style="width:60px;height:60px;"/></td>
         </tr>
         <tr style="text-align: left;">
             <td style="padding-top: 15px; line-height: 1.4em;">Dear <strong>Admin,</strong>
@@ -14,11 +14,11 @@
                 <br />
                 Name : @Model.Name
                 <br />
-                Email : @Model.From
+                Email : @Model.Email
                 <br />
-                Contact No : @Model.Contact
+                Contact No : @Model.ContactNumber
                 <br />
-                Message : @Model.Body
+                Message : @Model.Message
             </td>
         </tr>
         <tr style="text-align: left;">

@@ -1,1 +1,46 @@
 ﻿@model DTO.LABURNUM.COM.StudentFeeDetailModel
+
+
+<table width="600" class="bodyTable">
+    <tbody>
+        <tr style="background-color: #186a40; min-height: 88px; text-align: center;">
+            <td>
+                <a href="@API.LABURNUM.COM.Component.Constants.URL.WEBSITEURL">
+                    <img src="@API.LABURNUM.COM.Component.Constants.URL.WEBAPIURLWITHOUTSLASH/Images/logo.png" alt="LABURNUM PUBLIC SCHOOL" style="width:60px;height:60px;"/></a></td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="padding-top: 15px; line-height: 1.4em;">Dear <strong>@Model.FatherName ,</strong>
+                <br />
+                <br />
+                Thank you For Receiving Monthly Fee From <strong>@Model.StudentName S/o @Model.FatherName</strong>.
+                <br />
+                Total Paid Amount <strong>@(Model.CashPaidAmount + Model.ChequePaidAmount) </strong>Against Payable Amount <strong>@(Model.TotalPayableAmount + Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty) </strong>For the M/o @Model.MonthName <strong>on dated @Model.CreatedOn.ToShortDateString() </strong>For Class <strong>@Model.ClassName</strong> & Section <strong>@Model.SectionName</strong> bearing <strong>Receipt No. @Model.StudentFeeDetailId </strong> Received By @Model.CollectedByName.
+                <br />
+                <span><strong>Payment Details :</strong></span>
+                <br />
+                Paid By Cash : @Model.CashPaidAmount
+                <br />
+                @if (Model.ChequePaidAmount > 0)
+                {
+                    <span>Paid By Cheque : @Model.ChequePaidAmount (Chq No. @Model.ChequeNumber / Chq Date : @Model.ChequeDate.GetValueOrDefault().ToShortDateString())</span>}
+                else
+                {
+                    <span>Paid By Cheque : 0 ( Chq No. -- / --)</span>
+                }
+                <br />
+                <br />
+                In Case of any query or Support Contact us on +91-83-77000147 & +91-77-77022229 Or Mail us on <a href="mailto:support@laburnumpublicschool.com">support@laburnumpublicschool.com</a>. 
+                <br />
+            </td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="padding-top: 15px; line-height: 1.4em;">Regards
+            </td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="padding-top: 15px; line-height: 1.4em; color: #256546;">
+                <strong>Team <a href="@API.LABURNUM.COM.Component.Constants.URL.WEBSITEURL">LABURNUM PUBLIC SCHOOL</a></strong>
+            </td>
+        </tr>
+    </tbody>
+</table>

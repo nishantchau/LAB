@@ -34,7 +34,7 @@ namespace API.LABURNUM.COM.Controllers
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                return new LoginActivityHelper(new FrontEndApi.LoginActivityApi().GetClassByAdvanceSearch(model)).Map();
+                return new LoginActivityHelper(new FrontEndApi.LoginActivityApi().GetLoginActivityByAdvanceSearch(model)).Map();
             }
             else { return null; }
         }

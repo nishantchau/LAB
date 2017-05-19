@@ -75,7 +75,7 @@ namespace API.LABURNUM.COM.Controllers
                     sessionmodel.AcademicYearId = acy.AcademicYearTableId;
                     DTO.LABURNUM.COM.LoginActivityModel lmodel = new DTO.LABURNUM.COM.LoginActivityModel() { UserTypeId = sessionmodel.LoginBy, StudentId = sessionmodel.LoginByUserId, ClientId = new FrontEndApi.ApiClientApi().GetClientId(model.ApiClientModel.UserName, model.ApiClientModel.Password) };
                     sessionmodel.LoginActivityId = new FrontEndApi.LoginActivityApi().Add(lmodel);
-
+                    sessionmodel.LastLoginAt = new FrontEndApi.LoginActivityApi().GetLastLogin(sessionmodel.LoginByUserId, sessionmodel.LoginBy);
                     return GetApiResponseModel("SuccessFully Performed", true, sessionmodel);
                 }
                 catch (Exception ex)
@@ -362,6 +362,64 @@ namespace API.LABURNUM.COM.Controllers
             {
                 return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null);
             }
+        }
+
+        public dynamic UpdateLoginActivity(DTO.LABURNUM.COM.LoginActivityModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                if (model.LoginActivityId == 0) { return GetApiResponseModel("Login Activity Id Cannot be Zero", true, null); }
+                new FrontEndApi.LoginActivityApi().Update(model);
+                return GetApiResponseModel("Logout Activity Update SuccessFully", true, null);
+            }
+            else
+            {
+                return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null);
+            }
+        }
+
+        public dynamic AddHomeWork(DTO.LABURNUM.COM.HomeWorkModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                if (model.FacultyId == 0) { return GetApiResponseModel("Faculty Id Cannot be Zero", true, null); }
+                if (model.ClassId == 0) { return GetApiResponseModel("Class Id Cannot be Zero", true, null); }
+                if (model.SectionId == 0) { return GetApiResponseModel("Section Id Cannot be Zero", true, null); }
+                if (model.SubjectId == 0) { return GetApiResponseModel("Subject Id Cannot be Zero", true, null); }
+                if (model.HomeWorkText.Trim() == null) { return GetApiResponseModel("HomeWork Text Cannot be Null", true, null); }
+                if (model.HomeWorkText.Trim() == "") { return GetApiResponseModel("Home Work Cannot be Blank", true, null); }
+                long homeworkid = new FrontEndApi.HomeWorkApi().Add(model);
+                return GetApiResponseModel("Home Work Posted Successfully.", true, homeworkid);
+            }
+            else
+            {
+                return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null);
+            }
+        }
+
+        public dynamic UpdateHomeWork(DTO.LABURNUM.COM.HomeWorkModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                if (model.HomeWorkId == 0 || model.HomeWorkId < 0) { return GetApiResponseModel("HomeWork Id Cannot be Zero", true, null); }
+                if (model.HomeWorkText.Trim() == null) { return GetApiResponseModel("HomeWork Text Cannot be Null", true, null); }
+                if (model.HomeWorkText.Trim() == "") { return GetApiResponseModel("HomeWork Text Cannot be Blank", true, null); }
+                new FrontEndApi.HomeWorkApi().Update(model);
+                return GetApiResponseModel("Home Work Updated Successfully.", true, null);
+            }
+            else
+            {
+                return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null);
+            }
+        }
+
+        public dynamic SearchHomeWorkByAdvanceSearch(DTO.LABURNUM.COM.HomeWorkModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                return GetApiResponseModel("Successfully Performed.", false, new HomeWorkHelper(new FrontEndApi.HomeWorkApi().GetHomeWorkByAdvanceSearch(model)).Map());
+            }
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
         }
     }
 }

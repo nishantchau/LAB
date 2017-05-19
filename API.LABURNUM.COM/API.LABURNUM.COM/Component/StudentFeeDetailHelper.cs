@@ -51,7 +51,7 @@ namespace API.LABURNUM.COM.Component
 
             DTO.LABURNUM.COM.StudentFeeDetailModel dtoStudentFeeDetail = new DTO.LABURNUM.COM.StudentFeeDetailModel()
             {
-                StudentId=studentFeeDetail.StudentId,
+                StudentId = studentFeeDetail.StudentId,
                 StudentFeeDetailId = studentFeeDetail.StudentFeeDetailId,
                 MonthlyFee = studentFeeDetail.MonthlyFee,
                 LateFee = studentFeeDetail.LateFee,
@@ -82,7 +82,8 @@ namespace API.LABURNUM.COM.Component
                 TotalPayableAmount = (studentFeeDetail.MonthlyFee + studentFeeDetail.LateFee + studentFeeDetail.TransportFee.GetValueOrDefault()) - studentFeeDetail.DiscountAmount,
                 AcademicYearId = studentFeeDetail.AcademicYearId,
                 AcademicYear = studentFeeDetail.AcademicYearTable.StartYear + "-" + studentFeeDetail.AcademicYearTable.EndYear,
-                
+                ChequeBounceRemarks = studentFeeDetail.ChequeBounceRemarks
+
             };
             if (studentFeeDetail.ChequeStatusMaster != null)
             {

@@ -51,6 +51,7 @@ namespace API.LABURNUM.COM
         public DbSet<CircularNotificationTracker> CircularNotificationTrackers { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<ClassSubjectFacultyTable> ClassSubjectFacultyTables { get; set; }
+        public DbSet<ContactFormTable> ContactFormTables { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<Fee> Fees { get; set; }
         public DbSet<HomeWork> HomeWork { get; set; }

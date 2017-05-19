@@ -1,1 +1,42 @@
 ﻿@model DTO.LABURNUM.COM.StudentModel
+
+
+<table width="600" class="bodyTable">
+    <tbody>
+        <tr style="background-color: #186a40; min-height: 88px; text-align: center;">
+            <td>
+                <img src="@API.LABURNUM.COM.Component.Constants.URL.WEBAPIURLWITHOUTSLASH/Images/logo.png" alt="LABURNUM PUBLIC SCHOOL" style="width:60px;height:60px;"/></td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="padding-top: 15px; line-height: 1.4em;">Dear <strong>@Model.FatherName ,</strong>
+                <br />
+                <br />
+                Thank you for registration of your Child Name @Model.StudentFullName in Class @Model.ClassName & Section @Model.SectionName. Parent and Student Login Credential Will be Share on Success Payment of Admission.
+                <br />
+                <span><strong>For Parent Login : </strong></span>
+                <br />
+                User Name : @Model.ParentUserName
+                <br />
+                Password : @Model.ParentPassword
+                <br />
+                <span><strong>For Student Login :</strong></span>
+                <br />
+                User Name : @Model.StudentUserName
+                <br />
+                Password : @Model.StudentPassword
+                <br />
+                In Case of any query or Support Contact us on +91-83-77000147 & +91-77-77022229 Or Mail us <a href="mailto:support@laburnumpublicschool.com">support@laburnumpublicschool.com</a>. 
+                <br />
+            </td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="padding-top: 15px; line-height: 1.4em;">Regards
+            </td>
+        </tr>
+        <tr style="text-align: left;">
+            <td style="padding-top: 15px; line-height: 1.4em; color: #256546;">
+                <strong>Team <a href="@API.LABURNUM.COM.Component.Constants.URL.WEBSITEURL">LABURNUM PUBLIC SCHOOL</a></strong>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -32,6 +32,7 @@
           <EntitySet Name="CircularNotificationTracker" EntityType="LaburnumModel.Store.CircularNotificationTracker" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Class" EntityType="LaburnumModel.Store.Class" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ClassSubjectFacultyTable" EntityType="LaburnumModel.Store.ClassSubjectFacultyTable" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContactFormTable" EntityType="LaburnumModel.Store.ContactFormTable" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Faculty" EntityType="LaburnumModel.Store.Faculty" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Fee" EntityType="LaburnumModel.Store.Fee" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HomeWork" EntityType="LaburnumModel.Store.HomeWork" store:Type="Tables" Schema="dbo" />
@@ -809,6 +810,19 @@
           <Property Name="SubjectId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ContactFormTable">
+          <Key>
+            <PropertyRef Name="ContactFormTableId" />
+          </Key>
+          <Property Name="ContactFormTableId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -2277,6 +2291,7 @@
           <EntitySet Name="CircularNotificationTrackers" EntityType="LaburnumModel.CircularNotificationTracker" />
           <EntitySet Name="Classes" EntityType="LaburnumModel.Class" />
           <EntitySet Name="ClassSubjectFacultyTables" EntityType="LaburnumModel.ClassSubjectFacultyTable" />
+          <EntitySet Name="ContactFormTables" EntityType="LaburnumModel.ContactFormTable" />
           <EntitySet Name="Faculties" EntityType="LaburnumModel.Faculty" />
           <EntitySet Name="Fees" EntityType="LaburnumModel.Fee" />
           <EntitySet Name="HomeWork" EntityType="LaburnumModel.HomeWork" />
@@ -3159,6 +3174,19 @@
           <NavigationProperty Name="Faculty" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Faculty" FromRole="ClassSubjectFacultyTable" ToRole="Faculty" />
           <NavigationProperty Name="Section" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Section" FromRole="ClassSubjectFacultyTable" ToRole="Section" />
           <NavigationProperty Name="Subject" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Subject" FromRole="ClassSubjectFacultyTable" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="ContactFormTable">
+          <Key>
+            <PropertyRef Name="ContactFormTableId" />
+          </Key>
+          <Property Type="Int64" Name="ContactFormTableId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Message" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="LastUpdated" Precision="3" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -5085,6 +5113,20 @@
                 <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
                 <ScalarProperty Name="ClassSubjectFacultyTableId" ColumnName="ClassSubjectFacultyTableId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactFormTables">
+            <EntityTypeMapping TypeName="LaburnumModel.ContactFormTable">
+              <MappingFragment StoreEntitySet="ContactFormTable">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactFormTableId" ColumnName="ContactFormTableId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

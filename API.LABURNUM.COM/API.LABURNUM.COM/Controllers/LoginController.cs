@@ -46,6 +46,7 @@ namespace API.LABURNUM.COM.Controllers
                 sessionmodel.AcademicYearId = acy.AcademicYearTableId;
                 DTO.LABURNUM.COM.LoginActivityModel lmodel = new DTO.LABURNUM.COM.LoginActivityModel() { UserTypeId = sessionmodel.LoginBy, StudentId = sessionmodel.LoginByUserId, ClientId = new FrontEndApi.ApiClientApi().GetClientId(model.ApiClientModel.UserName, model.ApiClientModel.Password) };
                 sessionmodel.LoginActivityId = new FrontEndApi.LoginActivityApi().Add(lmodel);
+                sessionmodel.LastLoginAt = new FrontEndApi.LoginActivityApi().GetLastLogin(sessionmodel.LoginByUserId, sessionmodel.LoginBy);
                 return sessionmodel;
             }
             else

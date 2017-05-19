@@ -116,14 +116,14 @@ namespace API.LABURNUM.COM.FrontEndApi
             //Search By FacultyID.
             if (iQuery != null)
             {
-                if (model.FacultyId != null)
+                if (model.FacultyId > 0)
                 {
                     iQuery = iQuery.Where(x => x.FacultyId == model.FacultyId && x.IsActive == true);
                 }
             }
             else
             {
-                if (model.HomeWorkText != null)
+                if (model.FacultyId > 0)
                 {
                     iQuery = this._laburnum.HomeWork.Where(x => x.FacultyId == model.FacultyId && x.IsActive == true);
                 }
@@ -180,21 +180,55 @@ namespace API.LABURNUM.COM.FrontEndApi
             //Search By Date Range.
             if (iQuery != null)
             {
+
                 if (model.StartDate.Year != 0001)
                 {
-                    if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
-                    if (model.EndDate.Year != 0001) { model.EndDate = model.EndDate.AddDays(1).AddSeconds(-1); }
+                    model.StartDate = new Component.Utility().GetDate(model.StartDate);
+                }
+                if (model.EndDate.Year != 0001)
+                {
+                    model.EndDate = new Component.Utility().GetDate(model.EndDate);
+                }
+                if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
+
+                if (model.StartDate.Year != 0001)
+                {
                     iQuery = iQuery.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
                 }
+
+                //if (model.StartDate.Year != 0001)
+                //{
+                //    if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
+                //    if (model.EndDate.Year != 0001) { model.EndDate = model.EndDate.AddDays(1).AddSeconds(-1); }
+                //    iQuery = iQuery.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
+                //}
             }
             else
             {
                 if (model.StartDate.Year != 0001)
                 {
-                    if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
-                    if (model.EndDate.Year != 0001) { model.EndDate = model.EndDate.AddDays(1).AddSeconds(-1); }
+                    model.StartDate = new Component.Utility().GetDate(model.StartDate);
+                }
+                if (model.EndDate.Year != 0001)
+                {
+                    model.EndDate = new Component.Utility().GetDate(model.EndDate);
+                }
+                if (model.EndDate.Year == 0001) 
+                { 
+                    model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); 
+                }
+
+                if (model.StartDate.Year != 0001)
+                {
                     iQuery = this._laburnum.HomeWork.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
                 }
+
+                //if (model.StartDate.Year != 0001)
+                //{
+                //    if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
+                //    if (model.EndDate.Year != 0001) { model.EndDate = model.EndDate.AddDays(1).AddSeconds(-1); }
+                //    iQuery = this._laburnum.HomeWork.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
+                //}
             }
 
             List<API.LABURNUM.COM.HomeWork> dbHomeWorkes = iQuery.ToList();

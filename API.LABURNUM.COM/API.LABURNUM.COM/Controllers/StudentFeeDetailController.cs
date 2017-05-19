@@ -22,7 +22,7 @@ namespace API.LABURNUM.COM.Controllers
                 model.ChequeStatus = cstatus;
                 //model.StudentFeeId = new FrontEndApi.StudentFeeApi().GetStudentFeeId(model.ClassId, model.SectionId, model.StudentId, admissionTypeId);
                 long studentfeeDetailsId = new FrontEndApi.StudentFeeDetailApi().Add(model);
-                //sendmail(studentfeeDetailsId);
+                sendmail(studentfeeDetailsId);
                 return studentfeeDetailsId;
             }
             else
@@ -58,12 +58,16 @@ namespace API.LABURNUM.COM.Controllers
 
         private void sendmail(long studentfeeDetailId)
         {
-            DTO.LABURNUM.COM.StudentFeeDetailModel studentfeeDetail = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByID(studentfeeDetailId)).MapSingle();
-            DTO.LABURNUM.COM.StudentModel studentmodel = new StudentHelper(new FrontEndApi.StudentApi().GetStudentByStudentId(studentfeeDetail.StudentId)).MapSingle();
+            //DTO.LABURNUM.COM.StudentFeeDetailModel studentfeeDetail = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByID(studentfeeDetailId)).MapSingle();
 
+            DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentFeeDetailId = studentfeeDetailId };
+            model.ApiClientModel.UserName = Component.Constants.APIACCESS.APIUSERNAME;
+            model.ApiClientModel.Password = Component.Constants.APIACCESS.APIPASSWORD;
+            model = SearchMonthlyFeeReceiptData(model);
+            DTO.LABURNUM.COM.StudentModel studentmodel = new StudentHelper(new FrontEndApi.StudentApi().GetStudentByStudentId(model.StudentId)).MapSingle();
             string from = Component.Constants.MAIL.MAILSENTFROM;
-            string subject = "Thank you For Paying Fee For the Month Of " + studentfeeDetail.MonthName + " At Laburnum Public School.";
-            string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/ThankYouMailOnPaymentOfMonthlyFee.cshtml", studentfeeDetail);
+            string subject = "Thank you For Paying Fee For the Month Of " + model.MonthName + "-" + System.DateTime.Now.Year + " At Laburnum Public School.";
+            string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/ThankYouMailOnPaymentOfMonthlyFee.cshtml", model);
             if (new Component.Mailer().MailSend(studentmodel.EmailId, "", body, from, subject))
             {
             }
@@ -107,7 +111,7 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 DTO.LABURNUM.COM.StudentFeeDetailModel dtomodel = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().UpdateChequeStatus(model.StudentFeeDetailId, model.ChequeStatus.GetValueOrDefault(), model.ChequeBounceRemarks)).MapSingle();
-                //SendChequeStatusUpdateEmail(dtomodel.StudentFeeDetailId);
+                SendChequeStatusUpdateEmail(dtomodel.StudentFeeDetailId);
                 return true;
             }
             else
