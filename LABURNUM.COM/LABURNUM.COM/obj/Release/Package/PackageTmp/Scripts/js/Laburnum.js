@@ -479,7 +479,7 @@ function CreateDatePicker(boxId) {
         var currentDate = new Date();
         var id = "#" + boxId;
         $(id).datepicker({
-            format: "dd/mm/yyyy",
+            //format: "dd/mm/yyyy",
             changeMonth: true,
             numberOfMonths: 1,
             //minDate: currentDate,
@@ -1034,9 +1034,13 @@ function OnUpdateStudentSuccess(data) {
                 break;
             case -1:
                 SetHtml("divMessage", MESSAGES.UpdateFailMessage);
+                Enablebutton("btnSave");
+                Enablebutton("btnSaveNext");
                 break;
             case -2:
                 SetHtml("divMessage", MESSAGES.UpdateFailMessage);
+                Enablebutton("btnSave");
+                Enablebutton("btnSaveNext");
                 break;
         }
     }
@@ -2860,7 +2864,8 @@ function CalculateBalanceAmount() {
 
 function OnChequeAdvanceSeachIndexReady() {
     try {
-        CreateDatePicker("txtChequeDate");
+        CreateDatePicker("txtStartDate");
+        CreateDatePicker("txtEndDate");
     } catch (e) {
         MyAlert("OnChequeAdvanceSeachIndexReady : " + e);
     }
@@ -2874,8 +2879,8 @@ function OnSeachChequeByAdvanceSearchBegin() {
         var cNumber = GetValue("txtChequeNumber");
         var cstatus = GetValue("ddlChequeStatus");
 
-        if ((cDate == null || cDate == "") && (cNumber == "" || cNumber == null) && (cstatus == 0 || cstatus == -1)) {
-            SetHtml(_MESSAGEDIVID, "Please Enter Value In Above Field.");
+        if ((cNumber == "" || cNumber == null) && (cstatus == 0 || cstatus == "")) {
+            SetHtml(_MESSAGEDIVID, "Either Enter Cheque No. Or Select Cheque Status.");
             return false;
         }
         DisplayLoader(_LOADERDIVID);

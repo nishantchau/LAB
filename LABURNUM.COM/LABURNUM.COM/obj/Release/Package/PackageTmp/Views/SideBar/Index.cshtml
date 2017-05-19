@@ -117,6 +117,7 @@
                     <li>Mobile : @Model.GetFatherMobile()</li>
                     <li>PAN : @Model.GetPAN()</li>
                 }
+                <li>Last Login : @Model.GetLastLoginAt()</li>
             </ul>
         </div>
     </li>
@@ -292,7 +293,7 @@
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Attendance/SearchAttendanceIndex">Search Attendance</a></li>
             </ul>
         </li>
-        <li><a href="./"><span class="fa fa-book"></span><span class="xn-text">RESULT </span></a></li>
+        <li><a href="javascript:;"><span class="fa fa-book"></span><span class="xn-text">RESULT </span></a></li>
         <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassWiseFaculties/Index?sid=@(new LABURNUM.COM.Component.Common().GetEncryptedId(Convert.ToString(Model.GetLoginBy())))"><span class="fa fa-users"></span><span class="xn-text">FACULTIES DETAILS</span></a></li>
         <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/ListOfAllCirculars"><span class="fa fa-users"></span><span class="xn-text">LIST OF ALL CIRCULAR(S)</span></a></li>
     }
