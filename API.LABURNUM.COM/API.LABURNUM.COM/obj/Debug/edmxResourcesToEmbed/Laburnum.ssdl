@@ -27,6 +27,7 @@
     <EntitySet Name="CircularNotificationTracker" EntityType="LaburnumModel.Store.CircularNotificationTracker" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Class" EntityType="LaburnumModel.Store.Class" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClassSubjectFacultyTable" EntityType="LaburnumModel.Store.ClassSubjectFacultyTable" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContactFormTable" EntityType="LaburnumModel.Store.ContactFormTable" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Faculty" EntityType="LaburnumModel.Store.Faculty" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Fee" EntityType="LaburnumModel.Store.Fee" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HomeWork" EntityType="LaburnumModel.Store.HomeWork" store:Type="Tables" Schema="dbo" />
@@ -804,6 +805,19 @@
     <Property Name="SubjectId" Type="bigint" Nullable="false" />
     <Property Name="FacultyId" Type="bigint" Nullable="false" />
     <Property Name="SectionId" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ContactFormTable">
+    <Key>
+      <PropertyRef Name="ContactFormTableId" />
+    </Key>
+    <Property Name="ContactFormTableId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Message" Type="nvarchar" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
     <Property Name="LastUpdated" Type="datetime" />
