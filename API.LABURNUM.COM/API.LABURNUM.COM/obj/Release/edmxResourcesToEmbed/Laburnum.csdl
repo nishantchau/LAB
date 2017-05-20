@@ -27,6 +27,7 @@
     <EntitySet Name="CircularNotificationTrackers" EntityType="LaburnumModel.CircularNotificationTracker" />
     <EntitySet Name="Classes" EntityType="LaburnumModel.Class" />
     <EntitySet Name="ClassSubjectFacultyTables" EntityType="LaburnumModel.ClassSubjectFacultyTable" />
+    <EntitySet Name="ContactFormTables" EntityType="LaburnumModel.ContactFormTable" />
     <EntitySet Name="Faculties" EntityType="LaburnumModel.Faculty" />
     <EntitySet Name="Fees" EntityType="LaburnumModel.Fee" />
     <EntitySet Name="HomeWork" EntityType="LaburnumModel.HomeWork" />
@@ -909,6 +910,19 @@
     <NavigationProperty Name="Faculty" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Faculty" FromRole="ClassSubjectFacultyTable" ToRole="Faculty" />
     <NavigationProperty Name="Section" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Section" FromRole="ClassSubjectFacultyTable" ToRole="Section" />
     <NavigationProperty Name="Subject" Relationship="LaburnumModel.FK_ClassSubjectFacultyTable_Subject" FromRole="ClassSubjectFacultyTable" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="ContactFormTable">
+    <Key>
+      <PropertyRef Name="ContactFormTableId" />
+    </Key>
+    <Property Type="Int64" Name="ContactFormTableId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ContactNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Message" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="LastUpdated" Precision="3" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>

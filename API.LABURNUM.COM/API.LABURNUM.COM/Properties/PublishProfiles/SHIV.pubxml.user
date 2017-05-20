@@ -13,10 +13,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2017 20:06:28</publishTime>
     </File>
     <File Include="bin/API.LABURNUM.COM.dll">
-      <publishTime>05/16/2017 22:14:01</publishTime>
+      <publishTime>05/20/2017 00:23:18</publishTime>
     </File>
     <File Include="bin/DTO.LABURNUM.COM.dll">
-      <publishTime>05/16/2017 20:38:33</publishTime>
+      <publishTime>05/19/2017 22:58:37</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/09/2017 20:06:06</publishTime>
@@ -283,7 +283,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/02/2017 20:06:00</publishTime>
     </File>
     <File Include="Laburnum.edmx.diagram">
-      <publishTime>05/13/2017 07:38:43</publishTime>
+      <publishTime>05/19/2017 20:27:54</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>02/09/2017 20:06:28</publishTime>
@@ -334,22 +334,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/14/2017 09:37:58</publishTime>
     </File>
     <File Include="Views/Partial/ContactUsMail.cshtml">
-      <publishTime>05/07/2017 19:36:59</publishTime>
+      <publishTime>05/19/2017 22:28:22</publishTime>
     </File>
     <File Include="Views/Partial/EmailBodyForChequeStatusUpdate.cshtml">
-      <publishTime>05/13/2017 20:33:29</publishTime>
+      <publishTime>05/19/2017 22:05:26</publishTime>
     </File>
     <File Include="Views/Partial/MonthlyFeeReceipt.cshtml">
       <publishTime>05/14/2017 09:37:58</publishTime>
     </File>
     <File Include="Views/Partial/NewAdmissionThankyouEmail.cshtml">
-      <publishTime>03/29/2017 22:10:18</publishTime>
+      <publishTime>05/20/2017 00:08:28</publishTime>
     </File>
     <File Include="Views/Partial/NewStudentRegistrationMail.cshtml">
-      <publishTime>05/07/2017 19:35:59</publishTime>
+      <publishTime>05/19/2017 23:21:44</publishTime>
     </File>
     <File Include="Views/Partial/ThankYouMailOnPaymentOfMonthlyFee.cshtml">
-      <publishTime>05/07/2017 19:35:17</publishTime>
+      <publishTime>05/20/2017 00:08:37</publishTime>
+    </File>
+    <File Include="Views/Partial/ThankYouMailOnSubmittingContactUsForm.cshtml">
+      <publishTime>05/19/2017 22:34:11</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/09/2017 20:06:00</publishTime>
@@ -364,7 +367,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2017 20:06:00</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/14/2017 07:54:02</publishTime>
+      <publishTime>05/20/2017 00:23:19</publishTime>
     </File>
   </ItemGroup>
 </Project>
