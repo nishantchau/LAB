@@ -2804,14 +2804,25 @@ function OnSearchAttendanceIndexReady() {
 
 function OnContactUsBegin() {
     try {
+        SetHtmlBlank(_MESSAGEDIVID);
         if (Validate.StringValueValidate("txtName", _MESSAGEDIVID, "Please Enter Name.")) { }
         else { return false; }
         if (Validate.StringValueValidate("txtEmail", _MESSAGEDIVID, "Please Enter Email.")) { }
         else { return false; }
+        if (!isEmail(GetValue("txtEmail"))) {
+            SetHtml(_MESSAGEDIVID, "Please Enter Valid Email.");
+            return false;
+        }
         if (Validate.StringValueValidate("txtContact", _MESSAGEDIVID, "Please Enter Contact Number.")) { }
         else { return false; }
         if (Validate.StringValueValidate("txtMessage", _MESSAGEDIVID, "Please Enter Message or Query.")) { }
         else { return false; }
+        var captchResponse = $('#g-recaptcha-response').val();
+        if (captchResponse.length == 0) {
+            $("#divMessage").html("Please Fill Captcha.");
+            $("#divMessage").show();
+            return false;
+        }
         DisplayLoader(_LOADERDIVID);
         Disablebutton("btnSubmit");
 
@@ -2826,7 +2837,7 @@ function OnContactUsSuccess(data) {
         if (data.code < 0) {
             Enablebutton("btnSubmit");
         }
-        FillSuccessResultMSG(data, _MESSAGEDIVID, "Thank you for Submitting Query. Our Team Will be Contacted Soon.");
+        FillSuccessResultMSG(data, _MESSAGEDIVID, "Thank you for Submitting Query. Our Team Will be Contacted Soon.", "Failed To Submit Your Query Please Try Again Later.");
 
     } catch (e) {
         MyAlert("OnContactUsSuccess :" + e);
