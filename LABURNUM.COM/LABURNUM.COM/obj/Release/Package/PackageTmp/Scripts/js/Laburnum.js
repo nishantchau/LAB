@@ -2823,7 +2823,9 @@ function OnContactUsBegin() {
 function OnContactUsSuccess(data) {
     try {
         HideLoader(_LOADERDIVID);
-        Enablebutton("btnSubmit");
+        if (data.code < 0) {
+            Enablebutton("btnSubmit");
+        }
         FillSuccessResultMSG(data, _MESSAGEDIVID, "Thank you for Submitting Query. Our Team Will be Contacted Soon.");
 
     } catch (e) {

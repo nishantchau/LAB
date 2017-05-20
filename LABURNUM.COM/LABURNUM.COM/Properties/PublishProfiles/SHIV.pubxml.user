@@ -31,13 +31,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/14/2017 10:50:56</publishTime>
     </File>
     <File Include="bin/DTO.LABURNUM.COM.dll">
-      <publishTime>05/16/2017 20:38:33</publishTime>
+      <publishTime>05/19/2017 22:58:37</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/14/2017 10:50:56</publishTime>
     </File>
     <File Include="bin/LABURNUM.COM.dll">
-      <publishTime>05/16/2017 22:22:12</publishTime>
+      <publishTime>05/20/2017 00:23:23</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>02/14/2017 10:50:56</publishTime>
@@ -580,7 +580,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/10/2017 20:03:36</publishTime>
     </File>
     <File Include="Scripts/js/Laburnum.js">
-      <publishTime>05/14/2017 21:57:26</publishTime>
+      <publishTime>05/19/2017 21:30:54</publishTime>
     </File>
     <File Include="Scripts/js/modernizr-2.0.6.js">
       <publishTime>03/06/2017 19:55:33</publishTime>
@@ -693,6 +693,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/AjaxRequest/UpdateChequeStatusPopup.cshtml">
       <publishTime>05/13/2017 11:27:35</publishTime>
     </File>
+    <File Include="Views/Attendance/AttendanceReport.cshtml">
+      <publishTime>05/17/2017 22:24:19</publishTime>
+    </File>
     <File Include="Views/Attendance/IsAttendanceSubmitted.cshtml">
       <publishTime>04/23/2017 17:27:28</publishTime>
     </File>
@@ -748,7 +751,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/23/2017 21:20:53</publishTime>
     </File>
     <File Include="Views/ContactUs/Index.cshtml">
-      <publishTime>05/06/2017 19:05:35</publishTime>
+      <publishTime>05/19/2017 21:42:24</publishTime>
     </File>
     <File Include="Views/Dashboard/Index.cshtml">
       <publishTime>04/23/2017 21:21:04</publishTime>
@@ -868,7 +871,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/14/2017 14:07:58</publishTime>
     </File>
     <File Include="Views/Shared/_WithoutLogin.cshtml">
-      <publishTime>05/04/2017 20:50:44</publishTime>
+      <publishTime>05/19/2017 21:28:14</publishTime>
     </File>
     <File Include="Views/SideBar/Index.cshtml">
       <publishTime>05/16/2017 22:19:45</publishTime>
