@@ -245,7 +245,7 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 if (model.StudentId <= 0) { return GetApiResponseModel("Student Id Cannnot be Zero or Less Than Zero.", false, null); }
-                if (model.StudentId <= 0 || model.StudentPassword == null) { return GetApiResponseModel("Password Cannnot be Null.", false, null); }
+                if (model.StudentPassword == null || model.StudentPassword == "") { return GetApiResponseModel("Password Cannnot be Null.", false, null); }
                 new FrontEndApi.StudentApi().UpdateStudentProfile(model);
                 return GetApiResponseModel("Profile Updated Successfully.", true, null);
             }
@@ -260,7 +260,7 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 if (model.StudentId <= 0) { return GetApiResponseModel("Student Id Cannnot be Zero or Less Than Zero.", false, null); }
-                if (model.StudentId <= 0 || model.ParentPassword == null) { return GetApiResponseModel("Password Cannnot be Null.", false, null); }
+                if (model.ParentPassword == null || model.ParentPassword == "") { return GetApiResponseModel("Password Cannnot be Null.", false, null); }
                 new FrontEndApi.StudentApi().UpdateStudentProfile(model);
                 return GetApiResponseModel("Profile Updated Successfully.", true, null);
             }
@@ -417,7 +417,38 @@ namespace API.LABURNUM.COM.Controllers
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                return GetApiResponseModel("Successfully Performed.", false, new HomeWorkHelper(new FrontEndApi.HomeWorkApi().GetHomeWorkByAdvanceSearch(model)).Map());
+                return GetApiResponseModel("Successfully Performed.", true, new HomeWorkHelper(new FrontEndApi.HomeWorkApi().GetHomeWorkByAdvanceSearch(model)).Map());
+            }
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
+        }
+
+        /// <summary>
+        /// Return Subject Wise Assigned Teacher to Classes.
+        /// </summary>
+        /// <param name="model">Model Should have 2 value i.e Class Id & Section Id. </param>
+        /// <returns>Return Subject Wise Assigned Teacher to Classes.</returns>
+        public dynamic SearchSubjectWiseFacultiesForClass(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                if (model.ClassId == 0) { return GetApiResponseModel("Class Id Cannot be Zero.", true, null); }
+                if (model.SectionId == 0) { return GetApiResponseModel("Section Id Cannot be Zero.", true, null); }
+                return GetApiResponseModel("Successfully Performed.", true, new ClassSubjectFacultyTableHelper(new FrontEndApi.ClassSubjectFacultyTableApi().GetClassSubjectFacultyTableByAdvanceSearch(model)).Map());
+            }
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
+        }
+
+        /// <summary>
+        /// Search Assigned Classes to Faculties.
+        /// </summary>
+        /// <param name="model">Accepting Faculty Id To Search Details</param>
+        /// <returns>Returng Assigned Classes to Faculties.</returns>
+        public dynamic SearchAssignedClassForFaculties(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                if (model.FacultyId == 0) { return GetApiResponseModel("Faculty Id Cannot be Zero.", true, null); }
+                return GetApiResponseModel("Successfully Performed.", true, new ClassSubjectFacultyTableHelper(new FrontEndApi.ClassSubjectFacultyTableApi().GetClassSubjectFacultyTableByAdvanceSearch(model)).Map());
             }
             else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
         }

@@ -20,14 +20,12 @@ namespace API.LABURNUM.COM.Component
             this.AdmissionTypes = admissionTypes;
         }
 
-
         public AdmissionTypeHelper(API.LABURNUM.COM.AdmissionType AdmissionType)
         {
             if (AdmissionType == null) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.PARAMETER_CANNOT_BE_NULL); };
             this.AdmissionTypes = new List<API.LABURNUM.COM.AdmissionType>();
             this.AdmissionTypes.Add(AdmissionType);
         }
-
 
         public List<DTO.LABURNUM.COM.AdmissionTypeModel> Map()
         {

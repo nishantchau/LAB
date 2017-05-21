@@ -52,6 +52,10 @@ namespace API.LABURNUM.COM
         public DbSet<Class> Classes { get; set; }
         public DbSet<ClassSubjectFacultyTable> ClassSubjectFacultyTables { get; set; }
         public DbSet<ContactFormTable> ContactFormTables { get; set; }
+        public DbSet<Curriculum> Curricula { get; set; }
+        public DbSet<CurriculumDetail> CurriculumDetails { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventType> EventTypes { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<Fee> Fees { get; set; }
         public DbSet<HomeWork> HomeWork { get; set; }

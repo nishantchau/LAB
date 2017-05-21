@@ -8,13 +8,14 @@ using API.LABURNUM.COM.Component;
 
 namespace API.LABURNUM.COM.Controllers
 {
-    public class AcademicYearController : ApiController
+    public class EventController : ApiController
     {
-        public long Add(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public long Add(DTO.LABURNUM.COM.EventModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                return new FrontEndApi.AcademicYearTableApi().Add(model);
+                model.AcademicYearId = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(System.DateTime.Now.Year).AcademicYearTableId;
+                return new FrontEndApi.EventApi().Add(model);
             }
             else
             {
@@ -22,63 +23,64 @@ namespace API.LABURNUM.COM.Controllers
             }
         }
 
-        public void Update(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public void Update(DTO.LABURNUM.COM.EventModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                new FrontEndApi.AcademicYearTableApi().Update(model);
+                new FrontEndApi.EventApi().Update(model);
             }
         }
 
-        public void UpdateStatus(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public void UpdateStatus(DTO.LABURNUM.COM.EventModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                new FrontEndApi.AcademicYearTableApi().UpdateIsActive(model);
+                new FrontEndApi.EventApi().UpdateIsActive(model);
             }
         }
 
-        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchActiveAcademicYears(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public List<DTO.LABURNUM.COM.EventModel> SearchActiveEvents(DTO.LABURNUM.COM.EventModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                return new AcademicYearTableHelper(new FrontEndApi.AcademicYearTableApi().GetActiveAcademicYearTypes()).Map();
-            }
-            else { return null; }
-        }
-
-        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchInActiveAcademicYears(DTO.LABURNUM.COM.AcademicYearTableModel model)
-        {
-            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
-            {
-                return new AcademicYearTableHelper(new FrontEndApi.AcademicYearTableApi().GetInActiveAcademicYearTypes()).Map();
+                return new EventHelper(new FrontEndApi.EventApi().GetActiveEvents()).Map();
             }
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchAllAcademicYears(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public List<DTO.LABURNUM.COM.EventModel> SearchInActiveEvents(DTO.LABURNUM.COM.EventModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                return new AcademicYearTableHelper(new FrontEndApi.AcademicYearTableApi().GetAllAcademicYearTypes()).Map();
+                return new EventHelper(new FrontEndApi.EventApi().GetInActiveEvents()).Map();
             }
             else { return null; }
         }
 
-        public List<DTO.LABURNUM.COM.AcademicYearTableModel> SearchAcademicYearByAdvanceSearch(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public List<DTO.LABURNUM.COM.EventModel> SearchAllEvents(DTO.LABURNUM.COM.EventModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                return new AcademicYearTableHelper(new FrontEndApi.AcademicYearTableApi().GetAcademicYearTypeByAdvanceSearch(model)).Map();
+                return new EventHelper(new FrontEndApi.EventApi().GetAllEvents()).Map();
             }
             else { return null; }
         }
 
-        public DTO.LABURNUM.COM.AcademicYearTableModel SearchAcademicYearByYear(DTO.LABURNUM.COM.AcademicYearTableModel model)
+        public List<DTO.LABURNUM.COM.EventModel> SearchEventByAdvanceSearch(DTO.LABURNUM.COM.EventModel model)
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                return new AcademicYearTableHelper(new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(model.Year)).MapSingle();
+                return new EventHelper(new FrontEndApi.EventApi().GetEventByAdvanceSearch(model)).Map();
+            }
+            else { return null; }
+        }
+
+        public List<DTO.LABURNUM.COM.EventModel> SearchEventForSite(DTO.LABURNUM.COM.EventModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                model.AcademicYearId = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(System.DateTime.Now.Year).AcademicYearTableId;
+                return new EventHelper(new FrontEndApi.EventApi().GetEventByAdvanceSearch(model)).Map();
             }
             else { return null; }
         }

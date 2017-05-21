@@ -12,27 +12,19 @@ namespace API.LABURNUM.COM
     using System;
     using System.Collections.Generic;
     
-    public partial class AcademicYearTable
+    public partial class EventType
     {
-        public AcademicYearTable()
+        public EventType()
         {
-            this.Curricula = new HashSet<Curriculum>();
             this.Events = new HashSet<Event>();
-            this.StudentFees = new HashSet<StudentFee>();
-            this.StudentFeeDetails = new HashSet<StudentFeeDetail>();
         }
     
-        public long AcademicYearTableId { get; set; }
-        public string AcademicYear { get; set; }
-        public int StartYear { get; set; }
-        public int EndYear { get; set; }
+        public long EventTypeId { get; set; }
+        public string Text { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
     
-        public virtual ICollection<Curriculum> Curricula { get; set; }
         public virtual ICollection<Event> Events { get; set; }
-        public virtual ICollection<StudentFee> StudentFees { get; set; }
-        public virtual ICollection<StudentFeeDetail> StudentFeeDetails { get; set; }
     }
 }

@@ -12,21 +12,19 @@ namespace API.LABURNUM.COM
     using System;
     using System.Collections.Generic;
     
-    public partial class Month
+    public partial class Event
     {
-        public Month()
-        {
-            this.Curricula = new HashSet<Curriculum>();
-            this.StudentFeeDetails = new HashSet<StudentFeeDetail>();
-        }
-    
-        public long MonthId { get; set; }
-        public string MonthName { get; set; }
+        public long EventId { get; set; }
+        public long EventTypeId { get; set; }
+        public long AcademicYearId { get; set; }
+        public string EventName { get; set; }
+        public string Classes { get; set; }
+        public System.DateTime EventDate { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
     
-        public virtual ICollection<Curriculum> Curricula { get; set; }
-        public virtual ICollection<StudentFeeDetail> StudentFeeDetails { get; set; }
+        public virtual AcademicYearTable AcademicYearTable { get; set; }
+        public virtual EventType EventType { get; set; }
     }
 }

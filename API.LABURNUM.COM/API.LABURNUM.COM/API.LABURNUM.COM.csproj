@@ -233,6 +233,10 @@
     <Compile Include="Component\Constants.cs" />
     <Compile Include="Component\ContactFormTableHelper.cs" />
     <Compile Include="Component\Crypto.cs" />
+    <Compile Include="Component\CurriculumDetailHelper.cs" />
+    <Compile Include="Component\CurriculumHelper.cs" />
+    <Compile Include="Component\EventHelper.cs" />
+    <Compile Include="Component\EventTypeHelper.cs" />
     <Compile Include="Component\FacultyHelper.cs" />
     <Compile Include="Component\FeeHelper.cs" />
     <Compile Include="Component\FeeReportingResultModelHelper.cs" />
@@ -283,6 +287,10 @@
     <Compile Include="Controllers\ClassSubjectFacultyTableController.cs" />
     <Compile Include="Controllers\CommonAttendanceController.cs" />
     <Compile Include="Controllers\ContactFormController.cs" />
+    <Compile Include="Controllers\CurriculumController.cs" />
+    <Compile Include="Controllers\CurriculumDetailController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\EventTypeController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\FeeController.cs" />
     <Compile Include="Controllers\FeeReportingController.cs" />
@@ -304,6 +312,18 @@
     <Compile Include="Controllers\StudentFeeDetailController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UserTypeController.cs" />
+    <Compile Include="Curriculum.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CurriculumDetail.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventType.cs">
+      <DependentUpon>Laburnum.tt</DependentUpon>
+    </Compile>
     <Compile Include="Faculty.cs">
       <DependentUpon>Laburnum.tt</DependentUpon>
     </Compile>
@@ -337,6 +357,10 @@
     <Compile Include="FrontEndApi\ClassApi.cs" />
     <Compile Include="FrontEndApi\ClassSubjectFacultyTableApi.cs" />
     <Compile Include="FrontEndApi\ContactFormTableApi.cs" />
+    <Compile Include="FrontEndApi\CurriculumApi.cs" />
+    <Compile Include="FrontEndApi\CurriculumDetailApi.cs" />
+    <Compile Include="FrontEndApi\EventApi.cs" />
+    <Compile Include="FrontEndApi\EventTypeApi.cs" />
     <Compile Include="FrontEndApi\FacultyApi.cs" />
     <Compile Include="FrontEndApi\FeeApi.cs" />
     <Compile Include="FrontEndApi\HomeWorkApi.cs" />
