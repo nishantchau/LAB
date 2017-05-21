@@ -70,7 +70,11 @@
     <Compile Include="ClientModel.cs" />
     <Compile Include="CommonAttendanceModel.cs" />
     <Compile Include="ContactFormTableModel.cs" />
+    <Compile Include="CurriculumDetailModel.cs" />
+    <Compile Include="CurriculumModel.cs" />
     <Compile Include="DashBoardModel.cs" />
+    <Compile Include="EventModel.cs" />
+    <Compile Include="EventTypeModel.cs" />
     <Compile Include="FacultyModel.cs" />
     <Compile Include="FeeModel.cs" />
     <Compile Include="FeeReportingModel.cs" />
