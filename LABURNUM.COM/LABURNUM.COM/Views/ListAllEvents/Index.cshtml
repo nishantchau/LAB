@@ -1,0 +1,63 @@
+﻿@model List<DTO.LABURNUM.COM.EventModel>
+
+<header class="secondary" id="head">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1>SCHOOL EVENT</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+@{int counter = 1;}
+
+@if (Model.Count == 0)
+{
+     
+    <section class="panel">
+        <h3>List Of Competition in </h3>
+        <div class="text-center">
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+        </div>
+    </section>
+}
+else
+{  
+    <div class="row">
+        <section class="container" style="background: white; padding: 15px; margin-top: 15px">
+            <h3 style="text-align:center;">List Of Competition in 2017-2018</h3>
+            @foreach (DTO.LABURNUM.COM.EventTypeModel item in @Model[0].EventTypes)
+            {
+                <div class="col-md-12">
+                    <h3>@item.Text</h3>
+                    <table class="table table-hover general-table responsive">
+                        <thead style="background: green; color: white;">
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Competition</th>
+                                <th>Class</th>
+                                <th>DATE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.EventModel item1 in @Model.Where(x => x.EventTypeId == item.EventTypeId))
+                            {
+                                <tr>
+                                    <td style="width: 17%;">@counter</td>
+                                    <td style="width: 20%;">@item1.EventName</td>
+                                    <td style="width: 20%;">@item1.Classes</td>
+                                    <td style="width: 20%;">@item1.EventDate.ToShortDateString()</td>
+                                </tr>
+                                counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </section>
+    </div>
+}
+

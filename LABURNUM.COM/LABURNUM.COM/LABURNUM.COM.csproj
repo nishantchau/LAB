@@ -180,6 +180,10 @@
     <Compile Include="Component\Constants.cs" />
     <Compile Include="Component\CookieManager.cs" />
     <Compile Include="Component\Crypto.cs" />
+    <Compile Include="Component\Curriculum.cs" />
+    <Compile Include="Component\CurriculumDetail.cs" />
+    <Compile Include="Component\Event.cs" />
+    <Compile Include="Component\EventType.cs" />
     <Compile Include="Component\Faculty.cs" />
     <Compile Include="Component\Fee.cs" />
     <Compile Include="Component\HomeWork.cs" />
@@ -213,8 +217,11 @@
     <Compile Include="Controllers\ClassWiseFacultiesController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\CurriculumController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DeleteStudentController.cs" />
+    <Compile Include="Controllers\Error404Controller.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\FeeController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
@@ -222,6 +229,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeWorkController.cs" />
     <Compile Include="Controllers\LateFeePaneltyController.cs" />
+    <Compile Include="Controllers\ListAllCurriculumController.cs" />
+    <Compile Include="Controllers\ListAllEventsController.cs" />
     <Compile Include="Controllers\LogInActivityController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
@@ -230,6 +239,8 @@
     <Compile Include="Controllers\PrivacyPolicyController.cs" />
     <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\SchoolEmblemController.cs" />
+    <Compile Include="Controllers\SchoolTimingController.cs" />
+    <Compile Include="Controllers\SchoolUniformController.cs" />
     <Compile Include="Controllers\SeachClassByAdvanceSearchController.cs" />
     <Compile Include="Controllers\SearchDueFeeStudentListController.cs" />
     <Compile Include="Controllers\SearchFeeByAdnvanceSearchController.cs" />
@@ -544,6 +555,19 @@
     <Content Include="Views\SearchFeeReceipt\Index.cshtml" />
     <Content Include="Views\SearchFeeReceipt\SearchResult.cshtml" />
     <Content Include="Views\Attendance\AttendanceReport.cshtml" />
+    <Content Include="Views\SchoolTiming\Index.cshtml" />
+    <Content Include="Views\SchoolUniform\Index.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Error404\Index.cshtml" />
+    <Content Include="Views\Event\SeeAllEvents.cshtml" />
+    <Content Include="Views\AjaxRequest\AddNewEventPopup.cshtml" />
+    <Content Include="Views\ListAllEvents\Index.cshtml" />
+    <Content Include="Views\AjaxRequest\EditEventPopup.cshtml" />
+    <Content Include="Views\Curriculum\AddIndex.cshtml" />
+    <Content Include="Views\Curriculum\UpdateIndex.cshtml" />
+    <Content Include="Views\Curriculum\SearchIndex.cshtml" />
+    <Content Include="Views\Curriculum\SearchResult.cshtml" />
+    <Content Include="Views\ListAllCurriculum\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

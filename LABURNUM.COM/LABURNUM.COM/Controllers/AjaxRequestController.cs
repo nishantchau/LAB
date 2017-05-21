@@ -585,5 +585,47 @@ namespace LABURNUM.COM.Controllers
             }
         }
 
+        public ActionResult AddEventPopup()
+        {
+            try
+            {
+                DTO.LABURNUM.COM.EventModel model = new DTO.LABURNUM.COM.EventModel();
+                model.EventTypes = new Component.EventType().GetActiveEventTypes();
+                string html = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/AjaxRequest/AddNewEventPopup.cshtml", model);
+                return Json(new { code = 0, message = "success", result = html });
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -1, message = "failed", result = string.Empty });
+            }
+        }
+
+        public ActionResult EditEventPopup(string id)
+        {
+            if (sessionManagement.isSessionAlive())
+            {
+                DTO.LABURNUM.COM.EventModel model = new DTO.LABURNUM.COM.EventModel();
+                string html;
+                try
+                {
+                    LABURNUM.COM.Component.Crypto crypto = new Component.Crypto();
+                    string text = crypto.DecryptStringAES(id, LABURNUM.COM.Component.Constants.KEYS.SHAREDKEY);
+                    long cId = Convert.ToInt64(text);
+                    model = new LABURNUM.COM.Component.Event().GetEventByEventId(cId);
+                    model.EventTypes = new Component.EventType().GetActiveEventTypes();
+                    html = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/AjaxRequest/EditEventPopup.cshtml", model);
+                    return Json(new { code = 0, message = "success", result = html });
+                }
+                catch (Exception)
+                {
+                    html = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Error404.cshtml", model);
+                    return Json(new { code = -1, message = "failed", result = html });
+                }
+            }
+            else
+            {
+                return Json(new { code = 99, result = "SessionTimedOut" });
+            }
+        }
     }
 }

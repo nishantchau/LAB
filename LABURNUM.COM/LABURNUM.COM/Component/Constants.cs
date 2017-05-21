@@ -22,6 +22,7 @@ namespace LABURNUM.COM.Component
             public static string APIPASSWORD = System.Configuration.ConfigurationManager.AppSettings["APIPASSWORD"];
             public static int HTTPTIME = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["HTTPTIME"]);
         }
+
         public static class ERRORMESSAGES
         {
             public static string NO_RECORD_FOUND = "No Record Found.";
@@ -40,7 +41,8 @@ namespace LABURNUM.COM.Component
             public static int ANNUALFUNCTIONFEEPAYABLEMONTH = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["ANNUALFUNCTIONFEEPAYMONTH"]);
             public static int CHEQUEBOUNCEPANELTY = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["CHEQUEBOUNCEPANELTY"]);
             public static double ANNUALFUNCTIONFEE = Convert.ToDouble(System.Configuration.ConfigurationManager.AppSettings["ANNUALFUNCTIONFEE"]);
-            
+            public static int MAXCURRICULUMDETAILS = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["MAXCURRICULUMDETAILS"]);
+
         }
 
         public static class Cookies

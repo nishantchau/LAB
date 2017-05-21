@@ -1,0 +1,67 @@
+﻿@model DTO.LABURNUM.COM.CurriculumModel
+
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnSearchCurriculumByAdvanceSearchBegin", OnSuccess = "OnSearchCurriculumByAdvanceSearchSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Curriculum/SearchCurriculum" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
+                <li>Curriculum</li>
+                <li class="active">Search Curriculum</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            Search Curriculum@*<span class="tools pull-right">
+                <a class="fa fa-chevron-down" href="javascript:;"></a>
+            </span>*@
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Class : </span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.DropDownList("ClassId", new SelectList(Model.Classes, "ClassId", "ClassName"), "Please Select A Class", new { @id = "ddlClass", @autocomplete = "Off", @class = "ToReset" ,@onChange = "EnableDisableMonth();"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <span class="score_adept">Month : </span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.DropDownList("MonthId", new SelectList(Model.Months, "MonthId", "MonthName"), "Please Select A Month", new { @id = "ddlMonth", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="text-center">
+        <button id="btnSearch" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">SEARCH <i class="fa fa-search" aria-hidden="true"></i></button>
+        <button id="btnReset" type="button" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">RESET <i class="fa fa-repeat" aria-hidden="true"></i></button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+}
+<Section id="divResult" class="panel margin_small"></Section>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        OnCurriculumAdvanceSeachIndexReady();
+    });
+</script>

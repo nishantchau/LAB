@@ -105,5 +105,27 @@ namespace LABURNUM.COM.Component
                 return null;
             }
         }
+
+        public DTO.LABURNUM.COM.AcademicYearTableModel GetAcademicYearIdByYear()
+        {
+            try
+            {
+                DTO.LABURNUM.COM.AcademicYearTableModel model = new DTO.LABURNUM.COM.AcademicYearTableModel() { Year = System.DateTime.Now.Year };
+                model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                HttpClient client = new LABURNUM.COM.Component.Common().GetHTTPClient("application/json");
+                HttpResponseMessage response = client.PostAsJsonAsync("AcademicYear/SearchAcademicYearByYear", model).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    return JsonConvert.DeserializeObject<DTO.LABURNUM.COM.AcademicYearTableModel>(data);
+                }
+                else { return null; }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error While Getting Admission Type Model.");
+            }
+        }
+
     }
 }

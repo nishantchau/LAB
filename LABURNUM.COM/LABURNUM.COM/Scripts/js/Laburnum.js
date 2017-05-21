@@ -9,7 +9,7 @@ var _MESSAGEDIVID = "divMessage";
 var _POPUPMESSAGEDIVID = "divPopupMessage";
 var _RESULTDIVID = "divResult";
 var MESSAGES = {
-    AddSuccessMessage: "SuccessFully Added",
+    AddSuccessMessage: "Successfully Added",
     AddFailMessage: "Failed To Add Please Try Again Later",
     UpdateSuccessMessage: "SuccessFully Updated",
     UpdateFailMessage: "Failed To Update Please Try Again Later",
@@ -479,10 +479,8 @@ function CreateDatePicker(boxId) {
         var currentDate = new Date();
         var id = "#" + boxId;
         $(id).datepicker({
-            //format: "dd/mm/yyyy",
             changeMonth: true,
             numberOfMonths: 1,
-            //minDate: currentDate,
             setDate: currentDate,
             autoclose: true,
             todayHighlight: true,
@@ -3029,5 +3027,272 @@ function UploadHomeWorkAttachment() {
     }
     catch (e) {
         MyAlert("UploadHomeWorkAttachment : " + e)
+    }
+}
+
+function AddNewEventPopup() {
+    try {
+        var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/AddEventPopup";
+        FillViewInModelDiv(url, "myModal");
+    } catch (e) {
+        MyAlert("AddNewEventPopup : " + e)
+    }
+}
+
+function OnAddEventReady() {
+    try {
+        CreateDatePicker("txtEventDate");
+    } catch (e) {
+        MyAlert("OnAddEventReady : " + e)
+    }
+}
+
+function OnAddEventBegin() {
+    try {
+        SetHtmlBlank(_POPUPMESSAGEDIVID);
+        if (Validate.IntValueValidate("ddlEventType", _POPUPMESSAGEDIVID, "Please Select Event Type.")) { }
+        else {
+            return false;
+        }
+        if (Validate.StringValueValidate("txtEventName", _POPUPMESSAGEDIVID, "Please Enter Event Name")) { }
+        else {
+            return false;
+        }
+        if (Validate.StringValueValidate("txtClasses", _POPUPMESSAGEDIVID, "Please Enter Classes Details")) { }
+        else {
+            return false;
+        }
+
+        Disablebutton("btnSubmit");
+        DisplayLoader(_POPUPLOADERDIVID);
+    } catch (e) {
+        MyAlert("OnAddEventBegin : " + e)
+    }
+}
+
+function OnAddEventSuccess(data) {
+    try {
+        HideLoader(_POPUPLOADERDIVID);
+        FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, MESSAGES.AddSuccessMessage, MESSAGES.AddFailMessage);
+        if (data.code < 0) { Enablebutton("btnSubmit"); }
+    } catch (e) {
+        MyAlert("OnAddEventSuccess : " + e)
+    }
+}
+
+function EditEventPopup(id) {
+    try {
+        var url = GetDomain(_DOMAINDIVID) + "Common/EncrptId?id=" + id;
+        $.ajax({
+            method: "Post",
+            url: url,
+            success: function (data) {
+                data = eval(data);
+                if (data.message == "y") {
+                    var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/EditEventPopup?id=" + data.id;
+                    FillViewInModelDiv(url, "myModal");
+                }
+                if (data.message == "n") {
+                }
+            }
+        });
+    } catch (e) {
+        MyAlert("EditEventPopup : " + e)
+    }
+}
+
+function OnEditEventReady() {
+    try {
+
+        CreateDatePicker("txtEventDate");
+        var m = GetValue("hdnEventDate");
+        var x = m.split(' ');
+        $("#txtEventDate").datepicker("setDate", x[0]);
+        $("#ddlEventType").val(GetValue("hdnEventTypeId"));
+    } catch (e) {
+        MyAlert("EditEventPopup : " + e)
+    }
+}
+
+
+function OnEditEventBegin() {
+    try {
+        SetHtmlBlank(_POPUPMESSAGEDIVID);
+        if (Validate.IntValueValidate("ddlEventType", _POPUPMESSAGEDIVID, "Please Select Event Type.")) { }
+        else {
+            return false;
+        }
+        if (Validate.StringValueValidate("txtEventName", _POPUPMESSAGEDIVID, "Please Enter Event Name.")) { }
+        else {
+            return false;
+        }
+        if (Validate.StringValueValidate("txtClasses", _POPUPMESSAGEDIVID, "Please Enter Classes Details.")) { }
+        else {
+            return false;
+        }
+
+        Disablebutton("btnSubmit");
+        DisplayLoader(_POPUPLOADERDIVID);
+    } catch (e) {
+        MyAlert("OnEditEventBegin : " + e)
+    }
+}
+
+function OnEditEventSuccess(data) {
+    try {
+        HideLoader(_POPUPLOADERDIVID);
+        FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, MESSAGES.UpdateSuccessMessage, MESSAGES.UpdateFailMessage);
+        if (data.code < 0) { Enablebutton("btnSubmit"); }
+    } catch (e) {
+        MyAlert("OnEditEventSuccess : " + e);
+    }
+}
+
+function OnAddCurriculimIndex() {
+    try {
+
+    } catch (e) {
+        MyAlert("OnAddCurriculimIndex : " + e);
+    }
+}
+
+function OnAddCurriculumBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class")) { }
+        else { return false; }
+        var m = GetValue("ddlClass");
+        if (m > 3) {
+            if (Validate.IntValueValidate("ddlMonth", _MESSAGEDIVID, "Please Select A Month")) { }
+            else { return false; }
+        }
+        for (var i = 0; i < 10; i++) {
+            var m = GetValue("hdnSubjectId" + i);
+            if (m > 0) {
+                if (Validate.IntValueValidate("txtSyllabus" + i, _MESSAGEDIVID, "Please Enter Syllabus.")) { }
+                else { return false; }
+            }
+        }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+
+    } catch (e) {
+        MyAlert("OnAddCurriculumBegin : " + e);
+    }
+}
+
+function OnAddCurriculumSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code < 0) { Enablebutton("btnSubmit"); }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, MESSAGES.AddSuccessMessage, MESSAGES.AddFailMessage);
+    } catch (e) {
+        MyAlert("OnAddCurriculumSuccess : " + e);
+    }
+}
+
+function OnEditCurriculimIndex() {
+    try {
+        $("#ddlClass").val(GetValue("hdnClassId"));
+        $("#ddlMonth").val(GetValue("hdnMonthId"));
+        for (var i = 0; i < 10; i++) {
+            var m = GetValue("hdnSubjectId" + i);
+            if (m > 0) {
+                $("#ddlSubject" + i).val(GetValue("hdnSubjectId" + i));
+            }
+            else { $("#ddlSubject" + i).val(""); }
+        }
+    } catch (e) {
+        MyAlert("OnEditCurriculimIndex : " + e);
+    }
+}
+
+function OnEditCurriculumBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class")) { }
+        else { return false; }
+        var m = GetValue("ddlClass");
+        if (m > 3) {
+            if (Validate.IntValueValidate("ddlMonth", _MESSAGEDIVID, "Please Select A Month")) { }
+            else { return false; }
+        }
+        for (var i = 0; i < 10; i++) {
+            var m = GetValue("hdnSubjectId" + i);
+            if (m > 0) {
+                if (Validate.IntValueValidate("txtSyllabus" + i, _MESSAGEDIVID, "Please Enter Syllabus.")) { }
+                else { return false; }
+            }
+        }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+    } catch (e) {
+        MyAlert("OnEditCurriculimIndex : " + e);
+    }
+}
+
+function OnEditCurriculumSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code < 0) { Enablebutton("btnSubmit"); }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, MESSAGES.UpdateSuccessMessage, MESSAGES.UpdateFailMessage);
+    } catch (e) {
+        MyAlert("OnEditCurriculumSuccess : " + e);
+    }
+}
+
+function EnableDisableMonth() {
+    try {
+        var m = GetValue("ddlClass");
+        if (m > 3) { $("#ddlMonth").prop("disabled", false); }
+        else { $("#ddlMonth").prop("disabled", true); }
+    } catch (e) {
+        MyAlert("EnableDisableMonth : " + e);
+    }
+}
+
+function OnCurriculumAdvanceSeachIndexReady() {
+    try {
+        $("#ddlMonth").prop("disabled", true);
+    } catch (e) {
+        MyAlert("OnCurriculumAdvanceSeachIndexReady : " + e);
+    }
+}
+
+function OnSearchCurriculumByAdvanceSearchBegin() {
+    try {
+        if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class.")) { }
+        else { return false; }
+        var m = GetValue("ddlClass");
+        if (m > 3) {
+            if (Validate.IntValueValidate("ddlMonth", _MESSAGEDIVID, "Please Select A Month.")) { }
+            else { return false; }
+        }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnSearchCurriculumByAdvanceSearchBegin : " + e);
+    }
+}
+
+function OnSearchCurriculumByAdvanceSearchSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchCurriculumByAdvanceSearchSuccess : " + e);
+    }
+}
+
+function UpdateCurriculum(id) {
+    try {
+        var redirectto = GetDomain(_DOMAINDIVID) + "Curriculum/UpdateIndex?id=";
+        GetEncryptedId(id, redirectto);
+    }
+    catch (e) {
+        MyAlert("UpdateCurriculum" + e);
     }
 }

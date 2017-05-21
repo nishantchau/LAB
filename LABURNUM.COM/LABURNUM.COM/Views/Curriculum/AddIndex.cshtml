@@ -1,0 +1,96 @@
+﻿@model DTO.LABURNUM.COM.CurriculumModel
+
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnAddCurriculumBegin", OnSuccess = "OnAddCurriculumSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Curriculum/Add" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
+                <li>Curriculum</li>
+                <li class="active">Add Curriculum</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            Post Curriculum
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Class <sup>*</sup> : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DropDownList("ClassId", new SelectList(Model.Classes, "ClassId", "ClassName"), "Please Select A class", new { @id = "ddlClass", @autocomplete = "Off", @class = "ToReset", @onChange = "EnableDisableMonth();" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Month <sup>*</sup> : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DropDownList("MonthId", new SelectList(Model.Months, "MonthId", "MonthName"), "Please Select A Month", new { @id = "ddlMonth", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Subject</th>
+                                <th>Syllabus</th>
+                                <th>Activity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int counter = 0;}
+                            @foreach (DTO.LABURNUM.COM.CurriculumDetailModel item in @Model.CurriculumDetails)
+                            {
+                                <tr>
+                                    <td>@(counter + 1)</td>
+                                    <td>
+                                        @Html.DropDownList("CurriculumDetails[" + counter + "].SubjectId", new SelectList(Model.Subjects, "SubjectId", "SubjectName"), "Please Select A Subject", new { @id = "ddlSubject" + counter, @autocomplete = "Off", @class = "ToReset" })
+                                    </td>
+                                    <td>
+                                        @Html.TextAreaFor(x => x.CurriculumDetails[counter].Syllabus, new { @id = "txtSyllabus" + counter })
+                                    </td>
+                                    <td>
+                                        @Html.TextAreaFor(x => x.CurriculumDetails[counter].Activity, new { @id = "txtActivity" + counter })
+                                    </td>
+                                </tr>
+                                counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <span><sup>*</sup> Marked Field Mandatory.</span>
+    <div class="text-center col-md-12 margin_top">
+        <button type="submit" id="btnSubmit" class="btn btn-default btn-adeptsubmit">Save <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+        <button type="button" id="btnReset" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">Reset <i class="fa fa-repeat" aria-hidden="true"></i></button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="text-center"></div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        OnAddCurriculimIndex();
+    });
+</script>

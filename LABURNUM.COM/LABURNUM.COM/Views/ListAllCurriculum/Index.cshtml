@@ -1,0 +1,78 @@
+﻿@model List<DTO.LABURNUM.COM.CurriculumModel>
+
+<header class="secondary" id="head">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1>CURRICULUM</h1>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="row">
+    @{int counter = 1;}
+    @if (Model.Count == 0)
+    {
+        <section class="panel">
+            <div class="text-center">
+                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+            </div>
+        </section>
+    }
+    else
+    {
+        <section class="container" style="background: white; padding: 15px; margin-top: 15px;">
+            @foreach (DTO.LABURNUM.COM.CurriculumModel item in @Model)
+            {
+            
+                <section class="panel">
+                    @if (item.MonthId > 0)
+                    {
+                        <header class="panel-heading">
+                            @item.MonthName Month Curriculum For Class @item.ClassName <span class="tools pull-right">
+                                <a class="fa fa-chevron-up" href="javascript:;"></a>
+                            </span>
+                        </header>
+                    }
+                    @if (item.MonthId == null)
+                    {
+                        <header class="panel-heading">
+                            Annual Curriculum For Class @item.ClassName <span class="tools pull-right">
+                                <a class="fa fa-chevron-up" href="javascript:;"></a>
+                            </span>
+                        </header>
+                    }
+                    <div class="panel-body" style="display:none;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-hover general-table responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No.</th>
+                                            <th>Subject</th>
+                                            <th>Syllabus</th>
+                                            <th>Activity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (DTO.LABURNUM.COM.CurriculumDetailModel item1 in item.CurriculumDetails)
+                                        {
+                                            <tr>
+                                                <td style="width: 17%;">@counter</td>
+                                                <td style="width: 19%;">@item1.SubjectName</td>
+                                                <td style="width: 19%;">@item1.Syllabus</td>
+                                                <td style="width: 19%;">@item1.Activity</td>
+                                            </tr>
+                                            counter++;
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+               
+            }
+        </section>
+    }
+</div>
