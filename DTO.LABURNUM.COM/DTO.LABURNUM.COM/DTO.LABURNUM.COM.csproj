@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="AcademicYearTableModel.cs" />
     <Compile Include="AdmissionTypeModel.cs" />
+    <Compile Include="AlbumDetailModel.cs" />
+    <Compile Include="AlbumModel.cs" />
     <Compile Include="ApiClientModel.cs" />
     <Compile Include="ApiResponseModel.cs" />
     <Compile Include="AttendanceClass10Model.cs" />
