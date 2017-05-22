@@ -27,6 +27,8 @@ namespace API.LABURNUM.COM
     
         public DbSet<AcademicYearTable> AcademicYearTables { get; set; }
         public DbSet<AdmissionType> AdmissionTypes { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<AlbumDetail> AlbumDetails { get; set; }
         public DbSet<ApiClient> ApiClients { get; set; }
         public DbSet<AttendanceClass1> AttendanceClass1 { get; set; }
         public DbSet<AttendanceClass10> AttendanceClass10 { get; set; }

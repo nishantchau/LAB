@@ -16,6 +16,8 @@ namespace API.LABURNUM.COM
     {
         public Faculty()
         {
+            this.Albums = new HashSet<Album>();
+            this.Albums1 = new HashSet<Album>();
             this.AttendanceClass1 = new HashSet<AttendanceClass1>();
             this.AttendanceClass10 = new HashSet<AttendanceClass10>();
             this.AttendanceClass11 = new HashSet<AttendanceClass11>();
@@ -56,6 +58,8 @@ namespace API.LABURNUM.COM
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
     
+        public virtual ICollection<Album> Albums { get; set; }
+        public virtual ICollection<Album> Albums1 { get; set; }
         public virtual ICollection<AttendanceClass1> AttendanceClass1 { get; set; }
         public virtual ICollection<AttendanceClass10> AttendanceClass10 { get; set; }
         public virtual ICollection<AttendanceClass11> AttendanceClass11 { get; set; }
