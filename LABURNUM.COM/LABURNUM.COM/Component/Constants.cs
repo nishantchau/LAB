@@ -42,7 +42,7 @@ namespace LABURNUM.COM.Component
             public static int CHEQUEBOUNCEPANELTY = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["CHEQUEBOUNCEPANELTY"]);
             public static double ANNUALFUNCTIONFEE = Convert.ToDouble(System.Configuration.ConfigurationManager.AppSettings["ANNUALFUNCTIONFEE"]);
             public static int MAXCURRICULUMDETAILS = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["MAXCURRICULUMDETAILS"]);
-
+            public static int MAXPHOTOINONEALBUM = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["MAXPHOTOINONEALBUM"]);
         }
 
         public static class Cookies

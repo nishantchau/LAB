@@ -1,0 +1,52 @@
+﻿@model List<DTO.LABURNUM.COM.AlbumModel>
+@{int counter = 1;}
+@if (Model.Count == 0)
+{
+    <div class="text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+    </div>
+}
+else
+{
+   
+    <header class="panel-heading">
+        Number of Album Found : @Model.Count
+    </header>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover general-table responsive">
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Album Name</th>
+                            <th>Cover Image</th>
+                            <th>No. Pic Added</th>
+                            <th>Added By</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DTO.LABURNUM.COM.AlbumModel item in @Model)
+                        {
+                            <tr>
+                                <td style="width: 17%;">@counter</td>
+                                <td style="width: 19%;">@item.AlbumName</td>
+                                <td style="width: 19%;">
+                                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/Album/@item.AlbumCoverImage"  alt="@item.AlbumName" height="100" width="100"/></td>
+                                <td style="width: 19%;">@item.AlbumDetails.Count</td>
+                                <td style="width: 19%;">@item.AddedByName</td>
+                                <th>
+                                    <button onclick="UpdateGallery(@item.AlbumId)">Update</button>
+                                </th>
+                            </tr>
+                            counter++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>

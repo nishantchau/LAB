@@ -1,0 +1,45 @@
+﻿@model DTO.LABURNUM.COM.AlbumModel
+
+<header class="secondary" id="head">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1>GALLERY</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="row">
+    <section class="container" style="background: white; padding: 15px; margin-top: 15px">
+        <h3 style="text-align: center;">@Model.AlbumName</h3>
+        <div class="gallery" id="links">
+            @foreach (DTO.LABURNUM.COM.AlbumDetailModel item in @Model.AlbumDetails)
+            {
+                <a class="gallery-item" href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/Album/@item.Attachment" title="@Model.AlbumName" data-gallery>
+                    <div class="image">
+                        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/Album/@item.Attachment" alt="@Model.AlbumName" height="150"width="150" />
+                    </div>
+                </a>
+            }
+        </div>
+    </section>
+</div>
+
+<!-- BLUEIMP GALLERY -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+<!-- END BLUEIMP GALLERY -->
+
+<script>
+    $(document).ready(function () { ViewByAlbumIdReady(); });
+
+        </script>

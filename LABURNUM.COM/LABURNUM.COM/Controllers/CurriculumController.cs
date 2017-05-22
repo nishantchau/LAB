@@ -94,7 +94,7 @@ namespace LABURNUM.COM.Controllers
             try
             {
                 model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
-                model.AddedById = sessionManagement.GetFacultyId();
+                model.UpdatedById = sessionManagement.GetFacultyId();
                 model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
                 HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("Curriculum", "Update", model);
                 if (response.IsSuccessStatusCode)

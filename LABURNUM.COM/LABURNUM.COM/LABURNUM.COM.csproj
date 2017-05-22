@@ -166,6 +166,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Component\AcademicYear.cs" />
     <Compile Include="Component\AdmissionType.cs" />
+    <Compile Include="Component\Album.cs" />
     <Compile Include="Component\Bank.cs" />
     <Compile Include="Component\BusRoute.cs" />
     <Compile Include="Component\ChequeStatusMaster.cs" />
@@ -225,12 +226,14 @@
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\FeeController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeWorkController.cs" />
     <Compile Include="Controllers\LateFeePaneltyController.cs" />
     <Compile Include="Controllers\ListAllCurriculumController.cs" />
     <Compile Include="Controllers\ListAllEventsController.cs" />
+    <Compile Include="Controllers\ListAllGalleryController.cs" />
     <Compile Include="Controllers\LogInActivityController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
@@ -308,6 +311,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="CSS\blueimp-gallery.min.css" />
     <Content Include="CSS\bootstrap-datepicker.css" />
     <Content Include="CSS\bootstrap-datepicker.min.css" />
     <Content Include="CSS\bootstrap-multiselect.css" />
@@ -427,6 +431,7 @@
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\common.js" />
     <Content Include="Scripts\js\config.js" />
+    <Content Include="Scripts\js\jquery.blueimp-gallery.min.js" />
     <Content Include="Scripts\js\jquery.easing.1.3.js" />
     <Content Include="Scripts\js\jquery.nicescroll.min.js" />
     <Content Include="Scripts\js\jquery.nicescroll.plus.js" />
@@ -568,6 +573,12 @@
     <Content Include="Views\Curriculum\SearchIndex.cshtml" />
     <Content Include="Views\Curriculum\SearchResult.cshtml" />
     <Content Include="Views\ListAllCurriculum\Index.cshtml" />
+    <Content Include="Views\Gallery\AddIndex.cshtml" />
+    <Content Include="Views\ListAllGallery\Index.cshtml" />
+    <Content Include="Views\ListAllGallery\ViewByAlbumId.cshtml" />
+    <Content Include="Views\Gallery\UpdateIndex.cshtml" />
+    <Content Include="Views\Gallery\SearchResult.cshtml" />
+    <Content Include="Views\Gallery\SearchIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

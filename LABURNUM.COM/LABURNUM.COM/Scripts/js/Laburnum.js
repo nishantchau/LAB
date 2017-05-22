@@ -361,7 +361,7 @@ function UploadFile(nameDivId, statusDivId, hiddenDivId, filenameDivId, inputid)
         return true;
     }
     catch (e) {
-        MyAlert("UploadUserProfilePicture" + e);
+        MyAlert("UploadFile" + e);
         return false;
     }
 }
@@ -423,7 +423,38 @@ function UploadHomeWork(statusDivId, hiddenDivId, filenameDivId, inputid) {
         return true;
     }
     catch (e) {
-        MyAlert("UploadCircular" + e);
+        MyAlert("UploadHomeWork" + e);
+        return false;
+    }
+}
+
+function UploadAlbumPhoto(statusDivId, hiddenDivId, filenameDivId, inputid) {
+    try {
+        //var name = $("#" + nameDivId).html();
+        $("#" + statusDivId).hide();
+        SetHtmlBlank(statusDivId);
+        $("#" + inputid).fileupload({
+            dataType: 'json',
+            url: GetDomain(_DOMAINDIVID) + '/Common/UploadAlbumFiles',
+            autoUpload: true,
+            done: function (e, data) {
+                var o = $("#" + filenameDivId);
+                o.html(data.result.name);
+                var h = $("#" + filenameDivId).html();
+                $("#" + hiddenDivId).val(h);
+                $("#" + statusDivId).show();
+                SetHtml(statusDivId, MESSAGES.ImageUploadSucessfully);
+                $("#" + inputid).val(data.result.name);
+            }
+        });
+        $('#' + inputid).on('fileuploadstart', function (event) {
+            $("#" + statusDivId).show();
+            SetHtml(statusDivId, MESSAGES.ImageUploadStart);
+        });
+        return true;
+    }
+    catch (e) {
+        MyAlert("UploadAlbumPhoto" + e);
         return false;
     }
 }
@@ -3294,5 +3325,146 @@ function UpdateCurriculum(id) {
     }
     catch (e) {
         MyAlert("UpdateCurriculum" + e);
+    }
+}
+
+function OnAddGalleryBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.StringValueValidate("txtAlbumName", _MESSAGEDIVID, "Please Enter Album Name.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("hdnAlbumCoverImage", _MESSAGEDIVID, "Please Upload Album Cover Image.")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnAddGalleryBegin" + e);
+    }
+}
+
+function OnAddGallerySuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code < 0) {
+            Enablebutton("btnSubmit");
+            Enablebutton("btnReset");
+        }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, MESSAGES.AddSuccessMessage, MESSAGES.AddFailMessage);
+
+    } catch (e) {
+        MyAlert("OnAddGallerySuccess" + e);
+    }
+}
+
+function UploadAlbumCoverImage() {
+    try {
+        UploadAlbumPhoto("divImageUploadStatus", "hdnAttachment", "file_name", "fileUpload");
+    } catch (e) {
+        MyAlert("UploadAlbumCoverImage" + e);
+    }
+}
+
+function UploadAlbumpic(counter) {
+    try {
+        UploadAlbumPhoto("divImageUploadStatus" + counter, "hdnAttachment" + counter, "file_name" + counter, "fileUpload" + counter);
+    } catch (e) {
+        MyAlert("UploadAlbumpic" + e);
+    }
+}
+
+function ViewByAlbumIdReady() {
+    try {
+        document.getElementById('links').onclick = function (event) {
+            event = event || window.event;
+            var target = event.target || event.srcElement;
+            var link = target.src ? target.parentNode : target;
+            var options = {
+                index: link, event: event, onclosed: function () {
+                    setTimeout(function () {
+                        $("body").css("overflow", "");
+                    }, 200);
+                }
+            };
+            var links = this.getElementsByTagName('a');
+            blueimp.Gallery(links, options);
+        };
+    } catch (e) {
+        MyAlert("ViewByAlbumIdReady" + e);
+    }
+}
+
+function OnUpdateGalleryBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.StringValueValidate("txtAlbumName", _MESSAGEDIVID, "Please Enter Album Name.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("hdnAlbumCoverImage", _MESSAGEDIVID, "Please Upload Album Cover Image.")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+        Disablebutton("btnReset");
+
+    } catch (e) {
+        MyAlert("OnUpdateGalleryBegin" + e);
+    }
+}
+
+function OnUpdateGallerySuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code < 0) {
+            Enablebutton("btnSubmit");
+            Enablebutton("btnReset");
+        }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, MESSAGES.UpdateSuccessMessage, MESSAGES.UpdateFailMessage);
+
+    } catch (e) {
+        MyAlert("OnUpdateGallerySuccess" + e);
+    }
+}
+
+function OnAlbumAdvanceSeachIndexReady() {
+    try {
+        SetValueBlank("txtAlbumId");
+    } catch (e) {
+        MyAlert("OnAlbumAdvanceSeachIndexReady" + e);
+    }
+}
+
+function OnSearchAlbumByAdvanceSearchBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        var m1 = GetValue("txtAlbumName");
+        var m2 = GetValue("txtAlbumId");
+        if ((m1 == "" || m1 == null) && (m2 == "" || m2 == null)) {
+            SetHtml(_MESSAGEDIVID, "Please Enter Value in atleast one cell");
+        }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnSearchAlbumByAdvanceSearchBegin" + e);
+    }
+}
+
+function OnSearchAlbumByAdvanceSearchSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+
+    } catch (e) {
+        MyAlert("OnSearchAlbumByAdvanceSearchSuccess" + e);
+    }
+}
+
+function UpdateGallery(id) {
+    try {
+        var redirectto = GetDomain(_DOMAINDIVID) + "Gallery/UpdateIndex?id=";
+        GetEncryptedId(id, redirectto);
+    } catch (e) {
+        MyAlert("UpdateGallery" + e);
     }
 }

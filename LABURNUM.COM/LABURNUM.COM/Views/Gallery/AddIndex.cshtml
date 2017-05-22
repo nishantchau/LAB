@@ -1,0 +1,83 @@
+﻿@model DTO.LABURNUM.COM.AlbumModel
+
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnAddGalleryBegin", OnSuccess = "OnAddGallerySuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Gallery/Add" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <!--breadcrumbs start -->
+            <ul class="breadcrumb">
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+                <li>Gallery</li>
+                <li class="active">Add Gallery</li>
+            </ul>
+            <!--breadcrumbs end -->
+        </div>
+    </div>
+    
+    <section class="panel">
+        <header class="panel-heading">
+            Add Gallery
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Album Name <sup>*</sup> : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.AlbumName, new { @id = "txtAlbumName" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Album Cover Image <sup>*</sup> : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <input type="file" id="fileUpload" style="width: 200px" onclick="UploadAlbumCoverImage();" />
+                                @Html.HiddenFor(x => x.AlbumCoverImage, new { @id = "hdnAlbumCoverImage", @autocomplete = "Off", @class = "ToReset" })
+                                <div id="file_name" style="display: none;"></div>
+                                <div id="divImageUploadStatus" style="display: none;"></div>
+                                <div id="divPhotoName" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    @{int counter = 0;}
+                    @foreach (DTO.LABURNUM.COM.AlbumDetailModel item in @Model.AlbumDetails)
+                    {
+                        <div class="col-md-3">
+                            <input type="file" id="fileUpload@(counter)" style="width: 200px" onclick="UploadAlbumpic(@counter);" />
+                            @Html.HiddenFor(x => x.AlbumDetails[counter].Attachment, new { @id = "hdnAttachment" + counter, @autocomplete = "Off", @class = "ToReset" })
+                            <div id="file_name@(counter)" style="display: none;"></div>
+                            <div id="divImageUploadStatus@(counter)" style="display: none;"></div>
+                            <div id="divPhotoName@(counter)" style="display: none;"></div>
+                        </div>
+                        counter++;
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <span><sup>*</sup> Marked Field Mandatory.</span>
+    <div class="text-center col-md-12 margin_top">
+        <button type="submit" id="btnSubmit" class="btn btn-default btn-adeptsubmit">Save <i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+        <button type="button" id="btnReset" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetValues();">Reset <i class="fa fa-repeat" aria-hidden="true"></i></button>
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="text-center"></div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        OnAddCurriculimIndex();
+    });
+</script>
