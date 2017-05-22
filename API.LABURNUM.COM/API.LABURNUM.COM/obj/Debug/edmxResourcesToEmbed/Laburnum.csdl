@@ -3,6 +3,8 @@
   <EntityContainer Name="LaburnumEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="AcademicYearTables" EntityType="LaburnumModel.AcademicYearTable" />
     <EntitySet Name="AdmissionTypes" EntityType="LaburnumModel.AdmissionType" />
+    <EntitySet Name="Albums" EntityType="LaburnumModel.Album" />
+    <EntitySet Name="AlbumDetails" EntityType="LaburnumModel.AlbumDetail" />
     <EntitySet Name="ApiClients" EntityType="LaburnumModel.ApiClient" />
     <EntitySet Name="AttendanceClass1" EntityType="LaburnumModel.AttendanceClass1" />
     <EntitySet Name="AttendanceClass10" EntityType="LaburnumModel.AttendanceClass10" />
@@ -68,6 +70,18 @@
     <AssociationSet Name="FK_StudentFee_AdmissionType" Association="LaburnumModel.FK_StudentFee_AdmissionType">
       <End Role="AdmissionType" EntitySet="AdmissionTypes" />
       <End Role="StudentFee" EntitySet="StudentFees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Album_Faculty" Association="LaburnumModel.FK_Album_Faculty">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="Album" EntitySet="Albums" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Album_Faculty1" Association="LaburnumModel.FK_Album_Faculty1">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="Album" EntitySet="Albums" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlbumDetail_Album" Association="LaburnumModel.FK_AlbumDetail_Album">
+      <End Role="Album" EntitySet="Albums" />
+      <End Role="AlbumDetail" EntitySet="AlbumDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_LoginActivity_ApiClient" Association="LaburnumModel.FK_LoginActivity_ApiClient">
       <End Role="ApiClient" EntitySet="ApiClients" />
@@ -513,6 +527,34 @@
     <Property Type="DateTime" Name="LastUpdated" Precision="3" />
     <NavigationProperty Name="Fees" Relationship="LaburnumModel.FK_Fee_AdmissionType" FromRole="AdmissionType" ToRole="Fee" />
     <NavigationProperty Name="StudentFees" Relationship="LaburnumModel.FK_StudentFee_AdmissionType" FromRole="AdmissionType" ToRole="StudentFee" />
+  </EntityType>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="AlbumId" />
+    </Key>
+    <Property Type="Int64" Name="AlbumId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="AlbumName" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AlbumCoverImage" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int64" Name="AddedById" Nullable="false" />
+    <Property Type="Int64" Name="UpdatedById" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="LastUpdated" Precision="3" />
+    <NavigationProperty Name="Faculty" Relationship="LaburnumModel.FK_Album_Faculty" FromRole="Album" ToRole="Faculty" />
+    <NavigationProperty Name="Faculty1" Relationship="LaburnumModel.FK_Album_Faculty1" FromRole="Album" ToRole="Faculty" />
+    <NavigationProperty Name="AlbumDetails" Relationship="LaburnumModel.FK_AlbumDetail_Album" FromRole="Album" ToRole="AlbumDetail" />
+  </EntityType>
+  <EntityType Name="AlbumDetail">
+    <Key>
+      <PropertyRef Name="AlbumDetailId" />
+    </Key>
+    <Property Type="Int64" Name="AlbumDetailId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="AlbumId" Nullable="false" />
+    <Property Type="String" Name="Attachment" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="LastUpdated" Precision="3" />
+    <NavigationProperty Name="Album" Relationship="LaburnumModel.FK_AlbumDetail_Album" FromRole="AlbumDetail" ToRole="Album" />
   </EntityType>
   <EntityType Name="ApiClient">
     <Key>
@@ -1049,6 +1091,8 @@
     <Property Type="Boolean" Name="IsActive" Nullable="false" />
     <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
     <Property Type="DateTime" Name="LastUpdated" Precision="3" />
+    <NavigationProperty Name="Albums" Relationship="LaburnumModel.FK_Album_Faculty" FromRole="Faculty" ToRole="Album" />
+    <NavigationProperty Name="Albums1" Relationship="LaburnumModel.FK_Album_Faculty1" FromRole="Faculty" ToRole="Album" />
     <NavigationProperty Name="AttendanceClass1" Relationship="LaburnumModel.FK_AttendanceClass1_Faculty" FromRole="Faculty" ToRole="AttendanceClass1" />
     <NavigationProperty Name="AttendanceClass10" Relationship="LaburnumModel.FK_AttendanceClass10_Faculty" FromRole="Faculty" ToRole="AttendanceClass10" />
     <NavigationProperty Name="AttendanceClass11" Relationship="LaburnumModel.FK_AttendanceClass11_Faculty" FromRole="Faculty" ToRole="AttendanceClass11" />
@@ -1423,6 +1467,42 @@
       </Principal>
       <Dependent Role="StudentFee">
         <PropertyRef Name="AdmissionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Album_Faculty">
+    <End Type="LaburnumModel.Faculty" Role="Faculty" Multiplicity="1" />
+    <End Type="LaburnumModel.Album" Role="Album" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Album">
+        <PropertyRef Name="AddedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Album_Faculty1">
+    <End Type="LaburnumModel.Faculty" Role="Faculty" Multiplicity="0..1" />
+    <End Type="LaburnumModel.Album" Role="Album" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Album">
+        <PropertyRef Name="UpdatedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlbumDetail_Album">
+    <End Type="LaburnumModel.Album" Role="Album" Multiplicity="1" />
+    <End Type="LaburnumModel.AlbumDetail" Role="AlbumDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="AlbumId" />
+      </Principal>
+      <Dependent Role="AlbumDetail">
+        <PropertyRef Name="AlbumId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

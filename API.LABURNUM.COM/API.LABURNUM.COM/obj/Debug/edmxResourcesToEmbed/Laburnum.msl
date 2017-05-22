@@ -25,6 +25,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Albums">
+      <EntityTypeMapping TypeName="LaburnumModel.Album">
+        <MappingFragment StoreEntitySet="Album">
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedById" ColumnName="UpdatedById" />
+          <ScalarProperty Name="AddedById" ColumnName="AddedById" />
+          <ScalarProperty Name="AlbumCoverImage" ColumnName="AlbumCoverImage" />
+          <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
+          <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlbumDetails">
+      <EntityTypeMapping TypeName="LaburnumModel.AlbumDetail">
+        <MappingFragment StoreEntitySet="AlbumDetail">
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+          <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+          <ScalarProperty Name="AlbumDetailId" ColumnName="AlbumDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ApiClients">
       <EntityTypeMapping TypeName="LaburnumModel.ApiClient">
         <MappingFragment StoreEntitySet="ApiClient">
