@@ -42,6 +42,9 @@
     <Reference Include="DTO.LABURNUM.COM">
       <HintPath>..\..\DTO.LABURNUM.COM\DTO.LABURNUM.COM\bin\Debug\DTO.LABURNUM.COM.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.11\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -231,6 +234,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeWorkController.cs" />
     <Compile Include="Controllers\LateFeePaneltyController.cs" />
+    <Compile Include="Controllers\ListAllCircularsController.cs" />
     <Compile Include="Controllers\ListAllCurriculumController.cs" />
     <Compile Include="Controllers\ListAllEventsController.cs" />
     <Compile Include="Controllers\ListAllGalleryController.cs" />
@@ -240,6 +244,7 @@
     <Compile Include="Controllers\MyBaseController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\PrivacyPolicyController.cs" />
+    <Compile Include="Controllers\ProspectusController.cs" />
     <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\SchoolEmblemController.cs" />
     <Compile Include="Controllers\SchoolTimingController.cs" />
@@ -371,6 +376,8 @@
     <Content Include="Font_Awesome\scss\_spinning.scss" />
     <Content Include="Font_Awesome\scss\_stacked.scss" />
     <Content Include="Font_Awesome\scss\_variables.scss" />
+    <Content Include="Font_Awesome\fonts\m0Shgsxo4xCSzZHO6RHWxBTbgVql8nDJpwnrE27mub0.woff2" />
+    <Content Include="Font_Awesome\fonts\Q_Z9mv4hySLTMoMjnk_rCfesZW2xOQ-xsNqO47m55DA.woff2" />
     <None Include="Properties\PublishProfiles\SHIV.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\android.png" />
@@ -579,6 +586,8 @@
     <Content Include="Views\Gallery\UpdateIndex.cshtml" />
     <Content Include="Views\Gallery\SearchResult.cshtml" />
     <Content Include="Views\Gallery\SearchIndex.cshtml" />
+    <Content Include="Views\ListAllCirculars\Index.cshtml" />
+    <Content Include="Views\Prospectus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

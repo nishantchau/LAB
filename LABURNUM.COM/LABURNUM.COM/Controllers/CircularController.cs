@@ -29,6 +29,11 @@ namespace LABURNUM.COM.Controllers
         {
             try
             {
+                model.IsForAdmin = true;
+                model.IsForFaculty = true;
+                model.IsForParents = true;
+                model.IsForStudent = true;
+                model.IsPublishNow = true;
                 model.ApiClientModel = new Component.Common().GetApiClientModel();
                 HttpResponseMessage response = new Component.Common().GetHTTPResponse("Circular", "Add", model);
                 if (response.IsSuccessStatusCode)

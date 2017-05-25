@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace LABURNUM.COM.Controllers
 {
-    public class GalleryController : Controller
+    public class GalleryController : MyBaseController
     {
         Component.SessionManagement sessionManagement = new Component.SessionManagement();
         // GET: /Gallery/

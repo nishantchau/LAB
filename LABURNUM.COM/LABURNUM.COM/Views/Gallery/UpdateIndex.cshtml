@@ -1,6 +1,6 @@
 ﻿@model DTO.LABURNUM.COM.AlbumModel
 
-@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnUpdateGalleryBegin", OnSuccess = "OnUpdateGallerySuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Gallery/Add" }))
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnUpdateGalleryBegin", OnSuccess = "OnUpdateGallerySuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Gallery/Update" }))
 {
     <div class="row">
         <div class="col-md-12">
@@ -28,6 +28,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 @Html.TextBoxFor(x => x.AlbumName, new { @id = "txtAlbumName" })
+                                @Html.HiddenFor(x => x.AlbumId)
                             </div>
                         </div>
                     </div>
@@ -35,12 +36,26 @@
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <div class="row">
                         <div class="col-md-4">
+
                             <span class="score_adept">Album Cover Image <sup>*</sup> : </span>
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
+                                @if (File.Exists(Server.MapPath("~/Uploads/Album/" + @Model.AlbumCoverImage)))
+                                {
+                                    if (Model.AlbumCoverImage != null && Model.AlbumCoverImage != "")
+                                    {
+                                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/Album/@Model.AlbumCoverImage" class="upload-profilepic" alt="Cover Image" />
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/noimage.png" class="upload-profilepic" alt="Cover Image" />
+                                }
+
+                                @*<img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/Album/@Model.AlbumCoverImage" class="upload-profilepic"/>*@
                                 <input type="file" id="fileUpload" style="width: 200px" onclick="UploadAlbumCoverImage();" />
-                                @Html.HiddenFor(x => x.AlbumCoverImage, new { @id = "hdnAlbumCoverImage", @autocomplete = "Off", @class = "ToReset" })
+                                @Html.HiddenFor(x => x.AlbumCoverImage, new { @id = "hdnAttachment", @autocomplete = "Off", @class = "ToReset" })
                                 <div id="file_name" style="display: none;"></div>
                                 <div id="divImageUploadStatus" style="display: none;"></div>
                                 <div id="divPhotoName" style="display: none;"></div>
@@ -49,19 +64,46 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    @{int counter = 0;}
-                    @foreach (DTO.LABURNUM.COM.AlbumDetailModel item in @Model.AlbumDetails)
-                    {
-                        <div class="col-md-3">
-                            <input type="file" id="fileUpload@(counter)" style="width: 200px" onclick="UploadAlbumpic(counter);" />
-                            @Html.HiddenFor(x => x.AlbumDetails[counter].Attachment, new { @id = "hdnAttachment" + counter, @autocomplete = "Off", @class = "ToReset" })
-                            @Html.HiddenFor(x => x.AlbumDetails[counter].AlbumDetailId)
-                            <div id="file_name@(counter)" style="display: none;"></div>
-                            <div id="divImageUploadStatus@(counter)" style="display: none;"></div>
-                            <div id="divPhotoName@(counter)" style="display: none;"></div>
-                        </div>
-                        counter++;
-                    }
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Image</th>
+                                <th>Upload New</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int counter = 0;}
+                            @foreach (DTO.LABURNUM.COM.AlbumDetailModel item in @Model.AlbumDetails)
+                            {
+                                <tr>
+                                    <td>@(counter + 1)</td>
+                                    <td>
+                                        @if (File.Exists(Server.MapPath("~/Uploads/Album/" + @item.Attachment)))
+                                        {
+                                            if (item.Attachment != null && item.Attachment != "")
+                                            {
+                                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Uploads/Album/@item.Attachment" class="upload-profilepic" alt="Cover Image" />
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/noimage.png" class="upload-profilepic" alt="Cover Image" />
+                                        }</td>
+
+                                    <td>
+                                        <input type="file" id="fileUpload@(counter)" style="width: 200px" onclick="UploadAlbumpic('@counter    ');" />
+                                        @Html.HiddenFor(x => x.AlbumDetails[counter].Attachment, new { @id = "hdnAttachment" + counter, @autocomplete = "Off", @class = "ToReset" })
+                                        @Html.HiddenFor(x => x.AlbumDetails[counter].AlbumDetailId)
+                                        <div id="file_name@(counter)" style="display: none;"></div>
+                                        <div id="divImageUploadStatus@(counter)" style="display: none;"></div>
+                                        <div id="divPhotoName@(counter)" style="display: none;"></div>
+                                    </td>
+                                </tr>
+                                        counter++;
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

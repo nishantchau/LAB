@@ -3333,7 +3333,7 @@ function OnAddGalleryBegin() {
         SetHtmlBlank(_MESSAGEDIVID);
         if (Validate.StringValueValidate("txtAlbumName", _MESSAGEDIVID, "Please Enter Album Name.")) { }
         else { return false; }
-        if (Validate.StringValueValidate("hdnAlbumCoverImage", _MESSAGEDIVID, "Please Upload Album Cover Image.")) { }
+        if (Validate.StringValueValidate("hdnAttachment", _MESSAGEDIVID, "Please Upload Album Cover Image.")) { }
         else { return false; }
         DisplayLoader(_LOADERDIVID);
         Disablebutton("btnSubmit");
@@ -3367,7 +3367,11 @@ function UploadAlbumCoverImage() {
 
 function UploadAlbumpic(counter) {
     try {
-        UploadAlbumPhoto("divImageUploadStatus" + counter, "hdnAttachment" + counter, "file_name" + counter, "fileUpload" + counter);
+        var divImageUploadStatus = "divImageUploadStatus" + counter;
+        var hdnAttachment = "hdnAttachment" + counter;
+        var file_name = "file_name" + counter;
+        var fileUpload = "fileUpload" + counter
+        UploadAlbumPhoto(divImageUploadStatus, hdnAttachment, file_name, fileUpload);
     } catch (e) {
         MyAlert("UploadAlbumpic" + e);
     }
@@ -3399,7 +3403,7 @@ function OnUpdateGalleryBegin() {
         SetHtmlBlank(_MESSAGEDIVID);
         if (Validate.StringValueValidate("txtAlbumName", _MESSAGEDIVID, "Please Enter Album Name.")) { }
         else { return false; }
-        if (Validate.StringValueValidate("hdnAlbumCoverImage", _MESSAGEDIVID, "Please Upload Album Cover Image.")) { }
+        if (Validate.StringValueValidate("hdnAttachment", _MESSAGEDIVID, "Please Upload Album Cover Image.")) { }
         else { return false; }
         DisplayLoader(_LOADERDIVID);
         Disablebutton("btnSubmit");
@@ -3466,5 +3470,31 @@ function UpdateGallery(id) {
         GetEncryptedId(id, redirectto);
     } catch (e) {
         MyAlert("UpdateGallery" + e);
+    }
+}
+
+function DetailImage(id) {
+    try {
+        $.ajax({
+            method: "Post",
+            url: GetDomain(_DOMAINDIVID) + "ListAllGallery/EncrptId?id=" + id,
+            success: function (data) {
+                data = eval(data);
+                if (data.message == "y") {
+                    window.location = GetDomain(_DOMAINDIVID) + "ListAllGallery/ViewByAlbumId?id=" + data.id;
+                    //alert(data.id);
+                    //return data.id;
+                }
+                if (data.message == "n") {
+                    // return null;
+                }
+            }
+        });
+
+        //var redirectto = GetDomain(_DOMAINDIVID) + "ListAllGallery/ViewByAlbumId?id=";
+        //alert(redirectto);
+        //GetEncryptedId(id, redirectto);
+    } catch (e) {
+
     }
 }

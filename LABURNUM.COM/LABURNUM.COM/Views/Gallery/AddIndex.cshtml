@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.AlbumName, new { @id = "txtAlbumName" })
+                                @Html.TextBoxFor(x => x.AlbumName, new { @id = "txtAlbumName", @autocomplete = "Off" })
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <input type="file" id="fileUpload" style="width: 200px" onclick="UploadAlbumCoverImage();" />
-                                @Html.HiddenFor(x => x.AlbumCoverImage, new { @id = "hdnAlbumCoverImage", @autocomplete = "Off", @class = "ToReset" })
+                                @Html.HiddenFor(x => x.AlbumCoverImage, new { @id = "hdnAttachment", @autocomplete = "Off", @class = "ToReset" })
                                 <div id="file_name" style="display: none;"></div>
                                 <div id="divImageUploadStatus" style="display: none;"></div>
                                 <div id="divPhotoName" style="display: none;"></div>

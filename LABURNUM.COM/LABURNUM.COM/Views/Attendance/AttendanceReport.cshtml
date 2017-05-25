@@ -14,7 +14,7 @@
             <div class="table-responsive">
                 <table class="table table-hover general-table responsive">
                     <thead>
-                        <tr>
+                        @*<tr>
                             <th></th>
                             <th>Name</th>
                             @{int index; int indexcounter = 1;}
@@ -22,11 +22,12 @@
                             {
                                 <th>@index</th>
                                 indexcounter++;
+                            @for (index1 = Model.StartDate.Day; index1 <= @Model.EndDat
                             }
-                        </tr>
+                        </tr>*@
                     </thead>
                     <tbody>
-                        @foreach (DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance item in @Model.StudentList)
+                       @* @foreach (DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance item in @Model.StudentList)
                         {
                             <tr>
                                 <td>@counter</td>
@@ -34,6 +35,17 @@
                                 <td>@item.IsPresent</td>
                             </tr>
                             counter++;
+                        }*@
+
+                        @foreach (DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance student in Model.StudentList)
+                        {
+                            <tr> 
+                                @student.StudentName
+                                @{int index1; int indexcounter1 = 1;}e.Day; index1++)
+                            {
+                                <td>@student.IsPresent</td>
+                            }
+                            </tr>
                         }
                     </tbody>
                 </table>

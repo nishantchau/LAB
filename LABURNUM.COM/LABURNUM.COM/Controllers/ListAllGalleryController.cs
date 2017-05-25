@@ -31,7 +31,18 @@ namespace LABURNUM.COM.Controllers
             {
                 return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Home/Index");
             }
+        }
 
+        public ActionResult EncrptId(string id)
+        {
+            try
+            {
+                return Json(new { id = new LABURNUM.COM.Component.Crypto().EncryptStringAES(id, LABURNUM.COM.Component.Constants.KEYS.SHAREDKEY), message = "y" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { id = string.Empty, message = "n" });
+            }
         }
     }
 }
