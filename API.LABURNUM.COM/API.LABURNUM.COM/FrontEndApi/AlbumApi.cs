@@ -21,6 +21,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 AlbumName = model.AlbumName,
                 AddedById = model.AddedById,
+                AlbumCoverImage = model.AlbumCoverImage,
                 AlbumDetails = GetApiAlbumDetails(model.AlbumDetails),
                 CreatedOn = System.DateTime.Now,
                 IsActive = true
@@ -61,6 +62,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             List<API.LABURNUM.COM.Album> dbAlbums = this._laburnum.Albums.Where(x => x.AlbumId == model.AlbumId && x.IsActive == true).ToList();
             if (dbAlbums.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAlbums.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            dbAlbums[0].AlbumCoverImage = model.AlbumCoverImage;
             dbAlbums[0].AlbumName = model.AlbumName;
             dbAlbums[0].UpdatedById = model.UpdatedById;
             dbAlbums[0].LastUpdated = System.DateTime.Now;
