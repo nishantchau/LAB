@@ -9,7 +9,7 @@ var _MESSAGEDIVID = "divMessage";
 var _POPUPMESSAGEDIVID = "divPopupMessage";
 var _RESULTDIVID = "divResult";
 var MESSAGES = {
-    AddSuccessMessage: "SuccessFully Added",
+    AddSuccessMessage: "Successfully Added",
     AddFailMessage: "Failed To Add Please Try Again Later",
     UpdateSuccessMessage: "SuccessFully Updated",
     UpdateFailMessage: "Failed To Update Please Try Again Later",
@@ -361,7 +361,7 @@ function UploadFile(nameDivId, statusDivId, hiddenDivId, filenameDivId, inputid)
         return true;
     }
     catch (e) {
-        MyAlert("UploadUserProfilePicture" + e);
+        MyAlert("UploadFile" + e);
         return false;
     }
 }
@@ -423,7 +423,38 @@ function UploadHomeWork(statusDivId, hiddenDivId, filenameDivId, inputid) {
         return true;
     }
     catch (e) {
-        MyAlert("UploadCircular" + e);
+        MyAlert("UploadHomeWork" + e);
+        return false;
+    }
+}
+
+function UploadAlbumPhoto(statusDivId, hiddenDivId, filenameDivId, inputid) {
+    try {
+        //var name = $("#" + nameDivId).html();
+        $("#" + statusDivId).hide();
+        SetHtmlBlank(statusDivId);
+        $("#" + inputid).fileupload({
+            dataType: 'json',
+            url: GetDomain(_DOMAINDIVID) + '/Common/UploadAlbumFiles',
+            autoUpload: true,
+            done: function (e, data) {
+                var o = $("#" + filenameDivId);
+                o.html(data.result.name);
+                var h = $("#" + filenameDivId).html();
+                $("#" + hiddenDivId).val(h);
+                $("#" + statusDivId).show();
+                SetHtml(statusDivId, MESSAGES.ImageUploadSucessfully);
+                $("#" + inputid).val(data.result.name);
+            }
+        });
+        $('#' + inputid).on('fileuploadstart', function (event) {
+            $("#" + statusDivId).show();
+            SetHtml(statusDivId, MESSAGES.ImageUploadStart);
+        });
+        return true;
+    }
+    catch (e) {
+        MyAlert("UploadAlbumPhoto" + e);
         return false;
     }
 }
@@ -479,10 +510,8 @@ function CreateDatePicker(boxId) {
         var currentDate = new Date();
         var id = "#" + boxId;
         $(id).datepicker({
-            //format: "dd/mm/yyyy",
             changeMonth: true,
             numberOfMonths: 1,
-            //minDate: currentDate,
             setDate: currentDate,
             autoclose: true,
             todayHighlight: true,
@@ -2804,14 +2833,25 @@ function OnSearchAttendanceIndexReady() {
 
 function OnContactUsBegin() {
     try {
+        SetHtmlBlank(_MESSAGEDIVID);
         if (Validate.StringValueValidate("txtName", _MESSAGEDIVID, "Please Enter Name.")) { }
         else { return false; }
         if (Validate.StringValueValidate("txtEmail", _MESSAGEDIVID, "Please Enter Email.")) { }
         else { return false; }
+        if (!isEmail(GetValue("txtEmail"))) {
+            SetHtml(_MESSAGEDIVID, "Please Enter Valid Email.");
+            return false;
+        }
         if (Validate.StringValueValidate("txtContact", _MESSAGEDIVID, "Please Enter Contact Number.")) { }
         else { return false; }
         if (Validate.StringValueValidate("txtMessage", _MESSAGEDIVID, "Please Enter Message or Query.")) { }
         else { return false; }
+        var captchResponse = $('#g-recaptcha-response').val();
+        if (captchResponse.length == 0) {
+            $("#divMessage").html("Please Fill Captcha.");
+            $("#divMessage").show();
+            return false;
+        }
         DisplayLoader(_LOADERDIVID);
         Disablebutton("btnSubmit");
 
@@ -2826,7 +2866,7 @@ function OnContactUsSuccess(data) {
         if (data.code < 0) {
             Enablebutton("btnSubmit");
         }
-        FillSuccessResultMSG(data, _MESSAGEDIVID, "Thank you for Submitting Query. Our Team Will be Contacted Soon.");
+        FillSuccessResultMSG(data, _MESSAGEDIVID, "Thank you for Submitting Query. Our Team Will be Contacted Soon.", "Failed To Submit Your Query Please Try Again Later.");
 
     } catch (e) {
         MyAlert("OnContactUsSuccess :" + e);
@@ -3018,5 +3058,443 @@ function UploadHomeWorkAttachment() {
     }
     catch (e) {
         MyAlert("UploadHomeWorkAttachment : " + e)
+    }
+}
+
+function AddNewEventPopup() {
+    try {
+        var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/AddEventPopup";
+        FillViewInModelDiv(url, "myModal");
+    } catch (e) {
+        MyAlert("AddNewEventPopup : " + e)
+    }
+}
+
+function OnAddEventReady() {
+    try {
+        CreateDatePicker("txtEventDate");
+    } catch (e) {
+        MyAlert("OnAddEventReady : " + e)
+    }
+}
+
+function OnAddEventBegin() {
+    try {
+        SetHtmlBlank(_POPUPMESSAGEDIVID);
+        if (Validate.IntValueValidate("ddlEventType", _POPUPMESSAGEDIVID, "Please Select Event Type.")) { }
+        else {
+            return false;
+        }
+        if (Validate.StringValueValidate("txtEventName", _POPUPMESSAGEDIVID, "Please Enter Event Name")) { }
+        else {
+            return false;
+        }
+        if (Validate.StringValueValidate("txtClasses", _POPUPMESSAGEDIVID, "Please Enter Classes Details")) { }
+        else {
+            return false;
+        }
+
+        Disablebutton("btnSubmit");
+        DisplayLoader(_POPUPLOADERDIVID);
+    } catch (e) {
+        MyAlert("OnAddEventBegin : " + e)
+    }
+}
+
+function OnAddEventSuccess(data) {
+    try {
+        HideLoader(_POPUPLOADERDIVID);
+        FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, MESSAGES.AddSuccessMessage, MESSAGES.AddFailMessage);
+        if (data.code < 0) { Enablebutton("btnSubmit"); }
+    } catch (e) {
+        MyAlert("OnAddEventSuccess : " + e)
+    }
+}
+
+function EditEventPopup(id) {
+    try {
+        var url = GetDomain(_DOMAINDIVID) + "Common/EncrptId?id=" + id;
+        $.ajax({
+            method: "Post",
+            url: url,
+            success: function (data) {
+                data = eval(data);
+                if (data.message == "y") {
+                    var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/EditEventPopup?id=" + data.id;
+                    FillViewInModelDiv(url, "myModal");
+                }
+                if (data.message == "n") {
+                }
+            }
+        });
+    } catch (e) {
+        MyAlert("EditEventPopup : " + e)
+    }
+}
+
+function OnEditEventReady() {
+    try {
+
+        CreateDatePicker("txtEventDate");
+        var m = GetValue("hdnEventDate");
+        var x = m.split(' ');
+        $("#txtEventDate").datepicker("setDate", x[0]);
+        $("#ddlEventType").val(GetValue("hdnEventTypeId"));
+    } catch (e) {
+        MyAlert("EditEventPopup : " + e)
+    }
+}
+
+
+function OnEditEventBegin() {
+    try {
+        SetHtmlBlank(_POPUPMESSAGEDIVID);
+        if (Validate.IntValueValidate("ddlEventType", _POPUPMESSAGEDIVID, "Please Select Event Type.")) { }
+        else {
+            return false;
+        }
+        if (Validate.StringValueValidate("txtEventName", _POPUPMESSAGEDIVID, "Please Enter Event Name.")) { }
+        else {
+            return false;
+        }
+        if (Validate.StringValueValidate("txtClasses", _POPUPMESSAGEDIVID, "Please Enter Classes Details.")) { }
+        else {
+            return false;
+        }
+
+        Disablebutton("btnSubmit");
+        DisplayLoader(_POPUPLOADERDIVID);
+    } catch (e) {
+        MyAlert("OnEditEventBegin : " + e)
+    }
+}
+
+function OnEditEventSuccess(data) {
+    try {
+        HideLoader(_POPUPLOADERDIVID);
+        FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, MESSAGES.UpdateSuccessMessage, MESSAGES.UpdateFailMessage);
+        if (data.code < 0) { Enablebutton("btnSubmit"); }
+    } catch (e) {
+        MyAlert("OnEditEventSuccess : " + e);
+    }
+}
+
+function OnAddCurriculimIndex() {
+    try {
+
+    } catch (e) {
+        MyAlert("OnAddCurriculimIndex : " + e);
+    }
+}
+
+function OnAddCurriculumBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class")) { }
+        else { return false; }
+        var m = GetValue("ddlClass");
+        if (m > 3) {
+            if (Validate.IntValueValidate("ddlMonth", _MESSAGEDIVID, "Please Select A Month")) { }
+            else { return false; }
+        }
+        for (var i = 0; i < 10; i++) {
+            var m = GetValue("hdnSubjectId" + i);
+            if (m > 0) {
+                if (Validate.IntValueValidate("txtSyllabus" + i, _MESSAGEDIVID, "Please Enter Syllabus.")) { }
+                else { return false; }
+            }
+        }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+
+    } catch (e) {
+        MyAlert("OnAddCurriculumBegin : " + e);
+    }
+}
+
+function OnAddCurriculumSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code < 0) { Enablebutton("btnSubmit"); }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, MESSAGES.AddSuccessMessage, MESSAGES.AddFailMessage);
+    } catch (e) {
+        MyAlert("OnAddCurriculumSuccess : " + e);
+    }
+}
+
+function OnEditCurriculimIndex() {
+    try {
+        $("#ddlClass").val(GetValue("hdnClassId"));
+        $("#ddlMonth").val(GetValue("hdnMonthId"));
+        for (var i = 0; i < 10; i++) {
+            var m = GetValue("hdnSubjectId" + i);
+            if (m > 0) {
+                $("#ddlSubject" + i).val(GetValue("hdnSubjectId" + i));
+            }
+            else { $("#ddlSubject" + i).val(""); }
+        }
+    } catch (e) {
+        MyAlert("OnEditCurriculimIndex : " + e);
+    }
+}
+
+function OnEditCurriculumBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class")) { }
+        else { return false; }
+        var m = GetValue("ddlClass");
+        if (m > 3) {
+            if (Validate.IntValueValidate("ddlMonth", _MESSAGEDIVID, "Please Select A Month")) { }
+            else { return false; }
+        }
+        for (var i = 0; i < 10; i++) {
+            var m = GetValue("hdnSubjectId" + i);
+            if (m > 0) {
+                if (Validate.IntValueValidate("txtSyllabus" + i, _MESSAGEDIVID, "Please Enter Syllabus.")) { }
+                else { return false; }
+            }
+        }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+    } catch (e) {
+        MyAlert("OnEditCurriculimIndex : " + e);
+    }
+}
+
+function OnEditCurriculumSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code < 0) { Enablebutton("btnSubmit"); }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, MESSAGES.UpdateSuccessMessage, MESSAGES.UpdateFailMessage);
+    } catch (e) {
+        MyAlert("OnEditCurriculumSuccess : " + e);
+    }
+}
+
+function EnableDisableMonth() {
+    try {
+        var m = GetValue("ddlClass");
+        if (m > 3) { $("#ddlMonth").prop("disabled", false); }
+        else { $("#ddlMonth").prop("disabled", true); }
+    } catch (e) {
+        MyAlert("EnableDisableMonth : " + e);
+    }
+}
+
+function OnCurriculumAdvanceSeachIndexReady() {
+    try {
+        $("#ddlMonth").prop("disabled", true);
+    } catch (e) {
+        MyAlert("OnCurriculumAdvanceSeachIndexReady : " + e);
+    }
+}
+
+function OnSearchCurriculumByAdvanceSearchBegin() {
+    try {
+        if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class.")) { }
+        else { return false; }
+        var m = GetValue("ddlClass");
+        if (m > 3) {
+            if (Validate.IntValueValidate("ddlMonth", _MESSAGEDIVID, "Please Select A Month.")) { }
+            else { return false; }
+        }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnSearchCurriculumByAdvanceSearchBegin : " + e);
+    }
+}
+
+function OnSearchCurriculumByAdvanceSearchSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchCurriculumByAdvanceSearchSuccess : " + e);
+    }
+}
+
+function UpdateCurriculum(id) {
+    try {
+        var redirectto = GetDomain(_DOMAINDIVID) + "Curriculum/UpdateIndex?id=";
+        GetEncryptedId(id, redirectto);
+    }
+    catch (e) {
+        MyAlert("UpdateCurriculum" + e);
+    }
+}
+
+function OnAddGalleryBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.StringValueValidate("txtAlbumName", _MESSAGEDIVID, "Please Enter Album Name.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("hdnAttachment", _MESSAGEDIVID, "Please Upload Album Cover Image.")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnAddGalleryBegin" + e);
+    }
+}
+
+function OnAddGallerySuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code < 0) {
+            Enablebutton("btnSubmit");
+            Enablebutton("btnReset");
+        }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, MESSAGES.AddSuccessMessage, MESSAGES.AddFailMessage);
+
+    } catch (e) {
+        MyAlert("OnAddGallerySuccess" + e);
+    }
+}
+
+function UploadAlbumCoverImage() {
+    try {
+        UploadAlbumPhoto("divImageUploadStatus", "hdnAttachment", "file_name", "fileUpload");
+    } catch (e) {
+        MyAlert("UploadAlbumCoverImage" + e);
+    }
+}
+
+function UploadAlbumpic(counter) {
+    try {
+        var divImageUploadStatus = "divImageUploadStatus" + counter;
+        var hdnAttachment = "hdnAttachment" + counter;
+        var file_name = "file_name" + counter;
+        var fileUpload = "fileUpload" + counter
+        UploadAlbumPhoto(divImageUploadStatus, hdnAttachment, file_name, fileUpload);
+    } catch (e) {
+        MyAlert("UploadAlbumpic" + e);
+    }
+}
+
+function ViewByAlbumIdReady() {
+    try {
+        document.getElementById('links').onclick = function (event) {
+            event = event || window.event;
+            var target = event.target || event.srcElement;
+            var link = target.src ? target.parentNode : target;
+            var options = {
+                index: link, event: event, onclosed: function () {
+                    setTimeout(function () {
+                        $("body").css("overflow", "");
+                    }, 200);
+                }
+            };
+            var links = this.getElementsByTagName('a');
+            blueimp.Gallery(links, options);
+        };
+    } catch (e) {
+        MyAlert("ViewByAlbumIdReady" + e);
+    }
+}
+
+function OnUpdateGalleryBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        if (Validate.StringValueValidate("txtAlbumName", _MESSAGEDIVID, "Please Enter Album Name.")) { }
+        else { return false; }
+        if (Validate.StringValueValidate("hdnAttachment", _MESSAGEDIVID, "Please Upload Album Cover Image.")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSubmit");
+        Disablebutton("btnReset");
+
+    } catch (e) {
+        MyAlert("OnUpdateGalleryBegin" + e);
+    }
+}
+
+function OnUpdateGallerySuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        if (data.code < 0) {
+            Enablebutton("btnSubmit");
+            Enablebutton("btnReset");
+        }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, MESSAGES.UpdateSuccessMessage, MESSAGES.UpdateFailMessage);
+
+    } catch (e) {
+        MyAlert("OnUpdateGallerySuccess" + e);
+    }
+}
+
+function OnAlbumAdvanceSeachIndexReady() {
+    try {
+        SetValueBlank("txtAlbumId");
+    } catch (e) {
+        MyAlert("OnAlbumAdvanceSeachIndexReady" + e);
+    }
+}
+
+function OnSearchAlbumByAdvanceSearchBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        var m1 = GetValue("txtAlbumName");
+        var m2 = GetValue("txtAlbumId");
+        if ((m1 == "" || m1 == null) && (m2 == "" || m2 == null)) {
+            SetHtml(_MESSAGEDIVID, "Please Enter Value in atleast one cell");
+        }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnSearchAlbumByAdvanceSearchBegin" + e);
+    }
+}
+
+function OnSearchAlbumByAdvanceSearchSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+
+    } catch (e) {
+        MyAlert("OnSearchAlbumByAdvanceSearchSuccess" + e);
+    }
+}
+
+function UpdateGallery(id) {
+    try {
+        var redirectto = GetDomain(_DOMAINDIVID) + "Gallery/UpdateIndex?id=";
+        GetEncryptedId(id, redirectto);
+    } catch (e) {
+        MyAlert("UpdateGallery" + e);
+    }
+}
+
+function DetailImage(id) {
+    try {
+        $.ajax({
+            method: "Post",
+            url: GetDomain(_DOMAINDIVID) + "ListAllGallery/EncrptId?id=" + id,
+            success: function (data) {
+                data = eval(data);
+                if (data.message == "y") {
+                    window.location = GetDomain(_DOMAINDIVID) + "ListAllGallery/ViewByAlbumId?id=" + data.id;
+                    //alert(data.id);
+                    //return data.id;
+                }
+                if (data.message == "n") {
+                    // return null;
+                }
+            }
+        });
+
+        //var redirectto = GetDomain(_DOMAINDIVID) + "ListAllGallery/ViewByAlbumId?id=";
+        //alert(redirectto);
+        //GetEncryptedId(id, redirectto);
+    } catch (e) {
+
     }
 }
