@@ -3,6 +3,8 @@
   <EntityContainer Name="LaburnumModelStoreContainer">
     <EntitySet Name="AcademicYearTable" EntityType="LaburnumModel.Store.AcademicYearTable" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AdmissionType" EntityType="LaburnumModel.Store.AdmissionType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Album" EntityType="LaburnumModel.Store.Album" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AlbumDetail" EntityType="LaburnumModel.Store.AlbumDetail" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ApiClient" EntityType="LaburnumModel.Store.ApiClient" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AttendanceClass1" EntityType="LaburnumModel.Store.AttendanceClass1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AttendanceClass10" EntityType="LaburnumModel.Store.AttendanceClass10" store:Type="Tables" Schema="dbo" />
@@ -28,6 +30,10 @@
     <EntitySet Name="Class" EntityType="LaburnumModel.Store.Class" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClassSubjectFacultyTable" EntityType="LaburnumModel.Store.ClassSubjectFacultyTable" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContactFormTable" EntityType="LaburnumModel.Store.ContactFormTable" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Curriculum" EntityType="LaburnumModel.Store.Curriculum" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CurriculumDetail" EntityType="LaburnumModel.Store.CurriculumDetail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Event" EntityType="LaburnumModel.Store.Event" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventType" EntityType="LaburnumModel.Store.EventType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Faculty" EntityType="LaburnumModel.Store.Faculty" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Fee" EntityType="LaburnumModel.Store.Fee" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HomeWork" EntityType="LaburnumModel.Store.HomeWork" store:Type="Tables" Schema="dbo" />
@@ -41,6 +47,18 @@
     <EntitySet Name="StudentFeeDetail" EntityType="LaburnumModel.Store.StudentFeeDetail" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Subject" EntityType="LaburnumModel.Store.Subject" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserType" EntityType="LaburnumModel.Store.UserType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Album_Faculty" Association="LaburnumModel.Store.FK_Album_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Album" EntitySet="Album" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Album_Faculty1" Association="LaburnumModel.Store.FK_Album_Faculty1">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Album" EntitySet="Album" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlbumDetail_Album" Association="LaburnumModel.Store.FK_AlbumDetail_Album">
+      <End Role="Album" EntitySet="Album" />
+      <End Role="AlbumDetail" EntitySet="AlbumDetail" />
+    </AssociationSet>
     <AssociationSet Name="FK_AttendanceClass1_Class" Association="LaburnumModel.Store.FK_AttendanceClass1_Class">
       <End Role="Class" EntitySet="Class" />
       <End Role="AttendanceClass1" EntitySet="AttendanceClass1" />
@@ -313,6 +331,42 @@
       <End Role="Subject" EntitySet="Subject" />
       <End Role="ClassSubjectFacultyTable" EntitySet="ClassSubjectFacultyTable" />
     </AssociationSet>
+    <AssociationSet Name="FK_Curriculum_AcademicYearTable" Association="LaburnumModel.Store.FK_Curriculum_AcademicYearTable">
+      <End Role="AcademicYearTable" EntitySet="AcademicYearTable" />
+      <End Role="Curriculum" EntitySet="Curriculum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Curriculum_Class" Association="LaburnumModel.Store.FK_Curriculum_Class">
+      <End Role="Class" EntitySet="Class" />
+      <End Role="Curriculum" EntitySet="Curriculum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Curriculum_Faculty" Association="LaburnumModel.Store.FK_Curriculum_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Curriculum" EntitySet="Curriculum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Curriculum_Faculty1" Association="LaburnumModel.Store.FK_Curriculum_Faculty1">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Curriculum" EntitySet="Curriculum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Curriculum_Month" Association="LaburnumModel.Store.FK_Curriculum_Month">
+      <End Role="Month" EntitySet="Month" />
+      <End Role="Curriculum" EntitySet="Curriculum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CurriculumDetail_Curriculum" Association="LaburnumModel.Store.FK_CurriculumDetail_Curriculum">
+      <End Role="Curriculum" EntitySet="Curriculum" />
+      <End Role="CurriculumDetail" EntitySet="CurriculumDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CurriculumDetail_Subject" Association="LaburnumModel.Store.FK_CurriculumDetail_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="CurriculumDetail" EntitySet="CurriculumDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Event_AcademicYearTable" Association="LaburnumModel.Store.FK_Event_AcademicYearTable">
+      <End Role="AcademicYearTable" EntitySet="AcademicYearTable" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Event_EventType" Association="LaburnumModel.Store.FK_Event_EventType">
+      <End Role="EventType" EntitySet="EventType" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
     <AssociationSet Name="FK_Faculty_Class" Association="LaburnumModel.Store.FK_Faculty_Class">
       <End Role="Class" EntitySet="Class" />
       <End Role="Faculty" EntitySet="Faculty" />
@@ -464,6 +518,30 @@
     </Key>
     <Property Name="AdmissionTypeId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Album">
+    <Key>
+      <PropertyRef Name="AlbumId" />
+    </Key>
+    <Property Name="AlbumId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AlbumName" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="AlbumCoverImage" Type="nvarchar" MaxLength="500" />
+    <Property Name="AddedById" Type="bigint" Nullable="false" />
+    <Property Name="UpdatedById" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AlbumDetail">
+    <Key>
+      <PropertyRef Name="AlbumDetailId" />
+    </Key>
+    <Property Name="AlbumDetailId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AlbumId" Type="bigint" Nullable="false" />
+    <Property Name="Attachment" Type="nvarchar" Nullable="false" MaxLength="500" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
     <Property Name="LastUpdated" Type="datetime" />
@@ -822,6 +900,57 @@
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
     <Property Name="LastUpdated" Type="datetime" />
   </EntityType>
+  <EntityType Name="Curriculum">
+    <Key>
+      <PropertyRef Name="CurriculumId" />
+    </Key>
+    <Property Name="CurriculumId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AcademicYearId" Type="bigint" Nullable="false" />
+    <Property Name="MonthId" Type="bigint" />
+    <Property Name="ClassId" Type="bigint" Nullable="false" />
+    <Property Name="AddedById" Type="bigint" Nullable="false" />
+    <Property Name="UpdatedById" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CurriculumDetail">
+    <Key>
+      <PropertyRef Name="CurriculumDetailId" />
+    </Key>
+    <Property Name="CurriculumDetailId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CurriculumId" Type="bigint" Nullable="false" />
+    <Property Name="SubjectId" Type="bigint" Nullable="false" />
+    <Property Name="Syllabus" Type="nvarchar" Nullable="false" />
+    <Property Name="Activity" Type="nvarchar" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EventTypeId" Type="bigint" Nullable="false" />
+    <Property Name="AcademicYearId" Type="bigint" Nullable="false" />
+    <Property Name="EventName" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="Classes" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="EventDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EventType">
+    <Key>
+      <PropertyRef Name="EventTypeId" />
+    </Key>
+    <Property Name="EventTypeId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdated" Type="datetime" />
+  </EntityType>
   <EntityType Name="Faculty">
     <Key>
       <PropertyRef Name="FacultyId" />
@@ -1043,6 +1172,42 @@
     <Property Name="LastUpdated" Type="datetime" />
     <Property Name="CreatedOn" Type="datetime" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Album_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="Album" Type="LaburnumModel.Store.Album" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Album">
+        <PropertyRef Name="AddedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Album_Faculty1">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="0..1" />
+    <End Role="Album" Type="LaburnumModel.Store.Album" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Album">
+        <PropertyRef Name="UpdatedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlbumDetail_Album">
+    <End Role="Album" Type="LaburnumModel.Store.Album" Multiplicity="1" />
+    <End Role="AlbumDetail" Type="LaburnumModel.Store.AlbumDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Album">
+        <PropertyRef Name="AlbumId" />
+      </Principal>
+      <Dependent Role="AlbumDetail">
+        <PropertyRef Name="AlbumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_AttendanceClass1_Class">
     <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
     <End Role="AttendanceClass1" Type="LaburnumModel.Store.AttendanceClass1" Multiplicity="*" />
@@ -1856,6 +2021,114 @@
       </Principal>
       <Dependent Role="ClassSubjectFacultyTable">
         <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Curriculum_AcademicYearTable">
+    <End Role="AcademicYearTable" Type="LaburnumModel.Store.AcademicYearTable" Multiplicity="1" />
+    <End Role="Curriculum" Type="LaburnumModel.Store.Curriculum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AcademicYearTable">
+        <PropertyRef Name="AcademicYearTableId" />
+      </Principal>
+      <Dependent Role="Curriculum">
+        <PropertyRef Name="AcademicYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Curriculum_Class">
+    <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+    <End Role="Curriculum" Type="LaburnumModel.Store.Curriculum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="Curriculum">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Curriculum_Faculty">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="1" />
+    <End Role="Curriculum" Type="LaburnumModel.Store.Curriculum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Curriculum">
+        <PropertyRef Name="AddedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Curriculum_Faculty1">
+    <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="0..1" />
+    <End Role="Curriculum" Type="LaburnumModel.Store.Curriculum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="FacultyId" />
+      </Principal>
+      <Dependent Role="Curriculum">
+        <PropertyRef Name="UpdatedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Curriculum_Month">
+    <End Role="Month" Type="LaburnumModel.Store.Month" Multiplicity="0..1" />
+    <End Role="Curriculum" Type="LaburnumModel.Store.Curriculum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Month">
+        <PropertyRef Name="MonthId" />
+      </Principal>
+      <Dependent Role="Curriculum">
+        <PropertyRef Name="MonthId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CurriculumDetail_Curriculum">
+    <End Role="Curriculum" Type="LaburnumModel.Store.Curriculum" Multiplicity="1" />
+    <End Role="CurriculumDetail" Type="LaburnumModel.Store.CurriculumDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curriculum">
+        <PropertyRef Name="CurriculumId" />
+      </Principal>
+      <Dependent Role="CurriculumDetail">
+        <PropertyRef Name="CurriculumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CurriculumDetail_Subject">
+    <End Role="Subject" Type="LaburnumModel.Store.Subject" Multiplicity="1" />
+    <End Role="CurriculumDetail" Type="LaburnumModel.Store.CurriculumDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="CurriculumDetail">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Event_AcademicYearTable">
+    <End Role="AcademicYearTable" Type="LaburnumModel.Store.AcademicYearTable" Multiplicity="1" />
+    <End Role="Event" Type="LaburnumModel.Store.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AcademicYearTable">
+        <PropertyRef Name="AcademicYearTableId" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="AcademicYearId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Event_EventType">
+    <End Role="EventType" Type="LaburnumModel.Store.EventType" Multiplicity="1" />
+    <End Role="Event" Type="LaburnumModel.Store.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventType">
+        <PropertyRef Name="EventTypeId" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="EventTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
