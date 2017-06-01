@@ -71,8 +71,10 @@
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
@@ -86,8 +88,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -102,8 +106,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -118,8 +124,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -134,8 +142,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -150,8 +160,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -166,8 +178,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -182,8 +196,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -198,8 +214,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -214,8 +232,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -230,8 +250,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -246,8 +268,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -262,8 +286,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
@@ -278,8 +304,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -294,8 +322,10 @@
           <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+          <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+          <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+          <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
           <ScalarProperty Name="SectionId" ColumnName="SectionId" />
