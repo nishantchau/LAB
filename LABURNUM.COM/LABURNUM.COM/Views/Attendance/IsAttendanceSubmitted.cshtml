@@ -7,7 +7,7 @@
         <ul class="breadcrumb">
             <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
             <li>Attendance</li>
-            <li class="active">Submit Today Attendance</li>
+            <li class="active">Submit Morning Today Attendance</li>
         </ul>
         <!--breadcrumbs end -->
     </div>
@@ -15,10 +15,10 @@
 
 <section class="panel">
     <header class="panel-heading">
-        Today Attendance Already Submitted
+        Today Morning Attendance Already Submitted
     </header>
     <header class="panel-heading">
-        Date : @Model[0].Date.ToShortDateString()
+        Date : @Model[0].MorningAttendanceDate.ToShortDateString()
         <span class="tools pull-right">
             <button type="button" onclick="DownloadRecord('Today(s) Attendance List');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
         </span>
@@ -32,7 +32,8 @@
                             <th>S.No.</th>
                             <th>Student Name</th>
                             <th>Father Name</th>
-                            <th>Present / Absent</th>
+                            <th>Morning Attendance</th>
+                            <th>After Lunch Attendance</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +44,11 @@
                                 <td style="width: 17%;">@(counter + 1)</td>
                                 <td style="width: 20%;">@item.StudentName</td>
                                 <td style="width: 17%;">@item.FatherName</td>
-                                @if (item.IsPresent)
+                                @if (item.IsPresentInMorning)
+                                { <td style="width: 20%;">Present</td>}
+                                else
+                                { <td style="width: 20%;">Absent</td>}
+                                 @if (item.IsPresentAfterLuch)
                                 { <td style="width: 20%;">Present</td>}
                                 else
                                 { <td style="width: 20%;">Absent</td>}

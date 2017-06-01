@@ -8,7 +8,7 @@
         <ul class="breadcrumb">
             <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
             <li>Attendance</li>
-            <li class="active">Submit Today Attendance</li>
+            <li class="active">Submit Today Morning Attendance</li>
         </ul>
         <!--breadcrumbs end -->
     </div>
@@ -18,7 +18,7 @@
 {
     <section>
         <header class="panel-heading">
-            Submit Today Attendance 
+            Submit Morning Today Attendance 
         </header>
         <div class="col-md-12 margin_top">
         </div>
@@ -31,9 +31,9 @@ else
 {
     using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnSubmitAttendanceBegin", OnSuccess = "OnSubmitAttendanceSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Attendance/SubmitAttendance" }))
     {
-    <section>
+    <section class="panel">
         <header class="panel-heading">
-            Submit Attendance For Today
+            Submit Morning Attendance For Today
             <span class="tools pull-right">
                 <button type="button" onclick="DownloadRecord('Student List For Attendance');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
             </span>
@@ -48,7 +48,8 @@ else
                                 <th>Admission No.</th>
                                 <th>Student Name</th>
                                 <th>Father Name</th>
-                                <th>Status</th>
+                                <th>Morning Attendance</th>
+                                @*<th>After Lunch</th>*@
                             </tr>
                         </thead>
                         <tbody>
@@ -64,7 +65,8 @@ else
                                     <td style="width: 17%;">@item.AdmissionNumber</td>
                                     <td style="width: 20%;">@item.StudentName</td>
                                     <td style="width: 17%;">@item.FatherName</td>
-                                    <td style="width: 2%">@Html.CheckBoxFor(x => x[counter].IsPresent)</td>
+                                    <td style="width: 2%">@Html.CheckBoxFor(x => x[counter].IsPresentInMorning)</td>
+                                    @*<td style="width: 2%">@Html.CheckBoxFor(x => x[counter].IsPresentAfterLuch)</td>*@
                                 </tr>
                                 counter++;
                             }

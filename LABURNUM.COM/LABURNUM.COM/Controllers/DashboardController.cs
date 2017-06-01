@@ -21,13 +21,13 @@ namespace LABURNUM.COM.Controllers
             if (SessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
             {
                 List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(new DTO.LABURNUM.COM.CommonAttendanceModel() { ClassId = SessionManagement.GetFacultyClassId(), SectionId = SessionManagement.GetFacultySectionId(), StartDate = System.DateTime.Now });
-                model.PresentStudent = dblist.Where(x => x.IsPresent == true).ToList().Count();
-                model.AbsentStudent = dblist.Where(x => x.IsPresent == false).ToList().Count();
+                model.PresentStudent = dblist.Where(x => x.IsPresentInMorning == true).ToList().Count();
+                model.AbsentStudent = dblist.Where(x => x.IsPresentInMorning == false).ToList().Count();
             }
             if (SessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT) || SessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
             {
                 List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(new DTO.LABURNUM.COM.CommonAttendanceModel() { ClassId = SessionManagement.GetClassId(), SectionId = SessionManagement.GetSectionId(), StartDate = System.DateTime.Now, StudentId = SessionManagement.GetSudentId() });
-                if (dblist.Count > 0) { model.Status = dblist[0].IsPresent; }
+                if (dblist.Count > 0) { model.Status = dblist[0].IsPresentInMorning; }
             }
             return View(model);
         }

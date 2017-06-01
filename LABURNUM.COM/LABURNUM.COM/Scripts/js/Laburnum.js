@@ -2178,14 +2178,14 @@ function OnEditBusRouteReady() {
 function OnUpdateProfileBegin() {
     try {
         SetHtmlBlank(_MESSAGEDIVID);
-        if (Validate.StringValueValidate("txtCurrentPassword", _MESSAGEDIVID, "Please Enter Current Message")) { }
+        if (Validate.StringValueValidate("txtCurrentPassword", _MESSAGEDIVID, "Please Enter Current Password.")) { }
         else { return false; }
-        if (Validate.StringValueValidate("txtNewPassword", _MESSAGEDIVID, "Please Enter Current Message")) { }
+        if (Validate.StringValueValidate("txtNewPassword", _MESSAGEDIVID, "Please Enter New Password.")) { }
         else { return false; }
-        if (Validate.StringValueValidate("txtReNewPassword", _MESSAGEDIVID, "Please Enter Current Message")) { }
+        if (Validate.StringValueValidate("txtReNewPassword", _MESSAGEDIVID, "Please Enter Re-Enter New Password.")) { }
         else { return false; }
         if (GetValue("txtReNewPassword") != GetValue("txtNewPassword")) {
-            SetHtml(_MESSAGEDIVID, "New Password Not Match With Re-New Password.");
+            SetHtml(_MESSAGEDIVID, "New Password Not Match With Re-Enter New Password.");
             return false;
         }
         DisplayLoader(_LOADERDIVID);
@@ -2314,11 +2314,12 @@ function OnAddHomeWorkIndex() {
 
 function OnSearchHomeWorkIndexReady() {
     try {
+        BindSectionsDropdownByClass();
         CreateDatePicker("txtStartDate");
         CreateDatePicker("txtEndDate");
         GetHtml("hdnIsSubjectTeacher");
         GetHtml("hdnIsClassTeacher");
-        if (GetHtml("hdnIsSubjectTeacher")) { $("#ddlSubject").prop('disabled', true); }
+        if (GetHtml("hdnIsSubjectTeacher") == true) { $("#ddlSubject").prop('disabled', true); }
     } catch (e) {
         MyAlert("OnSearchHomeWorkIndexReady : " + e);
     }
@@ -2476,7 +2477,7 @@ function OnEditCircularSuccess(data) {
 function OnAddClassSubjectFacultyIndex() {
     try {
         BindSectionsDropdownByClass();
-        BindFacultyDropdownBySubject();
+        //BindFacultyDropdownBySubject();
     } catch (e) {
         MyAlert("OnAddClassSubjectFacultyIndex : " + e);
     }
@@ -2488,8 +2489,8 @@ function OnAddClassSubjectFacultyBegin() {
     else { return false; }
     if (Validate.IntValueValidate("ddlSection", _MESSAGEDIVID, "Please Select A Section")) { }
     else { return false; }
-    if (Validate.IntValueValidate("ddlSubject", _MESSAGEDIVID, "Please Select A Subject")) { }
-    else { return false; }
+    //if (Validate.IntValueValidate("ddlSubject", _MESSAGEDIVID, "Please Select A Subject")) { }
+    //else { return false; }
     if (Validate.IntValueValidate("ddlFaculty", _MESSAGEDIVID, "Please Select A Faculty")) { }
     else { return false; }
     Disablebutton("btnSubmit");
@@ -3292,6 +3293,8 @@ function OnCurriculumAdvanceSeachIndexReady() {
 
 function OnSearchCurriculumByAdvanceSearchBegin() {
     try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
         if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class.")) { }
         else { return false; }
         var m = GetValue("ddlClass");
@@ -3495,6 +3498,26 @@ function DetailImage(id) {
         //alert(redirectto);
         //GetEncryptedId(id, redirectto);
     } catch (e) {
+        MyAlert("DetailImage : " + e);
+    }
+}
 
+function OnSubmitAfterLunchAttendanceBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        Disablebutton("btnSubmit");
+
+    } catch (e) {
+        MyAlert("OnSubmitAfterLunchAttendanceBegin : " + e);
+    }
+}
+
+function OnSubmitAfterLunchAttendanceSuccess(data) {
+    try {
+        if (data.code != 0) { Enablebutton("btnSubmit"); }
+        FillSuccessResultMSG(data, _MESSAGEDIVID, "After Lunch Attendance Submitted Successfully.", "Failed To Submit After Lunch Attendance.");
+
+    } catch (e) {
+        MyAlert("OnSubmitAfterLunchAttendanceBegin : " + e);
     }
 }

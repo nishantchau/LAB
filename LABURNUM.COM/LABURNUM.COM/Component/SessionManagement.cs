@@ -94,9 +94,9 @@ namespace LABURNUM.COM.Component
 
         public long GetFacultyId() { return this._sessionModel.FacultyModel.FacultyId; }
         public string GetFacultyName() { return this._sessionModel.FacultyModel.FacultyName; }
-        public long GetFacultyClassId() { return this._sessionModel.FacultyModel.ClassId; }
+        public long GetFacultyClassId() { return this._sessionModel.FacultyModel.ClassId.GetValueOrDefault(); }
         public string GetFacultyClassName() { return this._sessionModel.FacultyModel.ClassName; }
-        public long GetFacultySectionId() { return this._sessionModel.FacultyModel.SectionId; }
+        public long GetFacultySectionId() { return this._sessionModel.FacultyModel.SectionId.GetValueOrDefault(); }
         public string GetFacultySectionName() { return this._sessionModel.FacultyModel.SectionName; }
         public string GetUserTypeText() { return this._sessionModel.FacultyModel.UserTypeText; }
         public bool GetIsClassTeacher() { return this._sessionModel.FacultyModel.IsClassTeacher; }
@@ -105,7 +105,7 @@ namespace LABURNUM.COM.Component
         public string GetFacultyContactNo() { return this._sessionModel.FacultyModel.ContactNumber; }
         public string GetFacultyPassword() { return this._sessionModel.FacultyModel.Password; }
         public bool GetIsSubjectTeacher() { return this._sessionModel.FacultyModel.IsSubjectTeacher; }
-        public long GetSubjectId() { return this._sessionModel.FacultyModel.SubjectId; }
+        public long GetSubjectId() { return this._sessionModel.FacultyModel.SubjectId.GetValueOrDefault(); }
         public string GetSubjectName() { return this._sessionModel.FacultyModel.SubjectName; }
 
 

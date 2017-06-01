@@ -588,6 +588,7 @@
     <Content Include="Views\Gallery\SearchIndex.cshtml" />
     <Content Include="Views\ListAllCirculars\Index.cshtml" />
     <Content Include="Views\Prospectus\Index.cshtml" />
+    <Content Include="Views\Attendance\SubmitAfterLuchAttendanceIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -40,11 +40,11 @@
                         @foreach (DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance student in Model.StudentList)
                         {
                             <tr> 
-                                @student.StudentName
-                                @{int index1; int indexcounter1 = 1;}e.Day; index1++)
+                               <td> @student.StudentName</td>
+                               @* @{int index1; int indexcounter1 = 1;}e.Day; index1++)
                             {
                                 <td>@student.IsPresent</td>
-                            }
+                            }*@
                             </tr>
                         }
                     </tbody>

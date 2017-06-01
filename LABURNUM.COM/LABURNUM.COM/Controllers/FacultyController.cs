@@ -39,23 +39,31 @@ namespace LABURNUM.COM.Controllers
                 if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
                 {
                     model.UserTypeId = DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY);
-                    if (!model.IsClassTeacher)
-                    {
-                        model.ClassId = DTO.LABURNUM.COM.Utility.Class.GetValue(DTO.LABURNUM.COM.Utility.EnumClass.FIRST);
-                        model.SectionId = 1;
-                    }
+                    //if (!model.IsClassTeacher)
+                    //{
+                    //    model.ClassId = DTO.LABURNUM.COM.Utility.Class.GetValue(DTO.LABURNUM.COM.Utility.EnumClass.FIRST);
+                    //    model.SectionId = 1;
+                    //}
+                    //if (!model.IsSubjectTeacher)
+                    //{
+                    //    model.SubjectId = 1;
+                    //}
                 }
-                if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
-                {
-                    if (model.UserTypeId == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
-                    {
-                        if (!model.IsClassTeacher)
-                        {
-                            model.ClassId = 1;
-                            model.SectionId = 1;
-                        }
-                    }
-                }
+                //if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+                //{
+                //    if (model.UserTypeId == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
+                //    {
+                //        if (!model.IsClassTeacher)
+                //        {
+                //            model.ClassId = 1;
+                //            model.SectionId = 1;
+                //        }
+                //        if (!model.IsSubjectTeacher)
+                //        {
+                //            model.SubjectId = 1;
+                //        }
+                //    }
+                //}
 
                 model.ApiClientModel = new Component.Common().GetApiClientModel();
                 HttpClient client = new Component.Common().GetHTTPClient("application/json");
@@ -111,6 +119,10 @@ namespace LABURNUM.COM.Controllers
                         model.ClassId = 1;
                         model.SectionId = 1;
                     }
+                    if (!model.IsSubjectTeacher)
+                    {
+                        model.SubjectId = 1;
+                    }
                 }
                 if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
                 {
@@ -120,6 +132,10 @@ namespace LABURNUM.COM.Controllers
                         {
                             model.ClassId = 1;
                             model.SectionId = 1;
+                        }
+                        if (!model.IsSubjectTeacher)
+                        {
+                            model.SubjectId = 1;
                         }
                     }
                 }

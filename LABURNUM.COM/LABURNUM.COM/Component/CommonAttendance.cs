@@ -43,7 +43,7 @@ namespace LABURNUM.COM.Component
                 }
                 else { return null; }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception("Error While Getting Student List");
             }
@@ -53,6 +53,14 @@ namespace LABURNUM.COM.Component
         {
             model.StartDate = System.DateTime.Now;
             List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = GetAttendanceByAdvanceSearch(model);
+            if (dbList.Count == 0) { return false; }
+            else { return true; }
+        }
+
+        public bool IsAttendanceSubmittedAfterLunchForToday(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        {
+            model.StartDate = System.DateTime.Now;
+            List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = GetAttendanceByAdvanceSearch(model).Where(x=>x.LunchAttendanceDate.GetValueOrDefault().Year!=0001).ToList();
             if (dbList.Count == 0) { return false; }
             else { return true; }
         }

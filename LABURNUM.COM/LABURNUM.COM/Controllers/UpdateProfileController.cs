@@ -22,10 +22,12 @@ namespace LABURNUM.COM.Controllers
             if (loginby == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || loginby == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
             {
                 model.StudentModel = new Component.Student().GetStudentByStudentId(userid);
+                model.FacultyModel = null;
             }
             else
             {
                 model.FacultyModel = new Component.Faculty().GetFacultyById(userid);
+                model.StudentModel = null;
             }
             return View(model);
         }
@@ -42,12 +44,12 @@ namespace LABURNUM.COM.Controllers
                 HttpClient client = new Component.Common().GetHTTPClient("application/json");
                 HttpResponseMessage response = new HttpResponseMessage();
 
-                if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
+                if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT) || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
                 {
                     model.StudentModel.ApiClientModel = new Component.Common().GetApiClientModel();
                     if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
                     {
-                        if (EncryptPassword(model.StudentModel.CurrentPassword) == sessionManagement.GetStudentPassword())
+                        if (model.StudentModel.CurrentPassword == sessionManagement.GetStudentPassword())
                         {
                             response = client.PostAsJsonAsync("Student/UpdateStudentProfile", model.StudentModel).Result;
                         }
@@ -58,7 +60,7 @@ namespace LABURNUM.COM.Controllers
                     }
                     if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
                     {
-                        if (EncryptPassword(model.StudentModel.CurrentPassword) == sessionManagement.GetParentPassword())
+                        if (model.StudentModel.CurrentPassword == sessionManagement.GetParentPassword())
                         {
                             response = client.PostAsJsonAsync("Student/UpdateParentProfile", model.StudentModel).Result;
                         }
@@ -71,7 +73,7 @@ namespace LABURNUM.COM.Controllers
                 else
                 {
                     model.FacultyModel.ApiClientModel = new Component.Common().GetApiClientModel();
-                    if (EncryptPassword(model.FacultyModel.CurrentPassword) == sessionManagement.GetFacultyPassword())
+                    if (model.FacultyModel.CurrentPassword == sessionManagement.GetFacultyPassword())
                     {
                         response = client.PostAsJsonAsync("Faculty/UpdateProfile", model.FacultyModel).Result;
                     }

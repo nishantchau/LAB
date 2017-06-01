@@ -50,7 +50,7 @@ namespace LABURNUM.COM.Controllers
                 foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in dbList)
                 {
                     item.FacultyId = sessionManagement.GetFacultyId();
-                    item.Date = System.DateTime.Now;
+                    item.MorningAttendanceDate = System.DateTime.Now;
                     item.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
                 }
                 HttpClient client = new LABURNUM.COM.Component.Common().GetHTTPClient("application/json");
@@ -102,7 +102,52 @@ namespace LABURNUM.COM.Controllers
                 string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Error404.cshtml", null);
                 return Json(new { code = 0, message = "success", result = html });
             }
-
         }
+
+
+        public ActionResult SubmitAfterLuchAttendanceIndex()
+        {
+            DTO.LABURNUM.COM.CommonAttendanceModel model = new DTO.LABURNUM.COM.CommonAttendanceModel()
+            {
+                ClassId = sessionManagement.GetFacultyClassId(),
+                SectionId = sessionManagement.GetFacultySectionId(),
+            };
+
+            List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(model);
+
+            if (dbList.Where(x => x.LunchAttendanceDate.GetValueOrDefault().Year != 0001).ToList().Count > 1)
+            { return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Attendance/IsAttendanceSubmitted"); }
+            else
+            {
+                //List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetStudentListForAttendance(model);
+                return View(dbList);
+            }
+        }
+
+
+        public ActionResult SubmitAfterLunchAttendance(List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList)
+        {
+            try
+            {
+                foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in dbList)
+                {
+                    //item.FacultyId = sessionManagement.GetFacultyId();
+                    item.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                }
+                HttpClient client = new LABURNUM.COM.Component.Common().GetHTTPClient("application/json");
+                HttpResponseMessage response = client.PostAsJsonAsync("CommonAttendance/SubmitAfterLunchAttendanceList", dbList).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    return Json(new { code = 0, message = "success" });
+                }
+                else { return Json(new { code = -1, message = "failed" }); }
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -2, message = "failed" });
+            }
+        }
+
     }
 }
