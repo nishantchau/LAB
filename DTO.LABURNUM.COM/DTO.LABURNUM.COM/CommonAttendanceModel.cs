@@ -20,8 +20,10 @@ namespace DTO.LABURNUM.COM
         public long SectionId { get; set; }
         public long StudentId { get; set; }
         public long FacultyId { get; set; }
-        public DateTime Date { get; set; }
-        public bool IsPresent { get; set; }
+        public System.DateTime MorningAttendanceDate { get; set; }
+        public System.DateTime? LunchAttendanceDate { get; set; }
+        public bool IsPresentInMorning { get; set; }
+        public bool IsPresentAfterLuch { get; set; }
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

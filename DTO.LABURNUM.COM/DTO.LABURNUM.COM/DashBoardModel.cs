@@ -12,5 +12,7 @@ namespace DTO.LABURNUM.COM
         public int PresentStudent { get; set; }
         public int AbsentStudent { get; set; }
         public bool Status { get; set; }
+        public bool IsPresentInMorning { get; set; }
+        public bool IsPresentAfterLunch { get; set; }
     }
 }

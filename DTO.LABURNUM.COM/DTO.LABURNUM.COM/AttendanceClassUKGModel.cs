@@ -18,8 +18,10 @@ namespace DTO.LABURNUM.COM
         public long SectionId { get; set; }
         public long StudentId { get; set; }
         public long FacultyId { get; set; }
-        public System.DateTime Date { get; set; }
-        public bool IsPresent { get; set; }
+        public System.DateTime MorningAttendanceDate { get; set; }
+        public Nullable<System.DateTime> LunchAttendanceDate { get; set; }
+        public bool IsPresentInMorning { get; set; }
+        public bool IsPresentAfterLuch { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> LastUpdated { get; set; }
@@ -29,6 +31,7 @@ namespace DTO.LABURNUM.COM
         public string StudentName { get; set; }
         public string FatherName { get; set; }
         public string AdmissionNumber { get; set; }
+        public long AttendanceId { get; set; }
 
         public ApiClientModel ApiClientModel { get; set; }
     }

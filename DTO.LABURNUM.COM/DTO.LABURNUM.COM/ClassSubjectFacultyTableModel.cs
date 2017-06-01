@@ -18,7 +18,7 @@ namespace DTO.LABURNUM.COM
         }
         public long ClassSubjectFacultyTableId { get; set; }
         public long ClassId { get; set; }
-        public long SubjectId { get; set; }
+        public long? SubjectId { get; set; }
         public long FacultyId { get; set; }
         public long SectionId { get; set; }
         public bool IsActive { get; set; }
