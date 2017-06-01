@@ -27,11 +27,15 @@ namespace API.LABURNUM.COM.FrontEndApi
 
         private long AddFaculty(DTO.LABURNUM.COM.FacultyModel model)
         {
+            if (model.ClassId.GetValueOrDefault() == 0) { model.ClassId = null; }
+            if (model.SectionId.GetValueOrDefault() == 0) { model.SectionId = null; }
+            if (model.SubjectId.GetValueOrDefault() == 0) { model.SubjectId = null; }
+
             API.LABURNUM.COM.Faculty apifaculty = new Faculty()
             {
-                FacultyName = model.FacultyName.Substring(0, 1).ToUpper() + model.FacultyName.Substring(1).ToLower(),
+                FacultyName = model.FacultyName,
                 UserName = model.UserName,
-                Password = GetEncryptedPassword(model.Password),
+                Password = model.Password,
                 ClassId = model.ClassId,
                 SectionId = model.SectionId,
                 IsClassTeacher = model.IsClassTeacher,
@@ -69,9 +73,13 @@ namespace API.LABURNUM.COM.FrontEndApi
             List<API.LABURNUM.COM.Faculty> dbFacutlies = iQuery.ToList();
             if (dbFacutlies.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbFacutlies.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            if (model.ClassId.GetValueOrDefault() == 0) { model.ClassId = null; }
+            if (model.SectionId.GetValueOrDefault() == 0) { model.SectionId = null; }
+            if (model.SubjectId.GetValueOrDefault() == 0) { model.SubjectId = null; }
+
             dbFacutlies[0].FacultyName = model.FacultyName;
             dbFacutlies[0].UserName = model.UserName;
-            dbFacutlies[0].Password = GetEncryptedPassword(model.Password);
+            dbFacutlies[0].Password = model.Password;
             dbFacutlies[0].ClassId = model.ClassId;
             dbFacutlies[0].SectionId = model.SectionId;
             dbFacutlies[0].UserTypeId = model.UserTypeId;
@@ -142,9 +150,9 @@ namespace API.LABURNUM.COM.FrontEndApi
             //Seach By SubjectId.
             if (iQuery != null)
             {
-                if (model.SubjectId >0)
+                if (model.SubjectId > 0)
                 {
-                    iQuery = iQuery.Where(x => x.SubjectId==model.SubjectId && x.IsActive == true);
+                    iQuery = iQuery.Where(x => x.SubjectId == model.SubjectId && x.IsActive == true);
                 }
             }
             else
@@ -163,7 +171,7 @@ namespace API.LABURNUM.COM.FrontEndApi
         {
             userName.TryValidate();
             Password.TryValidate();
-            IQueryable<API.LABURNUM.COM.Faculty> iQuery = this._laburnum.Faculties.Where(x => (x.UserName.Equals(userName) && x.Password.Equals(Password)) && x.IsActive == true);
+            IQueryable<API.LABURNUM.COM.Faculty> iQuery = this._laburnum.Faculties.Where(x => (x.UserName.Trim().Equals(userName.Trim()) && x.Password.Trim().Equals(Password.Trim())) && x.IsActive == true);
             List<API.LABURNUM.COM.Faculty> dbFaculties = iQuery.ToList();
             if (dbFaculties.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbFaculties.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
@@ -186,7 +194,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             List<API.LABURNUM.COM.Faculty> dbFacutlies = iQuery.ToList();
             if (dbFacutlies.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbFacutlies.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
-            dbFacutlies[0].Password = GetEncryptedPassword(model.NewPassword);
+            dbFacutlies[0].Password = model.NewPassword;
             dbFacutlies[0].LastUpdated = System.DateTime.Now;
             this._laburnum.SaveChanges();
         }

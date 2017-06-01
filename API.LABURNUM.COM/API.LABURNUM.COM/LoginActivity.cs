@@ -25,7 +25,6 @@ namespace API.LABURNUM.COM
         public Nullable<System.DateTime> LastUpdated { get; set; }
     
         public virtual ApiClient ApiClient { get; set; }
-        public virtual Student Student { get; set; }
         public virtual UserType UserType { get; set; }
     }
 }

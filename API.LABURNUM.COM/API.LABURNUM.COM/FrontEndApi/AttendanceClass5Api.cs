@@ -23,10 +23,12 @@ namespace API.LABURNUM.COM.FrontEndApi
                 StudentId = model.StudentId,
                 ClassId = model.ClassId,
                 SectionId = model.SectionId,
-                Date = model.Date,
-                IsPresent = model.IsPresent,
+                MorningAttendanceDate = model.MorningAttendanceDate,
+                IsPresentAfterLuch = model.IsPresentAfterLuch,
+                IsPresentInMorning = model.IsPresentInMorning,
                 CreatedOn = System.DateTime.Now,
-                IsActive = true
+                IsActive = true,
+                FacultyId = model.FacultyId
             };
             this._laburnum.AttendanceClass5.Add(apiAClass1);
             this._laburnum.SaveChanges();
@@ -51,7 +53,8 @@ namespace API.LABURNUM.COM.FrontEndApi
             List<API.LABURNUM.COM.AttendanceClass5> dbAttendanceClass5 = iQuery.ToList();
             if (dbAttendanceClass5.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAttendanceClass5.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
-            dbAttendanceClass5[0].IsPresent = model.IsPresent;
+            dbAttendanceClass5[0].IsPresentAfterLuch = model.IsPresentAfterLuch;
+            dbAttendanceClass5[0].LunchAttendanceDate = model.LunchAttendanceDate;
             dbAttendanceClass5[0].LastUpdated = System.DateTime.Now;
             this._laburnum.SaveChanges();
         }
@@ -85,9 +88,12 @@ namespace API.LABURNUM.COM.FrontEndApi
             //Search By Student Id.
             if (iQuery != null) { if (model.StudentId > 0) { iQuery = iQuery.Where(x => x.StudentId == model.StudentId && x.IsActive == true); } }
             else { if (model.StudentId > 0) { iQuery = this._laburnum.AttendanceClass5.Where(x => x.StudentId == model.StudentId && x.IsActive == true); } }
-            //Search By Present.
-            if (iQuery != null) { if (model.IsPresent) { iQuery = iQuery.Where(x => x.IsPresent == model.IsPresent && x.IsActive == true); } }
-            else { if (model.IsPresent) { iQuery = this._laburnum.AttendanceClass5.Where(x => x.IsPresent == model.IsPresent && x.IsActive == true); } }
+            //Search By IsPresentInMorning.
+            if (iQuery != null) { if (model.IsPresentInMorning) { iQuery = iQuery.Where(x => x.IsPresentInMorning == model.IsPresentInMorning && x.IsActive == true); } }
+            else { if (model.IsPresentInMorning) { iQuery = this._laburnum.AttendanceClass5.Where(x => x.IsPresentInMorning == model.IsPresentInMorning && x.IsActive == true); } }
+            //Search By IsPresentAfterLuch.
+            if (iQuery != null) { if (model.IsPresentAfterLuch) { iQuery = iQuery.Where(x => x.IsPresentAfterLuch == model.IsPresentAfterLuch && x.IsActive == true); } }
+            else { if (model.IsPresentAfterLuch) { iQuery = this._laburnum.AttendanceClass5.Where(x => x.IsPresentAfterLuch == model.IsPresentAfterLuch && x.IsActive == true); } }
             //Search By Date Range.
             if (iQuery != null)
             {
@@ -103,7 +109,7 @@ namespace API.LABURNUM.COM.FrontEndApi
 
                 if (model.StartDate.Year != 0001)
                 {
-                    iQuery = iQuery.Where(x => x.Date >= model.StartDate && x.Date <= model.EndDate && x.IsActive == true);
+                    iQuery = iQuery.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
                 }
             }
             else
@@ -120,7 +126,7 @@ namespace API.LABURNUM.COM.FrontEndApi
 
                 if (model.StartDate.Year != 0001)
                 {
-                    iQuery = this._laburnum.AttendanceClass5.Where(x => x.Date >= model.StartDate && x.Date <= model.EndDate && x.IsActive == true);
+                    iQuery = this._laburnum.AttendanceClass5.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
                 }
             }
 

@@ -55,13 +55,16 @@ namespace API.LABURNUM.COM.Component
                 ClassId = apiclass.ClassId,
                 SectionId = apiclass.SectionId,
                 StudentId = apiclass.StudentId,
-                Date = apiclass.Date,
-                IsPresent = apiclass.IsPresent,
+                MorningAttendanceDate = apiclass.MorningAttendanceDate,
+                LunchAttendanceDate = apiclass.LunchAttendanceDate.GetValueOrDefault().Year != 0001 ? apiclass.LunchAttendanceDate : null,
+                IsPresentAfterLuch = apiclass.IsPresentAfterLuch,
+                IsPresentInMorning = apiclass.IsPresentInMorning,
                 CreatedOn = apiclass.CreatedOn,
                 IsActive = apiclass.IsActive,
                 LastUpdated = apiclass.LastUpdated,
                 StudentName = apiclass.Student.FirstName + " " + apiclass.Student.MiddleName + " " + apiclass.Student.LastName,
-                FatherName = apiclass.Student.FatherName
+                FatherName = apiclass.Student.FatherName,
+                AttendanceId = apiclass.AttendanceClass9Id,
             };
             return dtoClass;
         }

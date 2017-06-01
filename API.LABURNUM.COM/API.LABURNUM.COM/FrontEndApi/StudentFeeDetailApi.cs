@@ -18,6 +18,7 @@ namespace API.LABURNUM.COM.FrontEndApi
 
         private long AddStudentFeeDetail(DTO.LABURNUM.COM.StudentFeeDetailModel model)
         {
+            if (model.ChequePaidAmount >= 0) { model.ChequeDate = null; }
             API.LABURNUM.COM.StudentFeeDetail apiStudentFeeDetail = new StudentFeeDetail()
             {
                 StudentId = model.StudentId,

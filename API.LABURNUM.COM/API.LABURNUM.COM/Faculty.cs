@@ -49,10 +49,10 @@ namespace API.LABURNUM.COM
         public string ContactNumber { get; set; }
         public string Email { get; set; }
         public bool IsClassTeacher { get; set; }
-        public long ClassId { get; set; }
-        public long SectionId { get; set; }
+        public Nullable<long> ClassId { get; set; }
+        public Nullable<long> SectionId { get; set; }
         public bool IsSubjectTeacher { get; set; }
-        public long SubjectId { get; set; }
+        public Nullable<long> SubjectId { get; set; }
         public long UserTypeId { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }

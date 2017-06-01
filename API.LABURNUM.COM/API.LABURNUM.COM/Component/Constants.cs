@@ -65,6 +65,8 @@ namespace API.LABURNUM.COM.Component
         public static class DEFAULTVALUE
         {
             public static int CHEQUEBOUNCEPANELTY = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["CHEQUEBOUNCEPANELTY"]);
+            public static bool ISMAILSENDSTART = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["ISMAILSENDSTART"]);
+            public static bool ISMSGSENDSTART = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["ISMSGSENDSTART"]);
         }
 
         public static class APIACCESS

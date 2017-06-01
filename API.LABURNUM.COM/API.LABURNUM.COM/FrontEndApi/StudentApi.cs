@@ -56,9 +56,11 @@ namespace API.LABURNUM.COM.FrontEndApi
                 IsTransportRqd = model.IsTransportRqd,
                 BusRouteId = model.BusRouteId,
                 StudentUserName = model.StudentUserName,
-                StudentPassword = GetEncryptedPassword(model.StudentPassword),
+                StudentPassword = model.StudentPassword,
+                //StudentPassword = GetEncryptedPassword(model.StudentPassword),
                 ParentUserName = model.ParentUserName,
-                ParentPassword = GetEncryptedPassword(model.ParentPassword),
+                ParentPassword = model.ParentPassword,
+                //ParentPassword = GetEncryptedPassword(model.ParentPassword),
                 CreatedOn = System.DateTime.Now,
                 IsActive = true
             };
@@ -247,7 +249,8 @@ namespace API.LABURNUM.COM.FrontEndApi
             List<API.LABURNUM.COM.Student> dbStudents = iQuery.ToList();
             if (dbStudents.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbStudents.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
-            dbStudents[0].StudentPassword = GetEncryptedPassword(model.StudentPassword);
+            //dbStudents[0].StudentPassword = GetEncryptedPassword(model.StudentPassword);
+            dbStudents[0].StudentPassword = model.NewPassword;
             dbStudents[0].LastUpdated = System.DateTime.Now;
             this._laburnum.SaveChanges();
         }
@@ -259,7 +262,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             List<API.LABURNUM.COM.Student> dbStudents = iQuery.ToList();
             if (dbStudents.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbStudents.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
-            dbStudents[0].ParentPassword = GetEncryptedPassword(model.ParentPassword);
+            dbStudents[0].ParentPassword = model.NewPassword;
             dbStudents[0].LastUpdated = System.DateTime.Now;
             this._laburnum.SaveChanges();
         }

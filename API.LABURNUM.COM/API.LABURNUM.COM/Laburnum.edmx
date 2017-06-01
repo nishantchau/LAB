@@ -312,10 +312,6 @@
             <End Role="Circular" EntitySet="Circular" />
             <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTracker" />
           </AssociationSet>
-          <AssociationSet Name="FK_CircularNotificationTracker_Student" Association="LaburnumModel.Store.FK_CircularNotificationTracker_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTracker" />
-          </AssociationSet>
           <AssociationSet Name="FK_CircularNotificationTracker_UserType" Association="LaburnumModel.Store.FK_CircularNotificationTracker_UserType">
             <End Role="UserType" EntitySet="UserType" />
             <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTracker" />
@@ -414,10 +410,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_LoginActivity_ApiClient" Association="LaburnumModel.Store.FK_LoginActivity_ApiClient">
             <End Role="ApiClient" EntitySet="ApiClient" />
-            <End Role="LoginActivity" EntitySet="LoginActivity" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LoginActivity_Student" Association="LaburnumModel.Store.FK_LoginActivity_Student">
-            <End Role="Student" EntitySet="Student" />
             <End Role="LoginActivity" EntitySet="LoginActivity" />
           </AssociationSet>
           <AssociationSet Name="FK_LoginActivity_UserType" Association="LaburnumModel.Store.FK_LoginActivity_UserType">
@@ -571,8 +563,10 @@
           <Property Name="StudentId" Type="bigint" Nullable="false" />
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
@@ -587,8 +581,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -602,8 +598,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -617,8 +615,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -632,8 +632,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -647,8 +649,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -662,8 +666,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -677,8 +683,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -692,8 +700,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -707,8 +717,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -722,8 +734,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -737,8 +751,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -752,8 +768,10 @@
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="StudentId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -767,8 +785,10 @@
           <Property Name="ClassId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -782,8 +802,10 @@
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="StudentId" Type="bigint" Nullable="false" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="MorningAttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="IsPresentInMorning" Type="bit" Nullable="false" />
+          <Property Name="IsPresentAfterLuch" Type="bit" Nullable="false" />
+          <Property Name="LunchAttendanceDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" />
@@ -885,7 +907,7 @@
           </Key>
           <Property Name="ClassSubjectFacultyTableId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ClassId" Type="bigint" Nullable="false" />
-          <Property Name="SubjectId" Type="bigint" Nullable="false" />
+          <Property Name="SubjectId" Type="bigint" />
           <Property Name="FacultyId" Type="bigint" Nullable="false" />
           <Property Name="SectionId" Type="bigint" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
@@ -968,10 +990,10 @@
           <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="IsClassTeacher" Type="bit" Nullable="false" />
-          <Property Name="ClassId" Type="bigint" Nullable="false" />
-          <Property Name="SectionId" Type="bigint" Nullable="false" />
+          <Property Name="ClassId" Type="bigint" />
+          <Property Name="SectionId" Type="bigint" />
           <Property Name="IsSubjectTeacher" Type="bit" Nullable="false" />
-          <Property Name="SubjectId" Type="bigint" Nullable="false" />
+          <Property Name="SubjectId" Type="bigint" />
           <Property Name="UserTypeId" Type="bigint" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
@@ -1957,18 +1979,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CircularNotificationTracker_Student">
-          <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
-          <End Role="CircularNotificationTracker" Type="LaburnumModel.Store.CircularNotificationTracker" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="StudentId" />
-            </Principal>
-            <Dependent Role="CircularNotificationTracker">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CircularNotificationTracker_UserType">
           <End Role="UserType" Type="LaburnumModel.Store.UserType" Multiplicity="1" />
           <End Role="CircularNotificationTracker" Type="LaburnumModel.Store.CircularNotificationTracker" Multiplicity="*" />
@@ -2018,7 +2028,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClassSubjectFacultyTable_Subject">
-          <End Role="Subject" Type="LaburnumModel.Store.Subject" Multiplicity="1" />
+          <End Role="Subject" Type="LaburnumModel.Store.Subject" Multiplicity="0..1" />
           <End Role="ClassSubjectFacultyTable" Type="LaburnumModel.Store.ClassSubjectFacultyTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subject">
@@ -2138,7 +2148,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Faculty_Class">
-          <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="1" />
+          <End Role="Class" Type="LaburnumModel.Store.Class" Multiplicity="0..1" />
           <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Class">
@@ -2150,7 +2160,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Faculty_Section">
-          <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="1" />
+          <End Role="Section" Type="LaburnumModel.Store.Section" Multiplicity="0..1" />
           <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Section">
@@ -2162,7 +2172,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Faculty_Subject">
-          <End Role="Subject" Type="LaburnumModel.Store.Subject" Multiplicity="1" />
+          <End Role="Subject" Type="LaburnumModel.Store.Subject" Multiplicity="0..1" />
           <End Role="Faculty" Type="LaburnumModel.Store.Faculty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subject">
@@ -2266,18 +2276,6 @@
             </Principal>
             <Dependent Role="LoginActivity">
               <PropertyRef Name="ClientId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LoginActivity_Student">
-          <End Role="Student" Type="LaburnumModel.Store.Student" Multiplicity="1" />
-          <End Role="LoginActivity" Type="LaburnumModel.Store.LoginActivity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="StudentId" />
-            </Principal>
-            <Dependent Role="LoginActivity">
-              <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2884,10 +2882,6 @@
             <End Role="Circular" EntitySet="Circulars" />
             <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTrackers" />
           </AssociationSet>
-          <AssociationSet Name="FK_CircularNotificationTracker_Student" Association="LaburnumModel.FK_CircularNotificationTracker_Student">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTrackers" />
-          </AssociationSet>
           <AssociationSet Name="FK_CircularNotificationTracker_UserType" Association="LaburnumModel.FK_CircularNotificationTracker_UserType">
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="CircularNotificationTracker" EntitySet="CircularNotificationTrackers" />
@@ -3000,10 +2994,6 @@
             <End Role="Subject" EntitySet="Subjects" />
             <End Role="HomeWork" EntitySet="HomeWork" />
           </AssociationSet>
-          <AssociationSet Name="FK_LoginActivity_Student" Association="LaburnumModel.FK_LoginActivity_Student">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="LoginActivity" EntitySet="LoginActivities" />
-          </AssociationSet>
           <AssociationSet Name="FK_LoginActivity_UserType" Association="LaburnumModel.FK_LoginActivity_UserType">
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="LoginActivity" EntitySet="LoginActivities" />
@@ -3114,8 +3104,10 @@
           <Property Type="Int64" Name="StudentId" Nullable="false" />
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
@@ -3134,8 +3126,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3153,8 +3147,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3172,8 +3168,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3191,8 +3189,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3210,8 +3210,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3229,8 +3231,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3248,8 +3252,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3267,8 +3273,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3286,8 +3294,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3305,8 +3315,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3324,8 +3336,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3343,8 +3357,10 @@
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="StudentId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3362,8 +3378,10 @@
           <Property Type="Int64" Name="ClassId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3381,8 +3399,10 @@
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Int64" Name="StudentId" Nullable="false" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Boolean" Name="IsPresent" Nullable="false" />
+          <Property Type="DateTime" Name="MorningAttendanceDate" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="IsPresentInMorning" Nullable="false" />
+          <Property Type="Boolean" Name="IsPresentAfterLuch" Nullable="false" />
+          <Property Type="DateTime" Name="LunchAttendanceDate" Precision="3" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
@@ -3478,7 +3498,6 @@
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
           <NavigationProperty Name="Circular" Relationship="LaburnumModel.FK_CircularNotificationTracker_Circular" FromRole="CircularNotificationTracker" ToRole="Circular" />
-          <NavigationProperty Name="Student" Relationship="LaburnumModel.FK_CircularNotificationTracker_Student" FromRole="CircularNotificationTracker" ToRole="Student" />
           <NavigationProperty Name="UserType" Relationship="LaburnumModel.FK_CircularNotificationTracker_UserType" FromRole="CircularNotificationTracker" ToRole="UserType" />
         </EntityType>
         <EntityType Name="Class">
@@ -3522,7 +3541,7 @@
           </Key>
           <Property Type="Int64" Name="ClassSubjectFacultyTableId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int64" Name="ClassId" Nullable="false" />
-          <Property Type="Int64" Name="SubjectId" Nullable="false" />
+          <Property Type="Int64" Name="SubjectId" />
           <Property Type="Int64" Name="FacultyId" Nullable="false" />
           <Property Type="Int64" Name="SectionId" Nullable="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
@@ -3620,10 +3639,10 @@
           <Property Type="String" Name="ContactNumber" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsClassTeacher" Nullable="false" />
-          <Property Type="Int64" Name="ClassId" Nullable="false" />
-          <Property Type="Int64" Name="SectionId" Nullable="false" />
+          <Property Type="Int64" Name="ClassId" />
+          <Property Type="Int64" Name="SectionId" />
           <Property Type="Boolean" Name="IsSubjectTeacher" Nullable="false" />
-          <Property Type="Int64" Name="SubjectId" Nullable="false" />
+          <Property Type="Int64" Name="SubjectId" />
           <Property Type="Int64" Name="UserTypeId" Nullable="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
@@ -3720,7 +3739,6 @@
           <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="LastUpdated" Precision="3" />
           <NavigationProperty Name="ApiClient" Relationship="LaburnumModel.FK_LoginActivity_ApiClient" FromRole="LoginActivity" ToRole="ApiClient" />
-          <NavigationProperty Name="Student" Relationship="LaburnumModel.FK_LoginActivity_Student" FromRole="LoginActivity" ToRole="Student" />
           <NavigationProperty Name="UserType" Relationship="LaburnumModel.FK_LoginActivity_UserType" FromRole="LoginActivity" ToRole="UserType" />
         </EntityType>
         <EntityType Name="Month">
@@ -3833,10 +3851,8 @@
           <NavigationProperty Name="AttendanceClassPreNurseries" Relationship="LaburnumModel.FK_AttendanceClassPreNursery_Student" FromRole="Student" ToRole="AttendanceClassPreNursery" />
           <NavigationProperty Name="AttendanceClassUKGs" Relationship="LaburnumModel.FK_AttendanceClassUKG_Student" FromRole="Student" ToRole="AttendanceClassUKG" />
           <NavigationProperty Name="BusRoute" Relationship="LaburnumModel.FK_Student_BusRoute" FromRole="Student" ToRole="BusRoute" />
-          <NavigationProperty Name="CircularNotificationTrackers" Relationship="LaburnumModel.FK_CircularNotificationTracker_Student" FromRole="Student" ToRole="CircularNotificationTracker" />
           <NavigationProperty Name="Class" Relationship="LaburnumModel.FK_Student_Class" FromRole="Student" ToRole="Class" />
           <NavigationProperty Name="Class1" Relationship="LaburnumModel.FK_Student_Class1" FromRole="Student" ToRole="Class" />
-          <NavigationProperty Name="LoginActivities" Relationship="LaburnumModel.FK_LoginActivity_Student" FromRole="Student" ToRole="LoginActivity" />
           <NavigationProperty Name="Salutation" Relationship="LaburnumModel.FK_Student_Salutation" FromRole="Student" ToRole="Salutation" />
           <NavigationProperty Name="Section" Relationship="LaburnumModel.FK_Student_Section" FromRole="Student" ToRole="Section" />
           <NavigationProperty Name="StudentFees" Relationship="LaburnumModel.FK_StudentFee_Student" FromRole="Student" ToRole="StudentFee" />
@@ -4835,18 +4851,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CircularNotificationTracker_Student">
-          <End Type="LaburnumModel.Student" Role="Student" Multiplicity="1" />
-          <End Type="LaburnumModel.CircularNotificationTracker" Role="CircularNotificationTracker" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="StudentId" />
-            </Principal>
-            <Dependent Role="CircularNotificationTracker">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CircularNotificationTracker_UserType">
           <End Type="LaburnumModel.UserType" Role="UserType" Multiplicity="1" />
           <End Type="LaburnumModel.CircularNotificationTracker" Role="CircularNotificationTracker" Multiplicity="*" />
@@ -4884,7 +4888,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Faculty_Class">
-          <End Type="LaburnumModel.Class" Role="Class" Multiplicity="1" />
+          <End Type="LaburnumModel.Class" Role="Class" Multiplicity="0..1" />
           <End Type="LaburnumModel.Faculty" Role="Faculty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Class">
@@ -5004,7 +5008,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClassSubjectFacultyTable_Subject">
-          <End Type="LaburnumModel.Subject" Role="Subject" Multiplicity="1" />
+          <End Type="LaburnumModel.Subject" Role="Subject" Multiplicity="0..1" />
           <End Type="LaburnumModel.ClassSubjectFacultyTable" Role="ClassSubjectFacultyTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subject">
@@ -5088,7 +5092,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Faculty_Section">
-          <End Type="LaburnumModel.Section" Role="Section" Multiplicity="1" />
+          <End Type="LaburnumModel.Section" Role="Section" Multiplicity="0..1" />
           <End Type="LaburnumModel.Faculty" Role="Faculty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Section">
@@ -5100,7 +5104,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Faculty_Subject">
-          <End Type="LaburnumModel.Subject" Role="Subject" Multiplicity="1" />
+          <End Type="LaburnumModel.Subject" Role="Subject" Multiplicity="0..1" />
           <End Type="LaburnumModel.Faculty" Role="Faculty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subject">
@@ -5180,18 +5184,6 @@
             </Principal>
             <Dependent Role="HomeWork">
               <PropertyRef Name="SubjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LoginActivity_Student">
-          <End Type="LaburnumModel.Student" Role="Student" Multiplicity="1" />
-          <End Type="LaburnumModel.LoginActivity" Role="LoginActivity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="StudentId" />
-            </Principal>
-            <Dependent Role="LoginActivity">
-              <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5367,8 +5359,10 @@
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
@@ -5382,8 +5376,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5398,8 +5394,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5414,8 +5412,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5430,8 +5430,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5446,8 +5448,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5462,8 +5466,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5478,8 +5484,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5494,8 +5502,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5510,8 +5520,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5526,8 +5538,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5542,8 +5556,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5558,8 +5574,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
@@ -5574,8 +5592,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -5590,8 +5610,10 @@
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LunchAttendanceDate" ColumnName="LunchAttendanceDate" />
+                <ScalarProperty Name="IsPresentAfterLuch" ColumnName="IsPresentAfterLuch" />
+                <ScalarProperty Name="IsPresentInMorning" ColumnName="IsPresentInMorning" />
+                <ScalarProperty Name="MorningAttendanceDate" ColumnName="MorningAttendanceDate" />
                 <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="SectionId" ColumnName="SectionId" />

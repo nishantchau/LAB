@@ -26,7 +26,7 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 DTO.LABURNUM.COM.SessionModel sessionmodel = new DTO.LABURNUM.COM.SessionModel();
-                model.Password = GetEncryptedPassword(model.Password);
+                //model.Password = GetEncryptedPassword(model.Password);
                 try
                 {
                     if (model.LoginBy == 0)
@@ -73,9 +73,9 @@ namespace API.LABURNUM.COM.Controllers
                     API.LABURNUM.COM.AcademicYearTable acy = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(System.DateTime.Now.Year);
                     sessionmodel.AcademicYear = acy.AcademicYear;
                     sessionmodel.AcademicYearId = acy.AcademicYearTableId;
+                    sessionmodel.LastLoginAt = new FrontEndApi.LoginActivityApi().GetLastLogin(sessionmodel.LoginByUserId, sessionmodel.LoginBy);
                     DTO.LABURNUM.COM.LoginActivityModel lmodel = new DTO.LABURNUM.COM.LoginActivityModel() { UserTypeId = sessionmodel.LoginBy, StudentId = sessionmodel.LoginByUserId, ClientId = new FrontEndApi.ApiClientApi().GetClientId(model.ApiClientModel.UserName, model.ApiClientModel.Password) };
                     sessionmodel.LoginActivityId = new FrontEndApi.LoginActivityApi().Add(lmodel);
-                    sessionmodel.LastLoginAt = new FrontEndApi.LoginActivityApi().GetLastLogin(sessionmodel.LoginByUserId, sessionmodel.LoginBy);
                     return GetApiResponseModel("SuccessFully Performed", true, sessionmodel);
                 }
                 catch (Exception ex)
@@ -331,7 +331,7 @@ namespace API.LABURNUM.COM.Controllers
                 if (model.SectionId <= 0) { return GetApiResponseModel("Section Id Cannnot be null.", true, null); }
                 if (model.StudentId <= 0) { return GetApiResponseModel("Student Id Cannnot be null.", true, null); }
                 long id = new Controllers.CommonAttendanceController().Add(model);
-                return GetApiResponseModel("Attendance Submitted Successfully", true, id);
+                return GetApiResponseModel("Morning Attendance Submitted Successfully", true, id);
             }
             else
             {
@@ -347,7 +347,37 @@ namespace API.LABURNUM.COM.Controllers
                 {
                     AddAttendance(item);
                 }
-                return GetApiResponseModel("Attendance List Submitted Successfully", true, null);
+                return GetApiResponseModel("Morning Attendance List Submitted Successfully", true, null);
+            }
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
+        }
+
+        public dynamic SubmitAfterLunchAttendance(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                if (model.AttendanceId <= 0 && model.ClassId <= 0 && model.StudentId <= 0) { return GetApiResponseModel("Class Id, AttendanceId & StudentId Cannnot be Zero or Less Than Zero.", true, null); }
+                if (model.AttendanceId <= 0) { return GetApiResponseModel("Attendance Id Cannnot be null.", true, null); }
+                if (model.ClassId <= 0) { return GetApiResponseModel("Class Id Cannnot be null.", true, null); }
+                if (model.StudentId <= 0) { return GetApiResponseModel("Student Id Cannnot be null.", true, null); }
+                new Controllers.CommonAttendanceController().SubmitAfterLunchAttendanceAsPerClass(model);
+                return GetApiResponseModel("After Lunch Attendance Submitted Successfully", true, null);
+            }
+            else
+            {
+                return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null);
+            }
+        }
+
+        public dynamic SubmitAfterLunchAttendanceList(List<DTO.LABURNUM.COM.CommonAttendanceModel> model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model[0].ApiClientModel.UserName, model[0].ApiClientModel.Password))
+            {
+                foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in model)
+                {
+                    SubmitAfterLunchAttendance(item);
+                }
+                return GetApiResponseModel("After Lunch Attendance List Submitted Successfully", true, null);
             }
             else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
         }
@@ -451,6 +481,24 @@ namespace API.LABURNUM.COM.Controllers
                 return GetApiResponseModel("Successfully Performed.", true, new ClassSubjectFacultyTableHelper(new FrontEndApi.ClassSubjectFacultyTableApi().GetClassSubjectFacultyTableByAdvanceSearch(model)).Map());
             }
             else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
+        }
+
+        public dynamic SearchActiveEvents(DTO.LABURNUM.COM.EventModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                return GetApiResponseModel("Successfully Performed.", true, new EventHelper(new FrontEndApi.EventApi().GetActiveEvents()).Map());
+            }
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
+        }
+
+        public dynamic SearchActiveCirculars(DTO.LABURNUM.COM.CircularModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                return GetApiResponseModel("Successfully Performed.", true, new CircularHelper(new FrontEndApi.CircularApi().GetActiveCirculars()).Map());
+            }
+           else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
         }
     }
 }

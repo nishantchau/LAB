@@ -19,7 +19,7 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 DTO.LABURNUM.COM.SessionModel sessionmodel = new DTO.LABURNUM.COM.SessionModel();
-                model.Password = GetEncryptedPassword(model.Password);
+                // model.Password = GetEncryptedPassword(model.Password);
                 if (model.LoginBy == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
                 {
                     DTO.LABURNUM.COM.StudentModel studentmodel = new DTO.LABURNUM.COM.StudentModel() { StudentUserName = model.UserName, StudentPassword = model.Password, ApiClientModel = model.ApiClientModel, IsStudentLogin = true };
@@ -44,9 +44,9 @@ namespace API.LABURNUM.COM.Controllers
                 API.LABURNUM.COM.AcademicYearTable acy = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(System.DateTime.Now.Year);
                 sessionmodel.AcademicYear = acy.AcademicYear;
                 sessionmodel.AcademicYearId = acy.AcademicYearTableId;
+                sessionmodel.LastLoginAt = new FrontEndApi.LoginActivityApi().GetLastLogin(sessionmodel.LoginByUserId, sessionmodel.LoginBy);
                 DTO.LABURNUM.COM.LoginActivityModel lmodel = new DTO.LABURNUM.COM.LoginActivityModel() { UserTypeId = sessionmodel.LoginBy, StudentId = sessionmodel.LoginByUserId, ClientId = new FrontEndApi.ApiClientApi().GetClientId(model.ApiClientModel.UserName, model.ApiClientModel.Password) };
                 sessionmodel.LoginActivityId = new FrontEndApi.LoginActivityApi().Add(lmodel);
-                sessionmodel.LastLoginAt = new FrontEndApi.LoginActivityApi().GetLastLogin(sessionmodel.LoginByUserId, sessionmodel.LoginBy);
                 return sessionmodel;
             }
             else

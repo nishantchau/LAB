@@ -71,14 +71,15 @@ namespace API.LABURNUM.COM.Component
         private string GetUserName(API.LABURNUM.COM.LoginActivity apiLoginActivity)
         {
             string userName = null;
-
+            API.LABURNUM.COM.Student apistudent =new FrontEndApi.StudentApi().GetStudentByStudentId(apiLoginActivity.StudentId);
             switch (apiLoginActivity.UserTypeId)
             {
                 case 4:
-                    userName = apiLoginActivity.Student.FatherName;
+                    //userName = apiLoginActivity.Student.FatherName;
+                    userName = apistudent.FatherName;
                     break;
                 case 5:
-                    userName = apiLoginActivity.Student.FirstName + " " + apiLoginActivity.Student.MiddleName + " " + apiLoginActivity.Student.LastName;
+                    userName = apistudent.FirstName + " " + apistudent.MiddleName + " " + apistudent.LastName;
                     break;
                 default:
                     userName = new FrontEndApi.FacultyApi().GetFacultyById(apiLoginActivity.StudentId).FacultyName;

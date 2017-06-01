@@ -34,7 +34,7 @@ namespace API.LABURNUM.COM.FrontEndApi
         private long AddValidation(DTO.LABURNUM.COM.ClassSubjectFacultyTableModel model)
         {
             model.ClassId.TryValidate();
-            model.SubjectId.TryValidate();
+           // model.SubjectId.TryValidate();
             model.FacultyId.TryValidate();
             model.SectionId.TryValidate();
             return AddClassSubjectFacultyTable(model);

@@ -18,8 +18,10 @@ namespace API.LABURNUM.COM
         public long StudentId { get; set; }
         public long ClassId { get; set; }
         public long SectionId { get; set; }
-        public System.DateTime Date { get; set; }
-        public bool IsPresent { get; set; }
+        public System.DateTime MorningAttendanceDate { get; set; }
+        public bool IsPresentInMorning { get; set; }
+        public bool IsPresentAfterLuch { get; set; }
+        public Nullable<System.DateTime> LunchAttendanceDate { get; set; }
         public long FacultyId { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }

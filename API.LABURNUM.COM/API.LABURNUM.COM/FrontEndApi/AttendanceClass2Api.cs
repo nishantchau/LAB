@@ -23,10 +23,12 @@ namespace API.LABURNUM.COM.FrontEndApi
                 StudentId = model.StudentId,
                 ClassId = model.ClassId,
                 SectionId = model.SectionId,
-                Date = model.Date,
-                IsPresent = model.IsPresent,
+                MorningAttendanceDate = model.MorningAttendanceDate,
+                IsPresentAfterLuch = model.IsPresentAfterLuch,
+                IsPresentInMorning = model.IsPresentInMorning,
                 CreatedOn = System.DateTime.Now,
-                IsActive = true
+                IsActive = true,
+                FacultyId = model.FacultyId
             };
             this._laburnum.AttendanceClass2.Add(apiAClass2);
             this._laburnum.SaveChanges();
@@ -51,7 +53,8 @@ namespace API.LABURNUM.COM.FrontEndApi
             List<API.LABURNUM.COM.AttendanceClass2> dbAttendanceClass2 = iQuery.ToList();
             if (dbAttendanceClass2.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAttendanceClass2.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
-            dbAttendanceClass2[0].IsPresent = model.IsPresent;
+            dbAttendanceClass2[0].IsPresentAfterLuch = model.IsPresentAfterLuch;
+            dbAttendanceClass2[0].LunchAttendanceDate = model.LunchAttendanceDate;
             dbAttendanceClass2[0].LastUpdated = System.DateTime.Now;
             this._laburnum.SaveChanges();
         }
@@ -85,71 +88,45 @@ namespace API.LABURNUM.COM.FrontEndApi
             //Search By Student Id.
             if (iQuery != null) { if (model.StudentId > 0) { iQuery = iQuery.Where(x => x.StudentId == model.StudentId && x.IsActive == true); } }
             else { if (model.StudentId > 0) { iQuery = this._laburnum.AttendanceClass2.Where(x => x.StudentId == model.StudentId && x.IsActive == true); } }
-            //Search By Present.
-            if (iQuery != null) { if (model.IsPresent) { iQuery = iQuery.Where(x => x.IsPresent == model.IsPresent && x.IsActive == true); } }
-            else { if (model.IsPresent) { iQuery = this._laburnum.AttendanceClass2.Where(x => x.IsPresent == model.IsPresent && x.IsActive == true); } }
+            //Search By IsPresentInMorning.
+            if (iQuery != null) { if (model.IsPresentInMorning) { iQuery = iQuery.Where(x => x.IsPresentInMorning == model.IsPresentInMorning && x.IsActive == true); } }
+            else { if (model.IsPresentInMorning) { iQuery = this._laburnum.AttendanceClass2.Where(x => x.IsPresentInMorning == model.IsPresentInMorning && x.IsActive == true); } }
+            //Search By IsPresentAfterLuch.
+            if (iQuery != null) { if (model.IsPresentAfterLuch) { iQuery = iQuery.Where(x => x.IsPresentAfterLuch == model.IsPresentAfterLuch && x.IsActive == true); } }
+            else { if (model.IsPresentAfterLuch) { iQuery = this._laburnum.AttendanceClass2.Where(x => x.IsPresentAfterLuch == model.IsPresentAfterLuch && x.IsActive == true); } }
             //Search By Date Range.
             if (iQuery != null)
             {
                 if (model.StartDate.Year != 0001)
                 {
-                    //string dd = Convert.ToString(model.StartDate.Day);
-                    //if (dd.Length == 1) { dd = "0" + dd; }
-                    //string mm = Convert.ToString(model.StartDate.Month);
-                    //if (mm.Length == 1) { mm = "0" + mm; }
-                    //string yy = Convert.ToString(model.StartDate.Year);
-                    //string sdate = dd + "/" + mm + "/" + yy;
-                    //model.StartDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
                     model.StartDate = new Component.Utility().GetDate(model.StartDate);
                 }
                 if (model.EndDate.Year != 0001)
                 {
-                    //string dd = Convert.ToString(model.EndDate.Day);
-                    //if (dd.Length == 1) { dd = "0" + dd; }
-                    //string mm = Convert.ToString(model.StartDate.Month);
-                    //if (mm.Length == 1) { mm = "0" + mm; }
-                    //string yy = Convert.ToString(model.StartDate.Year);
-                    //string sdate = dd + "/" + mm + "/" + yy;
-                    //model.EndDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     model.EndDate = new Component.Utility().GetDate(model.EndDate);
                 }
                 if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 
                 if (model.StartDate.Year != 0001)
                 {
-                    iQuery = iQuery.Where(x => x.Date >= model.StartDate && x.Date <= model.EndDate && x.IsActive == true);
+                    iQuery = iQuery.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
                 }
             }
             else
             {
                 if (model.StartDate.Year != 0001)
                 {
-                    //string dd = Convert.ToString(model.StartDate.Day);
-                    //if (dd.Length == 1) { dd = "0" + dd; }
-                    //string mm = Convert.ToString(model.StartDate.Month);
-                    //if (mm.Length == 1) { mm = "0" + mm; }
-                    //string yy = Convert.ToString(model.StartDate.Year);
-                    //string sdate = dd + "/" + mm + "/" + yy;
-                    //model.StartDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     model.StartDate = new Component.Utility().GetDate(model.StartDate);
                 }
                 if (model.EndDate.Year != 0001)
                 {
-                    //string dd = Convert.ToString(model.EndDate.Day);
-                    //if (dd.Length == 1) { dd = "0" + dd; }
-                    //string mm = Convert.ToString(model.StartDate.Month);
-                    //if (mm.Length == 1) { mm = "0" + mm; }
-                    //string yy = Convert.ToString(model.StartDate.Year);
-                    //string sdate = dd + "/" + mm + "/" + yy;
-                    //model.EndDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                     model.EndDate = new Component.Utility().GetDate(model.EndDate);
                 }
                 if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 
                 if (model.StartDate.Year != 0001)
                 {
-                    iQuery = this._laburnum.AttendanceClass2.Where(x => x.Date >= model.StartDate && x.Date <= model.EndDate && x.IsActive == true);
+                    iQuery = this._laburnum.AttendanceClass2.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
                 }
             }
 
