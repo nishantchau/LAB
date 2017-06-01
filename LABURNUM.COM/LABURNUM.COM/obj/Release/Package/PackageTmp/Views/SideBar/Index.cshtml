@@ -117,7 +117,13 @@
                     <li>Mobile : @Model.GetFatherMobile()</li>
                     <li>PAN : @Model.GetPAN()</li>
                 }
+                @if(Model.GetLastLoginAt().Year!=0001){
                 <li>Last Login : @Model.GetLastLoginAt()</li>
+                }
+                else
+                {
+                <li>Last Login : N/A</li>    
+                }
             </ul>
         </div>
     </li>
@@ -222,6 +228,7 @@
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/ClassSubjectWiseFaculty/SearchClassSubjectWiseFacultyIndex">Search Assigned</a></li>
             </ul>
         </li>
+        @*
         <li class="xn-openable">
             <a href="javascript:;">
                 <span class="fa fa-book"></span>
@@ -230,7 +237,7 @@
             <ul>
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Event/SeeAllEvents">See All Events</a></li>
             </ul>
-        </li>
+        </li>*@
         <li class="xn-openable">
             <a href="javascript:;">
                 <span class="fa fa-book"></span>
@@ -394,7 +401,8 @@
                 <span class="xn-text">ATTENDANCE</span>
             </a>
             <ul>
-                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Attendance/IsAttendanceSubmitted">Today Attendance</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Attendance/IsAttendanceSubmitted">Submit Morning Attendance</a></li>
+                <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Attendance/SubmitAfterLuchAttendanceIndex">Submit After Lunch</a></li>
                 <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Attendance/SearchAttendanceIndex">Search Attendance</a></li>
             </ul>
         </li>

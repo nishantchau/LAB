@@ -151,3 +151,5 @@ E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\Do
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Release\LABURNUM.COM.csprojResolveAssemblyReference.cache
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Release\LABURNUM.COM.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Release\LABURNUM.COM.pdb
+E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\itextsharp.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\itextsharp.xml
