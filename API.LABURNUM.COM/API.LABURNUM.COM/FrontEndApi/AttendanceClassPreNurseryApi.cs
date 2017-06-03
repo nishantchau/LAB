@@ -103,7 +103,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 }
                 if (model.EndDate.Year != 0001)
                 {
-                    model.EndDate = new Component.Utility().GetDate(model.EndDate);
+                    model.EndDate = new Component.Utility().GetDate(model.EndDate).AddDays(1).AddSeconds(-1);
                 }
                 if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 
@@ -120,7 +120,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 }
                 if (model.EndDate.Year != 0001)
                 {
-                    model.EndDate = new Component.Utility().GetDate(model.EndDate);
+                    model.EndDate = new Component.Utility().GetDate(model.EndDate).AddDays(1).AddSeconds(-1);
                 }
                 if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 

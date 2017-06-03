@@ -528,7 +528,40 @@ namespace API.LABURNUM.COM.Controllers
         public DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel SearchAttendanceReport(DTO.LABURNUM.COM.CommonAttendanceModel model)
         {
             DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel responsemodel = new DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel();
-            List<API.LABURNUM.COM.Student> dbStudents = new FrontEndApi.StudentApi().GetStudentByAdvanceSearch(new DTO.LABURNUM.COM.StudentModel() { ClassId = model.ClassId, SectionId = model.SectionId });
+            List<API.LABURNUM.COM.Student> dbStudents = new List<Student>();
+            if (model.StudentId <= 0)
+            {
+                dbStudents = new FrontEndApi.StudentApi().GetStudentByAdvanceSearch(new DTO.LABURNUM.COM.StudentModel() { ClassId = model.ClassId, SectionId = model.SectionId });
+            }
+            else
+            {
+                dbStudents.Add(new FrontEndApi.StudentApi().GetStudentByStudentId(model.StudentId));
+            }
+            
+            model.StartDate = new DateTime(2017, model.MonthId, 1, 00, 00, 00);
+            int lstday = 0;
+            if (model.MonthId == 2)
+            {
+                if (model.StartDate.Year % 4 == 0)
+                {
+                    lstday = 28;
+                }
+                else
+                {
+                    lstday = 29;
+                }
+            }
+
+            if (model.MonthId == 1 || model.MonthId == 3 || model.MonthId == 5 || model.MonthId == 7 || model.MonthId == 8 || model.MonthId == 8 || model.MonthId == 12)
+            {
+                lstday = 31;
+            }
+            else
+            {
+                lstday = 30;
+            }
+
+            model.EndDate = new DateTime(2017, model.MonthId, lstday, 00, 00, 00).AddDays(1).AddSeconds(-1);
 
             switch (model.ClassId)
             {
@@ -537,20 +570,17 @@ namespace API.LABURNUM.COM.Controllers
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClassPreNurseryModel> flist = aNlist.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClassPreNurseryModel> flist = aNlist.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClassPreNurseryModel item in aNlist)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 2:
                     List<DTO.LABURNUM.COM.AttendanceClassLKGModel> ALkgList = AttendanceByAdvanceSearch(model);
@@ -558,20 +588,17 @@ namespace API.LABURNUM.COM.Controllers
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClassLKGModel> flist = ALkgList.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClassLKGModel> flist = ALkgList.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClassLKGModel item in ALkgList)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 3:
                     List<DTO.LABURNUM.COM.AttendanceClassUKGModel> ukgmodel = AttendanceByAdvanceSearch(model);
@@ -579,272 +606,223 @@ namespace API.LABURNUM.COM.Controllers
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClassUKGModel> flist = ukgmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClassUKGModel> flist = ukgmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClassUKGModel item in ukgmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
 
                 case 4:
                     List<DTO.LABURNUM.COM.AttendanceClass1Model> firstmodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass1Model> flist = firstmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass1Model> flist = firstmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass1Model item in firstmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 5:
                     List<DTO.LABURNUM.COM.AttendanceClass2Model> secondmodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass2Model> flist = secondmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass2Model> flist = secondmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass2Model item in secondmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 6:
                     List<DTO.LABURNUM.COM.AttendanceClass3Model> thirdmodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass3Model> flist = thirdmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass3Model> flist = thirdmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass3Model item in thirdmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
 
                 case 7:
                     List<DTO.LABURNUM.COM.AttendanceClass4Model> fourmodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass4Model> flist = fourmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass4Model> flist = fourmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass4Model item in fourmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 8:
                     List<DTO.LABURNUM.COM.AttendanceClass5Model> fivemodel = AttendanceByAdvanceSearch(model);
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass5Model> flist = fivemodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass5Model> flist = fivemodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass5Model item in fivemodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 9:
                     List<DTO.LABURNUM.COM.AttendanceClass6Model> sixmodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass6Model> flist = sixmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass6Model> flist = sixmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass6Model item in sixmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 10:
                     List<DTO.LABURNUM.COM.AttendanceClass7Model> sevenmodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass7Model> flist = sevenmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass7Model> flist = sevenmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass7Model item in sevenmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 11:
                     List<DTO.LABURNUM.COM.AttendanceClass8Model> eightmodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass8Model> flist = eightmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass8Model> flist = eightmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass8Model item in eightmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 12:
                     List<DTO.LABURNUM.COM.AttendanceClass9Model> ninemodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass9Model> flist = ninemodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass9Model> flist = ninemodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass9Model item in ninemodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 13:
                     List<DTO.LABURNUM.COM.AttendanceClass10Model> tenmodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass10Model> flist = tenmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass10Model> flist = tenmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass10Model item in tenmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 14:
                     List<DTO.LABURNUM.COM.AttendanceClass11Model> elevenmodel = AttendanceByAdvanceSearch(model);
-
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass11Model> flist = elevenmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass11Model> flist = elevenmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass11Model item in elevenmodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
                 case 15:
                     List<DTO.LABURNUM.COM.AttendanceClass12Model> twelvemodel = AttendanceByAdvanceSearch(model);
                     foreach (API.LABURNUM.COM.Student item in dbStudents)
                     {
                         List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance> attendancelist = new List<DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance>();
-                        for (DateTime i = model.StartDate; i < model.EndDate; i.AddDays(1))
+                        for (int i = 1; i <= lstday; i++)
                         {
-                            List<DTO.LABURNUM.COM.AttendanceClass12Model> flist = twelvemodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn == i).ToList();
-                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
+                            DateTime stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                            DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
+                            List<DTO.LABURNUM.COM.AttendanceClass12Model> flist = twelvemodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
+                            if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
                         responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
                     }
-
-                    //foreach (DTO.LABURNUM.COM.AttendanceClass12Model item in twelvemodel)
-                    //{
-                    //    responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { Day = item.Date.Day, IsPresent = item.IsPresent, StudentId = item.StudentId, StudentName = item.StudentName });
-                    //}
                     break;
             }
             responsemodel.StartDate = model.StartDate;

@@ -195,23 +195,11 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 if (model.StartDate.Year != 0001)
                 {
-                    string dd = Convert.ToString(model.StartDate.Day);
-                    if (dd.Length == 1) { dd = "0" + dd; }
-                    string mm = Convert.ToString(model.StartDate.Month);
-                    if (mm.Length == 1) { mm = "0" + mm; }
-                    string yy = Convert.ToString(model.StartDate.Year);
-                    string sdate = dd + "/" + mm + "/" + yy;
-                    model.StartDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    model.StartDate = new Component.Utility().GetDate(model.StartDate);
                 }
                 if (model.EndDate.Year != 0001)
                 {
-                    string dd = Convert.ToString(model.EndDate.Day);
-                    if (dd.Length == 1) { dd = "0" + dd; }
-                    string mm = Convert.ToString(model.StartDate.Month);
-                    if (mm.Length == 1) { mm = "0" + mm; }
-                    string yy = Convert.ToString(model.StartDate.Year);
-                    string sdate = dd + "/" + mm + "/" + yy;
-                    model.EndDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    model.EndDate = new Component.Utility().GetDate(model.EndDate).AddDays(1).AddSeconds(-1);
                 }
                 if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 
@@ -225,33 +213,19 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 if (model.StartDate.Year != 0001)
                 {
-                    string dd = Convert.ToString(model.StartDate.Day);
-                    if (dd.Length == 1) { dd = "0" + dd; }
-                    string mm = Convert.ToString(model.StartDate.Month);
-                    if (mm.Length == 1) { mm = "0" + mm; }
-                    string yy = Convert.ToString(model.StartDate.Year);
-                    string sdate = dd + "/" + mm + "/" + yy;
-                    model.StartDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    model.StartDate = new Component.Utility().GetDate(model.StartDate);
                 }
                 if (model.EndDate.Year != 0001)
                 {
-                    string dd = Convert.ToString(model.EndDate.Day);
-                    if (dd.Length == 1) { dd = "0" + dd; }
-                    string mm = Convert.ToString(model.EndDate.Month);
-                    if (mm.Length == 1) { mm = "0" + mm; }
-                    string yy = Convert.ToString(model.EndDate.Year);
-                    string sdate = dd + "/" + mm + "/" + yy;
-                    model.EndDate = DateTime.ParseExact(sdate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    model.EndDate = new Component.Utility().GetDate(model.EndDate).AddDays(1).AddSeconds(-1);
                 }
                 if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 
                 if (model.StartDate.Year != 0001)
                 {
                     iQuery = this._laburnum.Circulars.Where(x => x.PublishedOn >= model.StartDate && x.PublishedOn <= model.EndDate && x.IsActive == true);
-
                 }
             }
-
             List<API.LABURNUM.COM.Circular> dbCircular = iQuery.ToList();
             return dbCircular;
         }

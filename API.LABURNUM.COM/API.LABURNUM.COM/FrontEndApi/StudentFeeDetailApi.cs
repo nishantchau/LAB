@@ -18,7 +18,8 @@ namespace API.LABURNUM.COM.FrontEndApi
 
         private long AddStudentFeeDetail(DTO.LABURNUM.COM.StudentFeeDetailModel model)
         {
-            if (model.ChequePaidAmount >= 0) { model.ChequeDate = null; }
+            if (model.ChequeDate.GetValueOrDefault().Year == 0001) { model.ChequeDate = null; }
+            else { if (model.ChequePaidAmount <= 0) { model.ChequeDate = null; } }
             API.LABURNUM.COM.StudentFeeDetail apiStudentFeeDetail = new StudentFeeDetail()
             {
                 StudentId = model.StudentId,
@@ -159,15 +160,9 @@ namespace API.LABURNUM.COM.FrontEndApi
                 if (model.StartDate.Year != 0001)
                 {
                     model.StartDate = new Component.Utility().GetDate(model.StartDate);
-                }
-                if (model.EndDate.Year != 0001)
-                {
-                    model.EndDate = new Component.Utility().GetDate(model.EndDate);
-                }
-                if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
+                    if (model.EndDate.Year != 0001) { model.EndDate = new Component.Utility().GetDate(model.EndDate).AddDays(1).AddSeconds(-1); }
+                    if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 
-                if (model.StartDate.Year != 0001)
-                {
                     iQuery = iQuery.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
                 }
             }
@@ -176,15 +171,9 @@ namespace API.LABURNUM.COM.FrontEndApi
                 if (model.StartDate.Year != 0001)
                 {
                     model.StartDate = new Component.Utility().GetDate(model.StartDate);
-                }
-                if (model.EndDate.Year != 0001)
-                {
-                    model.EndDate = new Component.Utility().GetDate(model.EndDate);
-                }
-                if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
+                    if (model.EndDate.Year != 0001) { model.EndDate = new Component.Utility().GetDate(model.EndDate).AddDays(1).AddSeconds(-1); }
+                    if (model.EndDate.Year == 0001) { model.EndDate = model.StartDate.AddDays(1).AddSeconds(-1); }
 
-                if (model.StartDate.Year != 0001)
-                {
                     iQuery = this._laburnum.StudentFeeDetails.Where(x => x.CreatedOn >= model.StartDate && x.CreatedOn <= model.EndDate && x.IsActive == true);
                 }
             }

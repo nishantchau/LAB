@@ -22,7 +22,10 @@ namespace API.LABURNUM.COM.Controllers
                 model.ChequeStatus = cstatus;
                 //model.StudentFeeId = new FrontEndApi.StudentFeeApi().GetStudentFeeId(model.ClassId, model.SectionId, model.StudentId, admissionTypeId);
                 long studentfeeDetailsId = new FrontEndApi.StudentFeeDetailApi().Add(model);
-                sendmail(studentfeeDetailsId);
+                if (Component.Constants.DEFAULTVALUE.ISMAILSENDSTART)
+                {
+                    sendmail(studentfeeDetailsId);
+                }
                 return studentfeeDetailsId;
             }
             else

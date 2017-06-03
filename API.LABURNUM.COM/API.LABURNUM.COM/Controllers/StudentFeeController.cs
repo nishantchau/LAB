@@ -29,12 +29,16 @@ namespace API.LABURNUM.COM.Controllers
                     CashPaidAmount = model.CashPaidAmount,
                     ChequePaidAmount = model.ChequePaidAmount,
                     BankId = model.BankId,
-                    ChequeDate = model.ChequeDate,
+                    ChequeDate = model.ChequeDate.GetValueOrDefault(),
                     ChequeNumber = model.ChequeNumber,
                     PendingFee = model.PendingFee,
                     ChequeStatus = cstatus
                 });
-                sendmail(studentFeeDetailsId);
+                if (Component.Constants.DEFAULTVALUE.ISMAILSENDSTART)
+                {
+                    sendmail(studentFeeDetailsId);
+                }
+                
                 return studentFeeDetailsId;
             }
             else

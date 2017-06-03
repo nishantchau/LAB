@@ -17,8 +17,10 @@ namespace API.LABURNUM.COM.Controllers
                 DTO.LABURNUM.COM.StudentModel smodel = new StudentHelper(new FrontEndApi.StudentApi().Add(model)).MapSingle();
                 smodel.ParentPassword = model.ParentPassword;
                 smodel.StudentPassword = model.StudentPassword;
-                sendmail(smodel);
-
+                if (Component.Constants.DEFAULTVALUE.ISMAILSENDSTART)
+                {
+                    sendmail(smodel);
+                }
                 return smodel;
             }
             else
