@@ -1,6 +1,6 @@
 ﻿@model DTO.LABURNUM.COM.StudentFeeDetailModel
 
-@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
 {
     using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnSearchFeeReceiptBegin", OnSuccess = "OnSearchFeeReceiptSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "SearchFeeReceipt/SearchResult" }))
     {

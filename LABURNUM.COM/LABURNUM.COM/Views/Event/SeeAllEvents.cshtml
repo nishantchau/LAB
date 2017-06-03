@@ -19,15 +19,17 @@
 {
     <section class="panel">
         <header class="panel-heading">
-            See All Events
+            List All Events
             <span class="tools pull-right"></span>
         </header>
-        <div class="col-md-12 margin_top">
-            <span class="tools pull-right">
-                <button type="button" onclick="AddNewEventPopup();" class="btn btn-warning adept-view" data-toggle="modal" data-target="#myModal">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-            </span>
-        </div>
-
+        @if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)) || (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE)))
+        {
+            <div class="col-md-12 margin_top">
+                <span class="tools pull-right">
+                    <button type="button" onclick="AddNewEventPopup();" class="btn btn-warning adept-view" data-toggle="modal" data-target="#myModal">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+                </span>
+            </div>
+        }
         <div class="text-center">
             <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
         </div>
@@ -37,16 +39,19 @@ else
 {   
     <section class="panel">
         <header class="panel-heading">
-            See All Events
+            List All Events
             <span class="tools pull-right">
                 <button type="button" onclick="DownloadRecord('Event(s) List');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
             </span>
         </header>
-        <div class="col-md-12 margin_top">
-            <span class="tools pull-right">
-                <button type="button" onclick="AddNewEventPopup();" class="btn btn-warning adept-view" data-toggle="modal" data-target="#myModal">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
-            </span>
-        </div>
+        @if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)) || (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE)))
+        {
+            <div class="col-md-12 margin_top">
+                <span class="tools pull-right">
+                    <button type="button" onclick="AddNewEventPopup();" class="btn btn-warning adept-view" data-toggle="modal" data-target="#myModal">Add New <i class="fa fa-plus" aria-hidden="true"></i></button>
+                </span>
+            </div>
+        }
         <div class="row" id="divTable">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -58,7 +63,10 @@ else
                                 <th>Event Name</th>
                                 <th>Classes</th>
                                 <th>Event Date</th>
-                                <th></th>
+                                @if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)) || (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE)))
+                                {
+                                    <th></th>
+                                }
                             </tr>
                         </thead>
                         <tbody>
@@ -70,10 +78,13 @@ else
                                     <td style="width: 20%;">@item.EventName</td>
                                     <td style="width: 20%;">@item.Classes</td>
                                     <td style="width: 20%;">@item.EventDate.ToShortDateString()</td>
-                                    <td style="width: 12%;">
-                                        <button type="button" onclick="EditEventPopup('@item.EventId')" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">EDIT</button></td>
+                                    @if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)) || (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE)))
+                                    {
+                                        <td style="width: 12%;">
+                                            <button type="button" onclick="EditEventPopup('@item.EventId')" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal">EDIT</button></td>
+                                    }
                                 </tr>
-                                counter++;
+                                    counter++;
                             }
                         </tbody>
                     </table>

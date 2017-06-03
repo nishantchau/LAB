@@ -566,6 +566,7 @@ function CreateDigitalWatch() {
 
 function OnAddClassBegin() {
     try {
+        SetHtmlBlank(_MESSAGEDIVID);
         if (Validate.StringValueValidate("txtClassName", _MESSAGEDIVID, "Please Enter Class Name")) { }
         else {
             return false;
@@ -641,6 +642,7 @@ function EditClassPopup(id) {
 }
 
 function OnEditClassBegin() {
+    SetHtmlBlank(_POPUPMESSAGEDIVID);
     if (Validate.StringValueValidate("txtClassNameP", _POPUPMESSAGEDIVID, "Please Enter Class Name")) { }
     else {
         return false;
@@ -664,7 +666,13 @@ function UpdateStatusPoup(id, counter) {
 }
 
 function OnStatusUpdateBegin() {
-    DisplayLoader(_POPUPLOADERDIVID);
+    try {
+        SetHtmlBlank(_POPUPMESSAGEDIVID);
+        DisplayLoader(_POPUPLOADERDIVID);
+    }
+    catch (e) {
+        MyAlert("OnStatusUpdateBegin : " + e);
+    }
 }
 
 function OnStatusUpdateSuccess(data) {
@@ -674,6 +682,7 @@ function OnStatusUpdateSuccess(data) {
 
 function OnAddAdmissionTypeBegin() {
     try {
+        SetHtmlBlank(_MESSAGEDIVID);
         if (Validate.StringValueValidate("txtAdmissionTypeName", _MESSAGEDIVID, "Please Enter Admission Type Name")) { }
         else {
             return false;
@@ -715,6 +724,7 @@ function EditAdmissionTypePopup(id) {
 
 function OnEditAdmissionTypeBegin() {
     try {
+        SetHtmlBlank(_POPUPMESSAGEDIVID);
         if (Validate.StringValueValidate("txtAdmissionTypeNameP", _POPUPMESSAGEDIVID, "Please Enter Admission Type Name")) { }
         else {
             return false;
@@ -737,19 +747,35 @@ function OnEditAdmissionTypeSuccess(data) {
 }
 
 function UpdateAdmissionTypeStatusPoup(id, counter) {
-    var tdid = "tdIsActive" + counter;
-    var cIsActive = GetHtml(tdid);
-    var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/AdmissionTypeStatusUpdateAlert?id=" + id + "&cIsActive=" + cIsActive;
-    FillViewInModelDiv(url, "myModal");
+    try {
+        var tdid = "tdIsActive" + counter;
+        var cIsActive = GetHtml(tdid);
+        var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/AdmissionTypeStatusUpdateAlert?id=" + id + "&cIsActive=" + cIsActive;
+        FillViewInModelDiv(url, "myModal");
+    }
+    catch (e) {
+        MyAlert("UpdateAdmissionTypeStatusPoup : " + e);
+    }
 }
 
 function OnAdmissionTypeStatusUpdateBegin() {
-    DisplayLoader(_POPUPLOADERDIVID);
+    try {
+        SetHtmlBlank(_POPUPMESSAGEDIVID);
+        DisplayLoader(_POPUPLOADERDIVID);
+    }
+    catch (e) {
+        MyAlert("OnAdmissionTypeStatusUpdateBegin : " + e);
+    }
 }
 
 function OnAdmissionTypeStatusUpdateSuccess(data) {
-    HideLoader(_POPUPLOADERDIVID);
-    FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, MESSAGES.UpdateSuccessMessage, MESSAGES.UpdateFailMessage);
+    try {
+        HideLoader(_POPUPLOADERDIVID);
+        FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, MESSAGES.UpdateSuccessMessage, MESSAGES.UpdateFailMessage);
+    }
+    catch (e) {
+        MyAlert("OnAdmissionTypeStatusUpdateSuccess : " + e);
+    }
 }
 
 function OnSeachAdmissionTypeByAdvanceSearchBegin() {
@@ -770,8 +796,13 @@ function OnSeachAdmissionTypeByAdvanceSearchBegin() {
 }
 
 function OnSeachAdmissionTypeByAdvanceSearchSuccess(data) {
-    HideLoader(_LOADERDIVID);
-    FillSuccessResultView(data, _RESULTDIVID);
+    try {
+        HideLoader(_LOADERDIVID);
+        FillSuccessResultView(data, _RESULTDIVID);
+    }
+    catch (e) {
+        MyAlert("OnSeachAdmissionTypeByAdvanceSearchSuccess : " + e);
+    }
 }
 
 function OnAdmissionTypeAdvanceSeachIndexReady() {
@@ -782,7 +813,6 @@ function OnLoginBegin() {
     SetHtmlBlank("divMessage");
     if (Validate.IntValueValidate("hdnLoginBy", "divMessage", "Please Choose Either \'Staff\' or \'Student\' or \'Parent\'")) { }
     else { return false; }
-
     if (Validate.StringValueValidate("txtUserName", "divMessage", "Plese Enter UserName.")) { }
     else { return false; }
     if (Validate.StringValueValidate("txtPassword", "divMessage", "Plese Enter Password.")) { }
@@ -810,18 +840,23 @@ function OnLoginSuccess(data) {
 }
 
 function OnAddStudentReady() {
-    BindSectionsDropdownByClass();
-    $("#ddlSection").prop('disabled', true);
-    var currentDate = new Date();
-    $('#datepicker').datepicker({
-        changeMonth: true,
-        numberOfMonths: 1,
-        minDate: currentDate,
-        value: new Date(),
-        autoclose: true,
-    });
-    $("#ddlBusRoute").val("0");
-    ShowTranportCharge();
+    try {
+        BindSectionsDropdownByClass();
+        $("#ddlSection").prop('disabled', true);
+        var currentDate = new Date();
+        $('#datepicker').datepicker({
+            changeMonth: true,
+            numberOfMonths: 1,
+            minDate: currentDate,
+            value: new Date(),
+            autoclose: true,
+        });
+        $("#ddlBusRoute").val("0");
+        ShowTranportCharge();
+    }
+    catch (e) {
+        MyAlert("OnAddStudentReady : " + e);
+    }
 }
 
 function UploadImage() {
@@ -1332,8 +1367,7 @@ function OnAddStudentFeeBegin() {
         if (Validate.StringValueValidate("txtDiscountRemarks", _MESSAGEDIVID, "Please Enter Discount Remarks.")) { }
         else { return false; }
     }
-    if (Validate.IntValueValidate("txtCashPaidAmount", _MESSAGEDIVID, "Please Enter Cash Paid Amount.")) { }
-    else { return false; }
+
     var x = document.getElementById("chkboxPaidByCheque").checked;
     if (x) {
         if (Validate.IntValueValidate("txtChequePaidAmount", _MESSAGEDIVID, "Please Enter Amount Paid By Cheque.")) { }
@@ -1343,6 +1377,10 @@ function OnAddStudentFeeBegin() {
         if (Validate.StringValueValidate("txtChequeDate", _MESSAGEDIVID, "Please Select Cheque Date.")) { }
         else { return false; }
         if (Validate.IntValueValidate("ddlBank", _MESSAGEDIVID, "Please Select A Bank.")) { }
+        else { return false; }
+    }
+    else {
+        if (Validate.IntValueValidate("txtCashPaidAmount", _MESSAGEDIVID, "Please Enter Cash Paid Amount.")) { }
         else { return false; }
     }
 
@@ -2806,6 +2844,8 @@ function OnSubmitAttendanceSuccess(data) {
 
 function OnSearchAttendanceBegin() {
     try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
         DisplayLoader(_LOADERDIVID);
         Disablebutton("btnSearch");
     } catch (e) {
@@ -2971,6 +3011,7 @@ function ShowHideRemarksdiv() {
 
 function OnUpdateChequeStatusBegin() {
     try {
+        SetHtmlBlank(_POPUPMESSAGEDIVID);
         if (Validate.IntValueValidate("ChequeStatusMasterId", _POPUPMESSAGEDIVID, "Please Select Cheque Status.")) { }
         else { return false; }
         var cStatus = $("#ddlChequeStatusp option:selected").val();
@@ -3442,6 +3483,7 @@ function OnAlbumAdvanceSeachIndexReady() {
 function OnSearchAlbumByAdvanceSearchBegin() {
     try {
         SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
         var m1 = GetValue("txtAlbumName");
         var m2 = GetValue("txtAlbumId");
         if ((m1 == "" || m1 == null) && (m2 == "" || m2 == null)) {

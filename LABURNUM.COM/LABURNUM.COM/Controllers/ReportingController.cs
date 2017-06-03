@@ -29,33 +29,38 @@ namespace LABURNUM.COM.Controllers
 
         public ActionResult TodayCollectionReport()
         {
-            try
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
             {
-                DTO.LABURNUM.COM.StudentFeeModel model = new DTO.LABURNUM.COM.StudentFeeModel() { StartDate = System.DateTime.Now };
-                List<DTO.LABURNUM.COM.StudentFeeModel> dbStudentFees = new Component.StudentFee().GetStudentFeeByAdvanceSearch(model);
-                double x = 0, y = 0, totalamount = 0;
-                foreach (DTO.LABURNUM.COM.StudentFeeModel item in dbStudentFees)
+                try
                 {
-                    x = x + item.TotalPayableAmount;
-                    foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item1 in item.StudentFeeDetails)
-                    {
-                        y = y + item1.TotalPayableAmount;
-                        item.PaidMonthlyFee = item1.TotalPayableAmount;
-                    }
+                    DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel() { StartDate = System.DateTime.Now };
+                    //List<DTO.LABURNUM.COM.StudentFeeModel> dbStudentFees = new Component.StudentFee().GetStudentFeeByAdvanceSearch(model);
+                    List<DTO.LABURNUM.COM.StudentFeeDetailModel> dbStudentFees = new Component.StudentFeeDetails().GetStudentFeeDetailByAdvanceSearch(model);
+                    double x = 0, y = 0, d = 0;
 
-                    totalamount = x + y;
+                    foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item in dbStudentFees)
+                    {
+                        x = x + item.CashPaidAmount;
+                        y = y + item.ChequePaidAmount;
+                        d = d + item.DiscountAmount;
+                    }
+                    if (dbStudentFees.Count > 0)
+                    {
+                        dbStudentFees[0].TotalCashPaidAmount = x;
+                        dbStudentFees[0].TotalChequePaidAmount = y;
+                        dbStudentFees[0].TotalEarning = x + y;
+                        dbStudentFees[0].TotalDiscountAmount = d;
+                    }
+                    return View(dbStudentFees);
                 }
-                if (dbStudentFees.Count > 0)
+                catch (Exception)
                 {
-                    dbStudentFees[0].TotalEarningFromAdmission = x;
-                    dbStudentFees[0].TotalEarningFromMonthlyFee = y;
-                    dbStudentFees[0].TotalEarning = totalamount;
+                    throw;
                 }
-                return View(dbStudentFees);
             }
-            catch (Exception)
+            else
             {
-                throw;
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
             }
         }
 

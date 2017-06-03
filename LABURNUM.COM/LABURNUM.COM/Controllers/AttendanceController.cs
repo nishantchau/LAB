@@ -71,6 +71,8 @@ namespace LABURNUM.COM.Controllers
         public ActionResult SearchAttendanceIndex()
         {
             DTO.LABURNUM.COM.CommonAttendanceModel model = new DTO.LABURNUM.COM.CommonAttendanceModel();
+            model.Months = new Component.Month().GetActiveMonths();
+            model.MonthId = System.DateTime.Now.Month;
             return View(model);
         }
 

@@ -3,48 +3,51 @@
 
 <section class="panel">
     <header class="panel-heading">
-        @*<strong>Number of Record Found : @Model.Count</strong>*@
+        <strong>Attendance Details </strong>
         <span class="tools pull-right">
             <button type="button" onclick="DownloadRecord('Attendance Report');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
         </span>
     </header>
 
-    <div class="panel-body" id="divTable">
+    <div id="divTable">
         <div class="col-md-12">
             <div class="table-responsive">
                 <table class="table table-hover general-table responsive">
                     <thead>
-                        @*<tr>
-                            <th></th>
-                            <th>Name</th>
+                        <tr>
+                            <th width="6%">Name</th>
                             @{int index; int indexcounter = 1;}
                             @for (index = Model.StartDate.Day; index <= @Model.EndDate.Day; index++)
                             {
                                 <th>@index</th>
                                 indexcounter++;
-                            @for (index1 = Model.StartDate.Day; index1 <= @Model.EndDat
                             }
-                        </tr>*@
+                        </tr>
                     </thead>
                     <tbody>
-                       @* @foreach (DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance item in @Model.StudentList)
-                        {
-                            <tr>
-                                <td>@counter</td>
-                                <td style="width: 17%;">@item.StudentName</td>
-                                <td>@item.IsPresent</td>
-                            </tr>
-                            counter++;
-                        }*@
-
                         @foreach (DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance student in Model.StudentList)
                         {
-                            <tr> 
-                               <td> @student.StudentName</td>
-                               @* @{int index1; int indexcounter1 = 1;}e.Day; index1++)
-                            {
-                                <td>@student.IsPresent</td>
-                            }*@
+                            <tr>
+                                <td width="6%">@student.StudentName</td>
+                                @foreach (DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance item in student.AttendanceList)
+                                {
+                                    if (item.IsPresentAtMorning && item.IsPresentAtAfterLunch)
+                                    {
+                                    <td>P | P</td>
+                                    }
+                                    if (item.IsPresentAtMorning && !(item.IsPresentAtAfterLunch))
+                                    {
+                                    <td>P | A</td>
+                                    }
+                                    if (!(item.IsPresentAtMorning) && item.IsPresentAtAfterLunch)
+                                    {
+                                    <td>A | P</td>
+                                    }
+                                    if (!(item.IsPresentAtMorning) && !(item.IsPresentAtAfterLunch))
+                                    {
+                                    <td>A | A</td>
+                                    }
+                                }
                             </tr>
                         }
                     </tbody>
