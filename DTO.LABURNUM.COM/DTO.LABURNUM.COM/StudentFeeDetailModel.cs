@@ -80,5 +80,10 @@ namespace DTO.LABURNUM.COM
 
         public string SUN { get; set; }
         public string SUP { get; set; }
+
+        public double TotalCashPaidAmount { get; set; }
+        public double TotalChequePaidAmount { get; set; }
+        public double TotalEarning { get; set; }
+        public double TotalDiscountAmount { get; set; }
     }
 }

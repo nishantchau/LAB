@@ -13,6 +13,7 @@ namespace DTO.LABURNUM.COM
             this.ApiClientModel = new ApiClientModel();
             this.Classes = new List<ClassModel>();
             this.Sections = new List<SectionModel>();
+            this.Months = new List<MonthModel>();
         }
 
         public long AttendanceId { get; set; }
@@ -32,6 +33,8 @@ namespace DTO.LABURNUM.COM
         public string FatherName { get; set; }
         public string AdmissionNumber { get; set; }
         public string Mobile { get; set; }
+        public int MonthId { get; set; }
+        public List<DTO.LABURNUM.COM.MonthModel> Months { get; set; }
 
         public ApiClientModel ApiClientModel { get; set; }
         public List<ClassModel> Classes { get; set; }
