@@ -1,10 +1,10 @@
-﻿@model List<DTO.LABURNUM.COM.StudentFeeModel>
+﻿@model List<DTO.LABURNUM.COM.StudentFeeDetailModel>
 @{int counter = 1;}
 <div class="row">
     <div class="col-md-12">
         <!--breadcrumbs start -->
         <ul class="breadcrumb">
-            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
             <li>Reporting</li>
             <li class="active">Today Collection</li>
         </ul>
@@ -41,44 +41,60 @@ else
                         <thead>
                             <tr>
                                 <th>S.No.</th>
-                                <th>Admission Type</th>
+                                @*<th>Admission Type</th>*@
                                 <th>Class Name</th>
                                 <th>Section Name</th>
                                 <th>Student Name</th>
-                                <th>Paid Admission Fee</th>
+                                <th>Father Name</th>
+                                <th>Cash Paid Amount</th>
+                                <th>Cheque Paid Amount</th>
                                 <th>Discount Amount</th>
                                 <th>Discount Remarks</th>
                                 <th>Submission Date</th>
-                                <th>Paid Monthly Fee</th>
+                                @*<th>Paid Monthly Fee</th>*@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (DTO.LABURNUM.COM.StudentFeeModel item in @Model)
+                            @foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item in @Model)
                             {
                                 <tr>
                                     <td style="width: 1%;">@counter</td>
-                                    @if (item.AdmissionTypeId == DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION))
+                                    @* @if (item.AdmissionTypeId == DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION))
                                     {<td>New Admission</td> }
                                     else
-                                    {<td>Re-Admission</td> }
+                                    {<td>Re-Admission</td> }*@
                                     <td style="width: 20%;">@item.ClassName</td>
                                     <td style="width: 23%;">@item.SectionName</td>
                                     <td style="width: 19%;">@item.StudentName</td>
-                                    <td style="width: 19%;">@item.TotalPayableAmount</td>
+                                    <td style="width: 19%;">@item.FatherName</td>
+                                    <td style="width: 19%;">@item.CashPaidAmount</td>
+                                    <td style="width: 19%;">@item.ChequePaidAmount</td>
                                     <td style="width: 19%;">@item.DiscountAmount</td>
-                                    <td style="width: 19%;">@item.DiscountRemarks</td>
+                                    @if (item.DiscountRemarks == null || item.DiscountRemarks == "")
+                                    {
+                                        <td style="width: 19%;">-----</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="width: 19%;">@item.DiscountRemarks</td>}
                                     <td>@item.CreatedOn.ToShortDateString()</td>
-                                    <td>@item.PaidMonthlyFee</td>
+                                    @*<td>@item.</td>*@
                                 </tr>
                                     counter++;
                             }
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="5" class="text-right"><b>Total From Admission</b></td>
-                                <td><b>@Model[0].TotalEarningFromAdmission</b></td>
-                                <td colspan="3" class="text-right"><b>Total From Monthly Fee</b></td>
-                                <td><b>@Model[0].TotalEarningFromMonthlyFee</b></td>
+                                <td colspan="9" class="text-right"><b>Total Cash Received Amount</b></td>
+                                <td><b>@Model[0].TotalCashPaidAmount</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="9" class="text-right"><b>Total Cheque Received Amount</b></td>
+                                <td><b>@Model[0].TotalChequePaidAmount</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="9" class="text-right"><b>Total Discount Given</b></td>
+                                <td><b>@Model[0].TotalDiscountAmount</b></td>
                             </tr>
                             <tr>
                                 <td colspan="9" class="text-right"><b>Grand Total</b></td>

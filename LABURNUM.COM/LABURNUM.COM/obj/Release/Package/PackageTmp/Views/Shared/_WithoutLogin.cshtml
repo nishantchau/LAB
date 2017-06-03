@@ -19,6 +19,13 @@
 
     </script>*@
 
+     @*<script>
+         var hostname = window.location.hostname;
+         if (hostname.indexOf('www') == -1) {
+             window.location.assign("http://www.laburnumpublicschool.com");
+         }
+    </script>*@
+
     <!-- CSS File --->
     <link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap.css" rel="stylesheet" />
     @*<link href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/CSS/bootstrap.min.css" rel="stylesheet" />*@
