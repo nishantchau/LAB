@@ -134,5 +134,33 @@ namespace LABURNUM.COM.Controllers
                 return Json(new { code = -1, message = "success", result = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Error404.cshtml", null) });
             }
         }
+
+        public ActionResult CurriculumDetails()
+        {
+            try
+            {
+                DTO.LABURNUM.COM.CurriculumModel model = new DTO.LABURNUM.COM.CurriculumModel();
+                if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT)
+                    || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+                {
+                    model.ClassId = sessionManagement.GetClassId();
+                    model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
+                }
+                if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) && sessionManagement.GetIsClassTeacher())
+                {
+                    model.ClassId = sessionManagement.GetFacultyClassId();
+                    model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
+                }
+                List<DTO.LABURNUM.COM.CurriculumModel> dblist = new Component.Curriculum().GetCurriculumByAdvanceSearch(model);
+                return View(dblist);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

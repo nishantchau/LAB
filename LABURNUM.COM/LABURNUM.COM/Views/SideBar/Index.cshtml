@@ -132,7 +132,7 @@
         </div>
     </li>
 
-    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><span class="fa fa-dashboard"></span><span class="xn-text">Dashboard</span></a></li>
+    <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><span class="fa fa-dashboard"></span><span class="xn-text">DASHBOARD</span></a></li>
     @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
     {
         <li class="xn-openable">
@@ -419,8 +419,14 @@
 
     @if (Model.GetLoginBy() != DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
     { 
-        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Event/SeeAllEvents"><span class="fa fa-calendar"></span><span class="xn-text">List All Events</span></a></li>
-        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/ListOfAllCirculars"><span class="fa fa-book"></span><span class="xn-text">List All Circulars</span></a></li>
+        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Event/SeeAllEvents"><span class="fa fa-calendar"></span><span class="xn-text">List All EVENTS</span></a></li>
+        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Circular/ListOfAllCirculars"><span class="fa fa-book"></span><span class="xn-text">List All CIRCULARS</span></a></li>
+    }
+    @if (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT)
+        || Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT)
+        || (Model.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY) && Model.GetIsClassTeacher()))
+    {
+        <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Curriculum/CurriculumDetails"><span class="fa fa-calendar"></span><span class="xn-text">CURRICULUM</span></a></li>
     }
 
     <!-- END X-NAVIGATION -->

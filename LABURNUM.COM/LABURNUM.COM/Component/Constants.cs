@@ -43,6 +43,8 @@ namespace LABURNUM.COM.Component
             public static double ANNUALFUNCTIONFEE = Convert.ToDouble(System.Configuration.ConfigurationManager.AppSettings["ANNUALFUNCTIONFEE"]);
             public static int MAXCURRICULUMDETAILS = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["MAXCURRICULUMDETAILS"]);
             public static int MAXPHOTOINONEALBUM = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["MAXPHOTOINONEALBUM"]);
+            public static int CHEQUEDETAILDAYS = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["CHEQUEDETAILDAYS"]);
+            public static int UPCOMINGEVENTDAYS = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["UPCOMINGEVENTDAYS"]);
         }
 
         public static class Cookies

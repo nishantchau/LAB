@@ -289,8 +289,8 @@ namespace LABURNUM.COM.Controllers
                         model.TransportFee = new Component.BusRoute().GetTransportChargeByRouteId(routeId);
                     }
                     model.AnnualFunctionFeePayableMonth = Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEEPAYABLEMONTH;
-                    model.PayForTheMonth = System.DateTime.Now.Month;
-                    int currentday = System.DateTime.Now.Day;
+                    model.PayForTheMonth = new Component.Utility().GetISTDateTime().Month;
+                    int currentday = new Component.Utility().GetISTDateTime().Day;
                     model.LateFee = new Component.LateFeePaneltyMaster().GetFineAmount(currentday);
                     DTO.LABURNUM.COM.StudentFeeDetailModel model1 = new Component.StudentFeeDetails().GetPendingFee(sid, cid, sectionId, sessionManagement.GetAcademicYearTableId());
                     if (model1 != null)

@@ -110,7 +110,7 @@ namespace LABURNUM.COM.Component
         {
             try
             {
-                DTO.LABURNUM.COM.AcademicYearTableModel model = new DTO.LABURNUM.COM.AcademicYearTableModel() { Year = System.DateTime.Now.Year };
+                DTO.LABURNUM.COM.AcademicYearTableModel model = new DTO.LABURNUM.COM.AcademicYearTableModel() { Year = new Component.Utility().GetISTDateTime().Year };
                 model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
                 HttpClient client = new LABURNUM.COM.Component.Common().GetHTTPClient("application/json");
                 HttpResponseMessage response = client.PostAsJsonAsync("AcademicYear/SearchAcademicYearByYear", model).Result;

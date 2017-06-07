@@ -186,6 +186,7 @@
     <Compile Include="Component\Crypto.cs" />
     <Compile Include="Component\Curriculum.cs" />
     <Compile Include="Component\CurriculumDetail.cs" />
+    <Compile Include="Component\DashBoard.cs" />
     <Compile Include="Component\Event.cs" />
     <Compile Include="Component\EventType.cs" />
     <Compile Include="Component\Faculty.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Component\StudentFeeDetails.cs" />
     <Compile Include="Component\Subject.cs" />
     <Compile Include="Component\UserTypes.cs" />
+    <Compile Include="Component\Utility.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AddClassController.cs" />
     <Compile Include="Controllers\AddStudentController.cs" />
@@ -589,6 +591,7 @@
     <Content Include="Views\ListAllCirculars\Index.cshtml" />
     <Content Include="Views\Prospectus\Index.cshtml" />
     <Content Include="Views\Attendance\SubmitAfterLuchAttendanceIndex.cshtml" />
+    <Content Include="Views\Curriculum\CurriculumDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

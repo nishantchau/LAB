@@ -50,7 +50,7 @@ namespace LABURNUM.COM.Controllers
                 foreach (DTO.LABURNUM.COM.CommonAttendanceModel item in dbList)
                 {
                     item.FacultyId = sessionManagement.GetFacultyId();
-                    item.MorningAttendanceDate = System.DateTime.Now;
+                    item.MorningAttendanceDate = new Component.Utility().GetISTDateTime();
                     item.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
                 }
                 HttpClient client = new LABURNUM.COM.Component.Common().GetHTTPClient("application/json");
@@ -72,7 +72,7 @@ namespace LABURNUM.COM.Controllers
         {
             DTO.LABURNUM.COM.CommonAttendanceModel model = new DTO.LABURNUM.COM.CommonAttendanceModel();
             model.Months = new Component.Month().GetActiveMonths();
-            model.MonthId = System.DateTime.Now.Month;
+            model.MonthId = new Component.Utility().GetISTDateTime().Month;
             return View(model);
         }
 

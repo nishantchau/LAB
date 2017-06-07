@@ -37,7 +37,7 @@ namespace LABURNUM.COM.Component
         {
             HttpCookie myCookie = new HttpCookie(this.CookieName);
             myCookie.Values["LoginActivityId"] = this.CookieValue;
-            myCookie.Expires = System.DateTime.Now.AddDays(this.ExpiringInDays);
+            myCookie.Expires = new Component.Utility().GetISTDateTime().AddDays(this.ExpiringInDays);
             HttpContext.Current.Response.Cookies.Add(myCookie);
         }
 

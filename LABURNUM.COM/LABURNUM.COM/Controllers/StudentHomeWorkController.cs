@@ -16,7 +16,7 @@ namespace LABURNUM.COM.Controllers
             DTO.LABURNUM.COM.HomeWorkModel model = new DTO.LABURNUM.COM.HomeWorkModel();
             model.ClassId = sessionManagement.GetClassId();
             model.SectionId = sessionManagement.GetSectionId();
-            model.StartDate = System.DateTime.Now;
+            model.StartDate = new Component.Utility().GetISTDateTime();
             List<DTO.LABURNUM.COM.HomeWorkModel> dbHomeWorks = new Component.HomeWork().GetHomeWorkByAdvanceSearch(model);
             return View(dbHomeWorks);
         }

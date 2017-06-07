@@ -33,7 +33,7 @@ namespace LABURNUM.COM.Controllers
             {
                 try
                 {
-                    DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel() { StartDate = System.DateTime.Now };
+                    DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel() { StartDate = new Component.Utility().GetISTDateTime() };
                     //List<DTO.LABURNUM.COM.StudentFeeModel> dbStudentFees = new Component.StudentFee().GetStudentFeeByAdvanceSearch(model);
                     List<DTO.LABURNUM.COM.StudentFeeDetailModel> dbStudentFees = new Component.StudentFeeDetails().GetStudentFeeDetailByAdvanceSearch(model);
                     double x = 0, y = 0, d = 0;
