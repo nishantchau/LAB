@@ -25,6 +25,7 @@ namespace DTO.LABURNUM.COM
         public System.DateTime? LunchAttendanceDate { get; set; }
         public bool IsPresentInMorning { get; set; }
         public bool IsPresentAfterLuch { get; set; }
+        
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

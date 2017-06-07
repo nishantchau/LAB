@@ -75,6 +75,9 @@
     <Compile Include="CurriculumDetailModel.cs" />
     <Compile Include="CurriculumModel.cs" />
     <Compile Include="DashBoardModel.cs" />
+    <Compile Include="DashBoard\AccountDashBoardModel.cs" />
+    <Compile Include="DashBoard\AdminDashBoardModel.cs" />
+    <Compile Include="DashBoard\StudentDashBoardModel.cs" />
     <Compile Include="EventModel.cs" />
     <Compile Include="EventTypeModel.cs" />
     <Compile Include="FacultyModel.cs" />
@@ -100,6 +103,7 @@
     <Compile Include="UserTypeModel.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
