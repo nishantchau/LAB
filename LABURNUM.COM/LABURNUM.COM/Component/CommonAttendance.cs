@@ -52,17 +52,19 @@ namespace LABURNUM.COM.Component
         public bool IsAttendanceSubmittedForToday(DTO.LABURNUM.COM.CommonAttendanceModel model)
         {
             model.StartDate = new Component.Utility().GetISTDateTime();
-            List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = GetAttendanceByAdvanceSearch(model);
-            if (dbList.Count == 0) { return false; }
-            else { return true; }
+            DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel dbList = GetAttendanceReport(model);
+            return dbList.IsAttendanceSubmittedForTodayMoring;
+            //if (dbList.Count == 0) { return false; }
+            //else { return true; }
         }
 
         public bool IsAttendanceSubmittedAfterLunchForToday(DTO.LABURNUM.COM.CommonAttendanceModel model)
         {
             model.StartDate = new Component.Utility().GetISTDateTime();
-            List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = GetAttendanceByAdvanceSearch(model).Where(x=>x.LunchAttendanceDate.GetValueOrDefault().Year!=0001).ToList();
-            if (dbList.Count == 0) { return false; }
-            else { return true; }
+            DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel dbList = GetAttendanceReport(model);
+            return dbList.IsAttendanceSubmittedForTodayLunch;
+            //if (dbList.Count == 0) { return false; }
+            //else { return true; }
         }
 
         public DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel GetAttendanceReport(DTO.LABURNUM.COM.CommonAttendanceModel model)

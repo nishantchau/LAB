@@ -37,7 +37,7 @@ namespace LABURNUM.COM.Controllers
              };
             if (new Component.CommonAttendance().IsAttendanceSubmittedForToday(model))
             {
-                List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(model);
+                DTO.LABURNUM.COM.AttendanceReporting.AttendanceReportResponseModel dblist = new Component.CommonAttendance().GetAttendanceReport(model);
                 return View(dblist);
             }
             else { return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Attendance/SubmitAttendanceIndex"); }
@@ -114,13 +114,11 @@ namespace LABURNUM.COM.Controllers
                 ClassId = sessionManagement.GetFacultyClassId(),
                 SectionId = sessionManagement.GetFacultySectionId(),
             };
-
-            List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(model);
-
-            if (dbList.Where(x => x.LunchAttendanceDate.GetValueOrDefault().Year != 0001).ToList().Count > 1)
+            if (new Component.CommonAttendance().IsAttendanceSubmittedAfterLunchForToday(model))
             { return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Attendance/IsAttendanceSubmitted"); }
             else
             {
+                List<DTO.LABURNUM.COM.CommonAttendanceModel> dbList = new Component.CommonAttendance().GetAttendanceByAdvanceSearch(model);
                 //List<DTO.LABURNUM.COM.CommonAttendanceModel> dblist = new Component.CommonAttendance().GetStudentListForAttendance(model);
                 return View(dbList);
             }

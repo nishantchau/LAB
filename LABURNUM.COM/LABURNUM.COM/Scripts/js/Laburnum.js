@@ -1942,22 +1942,20 @@ function OnPayMonthlyFeeIndexReady() {
 function CalculatePayableAmount() {
     try {
         var tf;
-        // var tfj = parseFloat(GetHtml("hdnTotalFees1"));
-        var da = parseFloat(GetValueOrZero("txtDiscountAmount"));
-        var cpa = parseFloat(GetValueOrZero("txtCashPaidAmount"));
-        var chpa = parseFloat(GetValueOrZero("txtChequePaidAmount"));
-        if (da > tf || cpa > tf || chpa > tf || (cpa + chpa) > tf) {
-            MyAlert("Discount Amount Can't Be Greater Than Total Amount.");
-            return false;
-        }
-
         var sm = GetValue("ddlMonth");
         if (sm == 6) { tf = parseFloat(GetHtml("hdnTotalFees1")); }
         else
         {
             tf = parseFloat(GetHtml("hdnTotalFees"));
         }
-
+        // var tfj = parseFloat(GetHtml("hdnTotalFees1"));
+        var da = parseFloat(GetValueOrZero("txtDiscountAmount"));
+        var cpa = parseFloat(GetValueOrZero("txtCashPaidAmount"));
+        var chpa = parseFloat(GetValueOrZero("txtChequePaidAmount"));
+        if (da > tf || cpa > tf || chpa > tf || (cpa + chpa) > tf) {
+            MyAlert("Discount Amount Can't Be Greater Than Total Payable Amount.");
+            return false;
+        }
         if (da > 0) {
             $("#txtTotalPayableAmount").val(tf - da);
         }
