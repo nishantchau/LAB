@@ -153,7 +153,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
-                                @Html.TextBoxFor(x => x.DiscountAmount, new { @id = "txtDiscountAmount", @autocomplete = "Off", @class = "ToReset", onkeypress = "return isNumber(event)", onkeyup = "CalculatePayableAmount();CalculateBalanceAmount();", @maxlength = "12" })
+                                @Html.TextBoxFor(x => x.DiscountAmount, new { @id = "txtDiscountAmount", @autocomplete = "Off", @class = "ToReset", onkeypress = "return isNumber(event)", onkeyup = "CalculatePayableAmount();CalculateBalanceAmount();", @maxlength = "5" })
                             </div>
                         </div>
                     </div>

@@ -173,7 +173,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <div class="display_none" id="hdnTotalFees">@(Model.AdmissionFee + Model.AnnualCharges + Model.DevelopementFee + Model.SportsFee + Model.SecurityFee + Model.ExamFee + Model.AnnualFunctionFee)</div>
-                                @Html.TextBoxFor(x => x.DiscountAmount, new { @id = "txtDiscountAmount", @autocomplete = "Off", @class = "ToReset", onkeypress = "return isNumber(event)", onkeyup = "CalculatePayableAmount()", @maxlength = "4" })
+                                @Html.TextBoxFor(x => x.DiscountAmount, new { @id = "txtDiscountAmount", @autocomplete = "Off", @class = "ToReset", onkeypress = "return isNumber(event)", onkeyup = "CalculatePayableAmount()", @maxlength = "5" })
                             </div>
                         </div>
                     </div>
