@@ -23,7 +23,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 BusStartFrom = model.BusStartFrom,
                 BusEndAt = model.BusEndAt,
                 TranportCharges=model.TranportCharges,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.BusRoutes.Add(apibusRoute);
@@ -55,7 +55,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbRoutes[0].BusEndAt = model.BusEndAt;
             dbRoutes[0].BusRouteNumber = model.BusRouteNumber;
             dbRoutes[0].TranportCharges = model.TranportCharges;
-            dbRoutes[0].LastUpdate = System.DateTime.Now;
+            dbRoutes[0].LastUpdate = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -67,7 +67,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbRoutes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbRoutes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbRoutes[0].IsActive = model.IsActive;
-            dbRoutes[0].LastUpdate = System.DateTime.Now;
+            dbRoutes[0].LastUpdate = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

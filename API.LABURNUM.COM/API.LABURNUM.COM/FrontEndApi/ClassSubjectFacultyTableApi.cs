@@ -23,7 +23,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 SubjectId = model.SubjectId,
                 FacultyId = model.FacultyId,
                 SectionId = model.SectionId,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.ClassSubjectFacultyTables.Add(apiClassSubjectFacultyTable);
@@ -56,7 +56,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbRoutes[0].SubjectId = model.SubjectId;
             dbRoutes[0].FacultyId = model.FacultyId;
             dbRoutes[0].SectionId = model.SectionId;
-            dbRoutes[0].LastUpdated = System.DateTime.Now;
+            dbRoutes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -68,7 +68,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbRoutes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbRoutes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbRoutes[0].IsActive = model.IsActive;
-            dbRoutes[0].LastUpdated = System.DateTime.Now;
+            dbRoutes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

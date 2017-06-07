@@ -61,7 +61,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 ParentUserName = model.ParentUserName,
                 ParentPassword = model.ParentPassword,
                 //ParentPassword = GetEncryptedPassword(model.ParentPassword),
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.Students.Add(apiStudent);
@@ -118,7 +118,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             //dbStudents[0].StudentPassword = GetEncryptedPassword(model.StudentPassword);
             //dbStudents[0].ParentUserName = model.ParentUserName;
             //dbStudents[0].ParentPassword = GetEncryptedPassword(model.ParentPassword);
-            dbStudents[0].LastUpdated = System.DateTime.Now;
+            dbStudents[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
 
             return dbStudents[0];
@@ -132,7 +132,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbStudents.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbStudents.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbStudents[0].IsActive = model.IsActive;
-            dbStudents[0].LastUpdated = System.DateTime.Now;
+            dbStudents[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -251,7 +251,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbStudents.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             //dbStudents[0].StudentPassword = GetEncryptedPassword(model.StudentPassword);
             dbStudents[0].StudentPassword = model.NewPassword;
-            dbStudents[0].LastUpdated = System.DateTime.Now;
+            dbStudents[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -263,7 +263,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbStudents.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbStudents.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbStudents[0].ParentPassword = model.NewPassword;
-            dbStudents[0].LastUpdated = System.DateTime.Now;
+            dbStudents[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
     }

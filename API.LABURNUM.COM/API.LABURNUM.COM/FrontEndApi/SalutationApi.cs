@@ -20,7 +20,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             API.LABURNUM.COM.Salutation apiSalutation = new Salutation()
             {
                 Name = model.Name,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.Salutations.Add(apiSalutation);
@@ -47,7 +47,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbSalutations.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbSalutations.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbSalutations[0].Name = model.Name;
-            dbSalutations[0].LastUpdated = System.DateTime.Now;
+            dbSalutations[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -59,7 +59,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbSalutations.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbSalutations.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbSalutations[0].IsActive = model.IsActive;
-            dbSalutations[0].LastUpdated = System.DateTime.Now;
+            dbSalutations[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

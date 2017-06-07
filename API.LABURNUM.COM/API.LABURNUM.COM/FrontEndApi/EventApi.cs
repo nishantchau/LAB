@@ -24,7 +24,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 EventTypeId = model.EventTypeId,
                 Classes = model.Classes,
                 AcademicYearId=model.AcademicYearId,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.Events.Add(apievent);
@@ -56,7 +56,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbEventTypes[0].Classes = model.Classes;
             dbEventTypes[0].EventTypeId = model.EventTypeId;
             dbEventTypes[0].EventDate = model.EventDate;
-            dbEventTypes[0].LastUpdated = System.DateTime.Now;
+            dbEventTypes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -68,7 +68,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbEventTypes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbEventTypes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbEventTypes[0].IsActive = model.IsActive;
-            dbEventTypes[0].LastUpdated = System.DateTime.Now;
+            dbEventTypes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

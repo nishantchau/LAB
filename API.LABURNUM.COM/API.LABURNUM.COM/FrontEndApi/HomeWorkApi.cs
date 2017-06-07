@@ -25,7 +25,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 SubjectId = model.SubjectId,
                 Attachment = model.Attachment,
                 HomeWorkText = model.HomeWorkText,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.HomeWork.Add(apiHomeWork);
@@ -56,7 +56,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbHomeWorkes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbHomeWorkes[0].HomeWorkText = model.HomeWorkText;
             //dbHomeWorkes[0].Attachment = model.Attachment;
-            dbHomeWorkes[0].LastUpdated = System.DateTime.Now;
+            dbHomeWorkes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -68,7 +68,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbHomeWorkes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbHomeWorkes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbHomeWorkes[0].IsActive = model.IsActive;
-            dbHomeWorkes[0].LastUpdated = System.DateTime.Now;
+            dbHomeWorkes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

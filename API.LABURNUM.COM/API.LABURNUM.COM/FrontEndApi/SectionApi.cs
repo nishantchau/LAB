@@ -21,7 +21,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 ClassId = model.ClassId,
                 SectionName = model.SectionName,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.Sections.Add(apiSection);
@@ -49,7 +49,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbSections.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbSections[0].ClassId = model.ClassId;
             dbSections[0].SectionName = model.SectionName;
-            dbSections[0].LastUpdated = System.DateTime.Now;
+            dbSections[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -61,7 +61,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbSections.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbSections.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbSections[0].IsActive = model.IsActive;
-            dbSections[0].LastUpdated = System.DateTime.Now;
+            dbSections[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

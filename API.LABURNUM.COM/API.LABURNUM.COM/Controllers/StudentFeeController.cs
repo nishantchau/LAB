@@ -25,7 +25,7 @@ namespace API.LABURNUM.COM.Controllers
                     StudentId = model.StudentId,
                     ClassId = model.ClassId,
                     SectionId = model.SectionId,
-                    PayForTheMonth = System.DateTime.Now.Month,
+                    PayForTheMonth = new Component.Utility().GetISTDateTime().Month,
                     CashPaidAmount = model.CashPaidAmount,
                     ChequePaidAmount = model.ChequePaidAmount,
                     BankId = model.BankId,

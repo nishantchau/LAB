@@ -20,7 +20,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             API.LABURNUM.COM.AdmissionType admissionType = new AdmissionType()
             {
                 Name = model.Name,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.AdmissionTypes.Add(admissionType);
@@ -47,7 +47,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbAdmissionTypes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAdmissionTypes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAdmissionTypes[0].Name = model.Name;
-            dbAdmissionTypes[0].LastUpdated = System.DateTime.Now;
+            dbAdmissionTypes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -59,7 +59,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbAdmissionTypes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAdmissionTypes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAdmissionTypes[0].IsActive = model.IsActive;
-            dbAdmissionTypes[0].LastUpdated = System.DateTime.Now;
+            dbAdmissionTypes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

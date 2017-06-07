@@ -28,7 +28,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 SecurityFee = model.SecurityFee,
                 MonthlyFee = model.MonthlyFee,
                 SportsFee = model.SportsFee,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.Fees.Add(apifee);
@@ -63,7 +63,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbFees[0].SportsFee = model.SportsFee;
             dbFees[0].SecurityFee = model.SecurityFee;
             dbFees[0].MonthlyFee = model.MonthlyFee;
-            dbFees[0].LastUpdated = System.DateTime.Now;
+            dbFees[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -75,7 +75,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbFees.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbFees.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbFees[0].IsActive = model.IsActive;
-            dbFees[0].LastUpdated = System.DateTime.Now;
+            dbFees[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

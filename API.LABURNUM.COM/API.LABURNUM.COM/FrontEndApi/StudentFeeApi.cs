@@ -34,7 +34,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 DiscountAmount = model.DiscountAmount,
                 DiscountRemarks = model.DiscountRemarks,
                 CollectedById = model.CollectedById,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 AcademicYearId = model.AcademicYearId,
                 IsActive = true,
             };
@@ -76,7 +76,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbStudentFees[0].DiscountAmount = model.DiscountAmount;
             dbStudentFees[0].DiscountRemarks = model.DiscountRemarks;
             dbStudentFees[0].CollectedById = model.CollectedById;
-            dbStudentFees[0].LastUpdated = System.DateTime.Now;
+            dbStudentFees[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -88,7 +88,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbStudentFees.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbStudentFees.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbStudentFees[0].IsActive = model.IsActive;
-            dbStudentFees[0].LastUpdated = System.DateTime.Now;
+            dbStudentFees[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -150,7 +150,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 LateFee = model.LateFee,
                 PendingFee = model.PendingFee,
                 IsActive = true,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
             };
             dbstudentFeeDetails.Add(apiSFD);
 

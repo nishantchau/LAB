@@ -25,7 +25,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 UserId = model.UserId,
                 UserTypeId = model.UserTypeId,
                 LastUpdated = model.LastUpdated,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.CircularNotificationTrackers.Add(apiCircularNotificationTracker);
@@ -56,7 +56,7 @@ namespace API.LABURNUM.COM.FrontEndApi
 
             dbRoutes[0].CircularId = model.CircularId;
             dbRoutes[0].ReadOn = model.ReadOn;
-            dbRoutes[0].LastUpdated = System.DateTime.Now;
+            dbRoutes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -68,7 +68,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbRoutes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbRoutes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbRoutes[0].IsActive = model.IsActive;
-            dbRoutes[0].LastUpdated = System.DateTime.Now;
+            dbRoutes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

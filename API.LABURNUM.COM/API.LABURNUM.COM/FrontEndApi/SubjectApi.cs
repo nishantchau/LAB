@@ -20,7 +20,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             API.LABURNUM.COM.Subject apiSubject = new Subject()
             {
                 SubjectName = model.SubjectName,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.Subjects.Add(apiSubject);
@@ -47,7 +47,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbSubjectes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbSubjectes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbSubjectes[0].SubjectName = model.SubjectName;
-            dbSubjectes[0].LastUpdated = System.DateTime.Now;
+            dbSubjectes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -59,7 +59,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbSubjectes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbSubjectes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbSubjectes[0].IsActive = model.IsActive;
-            dbSubjectes[0].LastUpdated = System.DateTime.Now;
+            dbSubjectes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

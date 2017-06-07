@@ -21,7 +21,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 EventTypeId = model.EventTypeId,
                 Text = model.Text,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.EventTypes.Add(apiEventType);
@@ -48,7 +48,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbEventTypeTypes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbEventTypeTypes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbEventTypeTypes[0].Text = model.Text;
-            dbEventTypeTypes[0].LastUpdated = System.DateTime.Now;
+            dbEventTypeTypes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -60,7 +60,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbEventTypeTypes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbEventTypeTypes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbEventTypeTypes[0].IsActive = model.IsActive;
-            dbEventTypeTypes[0].LastUpdated = System.DateTime.Now;
+            dbEventTypeTypes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

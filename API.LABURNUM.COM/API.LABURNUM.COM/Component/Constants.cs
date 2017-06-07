@@ -74,5 +74,7 @@ namespace API.LABURNUM.COM.Component
             public static string APIUSERNAME = System.Configuration.ConfigurationManager.AppSettings["APIUSERNAME"];
             public static string APIPASSWORD = System.Configuration.ConfigurationManager.AppSettings["APIPASSWORD"];
         }
+
+        
     }
 }

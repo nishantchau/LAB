@@ -21,7 +21,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 DaysAfter = model.DaysAfter,
                 Fine = model.Fine,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.LateFeePaneltyMasters.Add(apiLateFeePaneltyMaster);
@@ -49,7 +49,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbLateFeePaneltyMasteres.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbLateFeePaneltyMasteres[0].DaysAfter = model.DaysAfter;
             dbLateFeePaneltyMasteres[0].Fine = model.Fine;
-            dbLateFeePaneltyMasteres[0].LastUpdated = System.DateTime.Now;
+            dbLateFeePaneltyMasteres[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -61,7 +61,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbLateFeePaneltyMasteres.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbLateFeePaneltyMasteres.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbLateFeePaneltyMasteres[0].IsActive = model.IsActive;
-            dbLateFeePaneltyMasteres[0].LastUpdated = System.DateTime.Now;
+            dbLateFeePaneltyMasteres[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

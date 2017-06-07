@@ -298,6 +298,7 @@
     <Compile Include="Controllers\ContactFormController.cs" />
     <Compile Include="Controllers\CurriculumController.cs" />
     <Compile Include="Controllers\CurriculumDetailController.cs" />
+    <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EventTypeController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />

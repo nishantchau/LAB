@@ -70,7 +70,7 @@ namespace API.LABURNUM.COM.Controllers
                     }
 
                     sessionmodel.LoginBy = model.LoginBy;
-                    API.LABURNUM.COM.AcademicYearTable acy = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(System.DateTime.Now.Year);
+                    API.LABURNUM.COM.AcademicYearTable acy = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(new Component.Utility().GetISTDateTime().Year);
                     sessionmodel.AcademicYear = acy.AcademicYear;
                     sessionmodel.AcademicYearId = acy.AcademicYearTableId;
                     sessionmodel.LastLoginAt = new FrontEndApi.LoginActivityApi().GetLastLogin(sessionmodel.LoginByUserId, sessionmodel.LoginBy);
@@ -498,7 +498,16 @@ namespace API.LABURNUM.COM.Controllers
             {
                 return GetApiResponseModel("Successfully Performed.", true, new CircularHelper(new FrontEndApi.CircularApi().GetActiveCirculars()).Map());
             }
-           else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
+        }
+
+        public dynamic SearchAttendanceReport(DTO.LABURNUM.COM.CommonAttendanceModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                return GetApiResponseModel("Successfully Performed.", true, new API.LABURNUM.COM.Controllers.CommonAttendanceController().SearchAttendanceReport(model));
+            }
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
         }
     }
 }

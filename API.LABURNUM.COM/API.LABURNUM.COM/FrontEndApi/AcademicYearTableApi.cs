@@ -22,7 +22,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 AcademicYear = model.AcademicYear,
                 StartYear = model.StartYear,
                 EndYear = model.EndYear,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.AcademicYearTables.Add(AcademicYearType);
@@ -52,7 +52,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbAcademicYearTypes[0].StartYear = model.StartYear;
             dbAcademicYearTypes[0].EndYear = model.EndYear;
             dbAcademicYearTypes[0].AcademicYear = model.AcademicYear;
-            dbAcademicYearTypes[0].LastUpdated = System.DateTime.Now;
+            dbAcademicYearTypes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -64,7 +64,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbAcademicYearTypes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAcademicYearTypes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAcademicYearTypes[0].IsActive = model.IsActive;
-            dbAcademicYearTypes[0].LastUpdated = System.DateTime.Now;
+            dbAcademicYearTypes[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

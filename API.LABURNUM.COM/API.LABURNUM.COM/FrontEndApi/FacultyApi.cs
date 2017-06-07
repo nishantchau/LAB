@@ -42,7 +42,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 UserTypeId = model.UserTypeId,
                 IsSubjectTeacher = model.IsSubjectTeacher,
                 SubjectId = model.SubjectId,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true,
                 Photo = model.Photo,
                 Email = model.Email,
@@ -89,7 +89,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbFacutlies[0].Photo = model.Photo;
             dbFacutlies[0].Email = model.Email;
             dbFacutlies[0].ContactNumber = model.ContactNumber;
-            dbFacutlies[0].LastUpdated = System.DateTime.Now;
+            dbFacutlies[0].LastUpdated = new Component.Utility().GetISTDateTime();
 
             this._laburnum.SaveChanges();
         }
@@ -102,7 +102,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbFacutlies.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbFacutlies.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbFacutlies[0].IsActive = model.IsActive;
-            dbFacutlies[0].LastUpdated = System.DateTime.Now;
+            dbFacutlies[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -163,6 +163,38 @@ namespace API.LABURNUM.COM.FrontEndApi
                 }
             }
 
+            //Seach By ClassId.
+            if (iQuery != null)
+            {
+                if (model.ClassId > 0)
+                {
+                    iQuery = iQuery.Where(x => x.ClassId == model.ClassId && x.IsActive == true);
+                }
+            }
+            else
+            {
+                if (model.ClassId > 0)
+                {
+                    iQuery = this._laburnum.Faculties.Where(x => x.ClassId == model.ClassId && x.IsActive == true);
+                }
+            }
+
+            //Seach By SectionId.
+            if (iQuery != null)
+            {
+                if (model.SectionId > 0)
+                {
+                    iQuery = iQuery.Where(x => x.SectionId == model.SectionId && x.IsActive == true);
+                }
+            }
+            else
+            {
+                if (model.SubjectId > 0)
+                {
+                    iQuery = this._laburnum.Faculties.Where(x => x.SectionId == model.SectionId && x.IsActive == true);
+                }
+            }
+
             List<API.LABURNUM.COM.Faculty> dbFaculties = iQuery.ToList();
             return dbFaculties;
         }
@@ -195,7 +227,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbFacutlies.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbFacutlies.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbFacutlies[0].Password = model.NewPassword;
-            dbFacutlies[0].LastUpdated = System.DateTime.Now;
+            dbFacutlies[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
     }

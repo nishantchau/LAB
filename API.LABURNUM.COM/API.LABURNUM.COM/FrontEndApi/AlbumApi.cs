@@ -23,7 +23,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 AddedById = model.AddedById,
                 AlbumCoverImage = model.AlbumCoverImage,
                 AlbumDetails = GetApiAlbumDetails(model.AlbumDetails),
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.Albums.Add(apiAlbum);
@@ -38,7 +38,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 if (item.Attachment != null)
                 {
-                    apiAlbumDetails.Add(new AlbumDetail() { Attachment = item.Attachment, IsActive = true, CreatedOn = System.DateTime.Now });
+                    apiAlbumDetails.Add(new AlbumDetail() { Attachment = item.Attachment, IsActive = true, CreatedOn = new Component.Utility().GetISTDateTime() });
                 }
             }
             return apiAlbumDetails;
@@ -65,7 +65,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbAlbums[0].AlbumCoverImage = model.AlbumCoverImage;
             dbAlbums[0].AlbumName = model.AlbumName;
             dbAlbums[0].UpdatedById = model.UpdatedById;
-            dbAlbums[0].LastUpdated = System.DateTime.Now;
+            dbAlbums[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
             UpdateAlbumDetails(model.AlbumId, model.AlbumDetails);
         }
@@ -101,7 +101,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbAlbums.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAlbums.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAlbums[0].IsActive = model.IsActive;
-            dbAlbums[0].LastUpdated = System.DateTime.Now;
+            dbAlbums[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

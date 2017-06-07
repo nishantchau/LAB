@@ -21,7 +21,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 Attachment = model.Attachment,
                 AlbumId = model.AlbumId,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.AlbumDetails.Add(apiAlbumDetail);
@@ -47,7 +47,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbAlbumDetails.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAlbumDetails.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAlbumDetails[0].Attachment = model.Attachment;
-            dbAlbumDetails[0].LastUpdated = System.DateTime.Now;
+            dbAlbumDetails[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -58,7 +58,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbAlbumDetails.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAlbumDetails.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAlbumDetails[0].IsActive = model.IsActive;
-            dbAlbumDetails[0].LastUpdated = System.DateTime.Now;
+            dbAlbumDetails[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

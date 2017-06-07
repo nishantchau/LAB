@@ -24,7 +24,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 ClassId = model.ClassId,
                 AddedById = model.AddedById,
                 CurriculumDetails = GetCurriculumDetailApi(model.CurriculumDetails),
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.Curricula.Add(curriculum);
@@ -46,7 +46,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                         Syllabus = item.Syllabus,
                         Activity = item.Activity,
                         IsActive = true,
-                        CreatedOn = System.DateTime.Now,
+                        CreatedOn = new Component.Utility().GetISTDateTime(),
                     });
                 }
             }
@@ -76,7 +76,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbCurriculums[0].MonthId = model.MonthId;
             dbCurriculums[0].AcademicYearId = model.AcademicYearId;
             dbCurriculums[0].UpdatedById = model.UpdatedById;
-            dbCurriculums[0].LastUpdated = System.DateTime.Now;
+            dbCurriculums[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
             UpdateCurriculumDetails(model.CurriculumId, model.CurriculumDetails);
         }
@@ -114,7 +114,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbCurriculums.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbCurriculums[0].IsActive = model.IsActive;
             dbCurriculums[0].UpdatedById = model.UpdatedById;
-            dbCurriculums[0].LastUpdated = System.DateTime.Now;
+            dbCurriculums[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

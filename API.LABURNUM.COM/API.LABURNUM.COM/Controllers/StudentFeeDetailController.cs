@@ -69,7 +69,7 @@ namespace API.LABURNUM.COM.Controllers
             model = SearchMonthlyFeeReceiptData(model);
             DTO.LABURNUM.COM.StudentModel studentmodel = new StudentHelper(new FrontEndApi.StudentApi().GetStudentByStudentId(model.StudentId)).MapSingle();
             string from = Component.Constants.MAIL.MAILSENTFROM;
-            string subject = "Thank you For Paying Fee For the Month Of " + model.MonthName + "-" + System.DateTime.Now.Year + " At Laburnum Public School.";
+            string subject = "Thank you For Paying Fee For the Month Of " + model.MonthName + "-" + new Component.Utility().GetISTDateTime().Year + " At Laburnum Public School.";
             string body = new API.LABURNUM.COM.Component.HtmlHelper().RenderViewToString("User", "~/Views/Partial/ThankYouMailOnPaymentOfMonthlyFee.cshtml", model);
             if (new Component.Mailer().MailSend(studentmodel.EmailId, "", body, from, subject))
             {

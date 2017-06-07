@@ -26,7 +26,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 MorningAttendanceDate = model.MorningAttendanceDate,
                 IsPresentAfterLuch = model.IsPresentAfterLuch,
                 IsPresentInMorning = model.IsPresentInMorning,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true,
                 FacultyId=model.FacultyId,
             };
@@ -54,8 +54,8 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbAttendanceClassPreNursery.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAttendanceClassPreNursery.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAttendanceClassPreNursery[0].IsPresentAfterLuch = model.IsPresentAfterLuch;
-            dbAttendanceClassPreNursery[0].LunchAttendanceDate = System.DateTime.Now;
-            dbAttendanceClassPreNursery[0].LastUpdated = System.DateTime.Now;
+            dbAttendanceClassPreNursery[0].LunchAttendanceDate = new Component.Utility().GetISTDateTime();
+            dbAttendanceClassPreNursery[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -67,7 +67,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbAttendanceClassPreNursery.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAttendanceClassPreNursery.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAttendanceClassPreNursery[0].IsActive = model.IsActive;
-            dbAttendanceClassPreNursery[0].LastUpdated = System.DateTime.Now;
+            dbAttendanceClassPreNursery[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

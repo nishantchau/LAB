@@ -20,7 +20,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             API.LABURNUM.COM.Class apiclass = new Class()
             {
                 ClassName = model.ClassName,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.Classes.Add(apiclass);
@@ -47,7 +47,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbClasses.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbClasses.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbClasses[0].ClassName = model.ClassName;
-            dbClasses[0].LastUpdated = System.DateTime.Now;
+            dbClasses[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -59,7 +59,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbClasses.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbClasses.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbClasses[0].IsActive = model.IsActive;
-            dbClasses[0].LastUpdated = System.DateTime.Now;
+            dbClasses[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

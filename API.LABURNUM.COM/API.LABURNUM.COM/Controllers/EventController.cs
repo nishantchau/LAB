@@ -14,7 +14,7 @@ namespace API.LABURNUM.COM.Controllers
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                model.AcademicYearId = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(System.DateTime.Now.Year).AcademicYearTableId;
+                model.AcademicYearId = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(new Component.Utility().GetISTDateTime().Year).AcademicYearTableId;
                 return new FrontEndApi.EventApi().Add(model);
             }
             else
@@ -79,7 +79,7 @@ namespace API.LABURNUM.COM.Controllers
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                model.AcademicYearId = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(System.DateTime.Now.Year).AcademicYearTableId;
+                model.AcademicYearId = new FrontEndApi.AcademicYearTableApi().GetAcademicYearByYear(new Component.Utility().GetISTDateTime().Year).AcademicYearTableId;
                 return new EventHelper(new FrontEndApi.EventApi().GetEventByAdvanceSearch(model)).Map();
             }
             else { return null; }

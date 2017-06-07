@@ -21,9 +21,9 @@ namespace API.LABURNUM.COM.FrontEndApi
             {
                 StudentId = model.StudentId,
                 UserTypeId = model.UserTypeId,
-                LoginAt = System.DateTime.Now,
+                LoginAt = new Component.Utility().GetISTDateTime(),
                 ClientId = model.ClientId,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.LoginActivities.Add(apiLoginActivity);
@@ -50,8 +50,8 @@ namespace API.LABURNUM.COM.FrontEndApi
             List<API.LABURNUM.COM.LoginActivity> dbLoginActivities = iQuery.ToList();
             if (dbLoginActivities.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbLoginActivities.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
-            dbLoginActivities[0].LogoutAt = System.DateTime.Now;
-            dbLoginActivities[0].LastUpdated = System.DateTime.Now;
+            dbLoginActivities[0].LogoutAt = new Component.Utility().GetISTDateTime();
+            dbLoginActivities[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 

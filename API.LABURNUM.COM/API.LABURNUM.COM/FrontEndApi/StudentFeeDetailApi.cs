@@ -41,7 +41,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 PayForTheMonth = model.PayForTheMonth,
                 CollectedById = model.CollectedById,
                 AcademicYearId = model.AcademicYearId,
-                CreatedOn = System.DateTime.Now,
+                CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
             this._laburnum.StudentFeeDetails.Add(apiStudentFeeDetail);
@@ -85,7 +85,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbStudentFeeDetails[0].DiscountAmount = model.DiscountAmount;
             dbStudentFeeDetails[0].DiscountRemarks = model.DiscountRemarks;
             dbStudentFeeDetails[0].CollectedById = model.CollectedById;
-            dbStudentFeeDetails[0].LastUpdated = System.DateTime.Now;
+            dbStudentFeeDetails[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -97,7 +97,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbStudentFeeDetails.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbStudentFeeDetails.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbStudentFeeDetails[0].IsActive = model.IsActive;
-            dbStudentFeeDetails[0].LastUpdated = System.DateTime.Now;
+            dbStudentFeeDetails[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
 
@@ -219,7 +219,7 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbStudentFeeDetails.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbStudentFeeDetails[0].ChequeStatus = chequeStatus;
             dbStudentFeeDetails[0].ChequeBounceRemarks = bounceRemarks;
-            dbStudentFeeDetails[0].LastUpdated = System.DateTime.Now;
+            dbStudentFeeDetails[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
             return dbStudentFeeDetails[0];
         }

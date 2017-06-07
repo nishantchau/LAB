@@ -72,7 +72,7 @@ namespace API.LABURNUM.COM.Component
 
         private bool IsCircularEditable(DateTime publishedon)
         {
-            if (System.DateTime.Now.Date >= publishedon.Date)
+            if (new Component.Utility().GetISTDateTime().Date >= publishedon.Date)
             {
                 return false;
             }
