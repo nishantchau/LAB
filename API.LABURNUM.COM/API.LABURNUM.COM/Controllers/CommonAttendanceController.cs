@@ -600,7 +600,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 2:
@@ -632,7 +632,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 3:
@@ -664,7 +664,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
 
@@ -697,7 +697,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 5:
@@ -729,7 +729,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 6:
@@ -761,7 +761,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
 
@@ -794,7 +794,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 8:
@@ -826,7 +826,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 9:
@@ -858,7 +858,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 10:
@@ -890,7 +890,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 11:
@@ -922,7 +922,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 12:
@@ -954,7 +954,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 13:
@@ -986,7 +986,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 14:
@@ -1018,7 +1018,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
                     }
                     break;
                 case 15:
@@ -1050,7 +1050,7 @@ namespace API.LABURNUM.COM.Controllers
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist,FatherName=item.FatherName });
                     }
                     break;
             }
