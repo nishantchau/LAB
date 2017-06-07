@@ -9364,6 +9364,10 @@ ul.x-navigation-panel {
     margin-top: 8px;
 }
 
+.extra_margin_small {
+    margin-top: 20px;
+}
+
 .main_cover {
     margin: 40px 0 10px 0;
     background: none;

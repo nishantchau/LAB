@@ -314,6 +314,7 @@ E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\Do
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\DTO.LABURNUM.COM.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\EntityFramework.dll
+E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\itextsharp.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\Microsoft.Web.Infrastructure.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\Microsoft.Web.WebPages.OAuth.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\Newtonsoft.Json.dll
@@ -331,6 +332,7 @@ E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\We
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\WebMatrix.Data.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\WebMatrix.WebData.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\DTO.LABURNUM.COM.pdb
+E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\itextsharp.xml
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\EntityFramework.xml
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\Newtonsoft.Json.xml
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\System.Net.Http.Formatting.xml
@@ -351,8 +353,6 @@ E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\Do
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\DotNetOpenAuth.OAuth.xml
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\DotNetOpenAuth.OpenId.xml
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Debug\LABURNUM.COM.csprojResolveAssemblyReference.cache
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Debug\LABURNUM.COM.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Debug\LABURNUM.COM.pdb
-E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\obj\Debug\LABURNUM.COM.csprojResolveAssemblyReference.cache
-E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\itextsharp.dll
-E:\Projects\Working Projects\SHARED PROJECT\LAB\LABURNUM.COM\LABURNUM.COM\bin\itextsharp.xml
