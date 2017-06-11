@@ -12,7 +12,7 @@ else
         <header class="panel-heading">
             <strong>Number of Record Found : @Model.Count</strong>
             <span class="tools pull-right">
-                <button class="btn btn-primary adept-view" type="button" onclick="DownloadRecord("Cheque Details List");">
+                <button class="btn btn-primary adept-view" type="button" onclick="DownloadRecord('Cheque Details List');">
                     Download
                     <i class="fa fa-download" aria-hidden="true"></i>
                 </button>
@@ -25,6 +25,7 @@ else
                         <thead>
                             <tr>
                                 <th>S.No.</th>
+                                <th>Adm.No.</th>
                                 <th>Class Name</th>
                                 <th>Section Name</th>
                                 <th>Student Name</th>
@@ -39,6 +40,7 @@ else
                             {
                                 <tr>
                                     <td style="width: 17%;">@counter</td>
+                                    <td style="width: 17%;">@item.StudentAdmissionNumber</td>
                                     <td style="width: 20%;">@item.ClassName</td>
                                     <td style="width: 23%;">@item.SectionName</td>
                                     <td style="width: 19%;">@item.StudentName</td>

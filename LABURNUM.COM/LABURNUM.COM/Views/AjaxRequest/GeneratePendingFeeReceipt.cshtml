@@ -6,14 +6,14 @@
 <div class="modal-dialog modal-dialogadept modal-dialogadept" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="RedirectToSearchPanel();">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">
                     <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/button-close.png" /></span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Monthly Fee Receipt</h4>
+            <h4 class="modal-title" id="myModalLabel">Pending Fee Receipt</h4>
         </div>
         <div class="modal-body">
-            <div id="divPrint" style="min-height: 400px; border: 2px solid green; margin: 2px 10px">
+            <div id="divPrint" style="min-height: 500px; margin: 2px 10px">
                 <div style="padding-right: 15px; padding-left: 15px;">
                     <div style="float: left; margin-top: 9px;">
                         <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" alt="" style="margin:auto auto;" height="70" width="120"/>
@@ -56,37 +56,22 @@
                                 <tbody>
                                     <tr style="border: 1px dotted green;">
                                         <td style="text-align: center; border: 2px solid black;">1.</td>
-                                        <td style="text-align: center; border: 2px solid black;">Month Fee</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.MonthlyFee</td>
-                                    </tr>
-                                    <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">2.</td>
-                                        <td style="text-align: center; border: 2px solid black;">Transport Fee</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.TransportFee</td>
-                                    </tr>
-                                    <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">3.</td>
-                                        <td style="text-align: center; border: 2px solid black;">Late Fee Panelty</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.LateFee</td>
-                                    </tr>
-                                    <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">4.</td>
                                         <td style="text-align: center; border: 2px solid black;">Last Pending Fee</td>
                                         <td style="text-align: center; border: 2px solid black;">@Model.LastPendingFee</td>
                                     </tr>
                                     <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">5.</td>
+                                        <td style="text-align: center; border: 2px solid black;">2.</td>
                                         <td style="text-align: center; border: 2px solid black;">Bounce Cheque Amount</td>
                                         <td style="text-align: center; border: 2px solid black;">@Model.BounceChequeAmount</td>
                                     </tr>
                                     <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">6.</td>
+                                        <td style="text-align: center; border: 2px solid black;">3.</td>
                                         <td style="text-align: center; border: 2px solid black;">Cheque Bounce Panelty</td>
                                         <td style="text-align: center; border: 2px solid black;">@Model.BounceChequePanelty</td>
                                     </tr>
                                     <tr>
                                         <th style="text-align: center; border: 2px solid black;" colspan="2">Total Payable Amount</th>
-                                        <td style="text-align: center; border: 2px solid black;">@(Model.MonthlyFee + Model.TransportFee + Model.LateFee + Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty)</td>
+                                        <td style="text-align: center; border: 2px solid black;">@(Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty)</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -117,18 +102,17 @@
                                         <td style="text-align: center; border: 2px solid black;">@Model.ChequePaidAmount</td>
                                     </tr>
                                     <tr>
+                                        <td style="text-align: center; border: 2px solid black;">&nbsp;</td>
+                                        <td style="text-align: center; border: 2px solid black;">&nbsp; </td>
+                                        <td style="text-align: center; border: 2px solid black;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
                                         <th style="text-align: center; border: 2px solid black;" colspan="2">Total Paid Amount</th>
                                         <td style="text-align: center; border: 2px solid black;">@(Model.CashPaidAmount + Model.ChequePaidAmount)</td>
                                     </tr>
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                    </tr>
-
                                 </tbody>
                             </table>
-                            <table style="width: 50%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
+                            <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
                                 <thead>
                                     <tr>
                                         <th colspan="3" style="text-align: center; border: 2px solid black;">Balance As on Today</th>
@@ -144,7 +128,7 @@
                                 <span style="color: #256546;">www.laburnumpublicschool.com</span>
                             </div>
                             <div style="width: 50%; float: left; text-align: right; margin-top: 5px;">
-                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/lps-signature.png" alt="LPS Signature" height="60px" width="210px"/>
+                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/lps-signature.png" alt="LPS Signature" />
                             </div>
                         </div>
                     </div>
@@ -190,37 +174,22 @@
                                 <tbody>
                                     <tr style="border: 1px dotted green;">
                                         <td style="text-align: center; border: 2px solid black;">1.</td>
-                                        <td style="text-align: center; border: 2px solid black;">Month Fee</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.MonthlyFee</td>
-                                    </tr>
-                                    <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">2.</td>
-                                        <td style="text-align: center; border: 2px solid black;">Transport Fee</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.TransportFee</td>
-                                    </tr>
-                                    <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">3.</td>
-                                        <td style="text-align: center; border: 2px solid black;">Late Fee Panelty</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.LateFee</td>
-                                    </tr>
-                                    <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">4.</td>
                                         <td style="text-align: center; border: 2px solid black;">Last Pending Fee</td>
                                         <td style="text-align: center; border: 2px solid black;">@Model.LastPendingFee</td>
                                     </tr>
                                     <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">5.</td>
+                                        <td style="text-align: center; border: 2px solid black;">2.</td>
                                         <td style="text-align: center; border: 2px solid black;">Bounce Cheque Amount</td>
                                         <td style="text-align: center; border: 2px solid black;">@Model.BounceChequeAmount</td>
                                     </tr>
                                     <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">6.</td>
+                                        <td style="text-align: center; border: 2px solid black;">3.</td>
                                         <td style="text-align: center; border: 2px solid black;">Cheque Bounce Panelty</td>
                                         <td style="text-align: center; border: 2px solid black;">@Model.BounceChequePanelty</td>
                                     </tr>
                                     <tr>
                                         <th style="text-align: center; border: 2px solid black;" colspan="2">Total Payable Amount</th>
-                                        <td style="text-align: center; border: 2px solid black;">@(Model.MonthlyFee + Model.TransportFee + Model.LateFee + Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty)</td>
+                                        <td style="text-align: center; border: 2px solid black;">@(Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty)</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -252,17 +221,17 @@
                                         <td style="text-align: center; border: 2px solid black;">@Model.ChequePaidAmount</td>
                                     </tr>
                                     <tr>
+                                        <td style="text-align: center; border: 2px solid black;">&nbsp;</td>
+                                        <td style="text-align: center; border: 2px solid black;">&nbsp; </td>
+                                        <td style="text-align: center; border: 2px solid black;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
                                         <th style="text-align: center; border: 2px solid black;" colspan="2">Total Paid Amount</th>
                                         <td style="text-align: center; border: 2px solid black;">@(Model.CashPaidAmount + Model.ChequePaidAmount)</td>
                                     </tr>
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                    </tr>
                                 </tbody>
                             </table>
-                            <table style="width: 50%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
+                            <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
                                 <thead>
                                     <tr>
                                         <th colspan="3" style="text-align: center; border: 2px solid black;">Balance As on Today</th>
@@ -278,31 +247,34 @@
                                 <span style="color: #256546;">www.laburnumpublicschool.com</span>
                             </div>
                             <div style="width: 50%; float: left; text-align: right; margin-top: 5px;">
-                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/lps-signature.png" alt="LPS Signature" height="60px" width="210px"/>
+                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/lps-signature.png" alt="LPS Signature" />
                             </div>
                         </div>
                     </div>
+
+
                 </div>
 
-               
-            </div>
-            <div style="text-align: center;">
-                <button type="button" class="btn btn-default" value="Print" onclick="PrintElem('#divPrint')" style="width: 20%; margin: 15px 0;">PRINT <i class="fa fa-print" aria-hidden="true"></i></button>
             </div>
         </div>
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-default" value="Print" onclick="PrintElem('#divPrint')" style="width: 20%; margin: 15px 0;">PRINT <i class="fa fa-print" aria-hidden="true"></i></button>
+        </div>
     </div>
-    <script type="text/javascript">
-        function PrintElem(elem) {
-            Popup($(elem).html());
-        }
-        function Popup(data) {
-            var mywindow = window.open('', 'my div', 'height=1002,width=680');
-            mywindow.document.write('<html><head><title>my div</title>');
-            mywindow.document.write('</head><body >');
-            mywindow.document.write(data);
-            mywindow.document.write('</body></html>');
-            mywindow.print();
-            mywindow.close();
-            return true;
-        }
-    </script>
+</div>
+
+<script type="text/javascript">
+    function PrintElem(elem) {
+        Popup($(elem).html());
+    }
+    function Popup(data) {
+        var mywindow = window.open('', 'my div', 'height=1002,width=680');
+        mywindow.document.write('<html><head><title>my div</title>');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(data);
+        mywindow.document.write('</body></html>');
+        mywindow.print();
+        mywindow.close();
+        return true;
+    }
+</script>

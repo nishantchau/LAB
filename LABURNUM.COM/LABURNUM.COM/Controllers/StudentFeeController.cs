@@ -86,7 +86,7 @@ namespace LABURNUM.COM.Controllers
         {
             try
             {
-                if (new Component.StudentFeeDetails().IsAlreadyPaidForThisMonth(model.PayForTheMonth, model.StudentId, model.ClassId, model.SectionId))
+                if (new Component.StudentFeeDetails().IsAlreadyPaidForThisMonth(model.PayForTheMonth.GetValueOrDefault(), model.StudentId, model.ClassId, model.SectionId))
                 {
                     return Json(new { code = -3, message = "failed" });
                 }
@@ -107,6 +107,51 @@ namespace LABURNUM.COM.Controllers
                         return Json(new { code = -1, message = "failed" });
                     }
                 }
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -2, message = "failed" });
+            }
+        }
+
+        public ActionResult PayPendingFee(DTO.LABURNUM.COM.StudentFeeDetailModel model)
+        {
+            try
+            {
+                model.CollectedById = sessionManagement.GetFacultyId();
+                //model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
+                model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("StudentFeeDetail", "Add", model);
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    int id = Convert.ToInt16(data);
+                    return Json(new { code = 0, message = "success", id = id });
+                }
+                else
+                {
+                    return Json(new { code = -1, message = "failed" });
+                }
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -2, message = "failed" });
+            }
+        }
+
+        public ActionResult SearchPendingFeeIndex()
+        {
+            return View(new DTO.LABURNUM.COM.StudentModel());
+        }
+
+
+        public ActionResult SearchPendingFee(DTO.LABURNUM.COM.StudentModel model)
+        {
+            try
+            {
+                List<DTO.LABURNUM.COM.StudentFeeDetailModel> dbstudentFeeDetails = new Component.StudentFeeDetails().GetPendingFeeByAdmissionNumberandAcademicYear(model.AdmissionNumber, model.AcademicYearId);
+                string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/StudentFee/SearchPendingFeeResult.cshtml", dbstudentFeeDetails);
+                return Json(new { code = 0, message = "success", result = html });
             }
             catch (Exception)
             {

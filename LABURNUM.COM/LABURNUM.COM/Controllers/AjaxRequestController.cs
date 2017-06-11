@@ -627,5 +627,75 @@ namespace LABURNUM.COM.Controllers
                 return Json(new { code = 99, result = "SessionTimedOut" });
             }
         }
+
+        public ActionResult PayPendingFeePopup(long id)
+        {
+            if (sessionManagement.isSessionAlive())
+            {
+                string html;
+                try
+                {
+                    DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel();
+                    DTO.LABURNUM.COM.StudentFeeDetailModel model1 = new LABURNUM.COM.Component.StudentFeeDetails().GetStudentFeeDetailsById(id);
+                    if (model1 != null)
+                    {
+                        if (model1.ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.BOUNCE))
+                        {
+                            model.LastPendingFee = model1.PendingFee.GetValueOrDefault() + model1.ChequePaidAmount + Component.Constants.DEFAULTVALUE.CHEQUEBOUNCEPANELTY;
+                            model.BounceChequeAmount = model1.ChequePaidAmount;
+                            model.BounceChequeNumber = model1.ChequeNumber;
+                            model.BounceChequeBankName = model1.ChequeBankName;
+                            model.ChequeStatusName = model1.ChequeStatusName;
+                            model.BounceChequeDate = model1.ChequeDate.GetValueOrDefault();
+                            model.BounceChequePanelty = Component.Constants.DEFAULTVALUE.CHEQUEBOUNCEPANELTY;
+                        }
+                        else
+                        {
+                            model.LastPendingFee = model1.PendingFee.GetValueOrDefault();
+                        }
+                    }
+                    model.TotalPayableAmount = model.LastPendingFee;
+                    model.ClassId = model1.ClassId;
+                    model.SectionId = model1.SectionId;
+                    model.StudentId = model1.StudentId;
+                    model.IsNewAdmission = model1.IsNewAdmission;
+                    model.AcademicYearId = model1.AcademicYearId;
+                    model.Banks = new Component.Bank().GetAllActiveBank();
+                    html = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/AjaxRequest/PayPendingFee.cshtml", model);
+                    return Json(new { code = 0, message = "success", result = html });
+                }
+                catch (Exception)
+                {
+                    html = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Error404.cshtml", null);
+                    return Json(new { code = -1, message = "failed", result = html });
+                }
+            }
+            else
+            {
+                return Json(new { code = 99, result = "SessionTimedOut" });
+            }
+        }
+
+        public ActionResult GeneratePendingFeeReceipt(long id)
+        {
+            if (sessionManagement.isSessionAlive())
+            {
+                try
+                {
+                    string html;
+                    DTO.LABURNUM.COM.StudentFeeDetailModel model = new Component.StudentFeeDetails().GetPendingFeeReceiptData(id);
+                    html = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/AjaxRequest/GeneratePendingFeeReceipt.cshtml", model);
+                    return Json(new { code = 0, message = "success", result = html });
+                }
+                catch (Exception)
+                {
+                    return Json(new { code = -1, message = "failed", result = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Error404.cshtml", null) });
+                }
+            }
+            else
+            {
+                return Json(new { code = 99, message = "SessionTimedOut" });
+            }
+        }
     }
 }

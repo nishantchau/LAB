@@ -1,0 +1,142 @@
+﻿@model List<DTO.LABURNUM.COM.StudentFeeDetailModel>
+@{int counter = 1;}
+<section class="panel">
+    @if (Model.Count == 0)
+    {
+        <div class="text-center">
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+        </div>
+    }
+    else
+    {
+        <header class="panel-heading">
+            <strong>Number of Record Found : @Model.Count</strong>
+            <span class="tools pull-right">
+                <button class="btn btn-primary adept-view" type="button" onclick="DownloadRecord('Student Fee Record');">
+                    Download
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </button>
+            </span>
+        </header>
+        <div class="row" id="divTable">
+            @*<div class="col-md-12">
+                <div class="col-md-12" style="height: 100%; padding: 12px; border: 5px solid;">
+                    <div class="col-md-6">
+                        <div class="col-md-5">
+                            <strong>Name : @Model[0].StudentName</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>Adm. No. : @Model[0].StudentAdmissionNumber</strong>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Class - Section : @Model[0].ClassName - @Model[0].SectionName</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-6">
+                            <span>
+                                <strong>Fee Pending As on Date : @Model[0].LastPendingFee</strong>
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <span>
+                                @if (Model[0].LastPendingFee > 0)
+                                {
+                                    <button id="btnPendingClear" type="button" class="btn btn-success adept-view" onclick="PendingDueAmountPopup('@Model[0].StudentFeeDetailId');" data-toggle="modal" data-target="#myModal">Clear Pending</button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-success adept-view" disabled>Clear Pending</button>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+            <div class="col-md-12">
+                <div class="table-responsive col-md-12">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th colspan="2">@Model[0].StudentName</th>
+                                <th>Adm. No.</th>
+                                <th>@Model[0].StudentAdmissionNumber</th>
+                                <th>Class / Section</th>
+                                <th>@Model[0].ClassName /@Model[0].SectionName </th>
+                                <th colspan="2">Pending Fee </th>
+                                <th>@Model[0].LastPendingFee </th>
+                                <th>
+                                    @if (Model[0].LastPendingFee > 0)
+                                    {
+                                        <button id="btnPendingClear" type="button" class="btn btn-success adept-view" onclick="PendingDueAmountPopup('@Model[0].StudentFeeDetailId');" data-toggle="modal" data-target="#myModal">Clear Pending</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-success adept-view" disabled>Clear Pending</button>
+                                    }
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Date</th>
+                                <th>Rec. No.</th>
+                                @*<th>Adm.No.</th>
+                                <th>Class / Section</th>*@
+                                <th>Fee Type</th>
+                                @*<th>Student Name</th>*@
+                                <th>Cash Paid</th>
+                                <th>Chq. Paid</th>
+                                <th>Chq. Status</th>
+                                <th>Discount</th>
+                                <th>Pending</th>
+                                <th>Remarks</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item in @Model)
+                            {
+                                <tr>
+                                    <td style="width: 5%;">@counter</td>
+                                    <td style="width: 10%;">@(item.CreatedOn.Day)-@item.CreatedOn.Month-@item.CreatedOn.Year</td>
+                                    <td style="width: 10%;">@item.StudentFeeDetailId</td>
+                                    @*<td style="width: 10%;">@item.StudentAdmissionNumber</td>
+                                    <td style="width: 10%;">@item.ClassName / @item.SectionName</td>*@
+
+                                    @if (item.MonthlyFee > 0)
+                                    { <td style="width: 19%;">@item.MonthName Fee</td>  }
+                                    @if (item.MonthlyFee == 0 && item.PayForTheMonth.GetValueOrDefault() > 0)
+                                    { <td style="width: 19%;">Admission Fee</td> }
+                                    @if (item.MonthlyFee == 0 && item.PayForTheMonth.GetValueOrDefault() == 0)
+                                    { <td style="width: 19%;">Pending Fee </td>}
+@*<td style="width: 16%;">@item.StudentName</td>*@
+                                    <td style="width: 19%;">@item.CashPaidAmount</td>
+                                    <td style="width: 19%;">@item.ChequePaidAmount</td>
+                                    <td style="width: 19%;">@item.ChequeStatusName</td>
+                                    <td style="width: 19%;">@item.DiscountAmount</td>
+                                    <td style="width: 19%;">@item.PendingFee</td>
+                                    <td style="width: 19%;">@item.DiscountRemarks</td>
+                                    @if (item.MonthlyFee > 0)
+                                    {
+                                        <td>
+                                            <button id="btnPrint" type="button" class="btn btn-success adept-view" onclick="GenerateReceipt('@item.StudentFeeDetailId','false');" data-toggle="modal" data-target="#myModal">Generate Month Fee Receipt</button></td>
+                                    }
+                                    @if (item.MonthlyFee == 0 && item.PayForTheMonth.GetValueOrDefault() > 0)
+                                    { <td>
+                                        <button id="btnPrint" type="button" class="btn btn-success adept-view" onclick="GenerateReceipt('@item.StudentFeeDetailId','true');" data-toggle="modal" data-target="#myModal">Generate Admission FeeReceipt</button></td>
+                                    }
+                                    @if (item.MonthlyFee == 0 && item.PayForTheMonth.GetValueOrDefault() == 0)
+                                    { <td>
+                                        <button id="btnPrint" type="button" class="btn btn-success adept-view" onclick="GeneratePendingFeeReceipt('@item.StudentFeeDetailId');" data-toggle="modal" data-target="#myModal">Generate Pending Fee Receipt</button></td>}
+                                </tr>
+                                    counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+   
+    }
+</section>

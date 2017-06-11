@@ -4,7 +4,7 @@
 
 @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
 {
-    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnPayMonthlyFeeBegin", OnSuccess = "OnPayMonthlyFeeSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "StudentFee/PayMonthlyFee" }))
+    using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnPayPendingFeeBegin", OnSuccess = "OnPayPendingFeeSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "StudentFee/PayPendingFee" }))
     {
     <div class="modal-dialog modal-dialogadept modal-dialogadept-mini" role="document">
         <div class="modal-content">
@@ -13,61 +13,11 @@
                     <span aria-hidden="true">
                         <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/button-close.png" /></span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Pay Student Monthly Fee</h4>
+                <h4 class="modal-title" id="myModalLabel">Pay Student Pending Fee</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-5">
-                            <span class="score_adept">Pay For The Month <sup>*</sup> <i>:</i></span>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                @Html.DropDownList("PayForTheMonth", new SelectList(Model.Months, "MonthId", "MonthName"), "Please Select A Month", new { @id = "ddlMonth", @autocomplete = "Off", @class = "ToReset", @onChange = "ShowHideAnnualFee();" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-5">
-                            <span class="score_adept">Monthly Fee <sup>*</sup>  <i>:</i></span>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                @Html.TextBoxFor(x => x.MonthlyFee, new { @id = "txtMonthlyFee", @readonly = "yes" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-5">
-                            <span class="score_adept">Transport Fee <sup>*</sup>  <i>:</i></span>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <div id="hdnTranportCharges" class="display_none">@Model.TransportFee</div>
-                                @Html.TextBoxFor(x => x.TransportFee, new { @id = "txtTransportFee", @readonly = "yes" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-5">
-                            <span class="score_adept">Late Fee Panelty <sup>*</sup>  <i>:</i></span>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                @Html.TextBoxFor(x => x.LateFee, new { @id = "txtLateFee", @readonly = "yes" })
-                            </div>
-                        </div>
-                    </div>
-                    @* <div class="col-md-12" id="divAnnualFunctionFee">
-                        <div class="col-md-5">
-                            <span class="score_adept">Annual Function Fee <sup>*</sup>  <i>:</i></span>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                @Html.TextBoxFor(x => x.AnnualFunctionFee, new { @id = "txtAnnualFunctionFee", @readonly = "yes" })
-                            </div>
-                        </div>
-                    </div>*@
+
                     <div class="col-md-12">
                         <div class="col-md-5">
                             <span class="score_adept">Last Pending Fee <sup>*</sup>  <i>:</i></span>
@@ -88,25 +38,6 @@
                             </div>
                         </div>
                     </div>
-                    @*<table>
-                        <thead>
-                            <tr>
-                                <th>Chq. Date</th>
-                                <th>Chq. No.</th>
-                                <th>Bank</th>
-                                <th>Chq. Amt.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>@Model.BounceChequeAmount</td>
-                                <td>@Model.BounceChequeNumber</td>
-                                <td>@Model.BounceChequeBankName</td>
-                                <td>@Model.BounceChequeAmount</td>
-                            </tr>
-                        </tbody>
-                    </table>*@
-
                     <div class="col-md-12">
                         <div class="col-md-5">
                             <span class="score_adept">Chq. Bounce Amt. <sup>*</sup>  <i>:</i></span>
@@ -173,8 +104,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
-                                <div class="display_none" id="hdnTotalFees1">@(Model.MonthlyFee + Model.LateFee + Model.LastPendingFee)</div>
-                                <div class="display_none" id="hdnTotalFees">@(Model.MonthlyFee + Model.TransportFee + Model.LateFee + Model.LastPendingFee)</div>
+                                <div class="display_none" id="hdnTotalFees">@Model.LastPendingFee</div>
                                 @Html.TextBoxFor(x => x.TotalPayableAmount, new { @id = "txtTotalPayableAmount", @readonly = "yes" })
                             </div>
                         </div>
@@ -269,12 +199,12 @@
     @Html.HiddenFor(x => x.ClassId)
     @Html.HiddenFor(x => x.SectionId)
     @Html.HiddenFor(x => x.StudentId)
+    @Html.HiddenFor(x => x.AcademicYearId)
     @Html.HiddenFor(x => x.IsNewAdmission)
-    @Html.HiddenFor(x => x.AnnualFunctionFeePayableMonth, new { @id = "hdbAFFPM" })
     }
     <script type="text/javascript">
         $(document).ready(function () {
-            OnPayMonthlyFeeIndexReady();
+            OnPayPendingFeeIndexReady();
         });
     </script>
 }

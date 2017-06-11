@@ -592,6 +592,10 @@
     <Content Include="Views\Prospectus\Index.cshtml" />
     <Content Include="Views\Attendance\SubmitAfterLuchAttendanceIndex.cshtml" />
     <Content Include="Views\Curriculum\CurriculumDetails.cshtml" />
+    <Content Include="Views\StudentFee\SearchPendingFeeResult.cshtml" />
+    <Content Include="Views\StudentFee\SearchPendingFeeIndex.cshtml" />
+    <Content Include="Views\AjaxRequest\PayPendingFee.cshtml" />
+    <Content Include="Views\AjaxRequest\GeneratePendingFeeReceipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

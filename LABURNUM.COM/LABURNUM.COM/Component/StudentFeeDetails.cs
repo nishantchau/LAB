@@ -48,7 +48,7 @@ namespace LABURNUM.COM.Component
             }
         }
 
-        public bool IsAlreadyPaidForThisMonth(int month, long studentId, long classId, long sectionId)
+        public bool IsAlreadyPaidForThisMonth(long month, long studentId, long classId, long sectionId)
         {
             try
             {
@@ -187,5 +187,54 @@ namespace LABURNUM.COM.Component
                 return false;
             }
         }
+
+        public List<DTO.LABURNUM.COM.StudentFeeDetailModel> GetPendingFeeByAdmissionNumberandAcademicYear(string admissionNumber, long academicYear)
+        {
+            try
+            {
+                DTO.LABURNUM.COM.StudentModel model = new DTO.LABURNUM.COM.StudentModel() { AcademicYearId = academicYear, AdmissionNumber = admissionNumber };
+                model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("StudentFeeDetail", "SearchPendingFeeByStudentModel", model);
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    List<DTO.LABURNUM.COM.StudentFeeDetailModel> dbStudentFeeDetails = JsonConvert.DeserializeObject<List<DTO.LABURNUM.COM.StudentFeeDetailModel>>(data);
+                    return dbStudentFeeDetails;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public DTO.LABURNUM.COM.StudentFeeDetailModel GetPendingFeeReceiptData(long studentFeeDetailsId)
+        {
+            try
+            {
+                DTO.LABURNUM.COM.StudentFeeDetailModel model = new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentFeeDetailId = studentFeeDetailsId };
+                model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("StudentFeeDetail", "SearchPendingFeeReceiptData", model);
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    DTO.LABURNUM.COM.StudentFeeDetailModel dbStudentFeeDetails = JsonConvert.DeserializeObject<DTO.LABURNUM.COM.StudentFeeDetailModel>(data);
+                    return dbStudentFeeDetails;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
     }
 }

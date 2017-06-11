@@ -1,6 +1,7 @@
 ﻿@model DTO.LABURNUM.COM.StudentModel
 
-@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+@if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) 
+    || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
 {
     using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnUpdateStudentBegin", OnSuccess = "OnUpdateStudentSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "UpdateStudent/Update" }))
     {
