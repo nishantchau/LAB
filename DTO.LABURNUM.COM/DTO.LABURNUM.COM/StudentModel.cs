@@ -71,5 +71,9 @@ namespace DTO.LABURNUM.COM
         public string CurrentPassword { get; set; }
         public string NewPassword { get; set; }
         public string ReNewPassword { get; set; }
+
+        public long AcademicYearId { get; set; }
+
+        public List<DTO.LABURNUM.COM.AcademicYearTableModel> AcademicYearList { get; set; }
     }
 }

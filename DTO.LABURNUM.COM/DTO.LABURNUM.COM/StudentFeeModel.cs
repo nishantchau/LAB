@@ -70,6 +70,6 @@ namespace DTO.LABURNUM.COM
         public List<DTO.LABURNUM.COM.BankModel> Banks { get; set; }
         public List<DTO.LABURNUM.COM.StudentFeeDetailModel> StudentFeeDetails { get; set; }
 
-
+        public string StudentAdmissionNumber { get; set; }
     }
 }

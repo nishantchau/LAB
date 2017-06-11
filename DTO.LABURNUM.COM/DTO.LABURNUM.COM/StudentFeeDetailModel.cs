@@ -30,7 +30,7 @@ namespace DTO.LABURNUM.COM
         public Nullable<double> TransportFee { get; set; }
         //public Nullable<double> AnnualFunctionFee { get; set; }
         public Nullable<double> PendingFee { get; set; }
-        public int PayForTheMonth { get; set; }
+        public long? PayForTheMonth { get; set; }
         public double DiscountAmount { get; set; }
         public string DiscountRemarks { get; set; }
         public long CollectedById { get; set; }
@@ -80,6 +80,8 @@ namespace DTO.LABURNUM.COM
 
         public string SUN { get; set; }
         public string SUP { get; set; }
+
+        public string StudentAdmissionNumber { get; set; }
 
         public double TotalCashPaidAmount { get; set; }
         public double TotalChequePaidAmount { get; set; }
