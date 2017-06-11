@@ -219,6 +219,11 @@ function FillSuccessResultMSG(data, messagedivId, successmsg, failmsg) {
             case -3:
                 SetHtml(messagedivId, failmsg);
                 break;
+            case 99:
+                window.location = GetDomain(_DOMAINDIVID) + "Login/Index";
+                //$("#" + modelDivId).html(data.result);
+                //$("#" + modelDivId).show();
+                break;
         }
     }
     catch (e) { MyAlert("SuccessResult : " + e); }
@@ -237,6 +242,11 @@ function FillSuccessResultView(data, resultDiv) {
                 break;
             case -2:
                 SetHtml(resultDiv, data.result);
+                break;
+            case 99:
+                window.location = GetDomain(_DOMAINDIVID) + "Login/Index";
+                //$("#" + modelDivId).html(data.result);
+                //$("#" + modelDivId).show();
                 break;
         }
     }
@@ -1368,22 +1378,27 @@ function OnAddStudentFeeBegin() {
         else { return false; }
     }
 
-    var x = document.getElementById("chkboxPaidByCheque").checked;
-    if (x) {
-        if (Validate.IntValueValidate("txtChequePaidAmount", _MESSAGEDIVID, "Please Enter Amount Paid By Cheque.")) { }
-        else { return false; }
-        if (Validate.StringValueValidate("txtChequeNumber", _MESSAGEDIVID, "Please Enter Cheque Number.")) { }
-        else { return false; }
-        if (Validate.StringValueValidate("txtChequeDate", _MESSAGEDIVID, "Please Select Cheque Date.")) { }
-        else { return false; }
-        if (Validate.IntValueValidate("ddlBank", _MESSAGEDIVID, "Please Select A Bank.")) { }
-        else { return false; }
-    }
+    var hiddentf = parseInt(GetHtml("hdnTotalFees"));
+    var discount = parseInt(GetValue("txtDiscountAmount"));
+    if (discount == hiddentf) { }
     else {
-        if (Validate.IntValueValidate("txtCashPaidAmount", _MESSAGEDIVID, "Please Enter Cash Paid Amount.")) { }
-        else { return false; }
-    }
 
+        var x = document.getElementById("chkboxPaidByCheque").checked;
+        if (x) {
+            if (Validate.IntValueValidate("txtChequePaidAmount", _MESSAGEDIVID, "Please Enter Amount Paid By Cheque.")) { }
+            else { return false; }
+            if (Validate.StringValueValidate("txtChequeNumber", _MESSAGEDIVID, "Please Enter Cheque Number.")) { }
+            else { return false; }
+            if (Validate.StringValueValidate("txtChequeDate", _MESSAGEDIVID, "Please Select Cheque Date.")) { }
+            else { return false; }
+            if (Validate.IntValueValidate("ddlBank", _MESSAGEDIVID, "Please Select A Bank.")) { }
+            else { return false; }
+        }
+        else {
+            if (Validate.IntValueValidate("txtCashPaidAmount", _MESSAGEDIVID, "Please Enter Cash Paid Amount.")) { }
+            else { return false; }
+        }
+    }
     DisplayLoader(_LOADERDIVID);
 }
 
@@ -2015,19 +2030,31 @@ function OnPayMonthlyFeeBegin() {
         else { return false; }
     }
 
-    if (document.getElementById("chkboxPaidByCheque").checked) {
-        if (Validate.IntValueValidate("txtChequePaidAmount", _POPUPMESSAGEDIVID, "Please Enter Amount Paid By Cheque.")) { }
-        else { return false; }
-        if (Validate.StringValueValidate("txtChequeNumber", _POPUPMESSAGEDIVID, "Please Enter Cheque Number.")) { }
-        else { return false; }
-        if (Validate.StringValueValidate("txtChequeDate", _MESSAGEDIVID, "Please Select Cheque Date.")) { }
-        else { return false; }
-        if (Validate.IntValueValidate("ddlBank", _POPUPMESSAGEDIVID, "Please Select A Bank.")) { }
-        else { return false; }
+    var hiddentf;
+    var sm = GetValue("ddlMonth");
+    if (sm == 6) { hiddentf = parseFloat(GetHtml("hdnTotalFees1")); }
+    else
+    {
+        hiddentf = parseFloat(GetHtml("hdnTotalFees"));
     }
+
+    var discount = parseInt(GetValue("txtDiscountAmount"));
+    if (discount == hiddentf) { }
     else {
-        if (Validate.IntValueValidate("txtCashPaidAmount", _POPUPMESSAGEDIVID, "Please Enter Cash Paid Amount.")) { }
-        else { return false; }
+        if (document.getElementById("chkboxPaidByCheque").checked) {
+            if (Validate.IntValueValidate("txtChequePaidAmount", _POPUPMESSAGEDIVID, "Please Enter Amount Paid By Cheque.")) { }
+            else { return false; }
+            if (Validate.StringValueValidate("txtChequeNumber", _POPUPMESSAGEDIVID, "Please Enter Cheque Number.")) { }
+            else { return false; }
+            if (Validate.StringValueValidate("txtChequeDate", _MESSAGEDIVID, "Please Select Cheque Date.")) { }
+            else { return false; }
+            if (Validate.IntValueValidate("ddlBank", _POPUPMESSAGEDIVID, "Please Select A Bank.")) { }
+            else { return false; }
+        }
+        else {
+            if (Validate.IntValueValidate("txtCashPaidAmount", _POPUPMESSAGEDIVID, "Please Enter Cash Paid Amount.")) { }
+            else { return false; }
+        }
     }
     DisplayLoader(_POPUPLOADERDIVID);
     Disablebutton("btnSubmit");
@@ -3559,5 +3586,114 @@ function OnSubmitAfterLunchAttendanceSuccess(data) {
 
     } catch (e) {
         MyAlert("OnSubmitAfterLunchAttendanceBegin : " + e);
+    }
+}
+
+function RedirectToSearchPanel() {
+    try {
+        window.location = GetDomain(_DOMAINDIVID) + "SearchStudentByAdvanceSearch/Index";
+    } catch (e) {
+        MyAlert("RedirectToSearchPanel : " + e);
+    }
+}
+
+function OnSearchPendingFeeBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank("divResult");
+        if (Validate.StringValueValidate("txtAdmissionNumber", _MESSAGEDIVID, "Please Enter Admission Number.")) { }
+        else { return false; }
+        Disablebutton("btnSearch");
+        DisplayLoader(_LOADERDIVID);
+    } catch (e) {
+        MyAlert("OnSearchPendingFeeBegin : " + e);
+    }
+}
+
+function OnSearchPendingFeeSuccess(data) {
+    try {
+        Enablebutton("btnSearch");
+        HideLoader(_LOADERDIVID);
+        FillSuccessResultView(data, "divResult");
+
+    } catch (e) {
+        MyAlert("OnSearchPendingFeeBegin : " + e);
+    }
+}
+
+function PendingDueAmountPopup(id) {
+    try {
+        var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/PayPendingFeePopup?id=" + id;
+        FillViewInModelDiv(url, "myModal");
+    } catch (e) {
+        MyAlert("PendingDueAmountPopup : " + e);
+    }
+}
+
+function OnPayPendingFeeBegin() {
+    try {
+        SetHtmlBlank(_POPUPMESSAGEDIVID);
+        if (GetValue("txtDiscountAmount") > 0) {
+            if (Validate.StringValueValidate("txtDiscountRemarks", _POPUPMESSAGEDIVID, "Please Enter Discount Remarks.")) { }
+            else { return false; }
+        }
+        var hiddentf = parseFloat(GetHtml("hdnTotalFees"));
+        var discount = parseInt(GetValue("txtDiscountAmount"));
+        if (discount == hiddentf) { }
+        else {
+            if (document.getElementById("chkboxPaidByCheque").checked) {
+                if (Validate.IntValueValidate("txtChequePaidAmount", _POPUPMESSAGEDIVID, "Please Enter Amount Paid By Cheque.")) { }
+                else { return false; }
+                if (Validate.StringValueValidate("txtChequeNumber", _POPUPMESSAGEDIVID, "Please Enter Cheque Number.")) { }
+                else { return false; }
+                if (Validate.StringValueValidate("txtChequeDate", _MESSAGEDIVID, "Please Select Cheque Date.")) { }
+                else { return false; }
+                if (Validate.IntValueValidate("ddlBank", _POPUPMESSAGEDIVID, "Please Select A Bank.")) { }
+                else { return false; }
+            }
+            else {
+                if (Validate.IntValueValidate("txtCashPaidAmount", _POPUPMESSAGEDIVID, "Please Enter Cash Paid Amount.")) { }
+                else { return false; }
+            }
+        }
+        DisplayLoader(_POPUPLOADERDIVID);
+        Disablebutton("btnSubmit");
+        Disablebutton("btnClose");
+
+    } catch (e) {
+        MyAlert("OnPayPendingFeeBegin : " + e);
+    }
+}
+
+function OnPayPendingFeeSuccess(data) {
+    try {
+        HideLoader(_POPUPLOADERDIVID);
+        if (data.code != 0) { Enablebutton("btnSubmit"); }
+        FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, "Paid Successfully.", "Failed To Pay Please Try Again Later.");
+        if (data.code == 0) {
+            var html = "<button id='btnPrint' type='button' class='btn btn-default btn-adeptsubmit btn-adeptsubmitfirst' onclick=GenerateReceipt(" + data.id + ") data-toggle='modal' data-target='#myModal'>Generate Receipt</button>";
+            SetHtml("btndiv", html);
+        }
+        if (data.code != 0) { Enablebutton("btnSubmit"); Enablebutton("btnClose"); }
+    } catch (e) {
+        MyAlert("OnPayPendingFeeSuccess : " + e);
+    }
+}
+
+function OnPayPendingFeeIndexReady() {
+    try {
+
+    } catch (e) {
+        MyAlert("OnPayPendingFeeIndexReady : " + e);
+    }
+}
+
+function GeneratePendingFeeReceipt(id) {
+    try {
+        var url = GetDomain(_DOMAINDIVID) + "AjaxRequest/GeneratePendingFeeReceipt?id=" + id;
+        FillViewInModelDiv(url, "myModal");
+    }
+    catch (e) {
+        MyAlert("GenerateReceipt : " + e);
     }
 }

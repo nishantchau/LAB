@@ -206,7 +206,7 @@
             <div class="col-md-8 extra_margin_small">
                 <section class="panel">
                     <header class="panel-heading">
-                        Pending Cheque Details
+                        Pending Cheque Details (Last @LABURNUM.COM.Component.Constants.DEFAULTVALUE.CHEQUEDETAILDAYS Days)
                     </header>
                     <div class="panel-body">
                         @{long Chequestatus = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED);}
@@ -219,16 +219,16 @@
                         else
                         {
                             <div class="table-responsive">
-                                <table class="table table-hover general-table responsive">
+                                <table class="table table-hover general-table responsive table-fixed">
                                     <thead>
                                         <tr>
-                                            <th>S.No.</th>
-                                            <th>Class</th>
-                                            <th>Section</th>
-                                            <th>Student Name</th>
-                                            <th>Chq. Date</th>
-                                            <th>Amount</th>
-                                            <th></th>
+                                            <th width="11%">S.No.</th>
+                                            <th width="12%">Class</th>
+                                            <th width="10%">Section</th>
+                                            <th width="20%">Student Name</th>
+                                            <th width="17%">Chq. Date</th>
+                                            <th width="8%">Amount</th>
+                                            <th width="23%"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -236,20 +236,20 @@
                                         @foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item in @Model.AccountDashBoardModel.StudentFeeDetails.Where(x => x.ChequeStatus == 3).ToList())
                                         {
                                             <tr>
-                                                <td style="width: 0%;">@counter</td>
-                                                <td style="width: 17%;">@item.ClassName</td>
-                                                <td style="width: 12%;">@item.SectionName</td>
+                                                <td style="width: 11%;">@counter</td>
+                                                <td style="width: 12%;">@item.ClassName</td>
+                                                <td style="width: 10%;">@item.SectionName</td>
                                                 <td style="width: 20%;">@item.StudentName</td>
-                                                <td style="width: 15%;">@item.ChequeDate.GetValueOrDefault().Day / @item.ChequeDate.GetValueOrDefault().Month /@item.ChequeDate.GetValueOrDefault().Year</td>
-                                                <td style="width: 15%;">@item.ChequePaidAmount</td>
+                                                <td style="width: 17%;">@item.ChequeDate.GetValueOrDefault().Day / @item.ChequeDate.GetValueOrDefault().Month /@item.ChequeDate.GetValueOrDefault().Year</td>
+                                                <td style="width: 11%;">@item.ChequePaidAmount</td>
                                                 @if (item.ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED))
                                                 {
-                                                    <td>
+                                                    <td width="23%">
                                                         <button id="btnUpdate" class="btn btn-success adept-view" data-toggle="modal" data-target="#myModal" onclick="UpdateChequeStatusPoupUp('@item.StudentFeeDetailId')">Update Status</button></td> 
                                                 }
                                                 else
                                                 {
-                                                    <td>
+                                                    <td width="23%">
                                                         <button class="btn btn-success adept-view" disabled>Update Status</button>
                                                     </td> 
                                                 }
