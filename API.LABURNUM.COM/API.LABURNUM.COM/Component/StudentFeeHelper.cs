@@ -77,7 +77,8 @@ namespace API.LABURNUM.COM.Component
                 TotalPayableAmount = (studentFee.AdmissionFee + studentFee.DevelopementFee + studentFee.AnnualCharges + studentFee.ExamFee + studentFee.SportsFee + studentFee.SecurityFee + studentFee.AnnualFunctionFee.GetValueOrDefault()) - studentFee.DiscountAmount,
                 CollectedByName = studentFee.Faculty.FacultyName,
                 ParentName = studentFee.Student.FatherName,
-                AcademicYear = studentFee.AcademicYearTable.StartYear + "-" + studentFee.AcademicYearTable.EndYear
+                AcademicYear = studentFee.AcademicYearTable.StartYear + "-" + studentFee.AcademicYearTable.EndYear,
+                StudentAdmissionNumber = studentFee.Student.AdmissionNumber,
             };
             return dtoStudentFee;
         }

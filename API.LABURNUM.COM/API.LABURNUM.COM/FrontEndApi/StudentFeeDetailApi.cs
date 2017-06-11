@@ -20,6 +20,7 @@ namespace API.LABURNUM.COM.FrontEndApi
         {
             if (model.ChequeDate.GetValueOrDefault().Year == 0001) { model.ChequeDate = null; }
             else { if (model.ChequePaidAmount <= 0) { model.ChequeDate = null; } }
+            if (model.PayForTheMonth == 0) { model.PayForTheMonth = null; }
             API.LABURNUM.COM.StudentFeeDetail apiStudentFeeDetail = new StudentFeeDetail()
             {
                 StudentId = model.StudentId,
@@ -257,14 +258,18 @@ namespace API.LABURNUM.COM.FrontEndApi
             return dblist[0];
         }
 
-        public API.LABURNUM.COM.StudentFeeDetail GetFeePaidDetailDuringMonthlyFeePayment(long studentId, long classId, long sectionId, long academicYear)
+        public API.LABURNUM.COM.StudentFeeDetail GetFeePaidDetailDuringMonthlyFeePayment(long studentId, long classId, long sectionId, long academicYear, long studentFeeDetailsId)
         {
-            List<API.LABURNUM.COM.StudentFeeDetail> model = GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { AcademicYearId = academicYear, StudentId = studentId, ClassId = classId, SectionId = sectionId });
-            List<API.LABURNUM.COM.StudentFeeDetail> dblist = model.ToList();
-            if (dblist.Count == 0) { }
-            return dblist[1];
+            List<API.LABURNUM.COM.StudentFeeDetail> dbstudentfeeDetailList = new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentId = studentId, ClassId = classId, SectionId = sectionId, AcademicYearId = academicYear});
+            int index = dbstudentfeeDetailList.FindIndex(x => x.StudentFeeDetailId == studentFeeDetailsId);
+            API.LABURNUM.COM.StudentFeeDetail dbstudentfeeDetails = new StudentFeeDetail();
+            if (index >= 0)
+            {
+                index = index + 1;
+                dbstudentfeeDetails = dbstudentfeeDetailList[index];
+            }
+            return dbstudentfeeDetails;
         }
-
 
     }
 }

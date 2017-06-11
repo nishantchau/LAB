@@ -49,13 +49,14 @@ namespace API.LABURNUM.COM.FrontEndApi
         public void Update(DTO.LABURNUM.COM.AttendanceClassPreNurseryModel model)
         {
             model.AttendanceClassPreNurseryId.TryValidate();
+            DateTime updatedate = new Component.Utility().GetISTDateTime();
             IQueryable<API.LABURNUM.COM.AttendanceClassPreNursery> iQuery = this._laburnum.AttendanceClassPreNurseries.Where(x => x.AttendanceClassPreNurseryId == model.AttendanceClassPreNurseryId && x.IsActive == true);
             List<API.LABURNUM.COM.AttendanceClassPreNursery> dbAttendanceClassPreNursery = iQuery.ToList();
             if (dbAttendanceClassPreNursery.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbAttendanceClassPreNursery.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             dbAttendanceClassPreNursery[0].IsPresentAfterLuch = model.IsPresentAfterLuch;
-            dbAttendanceClassPreNursery[0].LunchAttendanceDate = new Component.Utility().GetISTDateTime();
-            dbAttendanceClassPreNursery[0].LastUpdated = new Component.Utility().GetISTDateTime();
+            dbAttendanceClassPreNursery[0].LunchAttendanceDate = updatedate;
+            dbAttendanceClassPreNursery[0].LastUpdated = updatedate;
             this._laburnum.SaveChanges();
         }
 

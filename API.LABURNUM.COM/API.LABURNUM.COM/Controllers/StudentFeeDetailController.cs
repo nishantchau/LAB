@@ -93,7 +93,7 @@ namespace API.LABURNUM.COM.Controllers
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
                 DTO.LABURNUM.COM.StudentFeeDetailModel studentFeeDetailModel = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByID(model.StudentFeeDetailId)).MapSingle();
-                API.LABURNUM.COM.StudentFeeDetail dbstudentfeeDetails = new FrontEndApi.StudentFeeDetailApi().GetFeePaidDetailDuringMonthlyFeePayment(studentFeeDetailModel.StudentId, studentFeeDetailModel.ClassId, studentFeeDetailModel.SectionId, studentFeeDetailModel.AcademicYearId);
+                API.LABURNUM.COM.StudentFeeDetail dbstudentfeeDetails = new FrontEndApi.StudentFeeDetailApi().GetFeePaidDetailDuringMonthlyFeePayment(studentFeeDetailModel.StudentId, studentFeeDetailModel.ClassId, studentFeeDetailModel.SectionId, studentFeeDetailModel.AcademicYearId,model.StudentFeeDetailId);
                 if (dbstudentfeeDetails.ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.BOUNCE))
                 {
                     studentFeeDetailModel.LastPendingFee = dbstudentfeeDetails.PendingFee.GetValueOrDefault();
@@ -102,7 +102,7 @@ namespace API.LABURNUM.COM.Controllers
                 }
                 else
                 {
-                    model.LastPendingFee = dbstudentfeeDetails.PendingFee.GetValueOrDefault();
+                    studentFeeDetailModel.LastPendingFee = dbstudentfeeDetails.PendingFee.GetValueOrDefault();
                 }
                 return studentFeeDetailModel;
             }
@@ -136,6 +136,44 @@ namespace API.LABURNUM.COM.Controllers
             else
             {
             }
+        }
+
+        public List<DTO.LABURNUM.COM.StudentFeeDetailModel> SearchPendingFeeByStudentModel(DTO.LABURNUM.COM.StudentModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                API.LABURNUM.COM.Student dbstudent = new FrontEndApi.StudentApi().GetStudentByAdmissionNumber(model.AdmissionNumber);
+                return new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentId = dbstudent.StudentId, AcademicYearId = model.AcademicYearId })).Map();
+            }
+            else { return null; }
+        }
+
+        public DTO.LABURNUM.COM.StudentFeeDetailModel SearchPendingFeeReceiptData(DTO.LABURNUM.COM.StudentFeeDetailModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                DTO.LABURNUM.COM.StudentFeeDetailModel studentFeeDetailModel = new StudentFeeDetailHelper(new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByID(model.StudentFeeDetailId)).MapSingle();
+                List<API.LABURNUM.COM.StudentFeeDetail> dbstudentfeeDetailList = new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentId = studentFeeDetailModel.StudentId, ClassId = studentFeeDetailModel.ClassId, SectionId = studentFeeDetailModel.SectionId, AcademicYearId = studentFeeDetailModel.AcademicYearId });
+                int index = dbstudentfeeDetailList.FindIndex(x => x.StudentFeeDetailId == model.StudentFeeDetailId);
+                API.LABURNUM.COM.StudentFeeDetail dbstudentfeeDetails =new StudentFeeDetail();
+                if (index >= 0)
+                {
+                    index = index + 1;
+                    dbstudentfeeDetails = dbstudentfeeDetailList[index];
+                }
+                if (dbstudentfeeDetails.ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.BOUNCE))
+                {
+                    studentFeeDetailModel.LastPendingFee = dbstudentfeeDetails.PendingFee.GetValueOrDefault();
+                    studentFeeDetailModel.BounceChequePanelty = API.LABURNUM.COM.Component.Constants.DEFAULTVALUE.CHEQUEBOUNCEPANELTY;
+                    studentFeeDetailModel.BounceChequeAmount = dbstudentfeeDetails.ChequePaidAmount.GetValueOrDefault();
+                }
+                else
+                {
+                    studentFeeDetailModel.LastPendingFee = dbstudentfeeDetails.PendingFee.GetValueOrDefault();
+                }
+                return studentFeeDetailModel;
+            }
+            else { return null; }
         }
     }
 }

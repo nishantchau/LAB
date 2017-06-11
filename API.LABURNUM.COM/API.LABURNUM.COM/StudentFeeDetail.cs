@@ -22,7 +22,7 @@ namespace API.LABURNUM.COM
         public double LateFee { get; set; }
         public Nullable<double> TransportFee { get; set; }
         public Nullable<double> PendingFee { get; set; }
-        public long PayForTheMonth { get; set; }
+        public Nullable<long> PayForTheMonth { get; set; }
         public double DiscountAmount { get; set; }
         public string DiscountRemarks { get; set; }
         public long CollectedById { get; set; }

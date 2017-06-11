@@ -266,5 +266,15 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbStudents[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
+
+
+        public API.LABURNUM.COM.Student GetStudentByAdmissionNumber(string asmissionnumber)
+        {
+            asmissionnumber.TryValidate();
+            List<API.LABURNUM.COM.Student> dbStudents = GetStudentByAdvanceSearch(new DTO.LABURNUM.COM.StudentModel() { AdmissionNumber = asmissionnumber });
+            if (dbStudents.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
+            if (dbStudents.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            return dbStudents[0];
+        }
     }
 }

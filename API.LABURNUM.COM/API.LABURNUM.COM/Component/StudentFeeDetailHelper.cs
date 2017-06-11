@@ -74,7 +74,6 @@ namespace API.LABURNUM.COM.Component
                 IsActive = studentFeeDetail.IsActive,
                 LastUpdated = studentFeeDetail.LastUpdated,
                 CollectedByName = studentFeeDetail.Faculty.FacultyName,
-                MonthName = studentFeeDetail.Month.MonthName,
                 FatherName = studentFeeDetail.Student.FatherName,
                 StudentName = studentFeeDetail.Student.FirstName + " " + studentFeeDetail.Student.MiddleName + " " + studentFeeDetail.Student.LastName,
                 ClassName = studentFeeDetail.Class.ClassName,
@@ -82,12 +81,28 @@ namespace API.LABURNUM.COM.Component
                 TotalPayableAmount = (studentFeeDetail.MonthlyFee + studentFeeDetail.LateFee + studentFeeDetail.TransportFee.GetValueOrDefault()) - studentFeeDetail.DiscountAmount,
                 AcademicYearId = studentFeeDetail.AcademicYearId,
                 AcademicYear = studentFeeDetail.AcademicYearTable.StartYear + "-" + studentFeeDetail.AcademicYearTable.EndYear,
-                ChequeBounceRemarks = studentFeeDetail.ChequeBounceRemarks
-
+                ChequeBounceRemarks = studentFeeDetail.ChequeBounceRemarks,
+                StudentAdmissionNumber = studentFeeDetail.Student.AdmissionNumber,
+                MonthName = studentFeeDetail.PayForTheMonth.GetValueOrDefault() != 0 ? studentFeeDetail.Month.MonthName : "",
+                PayForTheMonth = studentFeeDetail.PayForTheMonth.GetValueOrDefault(),
             };
             if (studentFeeDetail.ChequeStatusMaster != null)
             {
                 dtoStudentFeeDetail.ChequeStatusName = studentFeeDetail.ChequeStatusMaster.TextToDisplay;
+            }
+            if (studentFeeDetail.ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.BOUNCE))
+            {
+                dtoStudentFeeDetail.LastPendingFee = dtoStudentFeeDetail.PendingFee.GetValueOrDefault() + dtoStudentFeeDetail.ChequePaidAmount + Component.Constants.DEFAULTVALUE.CHEQUEBOUNCEPANELTY;
+                dtoStudentFeeDetail.BounceChequeAmount = dtoStudentFeeDetail.ChequePaidAmount;
+                dtoStudentFeeDetail.BounceChequeNumber = dtoStudentFeeDetail.ChequeNumber;
+                dtoStudentFeeDetail.BounceChequeBankName = dtoStudentFeeDetail.ChequeBankName;
+                dtoStudentFeeDetail.ChequeStatusName = dtoStudentFeeDetail.ChequeStatusName;
+                dtoStudentFeeDetail.BounceChequeDate = dtoStudentFeeDetail.ChequeDate.GetValueOrDefault();
+                dtoStudentFeeDetail.BounceChequePanelty = Component.Constants.DEFAULTVALUE.CHEQUEBOUNCEPANELTY;
+            }
+            else
+            {
+                dtoStudentFeeDetail.LastPendingFee = dtoStudentFeeDetail.PendingFee.GetValueOrDefault();
             }
             return dtoStudentFeeDetail;
         }
