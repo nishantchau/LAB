@@ -1158,7 +1158,7 @@
     <Property Name="LateFee" Type="float" Nullable="false" />
     <Property Name="TransportFee" Type="float" />
     <Property Name="PendingFee" Type="float" />
-    <Property Name="PayForTheMonth" Type="bigint" Nullable="false" />
+    <Property Name="PayForTheMonth" Type="bigint" />
     <Property Name="DiscountAmount" Type="float" Nullable="false" />
     <Property Name="DiscountRemarks" Type="nvarchar" />
     <Property Name="CollectedById" Type="bigint" Nullable="false" />
@@ -2491,7 +2491,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_StudentFeeDetail_Month">
-    <End Role="Month" Type="LaburnumModel.Store.Month" Multiplicity="1" />
+    <End Role="Month" Type="LaburnumModel.Store.Month" Multiplicity="0..1" />
     <End Role="StudentFeeDetail" Type="LaburnumModel.Store.StudentFeeDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Month">
