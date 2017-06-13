@@ -3702,6 +3702,8 @@ function GeneratePendingFeeReceipt(id) {
 
 function OnSearchPendingFeeReportBegin() {
     try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
         if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class.")) { }
         else { return false; }
         if (Validate.IntValueValidate("ddlSection", _MESSAGEDIVID, "Please Select A Section.")) { }
