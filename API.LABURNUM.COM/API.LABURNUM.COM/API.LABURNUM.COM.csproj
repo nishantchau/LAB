@@ -304,6 +304,7 @@
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\FeeController.cs" />
     <Compile Include="Controllers\FeeReportingController.cs" />
+    <Compile Include="Controllers\FeeReportsController.cs" />
     <Compile Include="Controllers\HomeWorkController.cs" />
     <Compile Include="Controllers\LateFeePaneltyMasterController.cs" />
     <Compile Include="Controllers\LoginActivityController.cs" />

@@ -22,6 +22,8 @@ namespace API.LABURNUM.COM.Controllers
                 {
                     CollectedById = model.CollectedById,
                     AcademicYearId = model.AcademicYearId,
+                    DiscountAmount = model.DiscountAmount,
+                    DiscountRemarks = model.DiscountRemarks,
                     StudentId = model.StudentId,
                     ClassId = model.ClassId,
                     SectionId = model.SectionId,
@@ -38,7 +40,7 @@ namespace API.LABURNUM.COM.Controllers
                 {
                     sendmail(studentFeeDetailsId);
                 }
-                
+
                 return studentFeeDetailsId;
             }
             else
