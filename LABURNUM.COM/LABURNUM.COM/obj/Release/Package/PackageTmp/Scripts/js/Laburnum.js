@@ -1400,6 +1400,7 @@ function OnAddStudentFeeBegin() {
         }
     }
     DisplayLoader(_LOADERDIVID);
+    Disablebutton("btnAdd");
 }
 
 function OnAddStudentFeeSuccess(data) {
@@ -1413,7 +1414,7 @@ function OnAddStudentFeeSuccess(data) {
         var html = "<button id='btnPrint' type='button' class='btn btn-default btn-adeptsubmit btn-adeptsubmitfirst' onclick=GenerateReceipt(" + data.id + ",'true') data-toggle='modal' data-target='#myModal'>Generate Receipt</button>";
         SetHtml("btndiv", html);
     }
-    if (data.code != 0) { Enablebutton("btnSubmit"); Enablebutton("btnClose"); }
+    if (data.code != 0) { Enablebutton("btnAdd"); Enablebutton("btnClose"); }
 }
 
 function OnAddFeeReady() {
@@ -1951,6 +1952,7 @@ function PayMonthlyFee(sid, cid, secid, adfId, routeid, counter) {
 function OnPayMonthlyFeeIndexReady() {
     //CalculatePayableAmount();
     //ShowHideAnnualFee();
+    ShowHideAnnualFee();
     CreateDatePicker("txtChequeDate");
 }
 
@@ -2046,7 +2048,7 @@ function OnPayMonthlyFeeBegin() {
             else { return false; }
             if (Validate.StringValueValidate("txtChequeNumber", _POPUPMESSAGEDIVID, "Please Enter Cheque Number.")) { }
             else { return false; }
-            if (Validate.StringValueValidate("txtChequeDate", _MESSAGEDIVID, "Please Select Cheque Date.")) { }
+            if (Validate.StringValueValidate("txtChequeDate", _POPUPMESSAGEDIVID, "Please Select Cheque Date.")) { }
             else { return false; }
             if (Validate.IntValueValidate("ddlBank", _POPUPMESSAGEDIVID, "Please Select A Bank.")) { }
             else { return false; }
@@ -3646,7 +3648,7 @@ function OnPayPendingFeeBegin() {
                 else { return false; }
                 if (Validate.StringValueValidate("txtChequeNumber", _POPUPMESSAGEDIVID, "Please Enter Cheque Number.")) { }
                 else { return false; }
-                if (Validate.StringValueValidate("txtChequeDate", _MESSAGEDIVID, "Please Select Cheque Date.")) { }
+                if (Validate.StringValueValidate("txtChequeDate", _POPUPMESSAGEDIVID, "Please Select Cheque Date.")) { }
                 else { return false; }
                 if (Validate.IntValueValidate("ddlBank", _POPUPMESSAGEDIVID, "Please Select A Bank.")) { }
                 else { return false; }
@@ -3671,7 +3673,7 @@ function OnPayPendingFeeSuccess(data) {
         if (data.code != 0) { Enablebutton("btnSubmit"); }
         FillSuccessResultMSG(data, _POPUPMESSAGEDIVID, "Paid Successfully.", "Failed To Pay Please Try Again Later.");
         if (data.code == 0) {
-            var html = "<button id='btnPrint' type='button' class='btn btn-default btn-adeptsubmit btn-adeptsubmitfirst' onclick=GenerateReceipt(" + data.id + ") data-toggle='modal' data-target='#myModal'>Generate Receipt</button>";
+            var html = "<button id='btnPrint' type='button' class='btn btn-default btn-adeptsubmit btn-adeptsubmitfirst' onclick=GeneratePendingFeeReceipt(" + data.id + ") data-toggle='modal' data-target='#myModal'>Generate Receipt</button>";
             SetHtml("btndiv", html);
         }
         if (data.code != 0) { Enablebutton("btnSubmit"); Enablebutton("btnClose"); }
@@ -3682,7 +3684,7 @@ function OnPayPendingFeeSuccess(data) {
 
 function OnPayPendingFeeIndexReady() {
     try {
-
+        CreateDatePicker("txtChequeDate");
     } catch (e) {
         MyAlert("OnPayPendingFeeIndexReady : " + e);
     }
@@ -3694,6 +3696,39 @@ function GeneratePendingFeeReceipt(id) {
         FillViewInModelDiv(url, "myModal");
     }
     catch (e) {
-        MyAlert("GenerateReceipt : " + e);
+        MyAlert("GeneratePendingFeeReceipt : " + e);
+    }
+}
+
+function OnSearchPendingFeeReportBegin() {
+    try {
+        if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class.")) { }
+        else { return false; }
+        if (Validate.IntValueValidate("ddlSection", _MESSAGEDIVID, "Please Select A Section.")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnSearchPendingFeeReportBegin : " + e);
+    }
+}
+
+function OnSearchPendingFeeReportSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchPendingFeeReportSuccess : " + e);
+    }
+}
+
+function OnPendingFeeReportIndexReady() {
+    try {
+        BindSectionsDropdownByClass();
+    } catch (e) {
+        MyAlert("OnPendingFeeReportIndexReady : " + e);
     }
 }

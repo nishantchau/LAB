@@ -42,8 +42,9 @@ else
                             <tr>
                                 <th>S.No.</th>
                                 @*<th>Admission Type</th>*@
-                                <th>Class Name</th>
-                                <th>Section Name</th>
+                                <th>Adm. No.</th>
+                                <th>Class</th>
+                                 <th>Section</th>
                                 <th>Student Name</th>
                                 <th>Father Name</th>
                                 <th>Cash Paid Amount</th>
@@ -63,8 +64,9 @@ else
                                     {<td>New Admission</td> }
                                     else
                                     {<td>Re-Admission</td> }*@
-                                    <td style="width: 20%;">@item.ClassName</td>
-                                    <td style="width: 23%;">@item.SectionName</td>
+                                    <td style="width: 10%;">@item.StudentAdmissionNumber</td>
+                                    <td style="width: 10%;">@item.ClassName</td>
+                                    <td style="width: 10%;">@item.SectionName</td>
                                     <td style="width: 19%;">@item.StudentName</td>
                                     <td style="width: 19%;">@item.FatherName</td>
                                     <td style="width: 19%;">@item.CashPaidAmount</td>
@@ -85,19 +87,19 @@ else
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="9" class="text-right"><b>Total Cash Received Amount</b></td>
+                                <td colspan="10" class="text-right"><b>Total Cash Received Amount</b></td>
                                 <td><b>@Model[0].TotalCashPaidAmount</b></td>
                             </tr>
                             <tr>
-                                <td colspan="9" class="text-right"><b>Total Cheque Received Amount</b></td>
+                                <td colspan="10" class="text-right"><b>Total Cheque Received Amount</b></td>
                                 <td><b>@Model[0].TotalChequePaidAmount</b></td>
                             </tr>
                             <tr>
-                                <td colspan="9" class="text-right"><b>Total Discount Given</b></td>
+                                <td colspan="10" class="text-right"><b>Total Discount Given</b></td>
                                 <td><b>@Model[0].TotalDiscountAmount</b></td>
                             </tr>
                             <tr>
-                                <td colspan="9" class="text-right"><b>Grand Total</b></td>
+                                <td colspan="10" class="text-right"><b>Grand Total</b></td>
                                 <td><b>@Model[0].TotalEarning</b></td>
                             </tr>
                         </tfoot>
