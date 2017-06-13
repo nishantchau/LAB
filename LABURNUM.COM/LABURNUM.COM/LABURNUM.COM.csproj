@@ -596,6 +596,8 @@
     <Content Include="Views\StudentFee\SearchPendingFeeIndex.cshtml" />
     <Content Include="Views\AjaxRequest\PayPendingFee.cshtml" />
     <Content Include="Views\AjaxRequest\GeneratePendingFeeReceipt.cshtml" />
+    <Content Include="Views\Reporting\SearchPendingFeeReport.cshtml" />
+    <Content Include="Views\Reporting\SearchPendingFeeReportIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

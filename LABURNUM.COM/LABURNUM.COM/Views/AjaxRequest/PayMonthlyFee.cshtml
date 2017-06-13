@@ -216,7 +216,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    @Html.TextBoxFor(x => x.ChequeNumber, new { @id = "txtChequeNumber", onkeypress = "return isNumber(event)", @autocomplete = "Off", @class = "ToReset" })
+                                    @Html.TextBoxFor(x => x.ChequeNumber, new { @id = "txtChequeNumber", onkeypress = "return isNumber(event)", @autocomplete = "Off", @class = "ToReset", @maxlength = "6"  })
                                 </div>
                             </div>
                         </div>

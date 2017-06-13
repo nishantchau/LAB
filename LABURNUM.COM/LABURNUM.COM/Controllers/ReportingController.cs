@@ -103,5 +103,36 @@ namespace LABURNUM.COM.Controllers
             }
         }
 
+        public ActionResult SearchPendingFeeReportIndex()
+        {
+            DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model = new DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel();
+            model.Classes = new Component.Class().GetActiveClasses();
+            //model.Sections = new Component.Section().GetActiveSections();
+            return View(model);
+        }
+
+        public ActionResult SearchPendingFeeReport(DTO.LABURNUM.COM.FeeReportingModel model)
+        {
+            try
+            {
+                model.ApiClientModel = new Component.Common().GetApiClientModel();
+                HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("FeeReports", "SearchPendingFee", model);
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    DTO.LABURNUM.COM.FeeRepoting.FeeReportResponseModel dbFeeReportingResult = JsonConvert.DeserializeObject<DTO.LABURNUM.COM.FeeRepoting.FeeReportResponseModel>(data);
+                    string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Reporting/SearchPendingFeeReport.cshtml", dbFeeReportingResult);
+                    return Json(new { code = 0, message = "success", result = html });
+                }
+                else
+                {
+                    return Json(new { code = -1, message = "failed" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { code = -2, message = "failed" });
+            }
+        }
     }
 }

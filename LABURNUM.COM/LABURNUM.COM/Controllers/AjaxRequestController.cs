@@ -311,7 +311,14 @@ namespace LABURNUM.COM.Controllers
                         }
 
                     }
-                    model.TotalPayableAmount = model.MonthlyFee + model.TransportFee.GetValueOrDefault() + model.LateFee + model.LastPendingFee;
+                    if (model.PayForTheMonth == 6)
+                    {
+                        model.TotalPayableAmount = model.MonthlyFee + model.LateFee + model.LastPendingFee;
+                    }
+                    else
+                    {
+                        model.TotalPayableAmount = model.MonthlyFee + model.LateFee + model.LastPendingFee + model.TransportFee.GetValueOrDefault();
+                    }
                     model.Banks = new Component.Bank().GetAllActiveBank();
                     string html = new LABURNUM.COM.Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/AjaxRequest/PayMonthlyFee.cshtml", model);
                     return Json(new { code = 0, message = "success", result = html });
