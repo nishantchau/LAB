@@ -1041,8 +1041,8 @@ function OnUpdateStudentBegin() {
         else { return false; }
         //if (Validate.StringValueValidate("txtMiddleName", "divMessage", "Plese Enter Middle Name.")) { }
         //else { return false; }
-        if (Validate.StringValueValidate("txtLastName", "divMessage", "Plese Enter Last Name.")) { }
-        else { return false; }
+       // if (Validate.StringValueValidate("txtLastName", "divMessage", "Plese Enter Last Name.")) { }
+        //else { return false; }
         if (Validate.StringValueValidate("txtMobile", "divMessage", "Plese Enter Mobile Number.")) { }
         else { return false; }
         //if (Validate.StringValueValidate("txtLandline", "divMessage", "Plese Enter Landline Number.")) { }
@@ -3702,6 +3702,8 @@ function GeneratePendingFeeReceipt(id) {
 
 function OnSearchPendingFeeReportBegin() {
     try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
         if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class.")) { }
         else { return false; }
         if (Validate.IntValueValidate("ddlSection", _MESSAGEDIVID, "Please Select A Section.")) { }
