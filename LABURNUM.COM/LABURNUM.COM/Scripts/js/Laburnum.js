@@ -1041,8 +1041,8 @@ function OnUpdateStudentBegin() {
         else { return false; }
         //if (Validate.StringValueValidate("txtMiddleName", "divMessage", "Plese Enter Middle Name.")) { }
         //else { return false; }
-        if (Validate.StringValueValidate("txtLastName", "divMessage", "Plese Enter Last Name.")) { }
-        else { return false; }
+       // if (Validate.StringValueValidate("txtLastName", "divMessage", "Plese Enter Last Name.")) { }
+        //else { return false; }
         if (Validate.StringValueValidate("txtMobile", "divMessage", "Plese Enter Mobile Number.")) { }
         else { return false; }
         //if (Validate.StringValueValidate("txtLandline", "divMessage", "Plese Enter Landline Number.")) { }

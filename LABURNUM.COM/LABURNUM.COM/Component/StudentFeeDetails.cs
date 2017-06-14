@@ -175,7 +175,8 @@ namespace LABURNUM.COM.Component
         {
             try
             {
-                List<DTO.LABURNUM.COM.StudentFeeDetailModel> dbstudentFeeDetailsList = GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentId = studentId, ClassId = classId, SectionId = sectionId }).Where(x => x.MonthlyFee == 0).ToList();
+
+                List<DTO.LABURNUM.COM.StudentFeeDetailModel> dbstudentFeeDetailsList = GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentId = studentId, ClassId = classId }).Where(x => x.MonthlyFee == 0).ToList();
                 if (dbstudentFeeDetailsList.Count >= 1)
                 {
                     return true;
