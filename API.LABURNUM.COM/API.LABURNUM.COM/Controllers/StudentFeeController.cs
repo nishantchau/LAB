@@ -14,7 +14,6 @@ namespace API.LABURNUM.COM.Controllers
         {
             if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
             {
-                long studentfeeId = new FrontEndApi.StudentFeeApi().Add(model);
                 long cstatus = 0;
                 if (model.ChequePaidAmount > 0) { cstatus = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED); }
                 else { cstatus = model.ChequeStatus.GetValueOrDefault(); }
@@ -36,6 +35,7 @@ namespace API.LABURNUM.COM.Controllers
                     PendingFee = model.PendingFee,
                     ChequeStatus = cstatus
                 });
+                long studentfeeId = new FrontEndApi.StudentFeeApi().Add(model);
                 if (Component.Constants.DEFAULTVALUE.ISMAILSENDSTART)
                 {
                     sendmail(studentFeeDetailsId);

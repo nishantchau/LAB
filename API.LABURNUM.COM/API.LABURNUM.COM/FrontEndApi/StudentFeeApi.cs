@@ -157,9 +157,9 @@ namespace API.LABURNUM.COM.FrontEndApi
             return dbstudentFeeDetails;
         }
 
-        public long GetStudentFeeId(long classid, long sectionId, long studentId, long admissionTypeId)
+        public long GetStudentFeeId(long classid, long studentId, long admissionTypeId)
         {
-            IQueryable<API.LABURNUM.COM.StudentFee> iQuery = this._laburnum.StudentFees.Where(x => x.AdmissionTypeId == admissionTypeId && x.StudentId == studentId && x.ClassId == classid && x.SectionId == sectionId && x.IsActive == true);
+            IQueryable<API.LABURNUM.COM.StudentFee> iQuery = this._laburnum.StudentFees.Where(x => x.AdmissionTypeId == admissionTypeId && x.StudentId == studentId && x.ClassId == classid && x.IsActive == true);
             List<API.LABURNUM.COM.StudentFee> dbStudentFee = iQuery.OrderByDescending(x => x.StudentFeeId).ToList();
             if (dbStudentFee.Count == 0) { return -1; }
             //if (dbStudentFee.Count > 1) { return -1; }

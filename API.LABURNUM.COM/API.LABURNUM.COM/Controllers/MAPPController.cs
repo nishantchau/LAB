@@ -509,5 +509,14 @@ namespace API.LABURNUM.COM.Controllers
             }
             else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
         }
+
+        public dynamic SearchAllActiveSubjects(DTO.LABURNUM.COM.SubjectModel model)
+        {
+            if (new FrontEndApi.ApiClientApi().IsClientValid(model.ApiClientModel.UserName, model.ApiClientModel.Password))
+            {
+                return GetApiResponseModel("Successfully Performed.", true, new SubjectHelper(new FrontEndApi.SubjectApi().GetActiveSubject()).Map());
+            }
+            else { return GetApiResponseModel("Api Access User Name or Password Invalid.", false, null); }
+        }
     }
 }

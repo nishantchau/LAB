@@ -99,7 +99,7 @@ namespace API.LABURNUM.COM.Component
             if (student.ClassId == student.ClassStartWithId) { dtoStudent.IsNewAdmission = true; }
             if (dtoStudent.IsNewAdmission) { admissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION); }
             else { admissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.READMISSION); }
-            dtoStudent.StudentFeeId = new FrontEndApi.StudentFeeApi().GetStudentFeeId(student.ClassId, student.SectionId, student.StudentId, admissionTypeId);
+            dtoStudent.StudentFeeId = new FrontEndApi.StudentFeeApi().GetStudentFeeId(student.ClassId, student.StudentId, admissionTypeId);
             return dtoStudent;
         }
     }
