@@ -165,5 +165,6 @@ E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.CO
 E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.WebPages.xml
 E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.WebPages.Deployment.xml
 E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\bin\System.Web.WebPages.Razor.xml
+E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\obj\Debug\API.LABURNUM.COM.csprojResolveAssemblyReference.cache
 E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\obj\Debug\API.LABURNUM.COM.dll
 E:\Projects\Working Projects\SHARED PROJECT\LAB\API.LABURNUM.COM\API.LABURNUM.COM\obj\Debug\API.LABURNUM.COM.pdb
