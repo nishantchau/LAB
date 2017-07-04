@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace LABURNUM.COM.Controllers
 {
@@ -29,7 +30,8 @@ namespace LABURNUM.COM.Controllers
 
         public ActionResult TodayCollectionReport()
         {
-            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)
+             || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
             {
                 try
                 {
@@ -66,7 +68,7 @@ namespace LABURNUM.COM.Controllers
 
         public ActionResult StudentReportingIndex()
         {
-            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
             {
                 DTO.LABURNUM.COM.FeeReportingModel model = new DTO.LABURNUM.COM.FeeReportingModel();
                 model.Classes = new Component.Class().GetActiveClasses();
@@ -111,7 +113,7 @@ namespace LABURNUM.COM.Controllers
             return View(model);
         }
 
-        public ActionResult SearchPendingFeeReport(DTO.LABURNUM.COM.FeeReportingModel model)
+        public ActionResult SearchPendingFeeReport(DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model)
         {
             try
             {
@@ -132,6 +134,281 @@ namespace LABURNUM.COM.Controllers
             catch (Exception ex)
             {
                 return Json(new { code = -2, message = "failed" });
+            }
+        }
+
+        public ActionResult SearchCollectionSummaryIndex()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)
+            || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model = new DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel();
+                model.Year = new Component.Utility().GetISTDateTime().Year;
+                model.MonthId = new Component.Utility().GetISTDateTime().Month;
+                model.MonthList = new Component.Month().GetActiveMonths();
+                return View(model);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult SearchCollectionSummary(DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model)
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                try
+                {
+                    model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
+                    model.ApiClientModel = new Component.Common().GetApiClientModel();
+                    HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("FeeReports", "SearchCollectionSummary", model);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var data = response.Content.ReadAsStringAsync().Result;
+                        DTO.LABURNUM.COM.FeeRepoting.CollectionSummary dbFeeReportingResult = JsonConvert.DeserializeObject<DTO.LABURNUM.COM.FeeRepoting.CollectionSummary>(data);
+                        string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Reporting/SearchCollectionSummary.cshtml", dbFeeReportingResult);
+                        return Json(new { code = 0, message = "success", result = html });
+                    }
+                    else
+                    {
+                        return Json(new { code = -1, message = "failed" });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { code = -2, message = "failed" });
+                }
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult TodayCollectionSummary()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)
+          || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model = new DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel() { StartDate = new Component.Utility().GetISTDateTime() };
+                DTO.LABURNUM.COM.FeeRepoting.CollectionSummary dbFeeReportingResult = new Component.Reporting().SearchCollectionSummary(model);
+                return View(dbFeeReportingResult);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult SearchMonthlyDueFeeIndex()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model = new DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel();
+                model.Classes = new Component.Class().GetActiveClasses();
+                model.MonthId = new Component.Utility().GetISTDateTime().Month;
+                model.MonthList = new Component.Month().GetActiveMonths();
+                return View(model);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult SearchDueMonthlyFee(DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model)
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                try
+                {
+                    model.AcademicYearId = sessionManagement.GetAcademicYearTableId();
+                    model.ApiClientModel = new Component.Common().GetApiClientModel();
+                    HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("FeeReports", "SearchDueMonthlyFee", model);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var data = response.Content.ReadAsStringAsync().Result;
+                        DTO.LABURNUM.COM.FeeRepoting.FeeReportResponseModel dbFeeReportingResult = JsonConvert.DeserializeObject<DTO.LABURNUM.COM.FeeRepoting.FeeReportResponseModel>(data);
+                        string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Reporting/SearchDueMonthlyFee.cshtml", dbFeeReportingResult);
+                        return Json(new { code = 0, message = "success", result = html });
+                    }
+                    else
+                    {
+                        return Json(new { code = -1, message = "failed" });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { code = -2, message = "failed" });
+                }
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult SearchCollectionByDateIndex()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)
+               || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model = new DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel();
+                return View(model);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        //SearchCollectionSummaryReport
+
+        public ActionResult SearchCollectionReport(DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model)
+        {
+            try
+            {
+                List<DTO.LABURNUM.COM.StudentFeeDetailModel> dblist = new Component.StudentFeeDetails().GetCollectionReport(model);
+                string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Reporting/SearchCollectionReport.cshtml", dblist);
+
+                var serializer = new JavaScriptSerializer();
+
+                // For simplicity just use Int32's max value.
+                // You could always read the value from the config section mentioned above.
+                serializer.MaxJsonLength = Int32.MaxValue;
+
+                var resultData = new { code = 0, message = "success", result = html };
+                var result = new ContentResult
+                {
+                    Content = serializer.Serialize(resultData),
+                    ContentType = "application/json"
+                };
+                return result;
+
+                //return Json(new { code = 0, message = "success", result = result });
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -1, message = "failed", result = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Error404.cshtml", null) });
+            }
+        }
+
+        public ActionResult SearchCollectionByMonthIndex()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)
+              || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model = new DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel();
+                model.Year = new Component.Utility().GetISTDateTime().Year;
+                model.MonthId = new Component.Utility().GetISTDateTime().Month;
+                model.MonthList = new Component.Month().GetActiveMonths();
+                return View(model);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult SearchCollectionSummaryByDateIndex()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)
+               || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+            {
+                DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model = new DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel();
+                return View(model);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult SearchCollectionSummaryReport(DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model)
+        {
+            try
+            {
+                DTO.LABURNUM.COM.FeeRepoting.CollectionSummary dbFeeReportingResult = new Component.Reporting().SearchCollectionSummary(model);
+                string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Reporting/SearchCollectionSummaryReport.cshtml", dbFeeReportingResult);
+
+                var serializer = new JavaScriptSerializer();
+
+                // For simplicity just use Int32's max value.
+                // You could always read the value from the config section mentioned above.
+                serializer.MaxJsonLength = Int32.MaxValue;
+
+                var resultData = new { code = 0, message = "success", result = html };
+                var result = new ContentResult
+                {
+                    Content = serializer.Serialize(resultData),
+                    ContentType = "application/json"
+                };
+                return result;
+
+                //return Json(new { code = 0, message = "success", result = result });
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -1, message = "failed", result = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Error404.cshtml", null) });
+            }
+        }
+
+        public ActionResult TodayAttendanceSummary()
+        {
+
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)
+          || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+            {
+                DTO.LABURNUM.COM.AttendanceReporting.AttendanceSummaryReportModel model = new Component.Reporting().SearchAttendanceSummaryReport(new DTO.LABURNUM.COM.AttendanceReporting.AttendanceSummaryRequestModel() { StartDate = new Component.Utility().GetISTDateTime() });
+                return View(model);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult SearchAttendanceSummaryByDateIndex()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)
+               || sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
+            {
+                DTO.LABURNUM.COM.AttendanceReporting.AttendanceSummaryRequestModel model = new DTO.LABURNUM.COM.AttendanceReporting.AttendanceSummaryRequestModel();
+                return View(model);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult SearchAttendanceSummary(DTO.LABURNUM.COM.AttendanceReporting.AttendanceSummaryRequestModel model)
+        {
+            try
+            {
+                DTO.LABURNUM.COM.AttendanceReporting.AttendanceSummaryReportModel dblist = new Component.Reporting().SearchAttendanceSummaryReport(model);
+                string html = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Reporting/SearchAttendanceSummary.cshtml", dblist);
+
+                var serializer = new JavaScriptSerializer();
+
+                // For simplicity just use Int32's max value.
+                // You could always read the value from the config section mentioned above.
+                serializer.MaxJsonLength = Int32.MaxValue;
+
+                var resultData = new { code = 0, message = "success", result = html };
+                var result = new ContentResult
+                {
+                    Content = serializer.Serialize(resultData),
+                    ContentType = "application/json"
+                };
+                return result;
+
+                //return Json(new { code = 0, message = "success", result = result });
+            }
+            catch (Exception)
+            {
+                return Json(new { code = -1, message = "failed", result = new Component.HtmlHelper().RenderViewToString(this.ControllerContext, "~/Views/Error404.cshtml", null) });
             }
         }
     }

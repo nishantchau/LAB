@@ -108,12 +108,12 @@ namespace LABURNUM.COM.Component
         public long GetSubjectId() { return this._sessionModel.FacultyModel.SubjectId.GetValueOrDefault(); }
         public string GetSubjectName() { return this._sessionModel.FacultyModel.SubjectName; }
 
-
+        public bool GetStudentIsNewAdmission() { return this._sessionModel.StudentModel.IsNewAdmission; }
         public long GetLoginActivityId() { return this._sessionModel.LoginActivityId; }
 
         public long GetAcademicYearTableId() { return this._sessionModel.AcademicYearId; }
         public string GetAcademicYear() { return this._sessionModel.AcademicYear; }
 
-        public DateTime GetLastLoginAt() { return this._sessionModel.LastLoginAt;}
+        public DateTime GetLastLoginAt() { return this._sessionModel.LastLoginAt; }
     }
 }

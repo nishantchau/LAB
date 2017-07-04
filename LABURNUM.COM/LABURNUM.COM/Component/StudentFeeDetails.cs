@@ -237,5 +237,28 @@ namespace LABURNUM.COM.Component
             }
         }
 
+        public List<DTO.LABURNUM.COM.StudentFeeDetailModel> GetCollectionReport(DTO.LABURNUM.COM.FeeRepoting.FeeReportRequestModel model)
+        {
+            try
+            {
+                model.ApiClientModel = new LABURNUM.COM.Component.Common().GetApiClientModel();
+                HttpResponseMessage response = new LABURNUM.COM.Component.Common().GetHTTPResponse("FeeReports", "SearchCollectionReport", model);
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = response.Content.ReadAsStringAsync().Result;
+                    List<DTO.LABURNUM.COM.StudentFeeDetailModel> dbStudentFeeDetails = JsonConvert.DeserializeObject<List<DTO.LABURNUM.COM.StudentFeeDetailModel>>(data);
+                    return dbStudentFeeDetails;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
     }
 }

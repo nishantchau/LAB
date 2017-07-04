@@ -101,7 +101,9 @@ namespace LABURNUM.COM.Component
                 for (index = 0; index < latefeelmaster.Count; index++)
                 {
                     if (currentday > latefeelmaster[index].DaysAfter)
-                    { }
+                    {
+                        //if (currentday > latefeelmaster[index + 1].DaysAfter) { }
+                    }
                     else
                     {
                         if (index - 1 >= 0)
@@ -110,6 +112,8 @@ namespace LABURNUM.COM.Component
                         }
                     }
                 }
+
+                if (fineAmount == 0) { fineAmount = (latefeelmaster[index - 1].Fine * (currentday - latefeelmaster[index - 1].DaysAfter)) + (latefeelmaster[0].Fine * (latefeelmaster[index - 1].DaysAfter - latefeelmaster[index - 2].DaysAfter)); }
                 if (fineAmount < 0) { fineAmount = 0; }
                 return fineAmount;
             }

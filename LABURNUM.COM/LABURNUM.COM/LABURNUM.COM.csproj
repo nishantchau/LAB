@@ -39,7 +39,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DTO.LABURNUM.COM">
+    <Reference Include="DTO.LABURNUM.COM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DTO.LABURNUM.COM\DTO.LABURNUM.COM\bin\Debug\DTO.LABURNUM.COM.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
@@ -199,6 +200,7 @@
     <Compile Include="Component\Month.cs" />
     <Compile Include="Component\PasswordConvertor.cs" />
     <Compile Include="Component\RedirectHelperController.cs" />
+    <Compile Include="Component\Reporting.cs" />
     <Compile Include="Component\Salutation.cs" />
     <Compile Include="Component\Section.cs" />
     <Compile Include="Component\SessionManagement.cs" />
@@ -598,6 +600,21 @@
     <Content Include="Views\AjaxRequest\GeneratePendingFeeReceipt.cshtml" />
     <Content Include="Views\Reporting\SearchPendingFeeReport.cshtml" />
     <Content Include="Views\Reporting\SearchPendingFeeReportIndex.cshtml" />
+    <Content Include="Views\Reporting\SearchCollectionSummary.cshtml" />
+    <Content Include="Views\Reporting\SearchCollectionSummaryIndex.cshtml" />
+    <Content Include="Views\Reporting\TodayCollectionSummary.cshtml" />
+    <Content Include="Views\StudentFee\StudentPaidFeeIndex.cshtml" />
+    <Content Include="Views\StudentFee\StudentFeeStructure.cshtml" />
+    <Content Include="Views\Reporting\SearchMonthlyDueFeeIndex.cshtml" />
+    <Content Include="Views\Reporting\SearchDueMonthlyFee.cshtml" />
+    <Content Include="Views\Reporting\SearchCollectionReport.cshtml" />
+    <Content Include="Views\Reporting\SearchCollectionByDateIndex.cshtml" />
+    <Content Include="Views\Reporting\SearchCollectionByMonthIndex.cshtml" />
+    <Content Include="Views\Reporting\TodayAttendanceSummary.cshtml" />
+    <Content Include="Views\Reporting\SearchAttendanceSummary.cshtml" />
+    <Content Include="Views\Reporting\SearchAttendanceSummaryByDateIndex.cshtml" />
+    <Content Include="Views\Reporting\SearchCollectionSummaryByDateIndex.cshtml" />
+    <Content Include="Views\Reporting\SearchCollectionSummaryReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

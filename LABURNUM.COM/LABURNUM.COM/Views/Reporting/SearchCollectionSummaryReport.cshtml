@@ -1,0 +1,69 @@
+﻿@model DTO.LABURNUM.COM.FeeRepoting.CollectionSummary
+
+<section class="panel">
+    <header class="panel-heading text-center">
+        <strong>Collection Summary </strong>
+    </header>
+
+    <header class="panel-heading">
+        <strong>Collection Summary For the day - @Model.SearchedForDate.Day/@Model.SearchedForDate.Month/@Model.SearchedForDate.Year</strong>
+        <span class="tools pull-right">
+            <button type="button" onclick="DownloadRecord('Today Collection Summary');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+        </span>
+    </header>
+
+    <div class="panel-body" id="divTable">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover general-table responsive">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Previous</th>
+                            <th>Current</th>
+                            <th>Advance</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="width: 19%;">No. Of Receipt</th>
+                            <td style="width: 19%;">@Model.PreviousCollection.StudentCount</td>
+                            <td style="width: 19%;">@Model.CurrentCollection.StudentCount</td>
+                            <td style="width: 19%;">@Model.AdvanceCollection.StudentCount</td>
+                            <td style="width: 19%;">@Model.TotalStudentCount</td>
+                        </tr>
+                        <tr>
+                            <th style="width: 19%;">Cash Amount</th>
+                            <td style="width: 19%;">@Model.PreviousCollection.CashAmount</td>
+                            <td style="width: 19%;">@Model.CurrentCollection.CashAmount</td>
+                            <td style="width: 19%;">@Model.AdvanceCollection.CashAmount</td>
+                            <td style="width: 19%;">@Model.TotalCash</td>
+                        </tr>
+                        <tr>
+                            <th style="width: 19%;">Cheque Amount</th>
+                            <td style="width: 19%;">@Model.PreviousCollection.ChequeAmount</td>
+                            <td style="width: 19%;">@Model.CurrentCollection.ChequeAmount</td>
+                            <td style="width: 19%;">@Model.AdvanceCollection.ChequeAmount</td>
+                            <td style="width: 19%;">@Model.TotalChequeAmount</td>
+                        </tr>
+                        <tr>
+                            <th style="width: 19%;">Pending Amount</th>
+                            <td style="width: 19%;">@Model.PreviousCollection.Pending</td>
+                            <td style="width: 19%;">@Model.CurrentCollection.Pending</td>
+                            <td style="width: 19%;">@Model.AdvanceCollection.Pending</td>
+                            <td style="width: 19%;">@Model.TotalPendingAmount</td>
+                        </tr>
+                        <tr>
+                            <th style="width: 19%;">Discount Amount</th>
+                            <td style="width: 19%;">@Model.PreviousCollection.Discount</td>
+                            <td style="width: 19%;">@Model.CurrentCollection.Discount</td>
+                            <td style="width: 19%;">@Model.AdvanceCollection.Discount</td>
+                            <td style="width: 19%;">@Model.TotalDiscount</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

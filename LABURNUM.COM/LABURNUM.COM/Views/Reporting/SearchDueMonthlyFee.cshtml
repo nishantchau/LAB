@@ -1,0 +1,89 @@
+﻿@model DTO.LABURNUM.COM.FeeRepoting.FeeReportResponseModel
+
+@{int counter = 1;}
+@if (Model.StudentsList.Count == 0)
+{ 
+    <section class="panel">
+        <div class="text-center">
+            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/no-record-found.png" />
+        </div>
+    </section>
+}
+else
+{
+
+    <section class="panel">
+        <header class="panel-heading">
+            <strong>Due Month Fee </strong>
+            <span class="tools pull-right">
+                <button type="button" onclick="DownloadRecord('Pending Fee Report');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+            </span>
+        </header>
+        <div id="divTable">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-hover general-table responsive">
+                        <thead>
+                            <tr>
+                                <th width="10%">S.No.</th>
+                                <th width="10%">Adm. No.</th>
+                                <th width="15%">Student Name</th>
+                                <th width="15%">Father Name</th>
+                                <th width="10%">Fee Status</th>
+                                <th width="10%">Rec. No.</th>
+                                <th width="10%">Due Monthly Fee</th>
+                                <th width="10%">Due Trans. Fee</th>
+                                <th width="10%">Due Last Pending Fee</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DTO.LABURNUM.COM.FeeRepoting.Student item in Model.StudentsList)
+                            {
+                                <tr>
+                                    <td width="10%">@counter</td>
+                                    <td width="10%">@item.AdmissionNumber</td>
+                                    <td width="15%">@item.StudentName</td>
+                                    <td width="15%">@item.FatherName</td>
+                                    @if (@item.DueMonthlyFee.IsPaidForThisMonth)
+                                    {
+                                        <td width="10%">Paid</td>
+                                        <td width="10%">@item.DueMonthlyFee.ReceiptNumber</td>
+                                    }
+                                    else
+                                    {<td width="10%">Due</td>
+                                        <td width="10">----</td>
+                                    }
+                                    <td width="10%">@item.DueMonthlyFee.MonthFee</td>
+                                    <td width="10%">@item.DueMonthlyFee.TransportFee</td>
+                                    <td width="10%">@item.LastPaidDetails.PendingFee</td>
+                                </tr>
+                                    counter++;
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="8" style="text-align: right;"><strong>Total Due Monthly Fee</strong> </td>
+                                <td>
+                                    @Model.TotalMonthlyDueFee
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style="text-align: right;"><strong>Total Due Transport Fee</strong> </td>
+                                <td>
+                                    @Model.TotalTransportDueFee
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style="text-align: right;"><strong>Total Pending Fee</strong> </td>
+                                <td>
+                                    @Model.TotalPendingFee
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+}

@@ -18,6 +18,7 @@ namespace LABURNUM.COM.Controllers
             {
                 ClassId = sessionManagement.GetFacultyClassId(),
                 SectionId = sessionManagement.GetFacultySectionId(),
+                //Year = new Component.Utility().GetISTDateTime().Year,
             };
             if (new Component.CommonAttendance().IsAttendanceSubmittedForToday(model))
             { return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Attendance/IsAttendanceSubmitted"); }
@@ -34,6 +35,7 @@ namespace LABURNUM.COM.Controllers
              {
                  ClassId = sessionManagement.GetFacultyClassId(),
                  SectionId = sessionManagement.GetFacultySectionId(),
+                // Year = new Component.Utility().GetISTDateTime().Year,
              };
             if (new Component.CommonAttendance().IsAttendanceSubmittedForToday(model))
             {
@@ -73,6 +75,7 @@ namespace LABURNUM.COM.Controllers
             DTO.LABURNUM.COM.CommonAttendanceModel model = new DTO.LABURNUM.COM.CommonAttendanceModel();
             model.Months = new Component.Month().GetActiveMonths();
             model.MonthId = new Component.Utility().GetISTDateTime().Month;
+           // model.Year = new Component.Utility().GetISTDateTime().Year;
             return View(model);
         }
 
@@ -113,6 +116,7 @@ namespace LABURNUM.COM.Controllers
             {
                 ClassId = sessionManagement.GetFacultyClassId(),
                 SectionId = sessionManagement.GetFacultySectionId(),
+                //Year = new Component.Utility().GetISTDateTime().Year,
             };
             if (new Component.CommonAttendance().IsAttendanceSubmittedAfterLunchForToday(model))
             { return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Attendance/IsAttendanceSubmitted"); }

@@ -49,7 +49,7 @@ else
                             {
                                 <tr>
                                     <td style="width: 17%;">@counter</td>
-                                    <td>@item.PublishedOn.ToShortDateString()</td>
+                                    <td>@item.PublishedOn.Day/@item.PublishedOn.Month/@item.PublishedOn.Year</td>
                                     <td>H.O.D</td>
                                     <td style="width: 19%;">@item.Subject</td>
                                     @if (item.Attachment != null && item.Attachment != "")

@@ -1,0 +1,80 @@
+﻿@model DTO.LABURNUM.COM.AttendanceReporting.AttendanceSummaryReportModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!--breadcrumbs start -->
+        <ul class="breadcrumb">
+            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+            <li>Attendance Report</li>
+            <li class="active">Today Attendance Summary</li>
+        </ul>
+        <!--breadcrumbs end -->
+    </div>
+</div>
+
+<section class="panel">
+    <header class="panel-heading">
+        <strong>Today Attendance Summary For - @Model.DayWiseAttendanceSummaries[0].ForDate.Day/@Model.DayWiseAttendanceSummaries[0].ForDate.Month/@Model.DayWiseAttendanceSummaries[0].ForDate.Year</strong>
+        <span class="tools pull-right">
+            <button type="button" onclick="DownloadRecord('Today Attendance Summary');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+        </span>
+    </header>
+    <div class="panel-body" id="divTable">
+        <div class="table-responsive">
+            <table class="table table-hover general-table responsive">
+                <thead>
+                    <tr>
+                        <th width="2%">S.No.</th>
+                        <th width="3%">Class</th>
+                        <th width="3%">Section</th>
+                        <th width="3%">Students</th>
+                        <th width="5%">Mor. Present</th>
+                        <th width="5%">Mor. Absent</th>
+                        <th width="5%">Lunch Present</th>
+                        <th width="5%">Lunch Absent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int counter = 1;}
+                    @foreach (DTO.LABURNUM.COM.AttendanceReporting.ClassModelForAttendance item in @Model.DayWiseAttendanceSummaries[0].ClassModelsForAttendance)
+                    {
+                        <tr>
+                            <td width="2%">@counter</td>
+                            <td width="1%">@item.ClassName</td>
+                            <td width="3%"></td>
+                            <td width="1%">@item.StudentInClass</td>
+                            <td width="5%">@item.MorningPresentStudentInClass</td>
+                            <td width="5%">@item.MorningAbsentStudentInClass</td>
+                            <td width="5%">@item.LunchPresentStudentInClass</td>
+                            <td width="5%">@item.LunchAbsentStudentInClass</td>
+                        </tr>
+                        foreach (DTO.LABURNUM.COM.AttendanceReporting.SectionModelForAttendance item1 in item.SectionModelsForAttendance)
+                        {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>@item1.SectionName</td>
+                            <td>@item1.ClassAttendanceStatus.TotalStudents</td>
+                            <td>@item1.ClassAttendanceStatus.MorningPresentStudentCount</td>
+                            <td>@item1.ClassAttendanceStatus.MorningAbsentStudentCount</td>
+                            <td>@item1.ClassAttendanceStatus.LunchPresentStudentCount</td>
+                            <td>@item1.ClassAttendanceStatus.LunchAbsentStudentCount</td>
+                        </tr>
+                        }
+                        counter++;
+                    }
+                    <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <td></td>
+                        <td>@Model.TotalStudentsInSchool</td>
+                        <td>@Model.TotalStudentsMorningPresentCount</td>
+                        <td>@Model.TotalStudentsMorningAbsentCount</td>
+                        <td>@Model.TotalStudentsLunchPresentCount</td>
+                        <td>@Model.TotalStudentsLunchAbsentCount</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

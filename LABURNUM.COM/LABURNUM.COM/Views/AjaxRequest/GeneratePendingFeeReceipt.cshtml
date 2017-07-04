@@ -15,124 +15,128 @@
         <div class="modal-body">
             <div id="divPrint" style="min-height: 500px; margin: 2px 10px">
                 <div style="padding-right: 15px; padding-left: 15px;">
-                    <div style="float: left; margin-top: 9px;">
-                        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" alt="" style="margin:auto auto;" height="70" width="120"/>
-                    </div>
-                    <div style="font-family: 'Roboto', sans-serif; width: 30%; font-size: 1.3em; color: #fff; padding: 10px; text-transform: uppercase; letter-spacing: 0.5em; background: #259d63; margin: auto auto; margin-top: 10px; text-align: center;">
-                        Fee Receipt
-                    </div>
-                    <div style="float: right; width: 30%; margin-top: -73px;">
-                        <div style="text-align: right; width: 100%;">School Copy</div>
-                        <div style="text-align: right; width: 100%;">Dated : @Model.CreatedOn.Day-@Model.CreatedOn.Month-@Model.CreatedOn.Year</div>
-                        <div style="text-align: right; width: 100%;">Receipt No. : @Model.StudentFeeDetailId</div>
-                    </div>
-                    <div style="padding: 10px 5px 10px 5px; margin: auto auto; width: 100%; height: 370px;">
-                        <div style="width: 100%; font-size: 0.9em; text-align: left !important; margin-top: 5px; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
-                            <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
-                                <thead>
-                                    <tr>
-                                        <th style="text-align: center; border: 2px solid black;">Name : @Model.StudentName S/o @Model.FatherName</th>
-                                        <th style="text-align: center; border: 2px solid black;">Adm. No. : @Model.StudentAdmissionNumber</th>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center; border: 2px solid black;">Class : @Model.ClassName</th>
-                                        <th style="text-align: center; border: 2px solid black;">Section : @Model.SectionName</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            @*<a style="font-family: 'Yellowtail', cursive; color: #2B2B2B; font-size: 2.2em;" href="#">T</a>hanks For Receiving Fee From <strong>@Model.StudentName S/o @Model.FatherName.</strong>
+                    @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
+                    {
+                        <div style="float: left; margin-top: 9px;">
+                            <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" alt="" style="margin:auto auto;" height="70" width="120"/>
+                        </div>
+                        <div style="font-family: 'Roboto', sans-serif; width: 30%; font-size: 1.3em; color: #fff; padding: 10px; text-transform: uppercase; letter-spacing: 0.5em; background: #259d63; margin: auto auto; margin-top: 10px; text-align: center;">
+                            Fee Receipt
+                        </div>
+                        <div style="float: right; width: 30%; margin-top: -73px;">
+                            <div style="text-align: right; width: 100%;">School Copy</div>
+                            <div style="text-align: right; width: 100%;">Dated : @Model.CreatedOn.Day-@Model.CreatedOn.Month-@Model.CreatedOn.Year</div>
+                            <div style="text-align: right; width: 100%;">Receipt No. : @Model.StudentFeeDetailId</div>
+                        </div>
+                        <div style="padding: 10px 5px 10px 5px; margin: auto auto; width: 100%; height: 370px;">
+                            <div style="width: 100%; font-size: 0.9em; text-align: left !important; margin-top: 5px; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
+                                <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center; border: 2px solid black;">Name : @Model.StudentName </th>
+                                            <th style="text-align: center; border: 2px solid black;">Pay Month : @Model.MonthName</th>
+                                            <th style="text-align: center; border: 2px solid black;">Adm. No. : @Model.StudentAdmissionNumber</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center; border: 2px solid black;">Father Name : @Model.FatherName</th>
+                                            <th style="text-align: center; border: 2px solid black;">Class : @Model.ClassName</th>
+                                            <th style="text-align: center; border: 2px solid black;">Section : @Model.SectionName</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                @*<a style="font-family: 'Yellowtail', cursive; color: #2B2B2B; font-size: 2.2em;" href="#">T</a>hanks For Receiving Fee From <strong>@Model.StudentName S/o @Model.FatherName.</strong>
                                     Total Paid Amount <strong>@(Model.CashPaidAmount + Model.ChequePaidAmount) </strong>Against Payable Amount <strong>@(Model.TotalPayableAmount + Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty) </strong>For the M/o @Model.MonthName <strong>@Model.CreatedOn.ToShortDateString() </strong>For Class <strong>@Model.ClassName</strong> & Section <strong>@Model.SectionName</strong>.*@
-                            <table style="width: 50%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
-                                <thead style="border: 1px dotted green;">
-                                    <tr>
-                                        <th colspan="3" style="text-align: center; border: 2px solid black;">Fee Details</th>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center; border: 2px solid black;">S.No.</th>
-                                        <th style="text-align: center; border: 2px solid black;">Desc.</th>
-                                        <th style="text-align: center; border: 2px solid black;">Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">1.</td>
-                                        <td style="text-align: center; border: 2px solid black;">Last Pending Fee</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.LastPendingFee</td>
-                                    </tr>
-                                    <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">2.</td>
-                                        <td style="text-align: center; border: 2px solid black;">Bounce Cheque Amount</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.BounceChequeAmount</td>
-                                    </tr>
-                                    <tr style="border: 1px dotted green;">
-                                        <td style="text-align: center; border: 2px solid black;">3.</td>
-                                        <td style="text-align: center; border: 2px solid black;">Cheque Bounce Panelty</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.BounceChequePanelty</td>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center; border: 2px solid black;" colspan="2">Total Payable Amount</th>
-                                        <td style="text-align: center; border: 2px solid black;">@(Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty)</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table style="width: 50%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
-                                <thead>
-                                    <tr>
-                                        <th colspan="3" style="text-align: center; border: 2px solid black;">Payment Details</th>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center; border: 2px solid black;">S.No.</th>
-                                        <th style="text-align: center; border: 2px solid black;">Mode Of Payment</th>
-                                        <th style="text-align: center; border: 2px solid black;">Paid Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="text-align: center; border: 2px solid black;">1</td>
-                                        <td style="text-align: center; border: 2px solid black;">Cash</td>
-                                        <td style="text-align: center; border: 2px solid black;">@Model.CashPaidAmount</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; border: 2px solid black;">2</td>
-                                        @if (Model.ChequeDate.GetValueOrDefault().Year == 0001)
-                                        {<td style="text-align: center;">Cheque - ( N/A & N/A)</td> }
-                                        else
-                                        {
-                                            <td style="text-align: center; border: 2px solid black;">Cheque - (@Model.ChequeNumber & @Model.ChequeDate.GetValueOrDefault().ToShortDateString())</td>}
-                                        <td style="text-align: center; border: 2px solid black;">@Model.ChequePaidAmount</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; border: 2px solid black;">&nbsp;</td>
-                                        <td style="text-align: center; border: 2px solid black;">&nbsp; </td>
-                                        <td style="text-align: center; border: 2px solid black;">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center; border: 2px solid black;" colspan="2">Total Paid Amount</th>
-                                        <td style="text-align: center; border: 2px solid black;">@(Model.CashPaidAmount + Model.ChequePaidAmount)</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
-                                <thead>
-                                    <tr>
-                                        <th colspan="3" style="text-align: center; border: 2px solid black;">Balance As on Today</th>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center; border: 2px solid black;">Balance Amount</th>
-                                        <th style="text-align: center; border: 2px solid black;">@Model.PendingFee</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            <div style="width: 50%; float: left; margin-top: 5px;">
-                                <p>For the More Information, please visit:</p>
-                                <span style="color: #256546;">www.laburnumpublicschool.com</span>
-                            </div>
-                            <div style="width: 50%; float: left; text-align: right; margin-top: 5px;">
-                                <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/lps-signature.png" alt="LPS Signature" />
+                                <table style="width: 50%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
+                                    <thead style="border: 1px dotted green;">
+                                        <tr>
+                                            <th colspan="3" style="text-align: center; border: 2px solid black;">Fee Details</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center; border: 2px solid black;">S.No.</th>
+                                            <th style="text-align: center; border: 2px solid black;">Desc.</th>
+                                            <th style="text-align: center; border: 2px solid black;">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border: 1px dotted green;">
+                                            <td style="text-align: center; border: 2px solid black;">1.</td>
+                                            <td style="text-align: center; border: 2px solid black;">Last Pending Fee</td>
+                                            <td style="text-align: center; border: 2px solid black;">@Model.LastPendingFee</td>
+                                        </tr>
+                                        <tr style="border: 1px dotted green;">
+                                            <td style="text-align: center; border: 2px solid black;">2.</td>
+                                            <td style="text-align: center; border: 2px solid black;">Bounce Cheque Amount</td>
+                                            <td style="text-align: center; border: 2px solid black;">@Model.BounceChequeAmount</td>
+                                        </tr>
+                                        <tr style="border: 1px dotted green;">
+                                            <td style="text-align: center; border: 2px solid black;">3.</td>
+                                            <td style="text-align: center; border: 2px solid black;">Cheque Bounce Panelty</td>
+                                            <td style="text-align: center; border: 2px solid black;">@Model.BounceChequePanelty</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center; border: 2px solid black;" colspan="2">Total Payable Amount</th>
+                                            <td style="text-align: center; border: 2px solid black;">@(Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table style="width: 50%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3" style="text-align: center; border: 2px solid black;">Payment Details</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center; border: 2px solid black;">S.No.</th>
+                                            <th style="text-align: center; border: 2px solid black;">Mode Of Payment</th>
+                                            <th style="text-align: center; border: 2px solid black;">Paid Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="text-align: center; border: 2px solid black;">1</td>
+                                            <td style="text-align: center; border: 2px solid black;">Cash</td>
+                                            <td style="text-align: center; border: 2px solid black;">@Model.CashPaidAmount</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: center; border: 2px solid black;">2</td>
+                                            @if (Model.ChequeDate.GetValueOrDefault().Year == 0001)
+                                            {<td style="text-align: center;">Cheque - (N/A & N/A)</td> }
+                                            else
+                                            {
+                                                <td style="text-align: center; border: 2px solid black;">Cheque - (@Model.ChequeNumber & @Model.ChequeDate.GetValueOrDefault().Day/@Model.ChequeDate.GetValueOrDefault().Month/@Model.ChequeDate.GetValueOrDefault().Year)</td>}
+                                            <td style="text-align: center; border: 2px solid black;">@Model.ChequePaidAmount</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: center; border: 2px solid black;">&nbsp;</td>
+                                            <td style="text-align: center; border: 2px solid black;">&nbsp; </td>
+                                            <td style="text-align: center; border: 2px solid black;">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center; border: 2px solid black;" colspan="2">Total Paid Amount</th>
+                                            <td style="text-align: center; border: 2px solid black;">@(Model.CashPaidAmount + Model.ChequePaidAmount)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3" style="text-align: center; border: 2px solid black;">Balance As on Today</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center; border: 2px solid black;">Balance Amount</th>
+                                            <th style="text-align: center; border: 2px solid black;">@Model.PendingFee</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <div style="width: 50%; float: left; margin-top: 5px;">
+                                    <p>For the More Information, please visit:</p>
+                                    <span style="color: #256546;">www.laburnumpublicschool.com</span>
+                                </div>
+                                <div style="width: 50%; float: left; text-align: right; margin-top: 5px;">
+                                    <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/lps-signature.png" alt="LPS Signature" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    }
                     <div style="float: left; margin-top: 9px;">
                         <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/logo.png" alt="" style="margin:auto auto;" height="70" width="120"/>
                     </div>
@@ -147,16 +151,18 @@
                     <div style="padding: 10px 5px 10px 5px; margin: auto auto; width: 100%; height: 370px;">
                         <div style="width: 100%; font-size: 0.9em; text-align: left !important; margin-top: 5px; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
                             <table style="width: 100%; border-collapse: collapse; border-spacing: 0px; border: 2px solid black; font-family: 'Roboto', sans-serif; float: left; color: #2B2B2B;">
-                                <thead>
-                                    <tr>
-                                        <th style="text-align: center; border: 2px solid black;">Name : @Model.StudentName S/o @Model.FatherName</th>
-                                        <th style="text-align: center; border: 2px solid black;">Adm. No. : @Model.StudentAdmissionNumber</th>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center; border: 2px solid black;">Class : @Model.ClassName</th>
-                                        <th style="text-align: center; border: 2px solid black;">Section : @Model.SectionName</th>
-                                    </tr>
-                                </thead>
+                                 <thead>
+                                        <tr>
+                                            <th style="text-align: center; border: 2px solid black;">Name : @Model.StudentName </th>
+                                            <th style="text-align: center; border: 2px solid black;">Pay Month : @Model.MonthName</th>
+                                            <th style="text-align: center; border: 2px solid black;">Adm. No. : @Model.StudentAdmissionNumber</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center; border: 2px solid black;">Father Name : @Model.FatherName</th>
+                                            <th style="text-align: center; border: 2px solid black;">Class : @Model.ClassName</th>
+                                            <th style="text-align: center; border: 2px solid black;">Section : @Model.SectionName</th>
+                                        </tr>
+                                    </thead>
                             </table>
                             @*<a style="font-family: 'Yellowtail', cursive; color: #2B2B2B; font-size: 2.2em;" href="#">T</a>hanks For Receiving Fee From <strong>@Model.StudentName S/o @Model.FatherName.</strong>
                                     Total Paid Amount <strong>@(Model.CashPaidAmount + Model.ChequePaidAmount) </strong>Against Payable Amount <strong>@(Model.TotalPayableAmount + Model.LastPendingFee + Model.BounceChequeAmount + Model.BounceChequePanelty) </strong>For the M/o @Model.MonthName <strong>@Model.CreatedOn.ToShortDateString() </strong>For Class <strong>@Model.ClassName</strong> & Section <strong>@Model.SectionName</strong>.*@
@@ -217,7 +223,7 @@
                                         {<td style="text-align: center;">Cheque - ( N/A & N/A)</td> }
                                         else
                                         {
-                                            <td style="text-align: center; border: 2px solid black;">Cheque - (@Model.ChequeNumber & @Model.ChequeDate.GetValueOrDefault().ToShortDateString())</td>}
+                                            <td style="text-align: center; border: 2px solid black;">Cheque - (@Model.ChequeNumber & @Model.ChequeDate.GetValueOrDefault().Day/@Model.ChequeDate.GetValueOrDefault().Month/@Model.ChequeDate.GetValueOrDefault().Year)</td>}
                                         <td style="text-align: center; border: 2px solid black;">@Model.ChequePaidAmount</td>
                                     </tr>
                                     <tr>
@@ -258,7 +264,7 @@
             </div>
         </div>
         <div style="text-align: center;">
-            <button type="button" class="btn btn-default" value="Print" onclick="PrintElem('#divPrint')" style="width: 20%; margin: 15px 0;">PRINT <i class="fa fa-print" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-primary" value="Print" onclick="PrintElem('#divPrint')" style="width: 20%; margin: 15px 0;">PRINT <i class="fa fa-print" aria-hidden="true"></i></button>
         </div>
     </div>
 </div>

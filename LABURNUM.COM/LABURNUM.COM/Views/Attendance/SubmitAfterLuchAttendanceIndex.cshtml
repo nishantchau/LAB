@@ -36,7 +36,7 @@ else
             Submit After Lunch Attendance For Today
         </header>
         <header class="panel-heading">
-            Date : @Model[0].MorningAttendanceDate.ToShortDateString()
+            Date : @Model[0].MorningAttendanceDate.Day/@Model[0].MorningAttendanceDate.Month/@Model[0].MorningAttendanceDate.Year
             @*<span class="tools pull-right">
             <button type="button" onclick="DownloadRecord('Today(s) Attendance List');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
         </span>*@

@@ -36,14 +36,14 @@
 
                 <div class="col-sm-4 col-md-4 col-xs-12">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <span class="score_adept">Student Name : </span>
                         </div>
                         <div class="col-md-7">
-                            <div class="form-group">
+                            <span class="score_adept">
                                 @Html.DisplayFor(x => x.StudentName)
                                 @Html.HiddenFor(x => x.StudentId, new { @id = "txtStudentId", @readonly = "yes" })
-                            </div>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -54,10 +54,10 @@
                             <span class="score_adept">Class Name : </span>
                         </div>
                         <div class="col-md-7">
-                            <div class="form-group">
+                            <span class="score_adept">
                                 @Html.DisplayFor(x => x.ClassName)
                                 @Html.HiddenFor(x => x.ClassId, new { @id = "txtClassId", @readonly = "yes" })
-                            </div>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -67,9 +67,9 @@
                             <span class="score_adept">Section Name : </span>
                         </div>
                         <div class="col-md-7">
-                            <div class="form-group">
+                            <span class="score_adept">
                                 @Html.DisplayFor(x => x.SectionName)
-                            </div>
+                            </span>
                         </div>
                     </div>
                 </div>

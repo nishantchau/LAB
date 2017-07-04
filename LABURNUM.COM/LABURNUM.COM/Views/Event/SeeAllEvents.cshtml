@@ -74,10 +74,10 @@ else
                             {
                                 <tr>
                                     <td style="width: 17%;">@counter</td>
-                                    <td style="width: 17%;">@item.EventTypeText</td>
+                                    <td style="width: 27%;">@item.EventTypeText</td>
                                     <td style="width: 20%;">@item.EventName</td>
                                     <td style="width: 20%;">@item.Classes</td>
-                                    <td style="width: 20%;">@item.EventDate.ToShortDateString()</td>
+                                    <td style="width: 20%;">@item.EventDate.Day/@item.EventDate.Month/@item.EventDate.Year</td>
                                     @if ((new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN)) || (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE)))
                                     {
                                         <td style="width: 12%;">

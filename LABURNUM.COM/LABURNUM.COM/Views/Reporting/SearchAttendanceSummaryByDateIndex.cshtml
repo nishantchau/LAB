@@ -1,0 +1,92 @@
+﻿@model DTO.LABURNUM.COM.AttendanceReporting.AttendanceSummaryRequestModel
+
+<div class="row">
+    <div class="col-md-12">
+        <!--breadcrumbs start -->
+        <ul class="breadcrumb">
+            <li><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Dashboard/Index"><i class="fa fa-home"></i>Home</a></li>
+            <li>Reporting</li>
+            <li class="active">Search Attendance Summary</li>
+        </ul>
+        <!--breadcrumbs end -->
+    </div>
+</div>
+
+@using (Ajax.BeginForm(new AjaxOptions { OnBegin = "OnSearchAttedanceSummaryByDateBegin", OnSuccess = "OnSearchAttedanceSummaryByDateSuccess", Url = @LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Reporting/SearchAttendanceSummary" }))
+{
+    <section class="panel">
+        <header class="panel-heading">
+            Search Attendance Summary By Date @*<span class="tools pull-right">
+                <a class="fa fa-chevron-down" href="javascript:;"></a>
+            </span>*@
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                @*<div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Year <sup>*</sup> : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DropDownList("Year", new SelectList(Model.Years, "Value", "Name"), "Please Select Year", new { @id = "ddlYear", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">Month <sup>*</sup> : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.DropDownList("MonthId", new SelectList(Model.MonthList, "MonthId", "MonthName"), "Please Select Month", new { @id = "ddlMonth", @autocomplete = "Off", @class = "ToReset" })
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">For The Day <sup>*</sup>  : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.StartDate, new { @id = "txtStartDate" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-sm-6 col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="score_adept">To <sup>*</sup> : </span>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.EndDate, new { @id="txtEndDate"})
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </section>
+    <div class="text-center">
+        <button id="btnSearch" type="submit" class="btn btn-default btn-adeptsubmit btn-adeptsubmitfirst">SEARCH</button>
+        @*<button id="btnReset" type="button" class="btn btn-default btn-adeptsubmit btn-danger" onclick="ResetEntries();">RESET</button>*@
+    </div>
+    <div id="divLoader" style="margin-top: 10px;" class="display_none text-center">
+        <img src="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Images/loader.gif" />
+    </div>
+    <div id="divMessage" style="margin-top: 10px;" class="display_none text-center"></div>
+}
+
+<section id="divResult" class="margin_small"></section>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        OnSearchAttendanceSummaryByDateIndexReady();
+    });
+</script>

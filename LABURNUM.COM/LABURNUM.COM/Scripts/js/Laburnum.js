@@ -1041,7 +1041,7 @@ function OnUpdateStudentBegin() {
         else { return false; }
         //if (Validate.StringValueValidate("txtMiddleName", "divMessage", "Plese Enter Middle Name.")) { }
         //else { return false; }
-       // if (Validate.StringValueValidate("txtLastName", "divMessage", "Plese Enter Last Name.")) { }
+        // if (Validate.StringValueValidate("txtLastName", "divMessage", "Plese Enter Last Name.")) { }
         //else { return false; }
         if (Validate.StringValueValidate("txtMobile", "divMessage", "Plese Enter Mobile Number.")) { }
         else { return false; }
@@ -3732,5 +3732,180 @@ function OnPendingFeeReportIndexReady() {
         BindSectionsDropdownByClass();
     } catch (e) {
         MyAlert("OnPendingFeeReportIndexReady : " + e);
+    }
+}
+
+function OnCollectionSummaryIndexReady() {
+    try {
+        CreateDatePicker("txtStartDate");
+        CreateDatePicker("txtEndDate");
+    } catch (e) {
+        MyAlert("OnCollectionSummaryIndexReady : " + e);
+    }
+}
+
+function OnSearchCollectionSummaryBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
+        if (Validate.IntValueValidate("ddlYear", _MESSAGEDIVID, "Please Select Year.")) { }
+        else { return false; }
+        if (Validate.IntValueValidate("ddlMonth", _MESSAGEDIVID, "Please Select Month.")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnSearchCollectionSummaryBegin : " + e);
+    }
+}
+
+function OnSearchCollectionSummarySuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+
+    } catch (e) {
+        MyAlert("OnSearchCollectionSummarySuccess : " + e);
+    }
+}
+
+
+function OnSearchMonthlyDueFeeIndexReady() {
+    try {
+        BindSectionsDropdownByClass();
+    } catch (e) {
+        MyAlert("OnSearchMonthlyDueFeeIndexReady : " + e);
+    }
+}
+
+function OnSearchDueMonthlyFeeBegin() {
+    try {
+        SetHtmlBlank(_MESSAGEDIVID);
+        SetHtmlBlank(_RESULTDIVID);
+        if (Validate.IntValueValidate("ddlClass", _MESSAGEDIVID, "Please Select A Class.")) { }
+        else { return false; }
+        if (Validate.IntValueValidate("ddlSection", _MESSAGEDIVID, "Please Select A Section.")) { }
+        else { return false; }
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+        Disablebutton("btnReset");
+    } catch (e) {
+        MyAlert("OnSearchDueMonthlyFeeBegin : " + e);
+    }
+}
+
+
+function OnSearchDueMonthlyFeeSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        Enablebutton("btnReset");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchDueMonthlyFeeSuccess : " + e);
+    }
+
+}
+
+function OnSearchCollectionByDateIndexReady() {
+    try {
+        CreateDatePicker("txtStartDate");
+    } catch (e) {
+        MyAlert("OnSearchCollectionIndexReady : " + e);
+    }
+}
+
+function OnSearchCollectionByDateBegin() {
+    try {
+        SetHtmlBlank(_RESULTDIVID);
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+    } catch (e) {
+        MyAlert("OnSearchCollectionByDateBegin : " + e);
+    }
+}
+function OnSearchCollectionByDateSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        FillSuccessResultView(data, _RESULTDIVID);
+
+    } catch (e) {
+        MyAlert("OnSearchCollectionByDateSuccess : " + e);
+    }
+}
+
+function OnSearchCollectionByMonthBegin() {
+    try {
+        SetHtmlBlank(_RESULTDIVID);
+        SetHtmlBlank(_MESSAGEDIVID);
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+
+    } catch (e) {
+        MyAlert("OnSearchCollectionByMonthBegin : " + e);
+    }
+}
+
+function OnSearchCollectionByMonthSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        FillSuccessResultView(data, _RESULTDIVID);
+
+    } catch (e) {
+        MyAlert("OnSearchCollectionByMonthSuccess : " + e);
+    }
+}
+
+
+function OnSearchAttendanceSummaryByDateIndexReady() {
+    try {
+        CreateDatePicker("txtStartDate");
+
+    } catch (e) {
+        MyAlert("OnSearchAttendanceSummaryByDateIndexReady : " + e);
+    }
+}
+
+function OnSearchAttedanceSummaryByDateBegin() {
+    try {
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+    } catch (e) {
+        MyAlert("OnSearchAttedanceSummaryByDateBegin : " + e);
+    }
+}
+function OnSearchAttedanceSummaryByDateSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        FillSuccessResultView(data, _RESULTDIVID);
+
+    } catch (e) {
+        MyAlert("OnSearchAttedanceSummaryByDateSuccess : " + e);
+    }
+}
+
+function OnSearchCollectionSummaryByDateBegin() {
+    try {
+        SetHtmlBlank(_RESULTDIVID);
+        DisplayLoader(_LOADERDIVID);
+        Disablebutton("btnSearch");
+    } catch (e) {
+        MyAlert("OnSearchCollectionSummaryByDateBegin : " + e);
+    }
+}
+
+function OnSearchCollectionSummaryByDateSuccess(data) {
+    try {
+        HideLoader(_LOADERDIVID);
+        Enablebutton("btnSearch");
+        FillSuccessResultView(data, _RESULTDIVID);
+    } catch (e) {
+        MyAlert("OnSearchCollectionSummaryByDateSuccess : " + e);
     }
 }

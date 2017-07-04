@@ -18,7 +18,7 @@ else
                 </button>
             </span>
         </header>
-        <div class="row">
+        <div>
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table table-hover general-table responsive">
@@ -40,15 +40,15 @@ else
                             @foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item in @Model)
                             {
                                 <tr>
-                                    <td style="width: 17%;">@counter</td>
-                                    <td style="width: 20%;">@item.ClassName</td>
-                                    <td style="width: 23%;">@item.SectionName</td>
-                                    <td style="width: 19%;">@item.StudentName</td>
-                                    <td style="width: 19%;">@item.FatherName</td>
-                                    <td style="width: 19%;">@item.ChequeNumber</td>
-                                    <td style="width: 19%;">@item.ChequeDate</td>
-                                    <td style="width: 19%;">@item.ChequePaidAmount</td>
-                                    <td style="width: 19%;">@item.ChequeStatusName</td>
+                                    <td style="width: 10%;">@counter</td>
+                                    <td style="width: 10%;">@item.ClassName</td>
+                                    <td style="width: 10%;">@item.SectionName</td>
+                                    <td style="width: 15%;">@item.StudentName</td>
+                                    <td style="width: 20%;">@item.FatherName</td>
+                                    <td style="width: 10%;">@item.ChequeNumber</td>
+                                    <td style="width: 10%;">@item.ChequeDate.GetValueOrDefault().Day/@item.ChequeDate.GetValueOrDefault().Month/@item.ChequeDate.GetValueOrDefault().Year</td>
+                                    <td style="width: 10%;">@item.ChequePaidAmount</td>
+                                    <td style="width: 10%;">@item.ChequeStatusName</td>
                                     @if (item.ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED))
                                     {
                                         <td>

@@ -17,30 +17,37 @@ namespace LABURNUM.COM.Controllers
         {
             if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT))
             {
-                DTO.LABURNUM.COM.FeeModel feemodel = new LABURNUM.COM.Component.Fee().GetFeeByClassIdandAdmissionType(classId, isNewAdmission);
-                DTO.LABURNUM.COM.StudentModel smodel = new LABURNUM.COM.Component.Student().GetStudentByStudentId(studentId);
-                DTO.LABURNUM.COM.StudentFeeModel model = new DTO.LABURNUM.COM.StudentFeeModel()
+                try
                 {
-                    StudentId = studentId,
-                    ClassId = classId,
-                    IsNewAdmission = isNewAdmission,
-                    SectionId = sectionId,
-                    StudentName = smodel.StudentFullName,
-                    ClassName = smodel.ClassName,
-                    SectionName = smodel.SectionName
-                };
+                    DTO.LABURNUM.COM.FeeModel feemodel = new LABURNUM.COM.Component.Fee().GetFeeByClassIdandAdmissionType(classId, isNewAdmission);
+                    DTO.LABURNUM.COM.StudentModel smodel = new LABURNUM.COM.Component.Student().GetStudentByStudentId(studentId);
+                    DTO.LABURNUM.COM.StudentFeeModel model = new DTO.LABURNUM.COM.StudentFeeModel()
+                    {
+                        StudentId = studentId,
+                        ClassId = classId,
+                        IsNewAdmission = isNewAdmission,
+                        SectionId = sectionId,
+                        StudentName = smodel.StudentFullName,
+                        ClassName = smodel.ClassName,
+                        SectionName = smodel.SectionName
+                    };
 
-                if (isNewAdmission) { model.AdmissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION); }
-                else { model.AdmissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.READMISSION); }
+                    if (isNewAdmission) { model.AdmissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION); }
+                    else { model.AdmissionTypeId = DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.READMISSION); }
 
-                model.AdmissionFee = feemodel.AdmissionFee;
-                model.AnnualCharges = feemodel.AnnualCharges.GetValueOrDefault();
-                model.DevelopementFee = feemodel.DevelopementCharges.GetValueOrDefault();
-                model.ExamFee = feemodel.ExamFee.GetValueOrDefault();
-                model.SportsFee = feemodel.SportsFee.GetValueOrDefault();
-                model.AnnualFunctionFee = Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEE;
-                model.Banks = new Component.Bank().GetAllActiveBank();
-                return View(model);
+                    model.AdmissionFee = feemodel.AdmissionFee;
+                    model.AnnualCharges = feemodel.AnnualCharges.GetValueOrDefault();
+                    model.DevelopementFee = feemodel.DevelopementCharges.GetValueOrDefault();
+                    model.ExamFee = feemodel.ExamFee.GetValueOrDefault();
+                    model.SportsFee = feemodel.SportsFee.GetValueOrDefault();
+                    model.AnnualFunctionFee = Component.Constants.DEFAULTVALUE.ANNUALFUNCTIONFEE;
+                    model.Banks = new Component.Bank().GetAllActiveBank();
+                    return View(model);
+                }
+                catch (Exception ex)
+                {
+                    return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Error404/Index");
+                }
             }
             else
             {
@@ -144,7 +151,6 @@ namespace LABURNUM.COM.Controllers
             return View(new DTO.LABURNUM.COM.StudentModel());
         }
 
-
         public ActionResult SearchPendingFee(DTO.LABURNUM.COM.StudentModel model)
         {
             try
@@ -156,6 +162,32 @@ namespace LABURNUM.COM.Controllers
             catch (Exception)
             {
                 return Json(new { code = -2, message = "failed" });
+            }
+        }
+
+        public ActionResult StudentPaidFeeIndex()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
+            {
+                List<DTO.LABURNUM.COM.StudentFeeDetailModel> dbstudentFeeDetails = new Component.StudentFeeDetails().GetPendingFeeByAdmissionNumberandAcademicYear(sessionManagement.GetStudentAdmissionNumber(), sessionManagement.GetAcademicYearTableId());
+                return View(dbstudentFeeDetails);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
+            }
+        }
+
+        public ActionResult StudentFeeStructure()
+        {
+            if (sessionManagement.GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
+            {
+                DTO.LABURNUM.COM.FeeModel dbFees = new Component.Fee().GetFeeByClassIdandAdmissionType(sessionManagement.GetClassId(), sessionManagement.GetStudentIsNewAdmission());
+                return View(dbFees);
+            }
+            else
+            {
+                return Redirect(LABURNUM.COM.Component.Constants.URL.WEBSITEURL + "Dashboard/Index");
             }
         }
     }
