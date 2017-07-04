@@ -267,7 +267,6 @@ namespace API.LABURNUM.COM.FrontEndApi
             this._laburnum.SaveChanges();
         }
 
-
         public API.LABURNUM.COM.Student GetStudentByAdmissionNumber(string asmissionnumber)
         {
             asmissionnumber.TryValidate();
@@ -275,6 +274,26 @@ namespace API.LABURNUM.COM.FrontEndApi
             if (dbStudents.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
             if (dbStudents.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
             return dbStudents[0];
+        }
+
+        public List<API.LABURNUM.COM.Student> GetAllStudents()
+        {
+            return this._laburnum.Students.ToList();
+        }
+
+        public DTO.LABURNUM.COM.DashBoard.StudentSummary GetStudentSummary()
+        {
+            DTO.LABURNUM.COM.DashBoard.StudentSummary model = new DTO.LABURNUM.COM.DashBoard.StudentSummary();
+            List<API.LABURNUM.COM.Student> dblist = GetAllStudents();
+            model.TotalAllStudentCount = dblist.Count();
+            model.TotalActiveStudentCount = dblist.Where(x => x.IsActive == true).ToList().Count();
+            model.TotalInActiveStudentCount = dblist.Where(x => x.IsActive == false).ToList().Count();
+            return model;
+        }
+
+        public List<API.LABURNUM.COM.Student> GetActiveStudents()
+        {
+            return this._laburnum.Students.Where(x => x.IsActive == true).ToList();
         }
     }
 }

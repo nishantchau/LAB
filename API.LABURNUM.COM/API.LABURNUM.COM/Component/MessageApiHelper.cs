@@ -46,7 +46,7 @@ namespace API.LABURNUM.COM.Component
             }
             catch (Exception ex)
             {
-                return API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.SOMETHING_GOES_WRONG;
+                return "Not Get";
             }
         }
 

@@ -258,9 +258,9 @@ namespace API.LABURNUM.COM.FrontEndApi
             return dblist[0];
         }
 
-        public API.LABURNUM.COM.StudentFeeDetail GetFeePaidDetailDuringMonthlyFeePayment(long studentId, long classId, long sectionId, long academicYear, long studentFeeDetailsId)
+        public API.LABURNUM.COM.StudentFeeDetail GetFeePaidDetailDuringMonthlyFeePayment(long studentId, long classId, long academicYear, long studentFeeDetailsId)
         {
-            List<API.LABURNUM.COM.StudentFeeDetail> dbstudentfeeDetailList = new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentId = studentId, ClassId = classId, SectionId = sectionId, AcademicYearId = academicYear});
+            List<API.LABURNUM.COM.StudentFeeDetail> dbstudentfeeDetailList = new FrontEndApi.StudentFeeDetailApi().GetStudentFeeDetailByAdvanceSearch(new DTO.LABURNUM.COM.StudentFeeDetailModel() { StudentId = studentId, ClassId = classId, AcademicYearId = academicYear });
             int index = dbstudentfeeDetailList.FindIndex(x => x.StudentFeeDetailId == studentFeeDetailsId);
             API.LABURNUM.COM.StudentFeeDetail dbstudentfeeDetails = new StudentFeeDetail();
             if (index >= 0)
@@ -271,5 +271,18 @@ namespace API.LABURNUM.COM.FrontEndApi
             return dbstudentfeeDetails;
         }
 
+        public DTO.LABURNUM.COM.ChequeDetails GetChequeDetails()
+        {
+            DTO.LABURNUM.COM.ChequeDetails chequeDetails = new DTO.LABURNUM.COM.ChequeDetails();
+            long pendingstatus = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED);
+            long bouncestatus = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.BOUNCE);
+            long clearstatus = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.CLEARED);
+            List<API.LABURNUM.COM.StudentFeeDetail> dbStudentFeeDetails = this._laburnum.StudentFeeDetails.Where(x => x.ChequePaidAmount > 0 && x.IsActive == true).ToList();
+            chequeDetails.TotalChequeCount = dbStudentFeeDetails.Count();
+            chequeDetails.TotalBounceCheque = dbStudentFeeDetails.Where(x => x.ChequeStatus == bouncestatus).ToList().Count();
+            chequeDetails.TotalClearedCheque = dbStudentFeeDetails.Where(x => x.ChequeStatus == clearstatus).ToList().Count();
+            chequeDetails.TotalPendingCheque = dbStudentFeeDetails.Where(x => x.ChequeStatus == pendingstatus).ToList().Count();
+            return chequeDetails;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace API.LABURNUM.COM.FrontEndApi
                 BusRouteNumber = model.BusRouteNumber,
                 BusStartFrom = model.BusStartFrom,
                 BusEndAt = model.BusEndAt,
-                TranportCharges=model.TranportCharges,
+                TranportCharges = model.TranportCharges,
                 CreatedOn = new Component.Utility().GetISTDateTime(),
                 IsActive = true
             };
@@ -146,6 +146,16 @@ namespace API.LABURNUM.COM.FrontEndApi
 
             List<API.LABURNUM.COM.BusRoute> dbBusRoute = iQuery.ToList();
             return dbBusRoute;
+        }
+
+        public API.LABURNUM.COM.BusRoute GetBusRouteById(long busrouteId)
+        {
+            busrouteId.TryValidate();
+            IQueryable<API.LABURNUM.COM.BusRoute> iQuery = this._laburnum.BusRoutes.Where(x => x.BusRouteId == busrouteId && x.IsActive == true);
+            List<API.LABURNUM.COM.BusRoute> dbRoutes = iQuery.ToList();
+            if (dbRoutes.Count == 0) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.NO_RECORD_FOUND); }
+            if (dbRoutes.Count > 1) { throw new Exception(API.LABURNUM.COM.Component.Constants.ERRORMESSAGES.MORE_THAN_ONE_RECORDFOUND); }
+            return dbRoutes[0];
         }
     }
 }

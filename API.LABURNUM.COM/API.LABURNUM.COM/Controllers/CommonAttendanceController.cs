@@ -537,10 +537,12 @@ namespace API.LABURNUM.COM.Controllers
             {
                 dbStudents.Add(new FrontEndApi.StudentApi().GetStudentByStudentId(model.StudentId));
             }
+            if (model.Year == 0) { model.Year = new Component.Utility().GetISTDateTime().Year; }
+
             int lstday = 0, r;
             if (model.MonthId > 0 && model.StartDate.Year == 0001)
             {
-                model.StartDate = new DateTime(2017, model.MonthId, 1, 00, 00, 00);
+                model.StartDate = new DateTime(model.Year, model.MonthId, 1, 00, 00, 00);
                 if (model.MonthId == 2)
                 {
                     if (model.StartDate.Year % 4 == 0)
@@ -560,7 +562,7 @@ namespace API.LABURNUM.COM.Controllers
                 {
                     lstday = 30;
                 }
-                model.EndDate = new DateTime(2017, model.MonthId, lstday, 00, 00, 00).AddDays(1).AddSeconds(-1);
+                model.EndDate = new DateTime(model.Year, model.MonthId, lstday, 00, 00, 00).AddDays(1).AddSeconds(-1);
                 r = 1;
             }
             else
@@ -591,16 +593,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClassPreNurseryModel> flist = aNlist.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClassPreNurseryId }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 2:
@@ -623,16 +625,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClassLKGModel> flist = ALkgList.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClassLKGId }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 3:
@@ -655,16 +657,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClassUKGModel> flist = ukgmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClassUKGId }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
 
@@ -688,16 +690,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass1Model> flist = firstmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass1Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 5:
@@ -720,16 +722,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass2Model> flist = secondmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass2Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 6:
@@ -752,16 +754,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass3Model> flist = thirdmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass3Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
 
@@ -785,16 +787,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass4Model> flist = fourmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass4Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 8:
@@ -817,16 +819,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass5Model> flist = fivemodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass5Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 9:
@@ -849,16 +851,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass6Model> flist = sixmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass6Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 10:
@@ -881,16 +883,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass7Model> flist = sevenmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass7Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 11:
@@ -913,16 +915,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass8Model> flist = eightmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass8Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 12:
@@ -945,16 +947,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass9Model> flist = ninemodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass9Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 13:
@@ -977,16 +979,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass10Model> flist = tenmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass10Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 14:
@@ -1009,16 +1011,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass11Model> flist = elevenmodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false, AttendanceId = flist[0].AttendanceClass11Id }); }
                             if (flist.Count == 1)
                             { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
                 case 15:
@@ -1041,16 +1043,16 @@ namespace API.LABURNUM.COM.Controllers
                             DateTime stdate;
                             if (model.MonthId > 0)
                             {
-                                stdate = new DateTime(2017, model.MonthId, i, 00, 00, 00);
+                                stdate = new DateTime(model.Year, model.MonthId, i, 00, 00, 00);
                             }
-                            else { stdate = new DateTime(2017, model.StartDate.Month, i, 00, 00, 00); }
+                            else { stdate = new DateTime(model.Year, model.StartDate.Month, i, 00, 00, 00); }
                             DateTime lstdate = stdate.AddDays(1).AddSeconds(-1);
                             List<DTO.LABURNUM.COM.AttendanceClass12Model> flist = twelvemodel.Where(x => x.StudentId == item.StudentId && x.CreatedOn >= stdate && x.CreatedOn <= lstdate).ToList();
                             if (flist.Count == 0) { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, Month = model.MonthId, IsPresentAtMorning = false, IsPresentAtAfterLunch = false }); }
                             if (flist.Count == 1)
-                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch , AttendanceId = flist[0].AttendanceClass12Id}); }
+                            { attendancelist.Add(new DTO.LABURNUM.COM.AttendanceReporting.DayWiseAttendance() { Date = stdate, Day = i, IsPresentAtMorning = flist[0].IsPresentInMorning, IsPresentAtAfterLunch = flist[0].IsPresentAfterLuch, AttendanceId = flist[0].AttendanceClass12Id }); }
                         }
-                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist,FatherName=item.FatherName });
+                        responsemodel.StudentList.Add(new DTO.LABURNUM.COM.AttendanceReporting.StudentAttendance() { StudentId = item.StudentId, StudentName = item.FirstName + " " + item.MiddleName + " " + item.LastName, AttendanceList = attendancelist, FatherName = item.FatherName, StudentPhoto = item.StudentPhoto });
                     }
                     break;
             }

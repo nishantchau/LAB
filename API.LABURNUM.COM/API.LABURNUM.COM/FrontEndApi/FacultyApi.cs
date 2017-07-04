@@ -230,5 +230,23 @@ namespace API.LABURNUM.COM.FrontEndApi
             dbFacutlies[0].LastUpdated = new Component.Utility().GetISTDateTime();
             this._laburnum.SaveChanges();
         }
+
+        public DTO.LABURNUM.COM.DashBoard.StaffSummary GetStaffSummary()
+        {
+            DTO.LABURNUM.COM.DashBoard.StaffSummary model = new DTO.LABURNUM.COM.DashBoard.StaffSummary();
+            List<API.LABURNUM.COM.Faculty> dblist = GetAllFaculties();
+            long principle = DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE);
+            long faculty = DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY);
+            long account = DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ACCOUNT);
+
+            model.TotalStaff = dblist.Count();
+            model.PrincipleCount = dblist.Where(x => x.UserTypeId == principle && x.IsActive == true).ToList().Count();
+            model.FacultyCount = dblist.Where(x => x.UserTypeId == faculty && x.IsActive == true).ToList().Count();
+            model.ClassTeacherFaculty = dblist.Where(x => x.UserTypeId == faculty && x.IsClassTeacher == true && x.IsActive == true).ToList().Count();
+            model.SubjectTeacherFaculty = dblist.Where(x => x.IsClassTeacher == false && x.IsSubjectTeacher == true && x.UserTypeId == faculty && x.IsActive == true).ToList().Count();
+            model.AccountCount = dblist.Where(x => x.UserTypeId == account && x.IsActive == true).ToList().Count();
+            model.LeftStaff = dblist.Where(x => x.IsActive == false).ToList().Count();
+            return model;
+        }
     }
 }

@@ -39,7 +39,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DTO.LABURNUM.COM">
+    <Reference Include="DTO.LABURNUM.COM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DTO.LABURNUM.COM\DTO.LABURNUM.COM\bin\Debug\DTO.LABURNUM.COM.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -286,6 +287,7 @@
     <Compile Include="Controllers\AttendanceClassLKGController.cs" />
     <Compile Include="Controllers\AttendanceClassPreNurseryController.cs" />
     <Compile Include="Controllers\AttendanceClassUKGController.cs" />
+    <Compile Include="Controllers\AttendanceReportsController.cs" />
     <Compile Include="Controllers\BankController.cs" />
     <Compile Include="Controllers\BusRouteController.cs" />
     <Compile Include="Controllers\ChequeStatusMasterController.cs" />
