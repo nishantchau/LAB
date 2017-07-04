@@ -24,7 +24,7 @@ else
 {
     <section class="panel">
         <header class="panel-heading text-center">
-            <strong>Today Collection From Admission / Re-admission</strong>
+            <strong>Today Collection From Admission / Re-admission </strong>
         </header>
 
         <header class="panel-heading">
@@ -41,17 +41,21 @@ else
                         <thead>
                             <tr>
                                 <th>S.No.</th>
+                                <th>Rec.No.</th>
                                 @*<th>Admission Type</th>*@
                                 <th>Adm. No.</th>
                                 <th>Class</th>
-                                 <th>Section</th>
+                                <th>Section</th>
+                                <th>Fee Type</th>
                                 <th>Student Name</th>
                                 <th>Father Name</th>
                                 <th>Cash Paid Amount</th>
-                                <th>Cheque Paid Amount</th>
+                                <th>Chq. Paid Amount</th>
+                                <th>Chq.No.</th>
                                 <th>Discount Amount</th>
                                 <th>Discount Remarks</th>
                                 <th>Submission Date</th>
+                                <th>Collected By</th>
                                 @*<th>Paid Monthly Fee</th>*@
                             </tr>
                         </thead>
@@ -60,6 +64,7 @@ else
                             {
                                 <tr>
                                     <td style="width: 1%;">@counter</td>
+                                    <td style="width: 1%;">@item.StudentFeeDetailId</td>
                                     @* @if (item.AdmissionTypeId == DTO.LABURNUM.COM.Utility.AdmissionType.GetValue(DTO.LABURNUM.COM.Utility.EnumAdmissionType.NEWADMISSION))
                                     {<td>New Admission</td> }
                                     else
@@ -67,10 +72,20 @@ else
                                     <td style="width: 10%;">@item.StudentAdmissionNumber</td>
                                     <td style="width: 10%;">@item.ClassName</td>
                                     <td style="width: 10%;">@item.SectionName</td>
+                                    @if (item.MonthlyFee > 0)
+                                    { <td style="width: 19%;">@item.MonthName Fee</td>  }
+                                    @if (item.MonthlyFee == 0 && item.PayForTheMonth.GetValueOrDefault() > 0)
+                                    { <td style="width: 19%;">Admission Fee</td> }
+                                    @if (item.MonthlyFee == 0 && item.PayForTheMonth.GetValueOrDefault() == 0)
+                                    { <td style="width: 19%;">Pending Fee </td>}
                                     <td style="width: 19%;">@item.StudentName</td>
                                     <td style="width: 19%;">@item.FatherName</td>
                                     <td style="width: 19%;">@item.CashPaidAmount</td>
                                     <td style="width: 19%;">@item.ChequePaidAmount</td>
+                                    @if (item.ChequePaidAmount > 0)
+                                    {<td style="width: 19%;">@item.ChequeNumber</td> }
+                                    else
+                                    { <td style="width: 19%;">----</td>}
                                     <td style="width: 19%;">@item.DiscountAmount</td>
                                     @if (item.DiscountRemarks == null || item.DiscountRemarks == "")
                                     {
@@ -79,7 +94,8 @@ else
                                     else
                                     {
                                         <td style="width: 19%;">@item.DiscountRemarks</td>}
-                                    <td>@item.CreatedOn.ToShortDateString()</td>
+                                    <td>@item.CreatedOn.Day/@item.CreatedOn.Month/@item.CreatedOn.Year</td>
+                                    <td>@item.CollectedByName</td>
                                     @*<td>@item.</td>*@
                                 </tr>
                                     counter++;
@@ -87,19 +103,19 @@ else
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="10" class="text-right"><b>Total Cash Received Amount</b></td>
+                                <td colspan="14" class="text-right"><b>Total Cash Received Amount</b></td>
                                 <td><b>@Model[0].TotalCashPaidAmount</b></td>
                             </tr>
                             <tr>
-                                <td colspan="10" class="text-right"><b>Total Cheque Received Amount</b></td>
+                                <td colspan="14" class="text-right"><b>Total Cheque Received Amount</b></td>
                                 <td><b>@Model[0].TotalChequePaidAmount</b></td>
                             </tr>
                             <tr>
-                                <td colspan="10" class="text-right"><b>Total Discount Given</b></td>
+                                <td colspan="14" class="text-right"><b>Total Discount Given</b></td>
                                 <td><b>@Model[0].TotalDiscountAmount</b></td>
                             </tr>
                             <tr>
-                                <td colspan="10" class="text-right"><b>Grand Total</b></td>
+                                <td colspan="14" class="text-right"><b>Grand Total</b></td>
                                 <td><b>@Model[0].TotalEarning</b></td>
                             </tr>
                         </tfoot>

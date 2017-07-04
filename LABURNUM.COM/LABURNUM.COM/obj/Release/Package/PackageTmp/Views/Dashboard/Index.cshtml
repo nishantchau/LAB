@@ -17,16 +17,20 @@
             <div class="col-md-3">
                 <div class="button_home button_green dashboard_clock">
                     <i class="fa fa-envelope fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
-                    <span>Morning :</span>
-                    @if (Model.StudentDashBoardModel.IsPresentInMorning)
-                    {<span>Present</span> }
-                    else
-                    {<span>Absent</span>}
-                    <span>Evening :</span>
-                    @if (Model.StudentDashBoardModel.IsPresentAfterLunch)
-                    {<span>Present</span> }
-                    else
-                    {<span>Absent</span>}
+                    <div>
+                        <span>Morning :</span>
+                        @if (Model.StudentDashBoardModel.IsPresentInMorning)
+                        {<span>Present</span> }
+                        else
+                        {<span>Absent</span>}
+                    </div>
+                    <div>
+                        <span>Evening :</span>
+                        @if (Model.StudentDashBoardModel.IsPresentAfterLunch)
+                        {<span>Present</span> }
+                        else
+                        {<span>Absent</span>}
+                    </div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -59,8 +63,8 @@
             <div class="col-md-8 extra_margin_small">
                 <section class="panel">
                     <header class="panel-heading">
-                        Today Home Work
-            @*<span class="tools pull-right">
+                        <strong>Today Home Work</strong>
+                        @*<span class="tools pull-right">
                 <button type="button" onclick="DownloadRecord('Home Work Details');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
             </span>*@
                     </header>
@@ -115,11 +119,12 @@
             <div class="col-md-4 extra_margin_small">
                 <section class="panel">
                     <header class="panel-heading">
-                        Class Teacher <span class="tools pull-right">
+                        <strong>Class Teacher </strong>
+                        @*<span class="tools pull-right">
                             <a class="fa fa-chevron-up" href="javascript:;"></a>
-                        </span>
+                        </span>*@
                     </header>
-                    <div class="panel-body" style="display: none;">
+                    <div class="panel-body">
                         <div class="row">
                             <ul>
                                 <li>Name : @Model.StudentDashBoardModel.ClassTeacherName</li>
@@ -131,22 +136,22 @@
                 </section>
                 <section class="panel">
                     <header class="panel-heading">
-                        Upcoming Events <span class="tools pull-right">
+                        <strong>Upcoming Events </strong>@*<span class="tools pull-right">
                             <a class="fa fa-chevron-up" href="javascript:;"></a>
-                        </span>
+                        </span>*@
                     </header>
-                    <div class="panel-body" style="display: none;">
+                    <div class="panel-body">
                         <div class="row">
                             <ul>
-                                @if (Model.StudentDashBoardModel.EventList.Count == 0)
+                                @if (Model.EventList.Count == 0)
                                 {
                                     <li>No Upcoming Event</li>}
                                 else
                                 {
 
-                                    foreach (DTO.LABURNUM.COM.EventModel item in Model.StudentDashBoardModel.EventList)
+                                    foreach (DTO.LABURNUM.COM.EventModel item in Model.EventList)
                                     {
-                                    <li>Event Date : @item.EventDate </li>
+                                    <li>Event Date : @item.EventDate.Day/@item.EventDate.Month/@item.EventDate.Year</li>
                                     <li>Event Name : @item.EventName</li>
                                     <li>Event Type : @item.EventTypeText</li>
                                     }
@@ -155,6 +160,27 @@
                         </div>
                     </div>
                 </section>
+                @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT))
+                {
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <strong> Last Fee Paid Details  </strong> @*<span class="tools pull-right">
+                                <a class="fa fa-chevron-up" href="javascript:;"></a>
+                            </span>*@
+                        </header>
+                        <div class="panel-body">
+                            <div class="row">
+                                <ul>
+                                    <li>Paid Date : @Model.StudentDashBoardModel.LastPaidDetails.LastPaidDate.Day/@Model.StudentDashBoardModel.LastPaidDetails.LastPaidDate.Month/@Model.StudentDashBoardModel.LastPaidDetails.LastPaidDate.Year</li>
+                                    <li>Receipt No. : @Model.StudentDashBoardModel.LastPaidDetails.ReceiptNumber</li>
+                                    <li>Cash Paid : @Model.StudentDashBoardModel.LastPaidDetails.LastCashPaidAmount</li>
+                                    <li>Cheque Paid: @Model.StudentDashBoardModel.LastPaidDetails.LastChequePaidAmount</li>
+                                    <li>Pending Fee : @Model.StudentDashBoardModel.LastPaidDetails.PendingFee</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                }
             </div>
         }
 
@@ -207,8 +233,11 @@
                 <section class="panel">
                     <header class="panel-heading">
                         Pending Cheque Details (Last @LABURNUM.COM.Component.Constants.DEFAULTVALUE.CHEQUEDETAILDAYS Days)
+                         <span class="tools pull-right">
+            <button type="button" onclick="DownloadRecord('Pending Cheque List');" class="btn btn-primary adept-view">Download <i class="fa fa-download" aria-hidden="true"></i></button>
+        </span>
                     </header>
-                    <div class="panel-body">
+                    <div class="panel-body" id="divTable">
                         @{long Chequestatus = DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED);}
                         @if (@Model.AccountDashBoardModel.StudentFeeDetails.Where(x => x.ChequeStatus == Chequestatus).ToList().Count == 0)
                         {
@@ -222,10 +251,11 @@
                                 <table class="table table-hover general-table responsive table-fixed">
                                     <thead>
                                         <tr>
-                                            <th width="11%">S.No.</th>
-                                            <th width="12%">Class</th>
-                                            <th width="10%">Section</th>
+                                            <th width="2%">S.No.</th>
+                                            <th width="12%">Class / Section</th>
+                                            @*<th width="10%">Section</th>*@
                                             <th width="20%">Student Name</th>
+                                            <th width="17%">Chq. No.</th>
                                             <th width="17%">Chq. Date</th>
                                             <th width="8%">Amount</th>
                                             <th width="23%"></th>
@@ -236,11 +266,12 @@
                                         @foreach (DTO.LABURNUM.COM.StudentFeeDetailModel item in @Model.AccountDashBoardModel.StudentFeeDetails.Where(x => x.ChequeStatus == 3).ToList())
                                         {
                                             <tr>
-                                                <td style="width: 11%;">@counter</td>
-                                                <td style="width: 12%;">@item.ClassName</td>
-                                                <td style="width: 10%;">@item.SectionName</td>
+                                                <td style="width: 9%;">@counter</td>
+                                                <td style="width: 12%;">@item.ClassName / @item.SectionName</td>
+                                                @*<td style="width: 10%;"></td>*@
                                                 <td style="width: 20%;">@item.StudentName</td>
-                                                <td style="width: 17%;">@item.ChequeDate.GetValueOrDefault().Day / @item.ChequeDate.GetValueOrDefault().Month /@item.ChequeDate.GetValueOrDefault().Year</td>
+                                                <td style="width: 17%;">@item.ChequeNumber</td>
+                                                <td style="width: 17%;">@item.ChequeDate.GetValueOrDefault().Day/@item.ChequeDate.GetValueOrDefault().Month/@item.ChequeDate.GetValueOrDefault().Year</td>
                                                 <td style="width: 11%;">@item.ChequePaidAmount</td>
                                                 @if (item.ChequeStatus == DTO.LABURNUM.COM.Utility.ChequeStatusMaster.GetChequeStatusMasterId(DTO.LABURNUM.COM.Utility.EnumChequeStatusMaster.SUBMITTED))
                                                 {
@@ -266,16 +297,262 @@
             <div class="col-md-4 extra_margin_small">
                 <section class="panel">
                     <header class="panel-heading">
-                        Class Teacher <span class="tools pull-right">
+                        Cheque Details @*<span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                        </span>*@
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <ul>
+                                <li>Total Received Cheque : @Model.AccountDashBoardModel.ChequeDetails.TotalChequeCount </li>
+                                <li>Total Pending Cheque : @Model.AccountDashBoardModel.ChequeDetails.TotalPendingCheque </li>
+                                <li>Total Bounce Cheque : @Model.AccountDashBoardModel.ChequeDetails.TotalBounceCheque </li>
+                                <li>Total Cleared Cheque : @Model.AccountDashBoardModel.ChequeDetails.TotalClearedCheque </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        Upcoming Events @*<span class="tools pull-right">
+                            <a class="fa fa-chevron-up" href="javascript:;"></a>
+                        </span>*@
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <ul>
+                                @if (Model.EventList.Count == 0)
+                                {
+                                    <li>No Upcoming Event</li>}
+                                else
+                                {
+
+                                    foreach (DTO.LABURNUM.COM.EventModel item in Model.EventList)
+                                    {
+                                    <li>Event Date : @item.EventDate.Day/@item.EventDate.Month/@item.EventDate.Year</li>
+                                    <li>Event Name : @item.EventName</li>
+                                    <li>Event Type : @item.EventTypeText</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        }
+
+
+
+        @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
+        {
+            <div class="col-md-3">
+                <div class="button_home button_green dashboard_clock">
+                    @*<i class="fa fa-envelope fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <span>Morning :</span>
+                    @if (Model.StudentDashBoardModel.IsPresentInMorning)
+                    {<span>Present</span> }
+                    else
+                    {<span>Absent</span>}
+                    <span>Evening :</span>
+                    @if (Model.StudentDashBoardModel.IsPresentAfterLunch)
+                    {<span>Present</span> }
+                    else
+                    {<span>Absent</span>}*@
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="button_home button_green dashboard_clock">
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="button_home button_green dashboard_clock">
+
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="button_home button_voilet dashboard_clock">
+
+                    <i class="fa fa-clock-o fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <div id="Date"></div>
+                    <div>
+                        <b id="hours"></b>
+                        <b id="point">:</b>
+                        <b id="min"></b>
+                        <b id="point">:</b>
+                        <b id="sec"></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 extra_margin_small">
+                <section class="panel">
+                    <header class="panel-heading">
+                        NONE
+                    </header>
+                    <div class="panel-body">
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4 extra_margin_small">
+                @if (Model.IsClassTeacher)
+                {
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Attendance Summary For Today <span class="tools pull-right">
+                                <a class="fa fa-chevron-down" href="javascript:;"></a>
+                            </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="row">
+                                <ul>
+                                    <li>Morning Present Student : @Model.FacultyDashBoardModel.ClassAttendanceStatus.MorningPresentStudentCount</li>
+                                    <li>Morning Absent Student : @Model.FacultyDashBoardModel.ClassAttendanceStatus.MorningAbsentStudentCount</li>
+                                    <li>Lunch Present Student : @Model.FacultyDashBoardModel.ClassAttendanceStatus.LunchPresentStudentCount</li>
+                                    <li>Lunch Absent Student : @Model.FacultyDashBoardModel.ClassAttendanceStatus.LunchAbsentStudentCount</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                }
+                <section class="panel">
+                    <header class="panel-heading">
+                        Upcoming Events <span class="tools pull-right">
                             <a class="fa fa-chevron-up" href="javascript:;"></a>
                         </span>
                     </header>
                     <div class="panel-body" style="display: none;">
                         <div class="row">
                             <ul>
-                                <li>Name : </li>
-                                <li>Mobile : </li>
-                                <li>Email Id : </li>
+                                @if (Model.EventList.Count == 0)
+                                {
+                                    <li>No Upcoming Event</li>}
+                                else
+                                {
+
+                                    foreach (DTO.LABURNUM.COM.EventModel item in Model.EventList)
+                                    {
+                                    <li>Event Date : @item.EventDate.Day/@item.EventDate.Month/@item.EventDate.Year</li>
+                                    <li>Event Name : @item.EventName</li>
+                                    <li>Event Type : @item.EventTypeText</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        }
+
+
+        @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
+        {
+            <div class="col-md-3">
+                <div class="button_home button_green dashboard_clock">
+                    <i class="fa fa-envelope fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <div>SMS Balance :</div>
+                    <div>@Model.AdminDashBoardModel.SMSBalance</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="button_home button_orange dashboard_clock">
+                    <i class="fa fa-users fa-3x" aria-hidden="true" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <div>Staffs :</div>
+                    <div>@(Model.AdminDashBoardModel.StaffSummary.TotalStaff)</div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="button_home button_blue dashboard_clock">
+                    <i class="fa fa-user fa-3x" aria-hidden="true" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <div>Students :</div>
+                    <div>@(Model.AdminDashBoardModel.StudentSummary.TotalActiveStudentCount)</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="button_home button_voilet dashboard_clock">
+
+                    <i class="fa fa-clock-o fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <div id="Date"></div>
+                    <div>
+                        <b id="hours"></b>
+                        <b id="point">:</b>
+                        <b id="min"></b>
+                        <b id="point">:</b>
+                        <b id="sec"></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 extra_margin_small">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Today Attendance Summary
+                    </header>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover general-table responsive">
+                                <thead>
+                                    <tr>
+                                        <th width="1%">Total Student</th>
+                                        <th width="5%">Morning Present</th>
+                                        <th width="5%">Morning Absent</th>
+                                        <th width="5%">Lunch Present</th>
+                                        <th width="5%">Lunch Absent</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Model.AdminDashBoardModel.AttendanceSummaryReportModel.TotalStudentsInSchool</td>
+                                        <td>@Model.AdminDashBoardModel.AttendanceSummaryReportModel.TotalStudentsMorningPresentCount</td>
+                                        <td>@Model.AdminDashBoardModel.AttendanceSummaryReportModel.TotalStudentsMorningAbsentCount</td>
+                                        <td>@Model.AdminDashBoardModel.AttendanceSummaryReportModel.TotalStudentsLunchPresentCount</td>
+                                        <td>@Model.AdminDashBoardModel.AttendanceSummaryReportModel.TotalStudentsLunchAbsentCount</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" style="text-align: right;"><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Reporting/TodayAttendanceSummary">Click Here For Detailed Summary</a></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4 extra_margin_small">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Student Summary @*<span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                        </span>*@
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <ul>
+                                <li>Total Students : @Model.AdminDashBoardModel.StudentSummary.TotalAllStudentCount</li>
+                                <li>Active Students : @Model.AdminDashBoardModel.StudentSummary.TotalActiveStudentCount</li>
+                                <li>InActive Students : @Model.AdminDashBoardModel.StudentSummary.TotalInActiveStudentCount</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        Staff Summary @*<span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                        </span>*@
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <ul>
+                                <li>Total Staff : @Model.AdminDashBoardModel.StaffSummary.TotalStaff</li>
+                                <li>Principle : @Model.AdminDashBoardModel.StaffSummary.PrincipleCount</li>
+                                <li>Account : @Model.AdminDashBoardModel.StaffSummary.AccountCount</li>
+                                <li>Faculty : @Model.AdminDashBoardModel.StaffSummary.FacultyCount</li>
+                                <li>Class Teachers : @Model.AdminDashBoardModel.StaffSummary.ClassTeacherFaculty</li>
+                                <li>Subject Teachers : @Model.AdminDashBoardModel.StaffSummary.SubjectTeacherFaculty</li>
+                                <li>Left Staff : @Model.AdminDashBoardModel.StaffSummary.LeftStaff</li>
                             </ul>
                         </div>
                     </div>
@@ -289,15 +566,15 @@
                     <div class="panel-body" style="display: none;">
                         <div class="row">
                             <ul>
-                                @if (Model.StudentDashBoardModel.EventList.Count == 0)
+                                @if (Model.EventList.Count == 0)
                                 {
                                     <li>No Upcoming Event</li>}
                                 else
                                 {
 
-                                    foreach (DTO.LABURNUM.COM.EventModel item in Model.StudentDashBoardModel.EventList)
+                                    foreach (DTO.LABURNUM.COM.EventModel item in Model.EventList)
                                     {
-                                    <li>Event Date : @item.EventDate </li>
+                                    <li>Event Date : @item.EventDate.Day/@item.EventDate.Month/@item.EventDate.Year</li>
                                     <li>Event Name : @item.EventName</li>
                                     <li>Event Type : @item.EventTypeText</li>
                                     }
@@ -310,58 +587,166 @@
         }
 
 
-@* @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.ADMIN))
-        {<div class="col-md-3">
-            <div class="button_home button_green dashboard_clock">
-                <i class="fa fa-envelope fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
-                <span>Balance SMS :</span>
-                <span>
-                    @Model.SMSBalance
-                </span>
-            </div>
-        </div>}
-        @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.FACULTY))
-        {
-            if (new LABURNUM.COM.Component.SessionManagement().GetIsClassTeacher())
-            {
-            <div class="col-md-3">
-                <div class="button_home button_green dashboard_clock">
-                    <i class="fa fa-envelope fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
-                    <span>Student Present :</span>
-                    <span>
-                        @Model.PresentStudent
-                    </span>
-                    <span>Student Absent :</span>
-                    <span>
-                        @Model.AbsentStudent
-                    </span>
-                </div>
-            </div>
-            }
-        }
-        @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PARENT) || new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.STUDENT))
-        {
-            <div class="col-md-3">
-                <div class="button_home button_green dashboard_clock">
-                    <i class="fa fa-envelope fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
-                    <span>Status :</span>
-                    @if (Model.Status)
-                    {<span>Present</span> }
-                    else
-                    {<span>Absent</span>}
-                </div>
-            </div>
-        }
+
         @if (new LABURNUM.COM.Component.SessionManagement().GetLoginBy() == DTO.LABURNUM.COM.Utility.UserType.GetValue(DTO.LABURNUM.COM.Utility.EnumUserType.PRINCIPLE))
         {
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="button_home button_green dashboard_clock">
-
+                    <i class="fa fa-envelope fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <div>SMS Balance : </div>
+                    <div>@Model.PrincipalDashBoardModel.SMSBalance</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="button_home button_orange dashboard_clock">
+                    <i class="fa fa-users fa-3x" aria-hidden="true" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <div>Staffs :</div>
+                    <div>@(Model.PrincipalDashBoardModel.StaffSummary.TotalStaff)</div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="button_home button_blue dashboard_clock">
+                    <i class="fa fa-user fa-3x" aria-hidden="true" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <div>Students :</div>
+                    <div>@(Model.PrincipalDashBoardModel.StudentSummary.TotalActiveStudentCount)</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="button_home button_voilet dashboard_clock">
+                    <i class="fa fa-clock-o fa-3x" style="float: left; margin: 0px -8px 5px 8px"></i>
+                    <div id="Date"></div>
                     <div>
+                        <b id="hours"></b>
+                        <b id="point">:</b>
+                        <b id="min"></b>
+                        <b id="point">:</b>
+                        <b id="sec"></b>
                     </div>
                 </div>
             </div>
-        }*@
+            <div class="col-md-8 extra_margin_small">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Today Attendance Summary
+                    </header>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover general-table responsive">
+                                <thead>
+                                    <tr>
+                                        <th width="2%">S.No.</th>
+                                        <th width="1%">Class</th>
+                                        <th width="3%">Section</th>
+                                        <th width="1%">Students</th>
+                                        <th width="5%">Mor. Present</th>
+                                        <th width="5%">Mor. Absent</th>
+                                        <th width="5%">Lunch Present</th>
+                                        <th width="5%">Lunch Absent</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int counter = 1;}
+                                    @foreach (DTO.LABURNUM.COM.AttendanceReporting.ClassModelForAttendance item in @Model.PrincipalDashBoardModel.AttendanceSummaryReportModel.DayWiseAttendanceSummaries[0].ClassModelsForAttendance)
+                                    {
+                                        <tr>
+                                            <td width="2%">@counter</td>
+                                            <td width="1%">@item.ClassName</td>
+                                            <td width="3%">@item.SectionModelsForAttendance.Count</td>
+                                            <td width="1%">@item.StudentInClass</td>
+                                            <td width="5%">@item.MorningPresentStudentInClass</td>
+                                            <td width="5%">@item.MorningAbsentStudentInClass</td>
+                                            <td width="5%">@item.LunchPresentStudentInClass</td>
+                                            <td width="5%">@item.LunchAbsentStudentInClass</td>
+                                        </tr>
+                                        counter++;
+                                    }
+                                    <tr>
+                                        <td>Total</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>@Model.PrincipalDashBoardModel.AttendanceSummaryReportModel.TotalStudentsInSchool</td>
+                                        <td>@Model.PrincipalDashBoardModel.AttendanceSummaryReportModel.TotalStudentsMorningPresentCount</td>
+                                        <td>@Model.PrincipalDashBoardModel.AttendanceSummaryReportModel.TotalStudentsMorningAbsentCount</td>
+                                        <td>@Model.PrincipalDashBoardModel.AttendanceSummaryReportModel.TotalStudentsLunchPresentCount</td>
+                                        <td>@Model.PrincipalDashBoardModel.AttendanceSummaryReportModel.TotalStudentsLunchAbsentCount</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="text-align: right;"><a href="@LABURNUM.COM.Component.Constants.URL.WEBSITEURLWITHOUTSLASH/Reporting/TodayAttendanceSummary">Click Here For Detailed Summary</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-4 extra_margin_small">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Student Summary of School @*<span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                        </span>*@
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <ul>
+                                <li>Total Students : @Model.PrincipalDashBoardModel.StudentSummary.TotalAllStudentCount</li>
+                                <li>Active Students : @Model.PrincipalDashBoardModel.StudentSummary.TotalActiveStudentCount</li>
+                                <li>InActive Students : @Model.PrincipalDashBoardModel.StudentSummary.TotalInActiveStudentCount</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        Staff Summary @*<span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                        </span>*@
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <ul>
+                                <li>Total Staff : @Model.PrincipalDashBoardModel.StaffSummary.TotalStaff</li>
+                                <li>Principle : @Model.PrincipalDashBoardModel.StaffSummary.PrincipleCount</li>
+                                <li>Account : @Model.PrincipalDashBoardModel.StaffSummary.AccountCount</li>
+                                <li>Faculty : @Model.PrincipalDashBoardModel.StaffSummary.FacultyCount</li>
+                                <li>Class Teachers : @Model.PrincipalDashBoardModel.StaffSummary.ClassTeacherFaculty</li>
+                                <li>Subject Teachers : @Model.PrincipalDashBoardModel.StaffSummary.SubjectTeacherFaculty</li>
+                                <li>Left Staff : @Model.PrincipalDashBoardModel.StaffSummary.LeftStaff</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        Upcoming Events 
+                        @*<span class="tools pull-right">
+                            <a class="fa fa-chevron-up" href="javascript:;"></a>
+                        </span>*@
+                    </header>
+                    <div class="panel-body">
+                        <div class="row">
+                            <ul>
+                                @if (Model.EventList.Count == 0)
+                                {
+                                    <li>No Upcoming Event</li>}
+                                else
+                                {
+
+                                    foreach (DTO.LABURNUM.COM.EventModel item in Model.EventList)
+                                    {
+                                    <li>Event Date : @item.EventDate.Day/@item.EventDate.Month/@item.EventDate.Year</li>
+                                    <li>Event Name : @item.EventName</li>
+                                    <li>Event Type : @item.EventTypeText</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        }
+
+
     </div>
 </section>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
