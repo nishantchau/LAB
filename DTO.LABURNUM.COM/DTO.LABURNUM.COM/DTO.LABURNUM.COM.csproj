@@ -77,6 +77,8 @@
     <Compile Include="DashBoardModel.cs" />
     <Compile Include="DashBoard\AccountDashBoardModel.cs" />
     <Compile Include="DashBoard\AdminDashBoardModel.cs" />
+    <Compile Include="DashBoard\FacultyDashBoardModel.cs" />
+    <Compile Include="DashBoard\PrincipalDashBoardModel.cs" />
     <Compile Include="DashBoard\StudentDashBoardModel.cs" />
     <Compile Include="EventModel.cs" />
     <Compile Include="EventTypeModel.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="UploadFilesModel.cs" />
     <Compile Include="UserTypeModel.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="YearModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

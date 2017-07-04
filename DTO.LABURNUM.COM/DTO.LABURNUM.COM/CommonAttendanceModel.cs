@@ -14,6 +14,12 @@ namespace DTO.LABURNUM.COM
             this.Classes = new List<ClassModel>();
             this.Sections = new List<SectionModel>();
             this.Months = new List<MonthModel>();
+            this.Years = new List<YearModel>();
+            int y = 0;
+            for (y = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time")).Year; y <= 2027; y++)
+            {
+                this.Years.Add(new YearModel() { Value = y, Name = y });
+            }
         }
 
         public long AttendanceId { get; set; }
@@ -25,7 +31,7 @@ namespace DTO.LABURNUM.COM
         public System.DateTime? LunchAttendanceDate { get; set; }
         public bool IsPresentInMorning { get; set; }
         public bool IsPresentAfterLuch { get; set; }
-        
+        public int Year { get; set; }
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -40,5 +46,6 @@ namespace DTO.LABURNUM.COM
         public ApiClientModel ApiClientModel { get; set; }
         public List<ClassModel> Classes { get; set; }
         public List<SectionModel> Sections { get; set; }
+        public List<YearModel> Years { get; set; }
     }
 }
